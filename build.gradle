@@ -1,86 +1,63 @@
+defaultTasks 'clean', 'test'
+
+repositories {
+    mavenCentral()
+}
+
 buildscript {
     repositories {
-        mavenLocal()
-        jcenter()
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
+        mavenCentral()
     }
     dependencies {
-        classpath("net.serenity-bdd:serenity-gradle-plugin:2.3.4")
-        classpath("com.diffplug.spotless:spotless-plugin-gradle:5.4.0")
-        classpath('com.fasterxml.jackson.core:jackson-databind:2.9.5')
+        classpath "net.serenity-bdd:serenity-gradle-plugin:2.4.24", "com.diffplug.spotless:spotless-plugin-gradle:5.14.2"
     }
 }
 
-plugins {
-    id 'com.bmuschko.nexus' version '2.3.1' apply false
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'net.serenity-bdd.aggregator'
+apply plugin: "com.diffplug.spotless"
+
+spotless {
+    java {
+        googleJavaFormat('1.11.0')
+    }
+    enforceCheck false
 }
 
-allprojects {
-    group 'com.vertafore'
-    version '1.0.10-SNAPSHOT'
+sourceCompatibility = 11
+targetCompatibility = 11
 
-    apply plugin: 'java'
-    apply plugin: 'idea'
-    apply plugin: 'java-library'
-    apply plugin: "com.diffplug.spotless"
-    apply plugin: 'net.serenity-bdd.aggregator'
-
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
-
-    repositories {
-        jcenter()
-        mavenLocal()
-        mavenCentral()
-        gradle.nexusConfiguration
-    }
-
-    apply plugin: 'com.bmuschko.nexus'
-
-
-    nexus {
-        sign = false
-        repositoryUrl = 'https://nexus.util.v4af.com/repository/libs-release-local/'
-        snapshotRepositoryUrl = 'https://nexus.util.v4af.com/repository/libs-snapshot-local/'
-    }
-
-
-    task sourceJar(type: Jar, dependsOn: classes) {
-        classifier 'sources'
-        from sourceSets.main.allSource
-    }
-
-    spotless {
-        java {
-            googleJavaFormat('1.7')
-        }
-        enforceCheck false
-    }
+ext {
+    slf4jVersion = '1.7.7'
+    serenityCoreVersion = '2.4.24'
+    serenityCucumberVersion = '2.4.24'
+    junitVersion = '4.13.1'
+    assertJVersion = '3.8.0'
+    logbackVersion = '1.2.3'
+    apachePoiVersion = '5.0.0'
 }
-
 
 dependencies {
-    compile "org.assertj:assertj-core:3.11.1"
-    compile "org.assertj:assertj-core:3.12.2"
-    compile "net.serenity-bdd:serenity-core:2.3.4"
-    compile "net.serenity-bdd:serenity-cucumber6:2.3.4"
-    compile "net.serenity-bdd:serenity-rest-assured:2.0.41"
-    compile "org.slf4j:slf4j-simple:1.7.30"
-    compile group: 'com.github.javafaker', name: 'javafaker', version: '0.17.2'
+    testImplementation group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
+
+    testImplementation "net.serenity-bdd:serenity-core:${serenityCoreVersion}",
+            "net.serenity-bdd:serenity-cucumber6:${serenityCucumberVersion}",
+            "net.serenity-bdd:serenity-screenplay:${serenityCoreVersion}",
+            "net.serenity-bdd:serenity-screenplay-webdriver:${serenityCoreVersion}",
+            "net.serenity-bdd:serenity-ensure:${serenityCoreVersion}",
+            "junit:junit:${junitVersion}",
+            "org.assertj:assertj-core:${assertJVersion}",
+            "org.apache.poi:poi:${apachePoiVersion}",
+            "org.apache.poi:poi-ooxml:${apachePoiVersion}",
+            "org.apache.poi:poi-scratchpad:${apachePoiVersion}"
 }
 
-tasks.withType(Test) {
-
-    testLogging {
-        outputs.upToDateWhen { false }
-        showStandardStreams = true
-    }
-
-    if (System.getProperty("ignoreFailures") == "true") ignoreFailures = true
+test {
+    jvmArgs(['-Xms1024m', '-Xmx2048m'])
+    testLogging.showStandardStreams = true
+    systemProperties System.getProperties()
+    if (getProperty("ignoreFailures")  == "true") ignoreFailures = true
 }
 
 gradle.startParameter.continueOnFailure = true
-
-test.finalizedBy(aggregate)
