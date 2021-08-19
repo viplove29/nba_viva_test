@@ -1,39 +1,133 @@
 variables:
-  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
-  ENVIRONMENT: devbase
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false -DscreenRecorder.url=http://127.0.0.1:8000 -Dappium.log.level=error -Dserenity.take.screenshots=AFTER_EACH_STEP"
+  SCRIPTS_REPO: https://$SCRIPTS_USER:$SCRIPTS_TOKEN@git.util.v4af.com/ljohnson/ci-scripts
+  MAX_TRIES: 1
+
+default:
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - unknown_failure
+      - stuck_or_timeout_failure
+  interruptible: true
+
+.windows scripts:
+  tags: [Windows]
+  before_script:
+    - Write-Host $CI_RUNNER_TAGS
+    - if (Test-Path ./scripts) { Remove-Item ./scripts -Recurse -Force }
+    - mkdir scripts
+    - git clone "$SCRIPTS_REPO" "./scripts"
+    - Get-ChildItem ./scripts -Filter "*.psm1" | ForEach { Import-Module $_.FullName }
+
+.regression:
+  parallel: null
+  extends: .windows scripts
+  script:
+    - Expand-Outlines
+    - Set-ReportPortalProperties -Project MAR -Try $Env:TRY
+    - Invoke-RegressionQueue
+      -Command "./gradlew ReportPortal --tests TestSupport -Denvironment=$ENVIRONMENT -DignoreFailures=true"
+      -Try $Env:TRY
+      -BatchSize 0
+  after_script:
+    - aws storagegateway refresh-cache --file-share-arn arn:aws:storagegateway:us-east-1:065073025992:share/share-99B425F3
+  only:
+    - schedules
+    - web
+  except:
+    variables:
+      - $SMOKE_TEST
+  interruptible: false
+  when: always
+  allow_failure: true
 
 stages:
-- project checks
-
-build:
-  stage: project checks
-  image: openjdk:8-jdk-slim
-  script:
-  - ./gradlew --build-cache build -x test
-  cache:
-    key: "gradle"
-    paths:
-    - .gradle
-  artifacts:
-    expire_in: 1 week
-    when: always
-    paths:
-    - build/reports/tests/test
-    - build/test-results/test
-    - build/libs
-    - build/classes
+  - project checks
+  - test
+  - regression
 
 spotless:
   stage: project checks
-  image: openjdk:8-jdk-slim
+  image: openjdk:14-jdk-slim
   script:
     - ./gradlew spotlessJavaCheck
+    - ./gradlew compileTestJava
   only:
     refs:
       - merge_requests
     changes:
       - "**/*.java"
 
-before_script:
-- export GRADLE_USER_HOME=`pwd`/.gradle
+scenarios:
+  stage: project checks
+  image: mcr.microsoft.com/powershell
+  before_script:
+    - apt-get update && apt-get install -y git
+    - mkdir scripts
+    - git clone "$SCRIPTS_REPO" "./scripts"
+  script:
+    - |
+      pwsh -C "
+      Install-Module powershell-yaml -Force;
+      Import-Module ./scripts/TestScenarios.psm1;
+      Test-SyncTags;
+      Test-DuplicateScenarioNames;"
+  only:
+    refs:
+      - merge_requests
+    changes:
+      - "**/*.feature"
 
+dry run:
+  stage: project checks
+  image: openjdk:14-jdk-slim
+  script:
+    - ./gradlew test --tests TestSupport -Dcucumber.execution.dry-run=true
+  only:
+    refs:
+      - merge_requests
+    changes:
+      - "**/*StepDefinitions.java"
+      - "**/*.feature"
+  cache:
+    paths:
+      - build/
+
+#Run TCs from branch on merge request three times
+.run_tc_from_branch:
+  parallel: 3
+  allow_failure: true
+  extends: .windows scripts
+  script:
+    - $TestCases = Format-TestCases -String ($CI_COMMIT_REF_NAME + $CI_MERGE_REQUEST_TITLE) -Delimiter "-"
+    - ./gradlew clean test --tests TestSupport "-Denvironment=$Environment" "-Dcucumber.filter.tags=$TestCases";
+  after_script:
+    - New-Item reports -ItemType Directory -Force
+    - Get-ChildItem $Env:HOMEPATH\Downloads -File | Move-Item -Destination .\reports
+  artifacts:
+    paths:
+      - reports/
+    expire_in: 2 days
+    when: always
+  dependencies: []
+
+QA:
+  extends: .run_tc_from_branch
+  stage: test
+  variables:
+    ENVIRONMENT: QA
+  rules:
+    - if: '$CI_COMMIT_REF_NAME =~ /TC-?[0-9]+/i && $CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_MERGE_REQUEST_TITLE =~ /TC-?[0-9]+/i && $CI_PIPELINE_SOURCE == "merge_request_event"'
+  artifacts:
+    expose_as: Reports
+
+
+
+first attempt:
+  extends: .regression
+  stage: regression
+  variables:
+    TRY: 1
