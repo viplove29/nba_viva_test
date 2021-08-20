@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import serenitybase.helpers.AppiumManager;
 import serenitybase.helpers.ScreenRecorder;
+import serenitybase.helpers.Utilities;
 
 public class Hooks {
   @Before
@@ -14,12 +15,12 @@ public class Hooks {
     AppiumManager.startAppium();
     AppiumManager.getSession();
     if (System.getProperty("screenRecorder.url") != null) ScreenRecorder.startRecording();
+    Utilities.setDownloadsCount();
   }
 
   @After
   public void after() {
     AppiumManager.stopAppium();
-    killProcess("EXCEL.EXE");
   }
 
   @After

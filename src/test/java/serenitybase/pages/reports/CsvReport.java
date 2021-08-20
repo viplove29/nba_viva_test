@@ -1,7 +1,6 @@
 package serenitybase.pages.reports;
 
-import static serenitybase.helpers.Utilities.getDownloadsPath;
-
+import au.com.bytecode.opencsv.CSVReader;
 import com.google.common.primitives.Ints;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -13,22 +12,20 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import serenitybase.helpers.Utilities;
 
-public class CsvReport extends ExcelReport {
-  private static final int HEADER_ROW_NUMBER = 2;
+public class CsvReport {
+  private static final int HEADER_ROW_NUMBER = 0;
 
-  public List<String> getCsvReportHeaders(String reportFile) {
-    List<String> headers = new ArrayList<>();
+  public CsvReport() {
+    Utilities.waitForDownload();
+  }
+
+  public List<String> getCsvReportHeaders() {
     try {
-      String absolutePath = getReportPath();
-      BufferedReader reader = new BufferedReader(new FileReader(absolutePath));
-      CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withTrim());
-
-      CSVRecord headerRow = csvParser.getRecords().get(HEADER_ROW_NUMBER);
-      IntStream.range(0, headerRow.size()).forEach(idx -> headers.add(headerRow.get(idx)));
+      String absolutePath = Utilities.getMostRecentFile();
+      return Arrays.asList(new CSVReader(new FileReader(absolutePath)).readNext());
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
-    return headers;
   }
 
   public List<String> getColumnsRangeValuesForFirstCustomerRow(
@@ -37,7 +34,7 @@ public class CsvReport extends ExcelReport {
     Integer rowNumber = null;
     List<String> headers = new ArrayList<>();
     try {
-      String absolutePath = getReportPath();
+      String absolutePath = Utilities.getMostRecentFile();
       BufferedReader reader = new BufferedReader(new FileReader(absolutePath));
       CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withTrim());
       List<CSVRecord> records = csvParser.getRecords();
@@ -92,7 +89,7 @@ public class CsvReport extends ExcelReport {
     List<String> values = new ArrayList<>();
     List<String> headers = new ArrayList<>();
     try {
-      String absolutePath = getReportPath();
+      String absolutePath = Utilities.getMostRecentFile();
       BufferedReader reader = new BufferedReader(new FileReader(absolutePath));
       CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withTrim());
       List<CSVRecord> records = csvParser.getRecords();
@@ -115,15 +112,10 @@ public class CsvReport extends ExcelReport {
     return values;
   }
 
-  public String getReportPath() {
-    return String.format(
-        "%s/%s.csv", getDownloadsPath(), getReportFileName(getWindowName()).replace(".csv", ""));
-  }
-
   public String getAccessColumnValueFromSpecifiedRow(int rowNumber, String reportFile) {
     String desiredValue = "";
     try {
-      String absolutePath = getReportPath();
+      String absolutePath = Utilities.getMostRecentFile();
       BufferedReader reader = new BufferedReader(new FileReader(absolutePath));
       CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withTrim());
       List<CSVRecord> records = csvParser.getRecords();
@@ -135,16 +127,11 @@ public class CsvReport extends ExcelReport {
     return desiredValue;
   }
 
-  public boolean isCsvReportWindowOpened() {
-    Utilities.simpleSleep(800);
-    return excelWindow.isDisplayed() && excelWindow.isEnabled();
-  }
-
   public boolean getValueImmediatelyUnderHeader(
       String reportName, String valueToValidate, String headerName) {
     int column = 0;
     try {
-      String absolutePath = getReportPath();
+      String absolutePath = Utilities.getMostRecentFile();
 
       BufferedReader readerForHeaders = new BufferedReader(new FileReader(absolutePath));
       CSVParser csvParserForHeaders = new CSVParser(readerForHeaders, CSVFormat.DEFAULT.withTrim());
