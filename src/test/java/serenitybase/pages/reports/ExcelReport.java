@@ -1,6 +1,6 @@
 package serenitybase.pages.reports;
 
-import static serenitybase.helpers.Utilities.getDownloadsPath;
+import static serenitybase.helpers.Utilities.getMostRecentFile;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,20 +23,13 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.assertj.core.util.Streams;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import serenitybase.helpers.AppiumManager;
 import serenitybase.helpers.Utilities;
 
 public class ExcelReport extends PageObject {
-  private static final String EXCEL_WINDOW_CLASS_NAME = "XLMAIN";
   private static final double THRESHOLD = .0001;
-  protected final WebElement excelWindow;
 
   public ExcelReport() {
-    excelWindow = AppiumManager.getSession().findElement(By.className(EXCEL_WINDOW_CLASS_NAME));
+    Utilities.waitForDownload();
   }
 
   /**
@@ -65,16 +58,7 @@ public class ExcelReport extends PageObject {
   }
 
   public String getReportPath() {
-    return String.format(
-        "%s/%s.xlsx", getDownloadsPath(), getReportFileName(getWindowName()).replace(".xlsx", ""));
-  }
-
-  public void closeExcelFile() {
-    String dontSaveButtonName = "Don't Save";
-    excelWindow.findElement(By.name("Close")).click();
-    excelWindow.findElements(By.name(dontSaveButtonName)).stream()
-        .findAny()
-        .ifPresent(WebElement::click);
+    return getMostRecentFile();
   }
 
   public XSSFSheet setExcelFile(String SheetName) {
@@ -245,20 +229,9 @@ public class ExcelReport extends PageObject {
     return values.contains(expectedValue);
   }
 
-  public String getWindowName() {
-    return excelWindow.getAttribute("Name");
-  }
-
-  public String getTitleBarName() {
-    return excelWindow
-        .findElement(By.name("Ribbon"))
-        .findElement(By.xpath("//*[@LocalizedControlType = 'Title Bar']"))
-        .getText();
-  }
-
   protected Workbook getCurrentReportWorkbook() {
     String reportPath = getReportPath();
-    closeExcelFile();
+    //    closeExcelFile();
     Utilities.simpleSleep(200);
     return getWorkbookForReport(reportPath);
   }
@@ -439,13 +412,6 @@ public class ExcelReport extends PageObject {
     return setExcelFile(sheetName).getProtect();
   }
 
-  public void interactWithReport() {
-    Actions action = new Actions(AppiumManager.getSession());
-    action.moveToElement(excelWindow, 400, 300);
-    action.doubleClick();
-    action.perform();
-  }
-
   public int getRowForNewPolicy(String sheetName) {
     java.util.List<String> policies = getValuesInColumnUnderHeader("Policy Number", sheetName);
     return policies.indexOf(Serenity.sessionVariableCalled("newPolicyName")) + 1;
@@ -557,24 +523,6 @@ public class ExcelReport extends PageObject {
     return sheet.getColumnStyle(columnNum).getWrapText();
   }
 
-  public void saveExcelDoc() {
-    excelWindow.findElement(By.name("Save")).click();
-    Utilities.simpleSleep(5000); // give time for the doc to be saved
-  }
-
-  public void editFirstCellInReport(String sheetName, String data) {
-    WebElement sheet = excelWindow.findElement(By.xpath("//*[@AutomationId='" + sheetName + "']"));
-    WebElement cell = sheet.findElement(By.name("\"A\" 2"));
-    cell.click();
-    cell.sendKeys(data, Keys.ENTER);
-  }
-
-  public String getFirstCellDataInReport(String sheetName) {
-    WebElement sheet = excelWindow.findElement(By.xpath("//*[@AutomationId='" + sheetName + "']"));
-    WebElement firstCell = sheet.findElement(By.name("\"A\" 2"));
-    return firstCell.getText();
-  }
-
   public java.util.List<String> getReportSheetNames() {
     try {
       java.util.List<String> sheetNames = new ArrayList<String>();
@@ -590,18 +538,6 @@ public class ExcelReport extends PageObject {
       e.printStackTrace();
     }
     return null;
-  }
-
-  public void openSheetByName(String sheetName) {
-    java.util.List<WebElement> elements =
-        excelWindow.findElements(By.xpath("//*[@AutomationId='SheetTab']"));
-    for (WebElement element : elements) {
-      if (element.getAttribute("Name").contains(sheetName)) {
-        element.click();
-        return;
-      }
-    }
-    throw new RuntimeException("Sheet not found - " + sheetName);
   }
 
   public java.util.List<String> getCellValuesForTheRow(String sheetName, int rowNumber) {

@@ -4,7 +4,6 @@ import java.time.Duration;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.support.FindBy;
-import serenitybase.helpers.Utilities;
 
 public class MarHomePage extends PageObject {
   @FindBy(id = "rua")
@@ -15,6 +14,9 @@ public class MarHomePage extends PageObject {
 
   @FindBy(xpath = "//div[@class='rpt-split-view rpt-split-view-right']")
   private WebElementFacade reportTemplatesContainer;
+
+  @FindBy(id = "agdd")
+  private WebElementFacade actionsButton;
 
   private WebElementFacade getReportRow(String reportName) {
     return find(String.format("//tr[@id='%s']", reportName));
@@ -37,7 +39,6 @@ public class MarHomePage extends PageObject {
   }
 
   public void clickExcelQuickActions(String reportName) {
-    Utilities.setDownloadsCount();
     getReportRow(reportName).findBy(".//img[contains(@ng-src,'excel')]").click();
   }
 
@@ -47,5 +48,10 @@ public class MarHomePage extends PageObject {
 
   public void clickOnReport(String reportName) {
     getReportRow(reportName).findBy(String.format(".//span[text()='%s']", reportName)).click();
+  }
+
+  public void selectOptionUnderActions(String option) {
+    actionsButton.click();
+    find(String.format("//*[text()='%s']", option)).click();
   }
 }

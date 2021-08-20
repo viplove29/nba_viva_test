@@ -4,6 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.thucydides.core.annotations.Steps;
+import org.apache.commons.lang3.StringUtils;
 import serenitybase.steps.teststeps.ReportTemplateTestSteps;
 
 public class ReportTemplateStepDefinitions {
@@ -39,13 +40,37 @@ public class ReportTemplateStepDefinitions {
     reportTemplateTestSteps.navigateToGeneratedReport();
   }
 
-  @When("the user opens the downloaded excel report")
-  public void the_user_opens_the_downloaded_excel_report() {
-    reportTemplateTestSteps.openDownloadedExcelReport();
-  }
-
   @Then("the excel report has the same number of rows as the web report")
   public void the_excel_report_has_the_same_number_of_rows_as_the_web_report() {
     reportTemplateTestSteps.verifyNumberOfRows();
+  }
+
+  @When("the user selects {string} under Actions")
+  public void the_user_selects_option_under_actions(String option) {
+    reportTemplateTestSteps.selectOptionUnderActions(option);
+  }
+
+  @Then("the report is {string} if applicable")
+  public void the_report_has_permission(String permission) {
+    if (StringUtils.isNotBlank(permission)) {
+      reportTemplateTestSteps.verifySheetPermissions(permission);
+    }
+  }
+
+  @Then("the report is a {string}")
+  public void the_report_has_file_format(String fileFormat) {
+    reportTemplateTestSteps.verifyReportHasFileFormat(fileFormat);
+  }
+
+  @Then("the report has the same columns as the web report")
+  public void the_report_has_the_same_columns_as_the_web_report() {
+    reportTemplateTestSteps.verifyColumns();
+  }
+
+  @Then("the report has a {string} if applicable")
+  public void the_report_has_a_cover_sheet_if_applicable(String includeCoverSheet) {
+    if (StringUtils.isNotBlank(includeCoverSheet)) {
+      reportTemplateTestSteps.verifyCoverSheet(Boolean.parseBoolean(includeCoverSheet));
+    }
   }
 }
