@@ -21,16 +21,16 @@ public class MarHomePage extends PageObject {
   @FindBy(id = "shc")
   private WebElementFacade showHideIconButton;
 
- @FindBy(id = "chDivision")
+  @FindBy(id = "chDivision")
   private WebElementFacade divisionDetailView;
 
- @FindBy(id = "chBranch")
+  @FindBy(id = "chBranch")
   private WebElementFacade branchDetailView;
 
- @FindBy(id = "chDepartment")
+  @FindBy(id = "chDepartment")
   private WebElementFacade departmentDetailView;
 
- @FindBy(id = "chGroup")
+  @FindBy(id = "chGroup")
   private WebElementFacade groupDetailView;
 
   private WebElementFacade getReportRow(String reportName) {

@@ -80,7 +80,8 @@ public class ReportTemplateStepDefinitions {
   }
 
   @Then("the user verifies that the {string} are displayed in the detail view tab")
-  public void the_user_verifies_that_the_policies_are_displayed_in_the_detail_view_tab(String policies) {
+  public void the_user_verifies_that_the_policies_are_displayed_in_the_detail_view_tab(
+      String policies) {
     reportTemplateTestSteps.verifyPoliciesAreDisplayed(policies);
   }
 }

@@ -111,7 +111,6 @@ public class ReportTemplateTestSteps {
   @Step
   public void selectOptionUnderHideShowIcon(String option) {
     marHomePage.selectOptionUnderHideShowIcon(option);
-
   }
 
   @Step
