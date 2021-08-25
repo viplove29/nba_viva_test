@@ -18,6 +18,21 @@ public class MarHomePage extends PageObject {
   @FindBy(id = "agdd")
   private WebElementFacade actionsButton;
 
+  @FindBy(id = "shc")
+  private WebElementFacade showHideIconButton;
+
+ @FindBy(id = "chDivision")
+  private WebElementFacade divisionDetailView;
+
+ @FindBy(id = "chBranch")
+  private WebElementFacade branchDetailView;
+
+ @FindBy(id = "chDepartment")
+  private WebElementFacade departmentDetailView;
+
+ @FindBy(id = "chGroup")
+  private WebElementFacade groupDetailView;
+
   private WebElementFacade getReportRow(String reportName) {
     return find(String.format("//tr[@id='%s']", reportName));
   }
@@ -53,5 +68,26 @@ public class MarHomePage extends PageObject {
   public void selectOptionUnderActions(String option) {
     actionsButton.click();
     find(String.format("//*[text()='%s']", option)).click();
+  }
+
+  public void selectOptionUnderHideShowIcon(String option) {
+    showHideIconButton.click();
+    find(String.format("//*[text()='%s']", option)).click();
+  }
+
+  public void verifyDivisionIsDisplayed() {
+    divisionDetailView.isDisplayed();
+  }
+
+  public void verifyBranchIsDisplayed() {
+    branchDetailView.isDisplayed();
+  }
+
+  public void verifyDepartmentIsDisplayed() {
+    departmentDetailView.isDisplayed();
+  }
+
+  public void verifyGroupIsDisplayed() {
+    groupDetailView.isDisplayed();
   }
 }
