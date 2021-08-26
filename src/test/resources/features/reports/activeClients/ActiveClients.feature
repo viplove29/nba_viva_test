@@ -35,6 +35,7 @@ Feature: Active Clients
       | Excel       | Locked     | true       |
       | Excel       | Both       | false      |
 
+    @debug
   @TC-97
   @sync-30863439
   Scenario Outline: Business Unit columns appear together in the proper order

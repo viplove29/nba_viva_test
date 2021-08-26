@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.UUID;
+import net.thucydides.core.annotations.Screenshots;
 import net.thucydides.core.annotations.Step;
 import serenitybase.helpers.Utilities;
 import serenitybase.pages.mar.MarHomePage;
@@ -40,6 +41,7 @@ public class ReportTemplateTestSteps {
   }
 
   @Step
+  @Screenshots(disabled = true)
   public void navigateToGeneratedReport() {
     marHomePage.clickOnReport(reportName);
   }
@@ -110,24 +112,30 @@ public class ReportTemplateTestSteps {
 
   @Step
   public void selectOptionUnderHideShowIcon(String option) {
-    marHomePage.selectOptionUnderHideShowIcon(option);
+    webReportPage.selectOptionUnderHideShowIcon(option);
   }
 
   @Step
   public void verifyPoliciesAreDisplayed(String policies) {
+    boolean isElementDisplayed;
     switch (policies) {
       case ("Division"):
-        marHomePage.verifyDivisionIsDisplayed();
+        isElementDisplayed = webReportPage.verifyDivisionIsDisplayed();
         break;
       case ("Branch"):
-        marHomePage.verifyBranchIsDisplayed();
+        isElementDisplayed = webReportPage.verifyBranchIsDisplayed();
         break;
       case ("Department"):
-        marHomePage.verifyDepartmentIsDisplayed();
+        isElementDisplayed = webReportPage.verifyDepartmentIsDisplayed();
         break;
       case ("Group"):
-        marHomePage.verifyGroupIsDisplayed();
+        isElementDisplayed = webReportPage.verifyGroupIsDisplayed();
         break;
+      default:
+        throw new IllegalArgumentException(String.format("'%s' is not a valid policy.", policies));
     }
+    assertThat(isElementDisplayed)
+        .withFailMessage(String.format("The policy '%s' was not displayed", policies))
+        .isTrue();
   }
 }
