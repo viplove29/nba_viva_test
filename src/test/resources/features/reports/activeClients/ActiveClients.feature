@@ -35,7 +35,6 @@ Feature: Active Clients
       | Excel       | Locked     | true       |
       | Excel       | Both       | false      |
 
-    @debug
   @TC-97
   @sync-30863439
   Scenario Outline: Business Unit columns appear together in the proper order
@@ -50,5 +49,9 @@ Feature: Active Clients
       | Policy Department | Department |
       | Policy Group      | Group      |
 
-
+  @debug
+  @TC-152
+  @sync-30863494
+  Scenario: Branch and Group are not available when not enabled in source database
+    When the user navigates to the generated report
 
