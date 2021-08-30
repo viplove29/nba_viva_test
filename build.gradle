@@ -36,6 +36,7 @@ ext {
     assertJVersion = '3.8.0'
     logbackVersion = '1.2.3'
     apachePoiVersion = '5.0.0'
+    rpIntegrationVersion = "1.5.8"
 }
 
 dependencies {
@@ -50,7 +51,8 @@ dependencies {
             "org.assertj:assertj-core:${assertJVersion}",
             "org.apache.poi:poi:${apachePoiVersion}",
             "org.apache.poi:poi-ooxml:${apachePoiVersion}",
-            "org.apache.poi:poi-scratchpad:${apachePoiVersion}"
+            "org.apache.poi:poi-scratchpad:${apachePoiVersion}",
+            "com.github.invictum:serenity-reportportal-integration:${rpIntegrationVersion}"
 }
 
 test {
