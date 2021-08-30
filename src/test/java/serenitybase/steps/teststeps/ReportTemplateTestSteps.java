@@ -50,7 +50,7 @@ public class ReportTemplateTestSteps {
   public void verifyNumberOfRows() {
     ExcelReport excelReport = new ExcelReport();
     assertThat(excelReport.getLastRowNum("Report Data"))
-        .isEqualTo(webReportPage.getNumberOfResults());
+            .isEqualTo(webReportPage.getNumberOfResults());
   }
 
   @Step
@@ -62,7 +62,7 @@ public class ReportTemplateTestSteps {
   public void verifyReportHasFileFormat(String fileFormat) {
     Utilities.waitForDownload();
     assertThat(Utilities.getExtension(Utilities.getMostRecentFile()))
-        .isEqualToIgnoringCase(fileFormat.equals("Excel") ? "XLSX" : "CSV");
+            .isEqualToIgnoringCase(fileFormat.equals("Excel") ? "XLSX" : "CSV");
   }
 
   @Step
@@ -134,8 +134,22 @@ public class ReportTemplateTestSteps {
       default:
         throw new IllegalArgumentException(String.format("'%s' is not a valid policy.", policies));
     }
+  }
+
+  public void verifyPoliciesAreNotDisplayed(String policies) {
+    boolean isElementDisplayed;
+    switch (policies) {
+      case ("Branch"):
+        isElementDisplayed = webReportPage.verifyBranchIsDisplayed();
+        break;
+      case ("Group"):
+        isElementDisplayed = webReportPage.verifyGroupIsDisplayed();
+        break;
+      default:
+        throw new IllegalArgumentException(String.format("'%s' is not a valid policy.", policies));
+    }
     assertThat(isElementDisplayed)
-        .withFailMessage(String.format("The policy '%s' was not displayed", policies))
-        .isTrue();
+            .withFailMessage(String.format("The policy '%s' was not displayed", policies))
+            .isFalse();
   }
 }

@@ -17,7 +17,7 @@ Feature: Active Clients
     Then the excel report has the same number of rows as the web report
 
   @TC-289
-  @sync-38373633
+    @sync-38373633
   Scenario Outline: Export to Excel/CSV File Format Options
     When the user navigates to the generated report
     And the user selects 'Export Report' under Actions
@@ -50,8 +50,15 @@ Feature: Active Clients
       | Policy Group      | Group      |
 
   @debug
-  @TC-152
-  @sync-30863494
-  Scenario: Branch and Group are not available when not enabled in source database
+    @TC-152
+    @sync-30863494
+  Scenario Outline: Branch and Group are not available when not enabled in source database
     When the user navigates to the generated report
+    And the user selects '<Options>' under the hide show icon
+    And the user verifies that the '<Selected Policies>' are displayed in the detail view tab
+  Then the user verifies that the '<Unselected Policies>' are not displayed in the detail view tab
 
+    Examples:
+      | Options           | Selected Policies | Unselected Policies |
+      | Policy Department | Department        | Branch              |
+      | Policy Group      | Group             | Group               |

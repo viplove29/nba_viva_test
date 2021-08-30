@@ -84,4 +84,9 @@ public class ReportTemplateStepDefinitions {
       String policies) {
     reportTemplateTestSteps.verifyPoliciesAreDisplayed(policies);
   }
+
+  @Then("the user verifies that the {string} are not displayed in the detail view tab")
+  public void the_user_verifies_that_the_policies_are_not_displayed_in_the_detail_view_tab(String policies) {
+    reportTemplateTestSteps.verifyPoliciesAreNotDisplayed(policies);
+  }
 }
