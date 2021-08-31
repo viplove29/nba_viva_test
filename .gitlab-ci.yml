@@ -154,7 +154,7 @@ second attempt:
     - Expand-Outlines
     - Set-ReportPortalProperties -Project MAR -Try $Env:TRY
     - Invoke-RegressionQueue
-      -Command "./gradlew test --tests TestSupport -Denvironment=$ENVIRONMENT -DignoreFailures=true "-Drp.launch=$LAUNCH_NAME"
+      -Command "./gradlew test --tests TestSupport -Denvironment=$ENVIRONMENT -DignoreFailures=true -Drp.launch=$LAUNCH_NAME"
       -Project MAR
       -Try $Env:TRY
       -BatchSize 0
