@@ -1,6 +1,6 @@
 variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false -DscreenRecorder.url=http://127.0.0.1:8000 -Dappium.log.level=error -Dserenity.take.screenshots=AFTER_EACH_STEP"
-  SCRIPTS_REPO: https://$SCRIPTS_USER:$SCRIPTS_TOKEN@git.util.v4af.com/ljohnson/ci-scripts
+  SCRIPTS_REPO: https://$SCRIPTS_USER:$SCRIPTS_TOKEN@gitlab.com/vertafore/agency/sdet/ci-scripts.git
   MAX_TRIES: 1
 
 default:
