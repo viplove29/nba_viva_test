@@ -63,6 +63,7 @@ stages:
   - test
   - regression
   - merge regression
+  - regression rerun
 
 spotless:
   stage: project checks
@@ -146,8 +147,23 @@ first attempt:
   variables:
     TRY: 1
 
+second attempt:
+  extends: .regression
+  stage: regression rerun
+  script:
+    - Expand-Outlines
+    - Set-ReportPortalProperties -Project MAR -Try $Env:TRY
+    - Invoke-RegressionQueue
+      -Command "./gradlew test --tests TestSupport -Denvironment=$ENVIRONMENT -DignoreFailures=true "-Drp.launch=$LAUNCH_NAME"
+      -Project MAR
+      -Try $Env:TRY
+      -BatchSize 0
+  variables:
+    TRY: 2
+
 first merge:
   stage: merge regression
   extends: .merge launches
   script:
     - Merge-Launches -Project MAR -Name "$LAUNCH_NAME" -Description "GitLab CI - Merged - First Try" -Try 1
+
