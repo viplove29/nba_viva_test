@@ -62,8 +62,8 @@ stages:
   - project checks
   - test
   - regression
-  - regression rerun
   - merge regression
+  - regression rerun
 
 spotless:
   stage: project checks
@@ -152,7 +152,7 @@ second attempt:
   stage: regression rerun
   script:
     - Expand-Outlines
-    - Set-ReportPortalProperties -Project MAR -Try $Env:TRY
+    - Set-ReportPortalProperties -Project MAR -Try $Env:TRY -Launch $LAUNCH_NAME
     - Invoke-RegressionQueue
       -Command "./gradlew test --tests TestSupport -Denvironment=$ENVIRONMENT -DignoreFailures=true `"-Drp.rerun=true`""
       -Project MAR
