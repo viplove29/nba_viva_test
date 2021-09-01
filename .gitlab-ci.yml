@@ -1,6 +1,6 @@
 variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false -DscreenRecorder.url=http://127.0.0.1:8000 -Dappium.log.level=error -Dserenity.take.screenshots=AFTER_EACH_STEP"
-  SCRIPTS_REPO: https://$SCRIPTS_USER:$SCRIPTS_TOKEN@git.util.v4af.com/ljohnson/ci-scripts
+  SCRIPTS_REPO: https://$SCRIPTS_USER:$SCRIPTS_TOKEN@gitlab.com/vertafore/agency/sdet/ci-scripts.git
   MAX_TRIES: 1
 
 default:
@@ -22,13 +22,14 @@ default:
     - Get-ChildItem ./scripts -Filter "*.psm1" | ForEach { Import-Module $_.FullName }
 
 .regression:
-  parallel: null
+  parallel: 5
   extends: .windows scripts
   script:
     - Expand-Outlines
     - Set-ReportPortalProperties -Project MAR -Try $Env:TRY
     - Invoke-RegressionQueue
-      -Command "./gradlew ReportPortal --tests TestSupport -Denvironment=$ENVIRONMENT -DignoreFailures=true"
+      -Command "./gradlew test --tests TestSupport -Denvironment=$ENVIRONMENT -DignoreFailures=true"
+      -Project MAR
       -Try $Env:TRY
       -BatchSize 0
   after_script:
@@ -43,10 +44,26 @@ default:
   when: always
   allow_failure: true
 
+.merge launches:
+  extends: .windows scripts
+  only:
+    - schedules
+    - web
+  except:
+    variables:
+      - $SMOKE_TEST
+  when: always
+  variables:
+    GIT_STRATEGY: none
+  dependencies: []
+  interruptible: false
+
 stages:
   - project checks
   - test
   - regression
+  - merge regression
+  - regression rerun
 
 spotless:
   stage: project checks
@@ -124,10 +141,29 @@ QA:
   artifacts:
     expose_as: Reports
 
-
-
 first attempt:
   extends: .regression
   stage: regression
   variables:
     TRY: 1
+
+second attempt:
+  extends: .regression
+  stage: regression rerun
+  script:
+    - Expand-Outlines
+    - Set-ReportPortalProperties -Project MAR -Try $Env:TRY -Launch $LAUNCH_NAME
+    - Invoke-RegressionQueue
+      -Command "./gradlew test --tests TestSupport -Denvironment=$ENVIRONMENT -DignoreFailures=true `"-Drp.rerun=true`""
+      -Project MAR
+      -Try $Env:TRY
+      -BatchSize 0
+  variables:
+    TRY: 2
+
+first merge:
+  stage: merge regression
+  extends: .merge launches
+  script:
+    - Merge-Launches -Project MAR -Name "$LAUNCH_NAME" -Description "GitLab CI - Merged - First Try" -Try 1
+
