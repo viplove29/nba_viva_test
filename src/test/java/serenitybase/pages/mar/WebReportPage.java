@@ -10,6 +10,21 @@ public class WebReportPage extends PageObject {
   @FindBy(xpath = "//span[@ng-show='grid.options.totalItems > 0']//b[2]")
   private WebElementFacade totalResults;
 
+  @FindBy(id = "shc")
+  private WebElementFacade showHideIconButton;
+
+  @FindBy(id = "chDivision")
+  private WebElementFacade divisionDetailView;
+
+  @FindBy(id = "chBranch")
+  private WebElementFacade branchDetailView;
+
+  @FindBy(id = "chDepartment")
+  private WebElementFacade departmentDetailView;
+
+  @FindBy(id = "chGroup")
+  private WebElementFacade groupDetailView;
+
   public int getNumberOfResults() {
     return Integer.parseInt(totalResults.getText());
   }
@@ -18,5 +33,26 @@ public class WebReportPage extends PageObject {
     return findAll("//i[@class='rpt-glyphicon fa fa-eye']/ancestor::a").stream()
         .map(e -> e.getAttribute("innerText"))
         .collect(Collectors.toList());
+  }
+
+  public void selectOptionUnderHideShowIcon(String option) {
+    showHideIconButton.click();
+    find(String.format("//*[text()='%s']", option)).click();
+  }
+
+  public boolean isDivisionDisplayed() {
+    return divisionDetailView.isDisplayed();
+  }
+
+  public boolean isBranchDisplayed() {
+    return branchDetailView.isDisplayed();
+  }
+
+  public boolean isDepartmentDisplayed() {
+    return departmentDetailView.isDisplayed();
+  }
+
+  public boolean isGroupDisplayed() {
+    return groupDetailView.isDisplayed();
   }
 }
