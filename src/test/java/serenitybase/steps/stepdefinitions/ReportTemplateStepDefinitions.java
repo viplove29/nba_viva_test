@@ -73,4 +73,14 @@ public class ReportTemplateStepDefinitions {
       reportTemplateTestSteps.verifyCoverSheet(Boolean.parseBoolean(includeCoverSheet));
     }
   }
+
+  @When("the user selects {string} under the hide show icon")
+  public void the_user_selects_option_under_show_hide_icon(String option) {
+    reportTemplateTestSteps.selectOptionUnderHideShowIcon(option);
+  }
+
+  @Then("the user verifies the {string} are displayed in the detail view tab")
+  public void the_user_verifies_the_policies_are_displayed_in_the_detail_view_tab(String policies) {
+    reportTemplateTestSteps.verifyPoliciesAreDisplayed(policies);
+  }
 }

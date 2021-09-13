@@ -35,7 +35,19 @@ Feature: Active Clients
       | Excel       | Locked     | true       |
       | Excel       | Both       | false      |
 
+  @TC-97
+  @sync-30863439
+  Scenario Outline: Business Unit columns appear together in the proper order
+    When the user navigates to the generated report
+    And the user selects '<Options>' under the hide show icon
+    Then the user verifies the '<Policies>' are displayed in the detail view tab
 
+    Examples:
+      | Options           | Policies   |
+      | Policy Division   | Division   |
+      | Policy Branch     | Branch     |
+      | Policy Department | Department |
+      | Policy Group      | Group      |
 
 
 
