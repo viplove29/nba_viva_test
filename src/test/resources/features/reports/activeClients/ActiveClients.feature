@@ -17,7 +17,7 @@ Feature: Active Clients
     Then the excel report has the same number of rows as the web report
 
   @TC-289
-    @sync-38373633
+  @sync-38373633
   Scenario Outline: Export to Excel/CSV File Format Options
     When the user navigates to the generated report
     And the user selects 'Export Report' under Actions
