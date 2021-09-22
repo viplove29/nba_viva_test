@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
+    <option name="GLUE" value="serenitybase.steps" />
+    <option name="MAIN_CLASS_NAME" value="net.serenitybdd.cucumber.cli.Main" />
+    <shortenClasspath name="MANIFEST" />
+    <option name="VM_PARAMETERS" value="-Denvironment=QA -Dappium.log.level=warn" />
+    <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
