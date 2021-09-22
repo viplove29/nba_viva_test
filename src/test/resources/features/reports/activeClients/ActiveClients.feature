@@ -49,12 +49,13 @@ Feature: Active Clients
       | Policy Department | Department |
       | Policy Group      | Group      |
 
+    @debug
   @TC-152
   @sync-30863494
   Scenario Outline: Branch and Group are not available when not enabled in source database
     When the user navigates to the generated report
     And the user selects '<Options>' under the hide show icon
-    Then the user verifies that the '<Selected Policies>' are displayed in the detail view tab
+    Then the user verifies the '<Selected Policies>' are displayed in the detail view tab
 
     Examples:
       | Options           | Selected Policies |
