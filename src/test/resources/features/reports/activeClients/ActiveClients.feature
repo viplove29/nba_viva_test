@@ -40,7 +40,7 @@ Feature: Active Clients
   Scenario Outline: Business Unit columns appear together in the proper order
     When the user navigates to the generated report
     And the user selects '<Options>' under the hide show icon
-    Then the user verifies that the '<Policies>' are displayed in the detail view tab
+    Then the user verifies the '<Policies>' are displayed in the detail view tab
 
     Examples:
       | Options           | Policies   |

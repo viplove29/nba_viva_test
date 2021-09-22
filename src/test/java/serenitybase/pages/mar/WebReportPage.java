@@ -40,19 +40,19 @@ public class WebReportPage extends PageObject {
     find(String.format("//*[text()='%s']", option)).click();
   }
 
-  public boolean verifyDivisionIsDisplayed() {
+  public boolean isDivisionDisplayed() {
     return divisionDetailView.isDisplayed();
   }
 
-  public boolean verifyBranchIsDisplayed() {
+  public boolean isBranchDisplayed() {
     return branchDetailView.isDisplayed();
   }
 
-  public boolean verifyDepartmentIsDisplayed() {
+  public boolean isDepartmentDisplayed() {
     return departmentDetailView.isDisplayed();
   }
 
-  public boolean verifyGroupIsDisplayed() {
+  public boolean isGroupDisplayed() {
     return groupDetailView.isDisplayed();
   }
 }

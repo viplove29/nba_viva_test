@@ -120,19 +120,22 @@ public class ReportTemplateTestSteps {
     boolean isElementDisplayed;
     switch (policies) {
       case ("Division"):
-        isElementDisplayed = webReportPage.verifyDivisionIsDisplayed();
+        isElementDisplayed = webReportPage.isDivisionDisplayed();
         break;
       case ("Branch"):
-        isElementDisplayed = webReportPage.verifyBranchIsDisplayed();
+        isElementDisplayed = webReportPage.isBranchDisplayed();
         break;
       case ("Department"):
-        isElementDisplayed = webReportPage.verifyDepartmentIsDisplayed();
+        isElementDisplayed = webReportPage.isDepartmentDisplayed();
         break;
       case ("Group"):
-        isElementDisplayed = webReportPage.verifyGroupIsDisplayed();
+        isElementDisplayed = webReportPage.isGroupDisplayed();
         break;
       default:
         throw new IllegalArgumentException(String.format("'%s' is not a valid policy.", policies));
     }
+    assertThat(isElementDisplayed)
+        .withFailMessage(String.format("The policy '%s' was not displayed", policies))
+        .isTrue();
   }
 }
