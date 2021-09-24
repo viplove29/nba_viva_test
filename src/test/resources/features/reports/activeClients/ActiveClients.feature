@@ -49,7 +49,6 @@ Feature: Active Clients
       | Policy Department | Department |
       | Policy Group      | Group      |
 
-    @debug
   @TC-152
   @sync-30863494
   Scenario Outline: Branch and Group are not available when not enabled in source database
