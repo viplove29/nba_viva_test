@@ -25,6 +25,39 @@ public class WebReportPage extends PageObject {
   @FindBy(id = "chGroup")
   private WebElementFacade groupDetailView;
 
+  @FindBy(id = "f")
+  private WebElementFacade filterSymbol;
+
+  @FindBy(id = "drop_columns")
+  private WebElementFacade filterDropdown;
+
+  @FindBy(id = "drop_filteroperators")
+  private WebElementFacade filterPresetDropDown;
+
+  @FindBy(id = "Active CustomerInactive")
+  private WebElementFacade activeCustomerColumn;
+
+  @FindBy(xpath = "//input[@type='text'][1]")
+  private WebElementFacade valueTextBox;
+
+  @FindBy(xpath = ".//span[text()=' Add Filters']")
+  private WebElementFacade addFiltersButton;
+
+  @FindBy(xpath = ".//button[text()='Apply']")
+  private WebElementFacade applyButton;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Active Customer')]")
+  private WebElementFacade activeCustomerFilter;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Branch')]")
+  private WebElementFacade branchFilter;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Equal to')]")
+  private WebElementFacade equalToValue;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Starts with')]")
+  private WebElementFacade startsWithValue;
+
   public int getNumberOfResults() {
     return Integer.parseInt(totalResults.getText());
   }
@@ -54,5 +87,45 @@ public class WebReportPage extends PageObject {
 
   public boolean isGroupDisplayed() {
     return groupDetailView.isDisplayed();
+  }
+
+  public void clickOnFilterSymbol() {
+    filterSymbol.click();
+  }
+
+  public void clickOnAddFiltersButton() {
+    addFiltersButton.click();
+  }
+
+  public void selectOptionUnderFilters(String option) {
+    filterDropdown.click();
+    switch (option) {
+      case "Active Customer":
+        activeCustomerFilter.click();
+        break;
+      case "Branch":
+        branchFilter.click();
+        break;
+      default:
+        throw new IllegalArgumentException(String.format("%s filter option not supported", option));
+    }
+  }
+
+  public void clickOnApply() {
+    applyButton.click();
+  }
+
+  public void setFilterPresetToStartWith() {
+    filterPresetDropDown.click();
+    startsWithValue.click();
+  }
+
+  public void setFilterStartsWith(String value) {
+    valueTextBox.click();
+    valueTextBox.sendKeys(value);
+  }
+
+  public String getActiveCustomerColumnValue() {
+    return activeCustomerColumn.getText();
   }
 }
