@@ -138,4 +138,35 @@ public class ReportTemplateTestSteps {
         .withFailMessage(String.format("The policy '%s' was not displayed", policies))
         .isTrue();
   }
+
+  @Step
+  public void clickOnFilterSymbol() {
+    webReportPage.clickOnFilterSymbol();
+  }
+
+  @Step
+  public void clickOnAddFiltersButton() {
+    webReportPage.clickOnAddFiltersButton();
+  }
+
+  @Step
+  public void selectOptionUnderFilters(String option) {
+    webReportPage.selectOptionUnderFilters(option);
+  }
+
+  @Step
+  public void clickOnApply() {
+    webReportPage.clickOnApply();
+  }
+
+  @Step
+  public void setFilterValueToStartWith(String value) {
+    webReportPage.setFilterPresetToStartWith();
+    webReportPage.setFilterStartsWith(value);
+  }
+
+  @Step
+  public void verifyActiveCustomerColumnValue(String value) {
+    assertThat(webReportPage.getActiveCustomerColumnValue()).isEqualTo(value);
+  }
 }

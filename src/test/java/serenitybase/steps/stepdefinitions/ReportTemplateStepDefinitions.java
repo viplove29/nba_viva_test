@@ -83,4 +83,34 @@ public class ReportTemplateStepDefinitions {
   public void the_user_verifies_the_policies_are_displayed_in_the_detail_view_tab(String policies) {
     reportTemplateTestSteps.verifyPoliciesAreDisplayed(policies);
   }
+
+  @Then("the user clicks on the Filter symbol")
+  public void the_user_clicks_on_the_filter_symbol() {
+    reportTemplateTestSteps.clickOnFilterSymbol();
+  }
+
+  @Then("the user clicks on the Add Filters button")
+  public void the_user_clicks_on_the_add_filters_button() {
+    reportTemplateTestSteps.clickOnAddFiltersButton();
+  }
+
+  @Then("the user selects {string} under Filters")
+  public void the_user_selects_option_under_filters(String option) {
+    reportTemplateTestSteps.selectOptionUnderFilters(option);
+  }
+
+  @Then("the user clicks on the Apply button")
+  public void the_user_clicks_on_the_apply_button() {
+    reportTemplateTestSteps.clickOnApply();
+  }
+
+  @Then("the user sets the Filter to start with {string}")
+  public void the_user_sets_the_filter_to_start_with_value(String value) {
+    reportTemplateTestSteps.setFilterValueToStartWith(value);
+  }
+
+  @Then("the user verifies that all the Active Customer values are equal to {string}")
+  public void the_user_verifies_that_all_the_active_customer_values_are_equal_to(String value) {
+    reportTemplateTestSteps.verifyActiveCustomerColumnValue(value);
+  }
 }

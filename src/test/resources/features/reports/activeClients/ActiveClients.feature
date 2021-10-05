@@ -60,3 +60,15 @@ Feature: Active Clients
       | Options           | Selected Policies |
       | Policy Department | Department        |
       | Policy Group      | Group             |
+
+  @TC-288
+  @sync-38373567
+  Scenario: Active Clients Filters option functions properly
+    When the user navigates to the generated report
+    And the user clicks on the Filter symbol
+    And the user clicks on the Add Filters button
+    And the user selects 'Active Customer' under Filters
+    And the user sets the Filter to start with 'I'
+    And the user clicks on the Apply button
+    Then the user verifies that all the Active Customer values are equal to 'Inactive'
+
