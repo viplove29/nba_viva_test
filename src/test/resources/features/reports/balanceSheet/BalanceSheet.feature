@@ -4,7 +4,7 @@ Feature: Balance Sheet
   I want the ability to use generate balance sheets
 
   Background:
-    Given the user logs into MAR
+    Given the user logs into MAR as "RegularUser"
     And the user selects 'Balance Sheet' Report Template
     And the user generates the report with a random name
 
