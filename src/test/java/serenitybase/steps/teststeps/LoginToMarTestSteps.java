@@ -8,9 +8,9 @@ public class LoginToMarTestSteps {
   private LoginPage loginPage;
   private AgencySelectionPage agencySelectionPage;
 
-  public void logIn() {
+  public void logIn(String email, String password) {
     loginPage.open();
-    loginPage.logIn(Configuration.getUser(), Configuration.getPassword());
+    loginPage.logIn(email, password);
   }
 
   public void selectAgency() {

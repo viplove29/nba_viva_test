@@ -5,7 +5,7 @@ Feature: Active Clients
   So that I can use that information
 
   Background:
-    Given the user logs into MAR
+    Given the user logs into MAR as "RegularUser"
     And the user selects 'Active Clients' Report Template
     And the user generates the report with a random name
 
