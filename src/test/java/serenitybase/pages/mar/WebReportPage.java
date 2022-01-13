@@ -2,11 +2,14 @@ package serenitybase.pages.mar;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.pages.WebElementFacade;
-import net.thucydides.core.pages.PageObject;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class WebReportPage extends PageObject {
+public class WebReportPage extends BasePage {
   @FindBy(xpath = "//span[@ng-show='grid.options.totalItems > 0']//b[2]")
   private WebElementFacade totalResults;
 
@@ -58,12 +61,20 @@ public class WebReportPage extends PageObject {
   @FindBy(xpath = ".//a[contains(text(), 'Starts with')]")
   private WebElementFacade startsWithValue;
 
+  protected static final String DETAIL_VIEW_TAB_ID = "vw1";
+  protected static final int DETAIL_VIEW_TAB_VIEWPORT_INDEX = 0;
+  protected static final int TAB_VIEWPORT_INDEX = 1;
+
   public int getNumberOfResults() {
     return Integer.parseInt(totalResults.getText());
   }
 
   public List<String> getReportHeaders() {
-    return findAll("//i[@class='rpt-glyphicon fa fa-eye']/ancestor::a").stream()
+    String activeTabContentId = Serenity.sessionVariableCalled("activeTabContentId");
+    WebElementFacade activeTabContent = find(By.id(activeTabContentId));
+    return activeTabContent
+        .findElements(By.xpath(".//i[@class='rpt-glyphicon fa fa-eye']/ancestor::a"))
+        .stream()
         .map(e -> e.getAttribute("innerText"))
         .collect(Collectors.toList());
   }
@@ -71,6 +82,12 @@ public class WebReportPage extends PageObject {
   public void selectOptionUnderHideShowIcon(String option) {
     showHideIconButton.click();
     find(String.format("//*[text()='%s']", option)).click();
+  }
+
+  public void selectTab(String tabName) {
+    find(String.format("//*[text()='%s']", tabName)).click();
+    String activeTabContentId = find(By.cssSelector(".rpt-tab-content.active")).getAttribute("id");
+    Serenity.setSessionVariable("activeTabContentId").to(activeTabContentId);
   }
 
   public boolean isDivisionDisplayed() {
@@ -127,5 +144,26 @@ public class WebReportPage extends PageObject {
 
   public String getActiveCustomerColumnValue() {
     return activeCustomerColumn.getText();
+  }
+
+  public WebElement findColumnByColumnNameInTab(WebElement element, String value) {
+    return element.findElement(By.xpath(String.format(".//*[@id='ch%s']", value)));
+  }
+
+  public void horizontalScroll(WebElement element) {
+    WebElementFacade activeTabContent =
+        find(By.id(Serenity.sessionVariableCalled("activeTabContentId")));
+    int viewportIndex = DETAIL_VIEW_TAB_VIEWPORT_INDEX;
+    if (!activeTabContent.getAttribute("id").equals(DETAIL_VIEW_TAB_ID)) {
+      viewportIndex = TAB_VIEWPORT_INDEX;
+    }
+    int scrollX = element.getLocation().x;
+    String script =
+        String.format(
+            "document.getElementById('%s').getElementsByClassName('ui-grid-viewport')[%d].scrollLeft = %d",
+            activeTabContent.getAttribute("id"), viewportIndex, scrollX);
+    JavascriptExecutor executor = ((JavascriptExecutor) getDriver());
+    executor.executeScript(script);
+    scrollToElement(element);
   }
 }
