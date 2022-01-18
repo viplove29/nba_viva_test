@@ -169,4 +169,18 @@ public class ReportTemplateTestSteps {
   public void verifyActiveCustomerColumnValue(String value) {
     assertThat(webReportPage.getActiveCustomerColumnValue()).isEqualTo(value);
   }
+
+  @Step
+  public void selectDateRangeFromList(String optionName) {
+    marHomePage.selectFromListOption();
+    marHomePage.clickFromListDropdown();
+    marHomePage.selectDateRangeOptionFromDropdown(optionName);
+  }
+
+  @Step
+  public void setDateRangeFromTo(String from, String to) {
+    marHomePage.selectSelectDatesOption();
+    marHomePage.setDateFrom(from);
+    marHomePage.setDateTo(to);
+  }
 }
