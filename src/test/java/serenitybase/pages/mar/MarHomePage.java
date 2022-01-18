@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -56,6 +57,21 @@ public class MarHomePage extends BasePage {
 
   @FindBy(id = "grpDDG1")
   private WebElementFacade groupDropdown;
+
+  @FindBy(xpath = "//div[@class='radio']/input[1]")
+  private WebElementFacade fromListRadioButton;
+
+  @FindBy(xpath = "//div[@class='radio']/input[2]")
+  private WebElementFacade selectDatesRadioButton;
+
+  @FindBy(xpath = "//p[contains(text(),'From List')]/following-sibling::div[1]")
+  private WebElementFacade fromListDropdown;
+
+  @FindBy(xpath = "//span[contains(text(),'From')]/following::input")
+  private WebElementFacade dateFromInput;
+
+  @FindBy(xpath = "//span[contains(text(),'To')]/following::input")
+  private WebElementFacade dateToInput;
 
   private WebElementFacade getReportRow(String reportName) {
     return find(String.format("//tr[@id='%s']", reportName));
@@ -202,5 +218,36 @@ public class MarHomePage extends BasePage {
         throw new IllegalArgumentException(
             String.format("%s Business Unit category not supported", categoryName));
     }
+  }
+
+  public void selectFromListOption() {
+    fromListRadioButton.click();
+  }
+
+  public void clickFromListDropdown() {
+    fromListDropdown.click();
+  }
+
+  public void selectDateRangeOptionFromDropdown(String optionName) {
+    List<WebElement> dateRangeOptions = fromListDropdown.findElements(By.tagName("option"));
+
+    WebElement selectedOption =
+        dateRangeOptions.stream()
+            .filter(x -> x.getText().contains(optionName))
+            .findFirst()
+            .orElseThrow(() -> new NoSuchElementException("No date range found " + optionName));
+    selectedOption.click();
+  }
+
+  public void selectSelectDatesOption() {
+    selectDatesRadioButton.click();
+  }
+
+  public void setDateFrom(String from) {
+    typeInto(dateFromInput, from);
+  }
+
+  public void setDateTo(String to) {
+    typeInto(dateToInput, to);
   }
 }

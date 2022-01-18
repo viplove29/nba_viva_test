@@ -113,4 +113,15 @@ public class ReportTemplateStepDefinitions {
   public void the_user_verifies_that_all_the_active_customer_values_are_equal_to(String value) {
     reportTemplateTestSteps.verifyActiveCustomerColumnValue(value);
   }
+
+  @Then(
+      "^the user selects \"(Current date|Through current date|Current year|Current year to date|Current year minus 1|Current month|Current month to date|Current month minus 1|Current quarter|Current quarter to date|Current quarter minus 1)\" date range from list$")
+  public void the_user_selects_date_range_from_list(String optionName) {
+    reportTemplateTestSteps.selectDateRangeFromList(optionName);
+  }
+
+  @Then("^the user sets date range from \"([^\"]*)\" to \"([^\"]*)\"$")
+  public void the_user_sets_date_range_from_to(String from, String to) {
+    reportTemplateTestSteps.setDateRangeFromTo(from, to);
+  }
 }
