@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import serenitybase.helpers.Utilities;
 
 public class WebReportPage extends BasePage {
   @FindBy(xpath = "//span[@ng-show='grid.options.totalItems > 0']//b[2]")
@@ -40,6 +41,9 @@ public class WebReportPage extends BasePage {
   @FindBy(id = "Active CustomerInactive")
   private WebElementFacade activeCustomerColumn;
 
+  @FindBy(id = "Customer TypeMaster")
+  private WebElementFacade masterTypeColumn;
+
   @FindBy(xpath = "//input[@type='text'][1]")
   private WebElementFacade valueTextBox;
 
@@ -55,11 +59,20 @@ public class WebReportPage extends BasePage {
   @FindBy(xpath = ".//a[contains(text(), 'Branch')]")
   private WebElementFacade branchFilter;
 
+  @FindBy(xpath = ".//a[contains(text(), 'Customer Type')]")
+  private WebElementFacade customerTypeFilter;
+
   @FindBy(xpath = ".//a[contains(text(), 'Equal to')]")
   private WebElementFacade equalToValue;
 
   @FindBy(xpath = ".//a[contains(text(), 'Starts with')]")
   private WebElementFacade startsWithValue;
+
+  @FindBy(id = "drop_columnvalues")
+  private WebElementFacade dropdownMenuButton;
+
+  @FindBy(id = "c802")
+  private WebElementFacade customerTypeDropdownMenu;
 
   protected static final String DETAIL_VIEW_TAB_ID = "vw1";
   protected static final int DETAIL_VIEW_TAB_VIEWPORT_INDEX = 0;
@@ -88,6 +101,7 @@ public class WebReportPage extends BasePage {
     find(String.format("//*[text()='%s']", tabName)).click();
     String activeTabContentId = find(By.cssSelector(".rpt-tab-content.active")).getAttribute("id");
     Serenity.setSessionVariable("activeTabContentId").to(activeTabContentId);
+    Utilities.waitForActiveTabLoadingSpinner();
   }
 
   public boolean isDivisionDisplayed() {
@@ -123,6 +137,9 @@ public class WebReportPage extends BasePage {
       case "Branch":
         branchFilter.click();
         break;
+      case "Customer Type":
+        customerTypeFilter.click();
+        break;
       default:
         throw new IllegalArgumentException(String.format("%s filter option not supported", option));
     }
@@ -142,8 +159,37 @@ public class WebReportPage extends BasePage {
     valueTextBox.sendKeys(value);
   }
 
+  public void setFilterPresetToEqualTo() {
+    filterPresetDropDown.click();
+    equalToValue.click();
+  }
+
+  public void setFilterEqualTo(String value) {
+    dropdownMenuButton.click();
+    customerTypeDropdownMenu
+        .findElement(
+            By.xpath(
+                String.format("//label[contains(text(), '%s')]/preceding-sibling::input", value)))
+        .click();
+    if (dropdownMenuButton.getAttribute("aria-expanded").contains("true")) {
+      dropdownMenuButton.click();
+    }
+  }
+
   public String getActiveCustomerColumnValue() {
     return activeCustomerColumn.getText();
+  }
+
+  public String getCustomerTypeColumnValue() {
+    horizontalScroll(masterTypeColumn);
+    return masterTypeColumn.getText();
+  }
+
+  public boolean validateColumnsAreDisplayedInTab(String columnName) {
+    WebElement activeTab = find(By.id(Serenity.sessionVariableCalled("activeTabContentId")));
+    WebElement column = findColumnByColumnNameInTab(activeTab, columnName);
+    horizontalScroll(column);
+    return column.isDisplayed();
   }
 
   public WebElement findColumnByColumnNameInTab(WebElement element, String value) {
