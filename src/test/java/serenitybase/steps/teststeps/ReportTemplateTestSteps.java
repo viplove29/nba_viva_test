@@ -31,6 +31,26 @@ public class ReportTemplateTestSteps {
   }
 
   @Step
+  public void expandFilter(String filterName) {
+    marHomePage.expandFilter(filterName);
+  }
+
+  @Step
+  public void selectItemFromCategory(String itemName, String categoryName) {
+    marHomePage.selectItemFromCategory(itemName, categoryName);
+  }
+
+  @Step
+  public void selectBusinessUnitAssociationOption(String optionName) {
+    marHomePage.selectBusinessUnitAssociationOption(optionName);
+  }
+
+  @Step
+  public void selectTab(String tabName) {
+    webReportPage.selectTab(tabName);
+  }
+
+  @Step
   public void excelQuickActions() {
     marHomePage.clickExcelQuickActions(reportName);
   }
@@ -166,8 +186,24 @@ public class ReportTemplateTestSteps {
   }
 
   @Step
+  public void setFilterValueToEqualTo(String value) {
+    webReportPage.setFilterPresetToEqualTo();
+    webReportPage.setFilterEqualTo(value);
+  }
+
+  @Step
   public void verifyActiveCustomerColumnValue(String value) {
     assertThat(webReportPage.getActiveCustomerColumnValue()).isEqualTo(value);
+  }
+
+  @Step
+  public void verifyCustomerTypeColumnValue(String value) {
+    assertThat(webReportPage.getCustomerTypeColumnValue()).isEqualTo(value);
+  }
+
+  @Step
+  public void verifyColumnsAreDisplayedInTab(String columnName) {
+    assertThat(webReportPage.validateColumnsAreDisplayedInTab(columnName)).isTrue();
   }
 
   @Step

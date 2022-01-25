@@ -3,6 +3,7 @@ package serenitybase.steps.stepdefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import java.util.List;
 import net.thucydides.core.annotations.Steps;
 import org.apache.commons.lang3.StringUtils;
 import serenitybase.steps.teststeps.ReportTemplateTestSteps;
@@ -109,9 +110,46 @@ public class ReportTemplateStepDefinitions {
     reportTemplateTestSteps.setFilterValueToStartWith(value);
   }
 
+  @Then("the user sets the Filter to equal to {string}")
+  public void the_user_sets_the_filter_to_equal_to_value(String value) {
+    reportTemplateTestSteps.setFilterValueToEqualTo(value);
+  }
+
   @Then("the user verifies that all the Active Customer values are equal to {string}")
   public void the_user_verifies_that_all_the_active_customer_values_are_equal_to(String value) {
     reportTemplateTestSteps.verifyActiveCustomerColumnValue(value);
+  }
+
+  @Then("the user verifies that all the Customer Type values are equal to {string}")
+  public void the_user_verifies_that_all_the_customer_type_values_are_equal_to(String value) {
+    reportTemplateTestSteps.verifyCustomerTypeColumnValue(value);
+  }
+
+  @Then("^the user selects \"([^\"]*)\" tab$")
+  public void the_user_selects_tab(String tabName) {
+    reportTemplateTestSteps.selectTab(tabName);
+  }
+
+  @Then("^the user expands \"([^\"]*)\" filter")
+  public void the_user_expands_filter(String filterName) {
+    reportTemplateTestSteps.expandFilter(filterName);
+  }
+
+  @Then("^the user selects \"([^\"]*)\" from \"([^\"]*)\" category")
+  public void the_user_selects_item_from_category(String itemName, String categoryName) {
+    reportTemplateTestSteps.selectItemFromCategory(itemName, categoryName);
+  }
+
+  @Then("^the user selects \"([^\"]*)\" association option$")
+  public void the_user_selects_association_option(String optionName) {
+    reportTemplateTestSteps.selectBusinessUnitAssociationOption(optionName);
+  }
+
+  @Then("the user verifies the following columns are displayed in tab")
+  public void the_user_verifies_tab_contains_the_following_columns(List<String> columnNames) {
+    for (String columnName : columnNames) {
+      reportTemplateTestSteps.verifyColumnsAreDisplayedInTab(columnName);
+    }
   }
 
   @Then(
