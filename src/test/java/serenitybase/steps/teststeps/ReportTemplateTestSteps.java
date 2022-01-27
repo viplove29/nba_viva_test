@@ -219,4 +219,14 @@ public class ReportTemplateTestSteps {
     marHomePage.setDateFrom(from);
     marHomePage.setDateTo(to);
   }
+
+  @Step
+  public void selectAccountNumbersSubLedgersFromDropdown(String option, String section) {
+    marHomePage.selectValueFromDropdown(option, section);
+  }
+
+  @Step
+  public void selectRandomAccountNumbersSubLedgersFromDropdown(String section) {
+    marHomePage.selectRandomValueFromDropdown(section);
+  }
 }

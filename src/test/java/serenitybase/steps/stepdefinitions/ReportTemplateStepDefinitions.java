@@ -162,4 +162,16 @@ public class ReportTemplateStepDefinitions {
   public void the_user_sets_date_range_from_to(String from, String to) {
     reportTemplateTestSteps.setDateRangeFromTo(from, to);
   }
+
+  @Then(
+      "^the user selects \"([^\"]*)\" from \"([^\"]*)\" dropdown under Account Numbers/Sub-ledgers section$")
+  public void the_user_selects_value_from_dropdown(String value, String section) {
+    reportTemplateTestSteps.selectAccountNumbersSubLedgersFromDropdown(value, section);
+  }
+
+  @Then(
+      "^the user selects random value from \"([^\"]*)\" dropdown under Account Numbers/Sub-ledgers section$")
+  public void the_user_selects_random_value_from_dropdown(String section) {
+    reportTemplateTestSteps.selectRandomAccountNumbersSubLedgersFromDropdown(section);
+  }
 }

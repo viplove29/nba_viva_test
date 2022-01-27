@@ -3,6 +3,7 @@ package serenitybase.pages.mar;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -72,6 +73,42 @@ public class MarHomePage extends BasePage {
 
   @FindBy(xpath = "//span[contains(text(),'To')]/following::input")
   private WebElementFacade dateToInput;
+
+  @FindBy(xpath = "//label[contains(text(),'Account Numbers/Sub-ledgers:')]")
+  private WebElementFacade accountNumbersSubLedgersSection;
+
+  @FindBy(xpath = "//p[contains(text(),'Numbers:')]")
+  private WebElementFacade numbersSection;
+
+  @FindBy(xpath = "//p[contains(text(),'Beginning:')]")
+  private WebElementFacade beginningSection;
+
+  @FindBy(xpath = "//p[contains(text(),'Ending:')]")
+  private WebElementFacade endingSection;
+
+  @FindBy(xpath = "//p[contains(text(),'Specific Number:')]")
+  private WebElementFacade specificNumberSection;
+
+  @FindBy(xpath = "//p[contains(text(),'Sub-ledgers:')]")
+  private WebElementFacade subLedgersSection;
+
+  @FindBy(xpath = "//p[contains(text(),'Broker:')]")
+  private WebElementFacade brokerSection;
+
+  @FindBy(xpath = "//p[contains(text(),'Company:')]")
+  private WebElementFacade companySection;
+
+  @FindBy(xpath = "//p[contains(text(),'Employee:')]")
+  private WebElementFacade employeeSection;
+
+  @FindBy(xpath = "//p[contains(text(),'Vendor:')]")
+  private WebElementFacade vendorSection;
+
+  @FindBy(xpath = "//p[contains(text(),'Numbers:')]//following::select[1]")
+  private WebElementFacade numbersDropdown;
+
+  @FindBy(xpath = "//p[contains(text(),'Sub-ledgers:')]//following::select[1]")
+  private WebElementFacade subLedgersDropdown;
 
   private WebElementFacade getReportRow(String reportName) {
     return find(String.format("//tr[@id='%s']", reportName));
@@ -249,5 +286,79 @@ public class MarHomePage extends BasePage {
 
   public void setDateTo(String to) {
     typeInto(dateToInput, to);
+  }
+
+  public void selectValueFromDropdown(String option, String sectionName) {
+    WebElement section = getAccountNumbersSubLedgersSection(sectionName);
+    WebElement dropdown = section.findElement(By.xpath(".//following::select[1]"));
+    dropdown.click();
+    selectOptionFromDropdown(dropdown, option);
+  }
+
+  public void selectRandomValueFromDropdown(String sectionName) {
+    WebElement section = getAccountNumbersSubLedgersSection(sectionName);
+    WebElement dropdown = section.findElement(By.xpath(".//following::select[1]"));
+    dropdown.click();
+
+    Random random = new Random();
+    List<WebElement> dropdownOptions = dropdown.findElements(By.tagName("option"));
+    int index = random.nextInt(dropdownOptions.size());
+    selectOptionFromDropdown(dropdown, dropdownOptions.get(index).getText());
+  }
+
+  public WebElement getAccountNumbersSubLedgersSection(String section) {
+    switch (section) {
+      case "Numbers":
+        return numbersSection;
+      case "Beginning":
+        return beginningSection;
+      case "Ending":
+        return endingSection;
+      case "Specific Number":
+        return specificNumberSection;
+      case "Sub-ledgers":
+        return subLedgersSection;
+      case "Vendor":
+        return vendorSection;
+      case "Broker":
+        return brokerSection;
+      case "Company":
+        return companySection;
+      case "Employee":
+        return employeeSection;
+      default:
+        throw new IllegalArgumentException(
+            String.format("%s section in Account Numbers/Sub-ledgers not supported", section));
+    }
+  }
+
+  public void selectOptionFromDropdown(WebElement dropdown, String option) {
+    List<WebElement> dropdownOptions = dropdown.findElements(By.tagName("option"));
+
+    WebElement selectedOption =
+        dropdownOptions.stream()
+            .filter(x -> x.getText().contains(option))
+            .findFirst()
+            .orElseThrow(() -> new NoSuchElementException("No option found " + option));
+    selectedOption.click();
+  }
+
+  public List<String> getNumbersDropdownValues() {
+    return getDropdownOptions(numbersDropdown);
+  }
+
+  public List<String> getSubLedgersDropdownValues() {
+    return getDropdownOptions(subLedgersDropdown);
+  }
+
+  public List<String> getDropdownOptions(WebElement dropdown) {
+    dropdown.click();
+    List<WebElement> dropdownOptions = dropdown.findElements(By.tagName("option"));
+    List<String> dropdownValues = new ArrayList<>();
+    dropdownOptions.forEach(
+        option -> {
+          dropdownValues.add(option.getText());
+        });
+    return dropdownValues;
   }
 }
