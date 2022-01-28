@@ -11,7 +11,7 @@ import serenitybase.steps.teststeps.ReportTemplateTestSteps;
 public class ReportTemplateStepDefinitions {
   @Steps private ReportTemplateTestSteps reportTemplateTestSteps;
 
-  @Given("the user selects {string} Report Template")
+  @Given("^the user selects \"([^\"]*)\" Report Template$")
   public void the_user_selects_active_clients_report_template(String reportTemplate) {
     reportTemplateTestSteps.selectReportTemplate(reportTemplate);
   }
@@ -21,7 +21,7 @@ public class ReportTemplateStepDefinitions {
     reportTemplateTestSteps.generateReportWithRandomName();
   }
 
-  @When("the user clicks on the Quick Actions {string} button")
+  @When("^the user clicks on the Quick Actions \"([^\"]*)\" button$")
   public void the_user_clicks_on_the_quick_actions_button(String reportType) {
     switch (reportType) {
       case "XLS":
@@ -46,19 +46,19 @@ public class ReportTemplateStepDefinitions {
     reportTemplateTestSteps.verifyNumberOfRows();
   }
 
-  @When("the user selects {string} under Actions")
+  @When("^the user selects \"([^\"]*)\" under Actions$")
   public void the_user_selects_option_under_actions(String option) {
     reportTemplateTestSteps.selectOptionUnderActions(option);
   }
 
-  @Then("the report is {string} if applicable")
+  @Then("^the report is \"([^\"]*)\" if applicable$")
   public void the_report_has_permission(String permission) {
     if (StringUtils.isNotBlank(permission)) {
       reportTemplateTestSteps.verifySheetPermissions(permission);
     }
   }
 
-  @Then("the report is a {string}")
+  @Then("^the report is a \"([^\"]*)\"$")
   public void the_report_has_file_format(String fileFormat) {
     reportTemplateTestSteps.verifyReportHasFileFormat(fileFormat);
   }
@@ -68,19 +68,19 @@ public class ReportTemplateStepDefinitions {
     reportTemplateTestSteps.verifyColumns();
   }
 
-  @Then("the report has a {string} if applicable")
+  @Then("^the report has a \"([^\"]*)\" if applicable$")
   public void the_report_has_a_cover_sheet_if_applicable(String includeCoverSheet) {
     if (StringUtils.isNotBlank(includeCoverSheet)) {
       reportTemplateTestSteps.verifyCoverSheet(Boolean.parseBoolean(includeCoverSheet));
     }
   }
 
-  @When("the user selects {string} under the hide show icon")
+  @When("^the user selects \"([^\"]*)\" under the hide show icon$")
   public void the_user_selects_option_under_show_hide_icon(String option) {
     reportTemplateTestSteps.selectOptionUnderHideShowIcon(option);
   }
 
-  @Then("the user verifies the {string} are displayed in the detail view tab")
+  @Then("^the user verifies the \"([^\"]*)\" are displayed in the detail view tab$")
   public void the_user_verifies_the_policies_are_displayed_in_the_detail_view_tab(String policies) {
     reportTemplateTestSteps.verifyPoliciesAreDisplayed(policies);
   }
@@ -95,7 +95,7 @@ public class ReportTemplateStepDefinitions {
     reportTemplateTestSteps.clickOnAddFiltersButton();
   }
 
-  @Then("the user selects {string} under Filters")
+  @Then("^the user selects \"([^\"]*)\" under Filters$")
   public void the_user_selects_option_under_filters(String option) {
     reportTemplateTestSteps.selectOptionUnderFilters(option);
   }
@@ -105,22 +105,22 @@ public class ReportTemplateStepDefinitions {
     reportTemplateTestSteps.clickOnApply();
   }
 
-  @Then("the user sets the Filter to start with {string}")
+  @Then("^the user sets the Filter to start with \"([^\"]*)\"$")
   public void the_user_sets_the_filter_to_start_with_value(String value) {
     reportTemplateTestSteps.setFilterValueToStartWith(value);
   }
 
-  @Then("the user sets the Filter to equal to {string}")
+  @Then("^the user sets the Filter to equal to \"([^\"]*)\"$")
   public void the_user_sets_the_filter_to_equal_to_value(String value) {
     reportTemplateTestSteps.setFilterValueToEqualTo(value);
   }
 
-  @Then("the user verifies that all the Active Customer values are equal to {string}")
+  @Then("^the user verifies that all the Active Customer values are equal to \"([^\"]*)\"$")
   public void the_user_verifies_that_all_the_active_customer_values_are_equal_to(String value) {
     reportTemplateTestSteps.verifyActiveCustomerColumnValue(value);
   }
 
-  @Then("the user verifies that all the Customer Type values are equal to {string}")
+  @Then("^the user verifies that all the Customer Type values are equal to \"([^\"]*)\"$")
   public void the_user_verifies_that_all_the_customer_type_values_are_equal_to(String value) {
     reportTemplateTestSteps.verifyCustomerTypeColumnValue(value);
   }
@@ -130,12 +130,12 @@ public class ReportTemplateStepDefinitions {
     reportTemplateTestSteps.selectTab(tabName);
   }
 
-  @Then("^the user expands \"([^\"]*)\" filter")
+  @Then("^the user expands \"([^\"]*)\" filter$")
   public void the_user_expands_filter(String filterName) {
     reportTemplateTestSteps.expandFilter(filterName);
   }
 
-  @Then("^the user selects \"([^\"]*)\" from \"([^\"]*)\" category")
+  @Then("^the user selects \"([^\"]*)\" from \"([^\"]*)\" category$")
   public void the_user_selects_item_from_category(String itemName, String categoryName) {
     reportTemplateTestSteps.selectItemFromCategory(itemName, categoryName);
   }
