@@ -19,4 +19,12 @@ public class GeneralLedgerStepDefinitions {
       List<String> options) {
     generalLedgerTestSteps.verifySubLedgersDropdownOptionsAreDisplayed(options);
   }
+
+  @Then(
+      "^the user verifies an error message with \"([^\"]*)\" text displays when selecting Beginning number greater than Ending number$")
+  public void
+      the_user_verifies_an_error_message_with_text_displays_when_selecting_beginning_greater_than_ending(
+          String errorMessage) {
+    generalLedgerTestSteps.verifyBeginningGreaterThanEndingErrorMessage(errorMessage);
+  }
 }
