@@ -361,4 +361,10 @@ public class MarHomePage extends BasePage {
         });
     return dropdownValues;
   }
+
+  public String getBeginningGreaterThanEndingErrorMessage() {
+    return accountNumbersSubLedgersSection
+        .findElement(By.xpath(".//following::span[contains(@class,'ng-scope')]"))
+        .getText();
+  }
 }

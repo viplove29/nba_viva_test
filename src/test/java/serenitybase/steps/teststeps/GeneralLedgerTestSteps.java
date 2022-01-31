@@ -19,4 +19,9 @@ public class GeneralLedgerTestSteps {
     assertThat(options)
         .containsExactlyInAnyOrderElementsOf(marHomePage.getSubLedgersDropdownValues());
   }
+
+  @Step
+  public void verifyBeginningGreaterThanEndingErrorMessage(String errorMessage) {
+    assertThat(errorMessage).isEqualTo(marHomePage.getBeginningGreaterThanEndingErrorMessage());
+  }
 }
