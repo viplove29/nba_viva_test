@@ -24,3 +24,18 @@ Feature: Personnel Extract
       | Primary                |
       | New Personnel Name     |
       | New Personnel Type     |
+
+  @TC-532
+  @sync-53235678
+  Scenario: Customer Personnel Extract tab check columns spelling and Show/Hide columns option
+    And the user generates the report with a random name
+    When the user navigates to the generated report
+    And the user selects "Customer Personnel Extract" tab
+    Then the user verifies the following columns are displayed in tab
+      | Customer Name          |
+      | Customer Number        |
+      | Current Personnel Name |
+      | Current Personnel Type |
+      | Primary                |
+      | New Personnel Name     |
+      | New Personnel Type     |
