@@ -237,4 +237,9 @@ public class ReportTemplateTestSteps {
       assertThat(marHomePage.isDropdownDisplayed(section)).isTrue();
     }
   }
+
+  @Step
+  public void verifyCurrentPersonnelTypeColumnValue(String value) {
+    assertThat(webReportPage.getCurrentPersonnelTypeColumnValue()).isEqualTo(value);
+  }
 }

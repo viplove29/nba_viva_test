@@ -44,6 +44,9 @@ public class WebReportPage extends BasePage {
   @FindBy(id = "Customer TypeMaster")
   private WebElementFacade masterTypeColumn;
 
+  @FindBy(id = "Current Personnel TypeRep")
+  private WebElementFacade currentPersonnelTypeColumn;
+
   @FindBy(xpath = "//input[@type='text'][1]")
   private WebElementFacade valueTextBox;
 
@@ -61,6 +64,9 @@ public class WebReportPage extends BasePage {
 
   @FindBy(xpath = ".//a[contains(text(), 'Customer Type')]")
   private WebElementFacade customerTypeFilter;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Current Personnel Type')]")
+  private WebElementFacade currentPersonnelTypeFilter;
 
   @FindBy(xpath = ".//a[contains(text(), 'Equal to')]")
   private WebElementFacade equalToValue;
@@ -140,6 +146,9 @@ public class WebReportPage extends BasePage {
       case "Customer Type":
         customerTypeFilter.click();
         break;
+      case "Current Personnel Type":
+        currentPersonnelTypeFilter.click();
+        break;
       default:
         throw new IllegalArgumentException(String.format("%s filter option not supported", option));
     }
@@ -183,6 +192,11 @@ public class WebReportPage extends BasePage {
   public String getCustomerTypeColumnValue() {
     horizontalScroll(masterTypeColumn);
     return masterTypeColumn.getText();
+  }
+
+  public String getCurrentPersonnelTypeColumnValue() {
+    horizontalScroll(currentPersonnelTypeColumn);
+    return currentPersonnelTypeColumn.getText();
   }
 
   public boolean validateColumnsAreDisplayedInTab(String columnName) {
