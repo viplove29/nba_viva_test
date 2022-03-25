@@ -39,3 +39,22 @@ Feature: Personnel Extract
       | Primary                |
       | New Personnel Name     |
       | New Personnel Type     |
+
+  @TC-533
+  @sync-53237065
+  Scenario Outline: "Personnel Extract" report export to Excel File Format Options
+    And the user generates the report with a random name
+    When the user navigates to the generated report
+    And the user selects "Customer Personnel Extract" tab
+    And the user selects "Export Report" under Actions
+    And use user exports the report with the following options
+      | <File Format> | <Permission> | <CoverSheet> | Visible | Full Data Set |
+    Then the report is a "<File Format>"
+    Then the report is "<Permission>" if applicable
+    Then the report has a "<CoverSheet>" if applicable
+    Then the report has the same columns as the web report
+
+    Examples:
+      | File Format | Permission | CoverSheet |
+      | Excel       | Editable   | false      |
+      | Excel       | Locked     | true       |
