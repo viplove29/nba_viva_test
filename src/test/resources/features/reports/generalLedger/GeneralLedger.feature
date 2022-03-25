@@ -27,3 +27,22 @@ Feature: General Ledger
     And the user selects "11120000 - Premium Trust Account" from "Ending" dropdown under Account Numbers/Sub-ledgers section
     And the user selects "91000000 - Tax Detail" from "Beginning" dropdown under Account Numbers/Sub-ledgers section
     And the user verifies an error message with "Beginning GL number is greater than ending GL Number" text displays when selecting Beginning number greater than Ending number
+
+  @TC-539
+  @sync-53688478
+  Scenario Outline: Verify Specific Account Number new filters
+    Then the user selects "Specific Account Number" from "Numbers" dropdown under Account Numbers/Sub-ledgers section
+    And the user selects random value from "Specific Number" dropdown under Account Numbers/Sub-ledgers section
+    And the user selects "<Option>" from "Sub-ledgers" dropdown under Account Numbers/Sub-ledgers section
+    Then the user verifies the "<Dropdown>" dropdown is displayed
+
+    Examples:
+      | Option                     | Dropdown |
+      | (All)                      |          |
+      | Specific Broker            | Broker   |
+      | Specific Brokerage Company | Company  |
+      | Specific Employee          | Employee |
+      | Specific Fee Company       | Company  |
+      | Specific Finance Company   | Company  |
+      | Specific Insurance Company | Company  |
+      | Specific Vendor            | Vendor   |

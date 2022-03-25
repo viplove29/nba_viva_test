@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.UUID;
 import net.thucydides.core.annotations.Screenshots;
 import net.thucydides.core.annotations.Step;
+import org.apache.commons.lang3.StringUtils;
 import serenitybase.helpers.Utilities;
 import serenitybase.pages.mar.MarHomePage;
 import serenitybase.pages.mar.WebReportPage;
@@ -228,5 +229,12 @@ public class ReportTemplateTestSteps {
   @Step
   public void selectRandomAccountNumbersSubLedgersFromDropdown(String section) {
     marHomePage.selectRandomValueFromDropdown(section);
+  }
+
+  @Step
+  public void verifyDropdownIsDisplayed(String section) {
+    if (StringUtils.isNotBlank(section)) {
+      assertThat(marHomePage.isDropdownDisplayed(section)).isTrue();
+    }
   }
 }

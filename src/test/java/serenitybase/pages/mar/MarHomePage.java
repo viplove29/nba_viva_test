@@ -367,4 +367,9 @@ public class MarHomePage extends BasePage {
         .findElement(By.xpath(".//following::span[contains(@class,'ng-scope')]"))
         .getText();
   }
+
+  public boolean isDropdownDisplayed(String sectionName) {
+    WebElement section = getAccountNumbersSubLedgersSection(sectionName);
+    return section.findElement(By.xpath(".//following::select[1]")).isDisplayed();
+  }
 }

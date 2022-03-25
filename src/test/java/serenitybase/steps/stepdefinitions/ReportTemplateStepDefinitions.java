@@ -174,4 +174,9 @@ public class ReportTemplateStepDefinitions {
   public void the_user_selects_random_value_from_dropdown(String section) {
     reportTemplateTestSteps.selectRandomAccountNumbersSubLedgersFromDropdown(section);
   }
+
+  @Then("^the user verifies the \"([^\"]*)\" dropdown is displayed$")
+  public void the_user_verifies_the_dropdown_is_displayed(String section) {
+    reportTemplateTestSteps.verifyDropdownIsDisplayed(section);
+  }
 }
