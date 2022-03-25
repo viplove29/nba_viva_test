@@ -179,4 +179,10 @@ public class ReportTemplateStepDefinitions {
   public void the_user_verifies_the_dropdown_is_displayed(String section) {
     reportTemplateTestSteps.verifyDropdownIsDisplayed(section);
   }
+
+  @Then("^the user verifies that all the Current Personnel Type values are equal to \"([^\"]*)\"$")
+  public void the_user_verifies_that_all_the_current_personnel_type_values_are_equal_to(
+      String value) {
+    reportTemplateTestSteps.verifyCurrentPersonnelTypeColumnValue(value);
+  }
 }

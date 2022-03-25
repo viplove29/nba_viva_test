@@ -40,6 +40,26 @@ Feature: Personnel Extract
       | New Personnel Name     |
       | New Personnel Type     |
 
+
+  @TC-530
+  @sync-53235043
+  @TC-534
+  @sync-53237414
+  Scenario: "Personnel Extract" report Filters option functions properly
+    And the user expands "Business Unit" filter
+    And the user selects "April Division" from "Division" category
+    And the user expands "Business Unit Association" filter
+    And the user selects "Customer" association option
+    And the user generates the report with a random name
+    When the user navigates to the generated report
+    And the user selects "Customer Personnel Extract" tab
+    And the user clicks on the Filter symbol
+    And the user clicks on the Add Filters button
+    And the user selects "Current Personnel Type" under Filters
+    And the user sets the Filter to start with "Rep"
+    And the user clicks on the Apply button
+    Then the user verifies that all the Current Personnel Type values are equal to "Rep"
+
   @TC-533
   @sync-53237065
   Scenario Outline: "Personnel Extract" report export to Excel File Format Options
@@ -58,3 +78,4 @@ Feature: Personnel Extract
       | File Format | Permission | CoverSheet |
       | Excel       | Editable   | false      |
       | Excel       | Locked     | true       |
+
