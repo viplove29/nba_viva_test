@@ -22,7 +22,7 @@ default:
     - Get-ChildItem ./scripts -Filter "*.psm1" | ForEach { Import-Module $_.FullName }
 
 .regression:
-  parallel: 2
+  parallel: 5
   extends: .windows scripts
   script:
     - Expand-Outlines
