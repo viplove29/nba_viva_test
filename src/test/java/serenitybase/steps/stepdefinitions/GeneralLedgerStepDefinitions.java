@@ -21,7 +21,7 @@ public class GeneralLedgerStepDefinitions {
   }
 
   @Then(
-      "^the user verifies an error message with \"([^\"]*)\" text displays when selecting Beginning number greater than Ending number$")
+      "the user verifies an error message with {string} text displays when selecting Beginning number greater than Ending number")
   public void
       the_user_verifies_an_error_message_with_text_displays_when_selecting_beginning_greater_than_ending(
           String errorMessage) {
