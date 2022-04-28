@@ -1,5 +1,6 @@
 package serenitybase.steps.stepdefinitions;
 
+import io.cucumber.java.ParameterType;
 import io.cucumber.java.en.Given;
 import net.thucydides.core.annotations.Steps;
 import serenitybase.helpers.Configuration;
@@ -8,7 +9,12 @@ import serenitybase.steps.teststeps.LoginToMarTestSteps;
 public class LoginToMarStepDefinitions {
   @Steps LoginToMarTestSteps loginToMarTestSteps;
 
-  @Given("^the user logs into MAR as \"(SuperAdmin|AgencyAdmin|RegularUser)\"$")
+  @ParameterType("SuperAdmin|AgencyAdmin|RegularUser")
+  public String user(String user) {
+    return user;
+  }
+
+  @Given("the user logs into MAR as \"{user}\"")
   public void the_user_logs_into_Mar(String userRole) {
     switch (userRole) {
       case "SuperAdmin":
