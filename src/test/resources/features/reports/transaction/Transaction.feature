@@ -20,4 +20,4 @@ Feature: Personnel Extract
     And the user selects "Customer Name" under Filters of the Transaction Report
     And the user sets the Filter to start with "120251" of the Transaction Report
     And the user clicks on the Apply button of the Transaction Report
-    Then the user verifies that all the Customer Name values on the Transaction Report are equal to "120251"
+    And the user verifies that all the Customer Name values on the Transaction Report are equal to "120251"
