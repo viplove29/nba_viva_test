@@ -1,4 +1,4 @@
-Feature: Personnel Extract
+Feature: Transaction
 
   As A MAR user,
   I want the ability to use generate Transaction report
