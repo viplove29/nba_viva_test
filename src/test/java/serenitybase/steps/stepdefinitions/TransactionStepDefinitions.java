@@ -18,12 +18,12 @@ public class TransactionStepDefinitions {
     transactionTestSteps.clickOnAddFiltersButton();
   }
 
-  @When("^the user selects \"([^\"]*)\" under Filters of the Transaction Report$")
+  @When("^the user selects {string} under Filters of the Transaction Report$")
   public void the_user_selects_option_under_filters(String option) {
     transactionTestSteps.selectOptionUnderFilters(option);
   }
 
-  @When("^the user sets the Filter to start with \"([^\"]*)\" of the Transaction Report$")
+  @When("^the user sets the Filter to start with {string} of the Transaction Report$")
   public void the_user_sets_the_filter_to_start_with_value(String value) {
     transactionTestSteps.setFilterValueToStartWith(value);
   }
@@ -34,7 +34,7 @@ public class TransactionStepDefinitions {
   }
 
   @When(
-      "^the user verifies that all the Customer Name values on the Transaction Report are equal to \"([^\"]*)\"$")
+      "^the user verifies that all the Customer Name values on the Transaction Report are equal to {string}$")
   public void the_user_verifies_that_all_the_policy_number_values_are_equal_to(String value) {
     transactionTestSteps.verifyPolicyNumberColumnValue(value);
   }
