@@ -2,11 +2,10 @@ package serenitybase.steps.teststeps;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+import java.util.Map;
 import net.thucydides.core.annotations.Step;
 import serenitybase.pages.mar.TransactionPage;
-import java.util.Map;
-import java.util.List;
-
 
 public class TransactionTestSteps {
   private TransactionPage transactionPage;
@@ -44,6 +43,7 @@ public class TransactionTestSteps {
     String customerName = row.get("CUSTOMER NAME");
     assertThat(customerName.startsWith(value));
   }
+
   @Step
   public void extractReportValuesInTheGrid() {
     List<Map<String, String>> rows = transactionPage.getReportGridDataAsMaps();

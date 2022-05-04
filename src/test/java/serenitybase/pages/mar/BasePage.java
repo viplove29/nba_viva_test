@@ -1,5 +1,9 @@
 package serenitybase.pages.mar;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.util.*;
+import java.util.List;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
@@ -7,14 +11,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import java.util.*;
-import java.util.List;
-import java.time.Duration;
-import java.time.Instant;
 import serenitybase.helpers.Utilities;
 
 public class BasePage extends PageObject {
-
 
   @FindBy(id = "shc")
   public WebElementFacade showHideIconButton;
@@ -68,7 +67,7 @@ public class BasePage extends PageObject {
   public WebElementFacade equalToValue;
 
   @FindBy(
-          xpath = "//div[contains(@class, 'active')]//div[contains(@class, 'rpt-grid-header-text')]")
+      xpath = "//div[contains(@class, 'active')]//div[contains(@class, 'rpt-grid-header-text')]")
   private List<WebElementFacade> reportGridHeaders;
 
   @FindBy(xpath = "//div[contains(@class, 'active')]//div[contains(@class, 'ui-grid-row')]")
@@ -85,16 +84,16 @@ public class BasePage extends PageObject {
 
   public void horizontalScroll(WebElement element) {
     WebElementFacade activeTabContent =
-            find(By.id(Serenity.sessionVariableCalled("activeTabContentId")));
+        find(By.id(Serenity.sessionVariableCalled("activeTabContentId")));
     int viewportIndex = DETAIL_VIEW_TAB_VIEWPORT_INDEX;
     if (!activeTabContent.getAttribute("id").equals(DETAIL_VIEW_TAB_ID)) {
       viewportIndex = TAB_VIEWPORT_INDEX;
     }
     int scrollX = element.getLocation().x;
     String script =
-            String.format(
-                    "document.getElementById('%s').getElementsByClassName('ui-grid-viewport')[%d].scrollLeft = %d",
-                    activeTabContent.getAttribute("id"), viewportIndex, scrollX);
+        String.format(
+            "document.getElementById('%s').getElementsByClassName('ui-grid-viewport')[%d].scrollLeft = %d",
+            activeTabContent.getAttribute("id"), viewportIndex, scrollX);
     JavascriptExecutor executor = ((JavascriptExecutor) getDriver());
     executor.executeScript(script);
     scrollToElement(element);
@@ -148,5 +147,3 @@ public class BasePage extends PageObject {
     return rows;
   }
 }
-
-

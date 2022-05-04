@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import serenitybase.helpers.Utilities;
@@ -155,6 +154,4 @@ public class WebReportPage extends BasePage {
   public WebElement findColumnByColumnNameInTab(WebElement element, String value) {
     return element.findElement(By.xpath(String.format(".//*[@id='ch%s']", value)));
   }
-
-
 }

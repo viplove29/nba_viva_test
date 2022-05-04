@@ -5,7 +5,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class TransactionPage extends BasePage {
 
-
   @FindBy(xpath = ".//a[contains(text(), 'Customer Name')]")
   private WebElementFacade customerName;
 
@@ -269,5 +268,4 @@ public class TransactionPage extends BasePage {
     valueTextBox.click();
     valueTextBox.sendKeys(value);
   }
-
 }
