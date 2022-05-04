@@ -23,7 +23,6 @@ public class ReportTemplatePage extends ReportBasePage {
   @FindBy(xpath = ".//a[contains(text(), 'Current Personnel Type')]")
   private WebElementFacade currentPersonnelTypeFilter;
 
-
   @FindBy(id = "Active CustomerInactive")
   protected WebElementFacade activeCustomerColumn;
 
