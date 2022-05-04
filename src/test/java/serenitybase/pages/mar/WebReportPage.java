@@ -11,50 +11,12 @@ import org.openqa.selenium.support.FindBy;
 import serenitybase.helpers.Utilities;
 
 public class WebReportPage extends BasePage {
-  @FindBy(xpath = "//span[@ng-show='grid.options.totalItems > 0']//b[2]")
-  private WebElementFacade totalResults;
-
-  @FindBy(id = "shc")
-  private WebElementFacade showHideIconButton;
-
-  @FindBy(id = "chDivision")
-  private WebElementFacade divisionDetailView;
-
-  @FindBy(id = "chBranch")
-  private WebElementFacade branchDetailView;
-
-  @FindBy(id = "chDepartment")
-  private WebElementFacade departmentDetailView;
-
-  @FindBy(id = "chGroup")
-  private WebElementFacade groupDetailView;
-
-  @FindBy(id = "f")
-  private WebElementFacade filterSymbol;
-
-  @FindBy(id = "drop_columns")
-  private WebElementFacade filterDropdown;
-
-  @FindBy(id = "drop_filteroperators")
-  private WebElementFacade filterPresetDropDown;
-
-  @FindBy(id = "Active CustomerInactive")
-  private WebElementFacade activeCustomerColumn;
 
   @FindBy(id = "Customer TypeMaster")
   private WebElementFacade masterTypeColumn;
 
   @FindBy(id = "Current Personnel TypeRep")
   private WebElementFacade currentPersonnelTypeColumn;
-
-  @FindBy(xpath = "//input[@type='text'][1]")
-  private WebElementFacade valueTextBox;
-
-  @FindBy(xpath = ".//span[text()=' Add Filters']")
-  private WebElementFacade addFiltersButton;
-
-  @FindBy(xpath = ".//button[text()='Apply']")
-  private WebElementFacade applyButton;
 
   @FindBy(xpath = ".//a[contains(text(), 'Active Customer')]")
   private WebElementFacade activeCustomerFilter;
@@ -67,22 +29,6 @@ public class WebReportPage extends BasePage {
 
   @FindBy(xpath = ".//a[contains(text(), 'Current Personnel Type')]")
   private WebElementFacade currentPersonnelTypeFilter;
-
-  @FindBy(xpath = ".//a[contains(text(), 'Equal to')]")
-  private WebElementFacade equalToValue;
-
-  @FindBy(xpath = ".//a[contains(text(), 'Starts with')]")
-  private WebElementFacade startsWithValue;
-
-  @FindBy(id = "drop_columnvalues")
-  private WebElementFacade dropdownMenuButton;
-
-  @FindBy(id = "c802")
-  private WebElementFacade customerTypeDropdownMenu;
-
-  protected static final String DETAIL_VIEW_TAB_ID = "vw1";
-  protected static final int DETAIL_VIEW_TAB_VIEWPORT_INDEX = 0;
-  protected static final int TAB_VIEWPORT_INDEX = 1;
 
   public int getNumberOfResults() {
     return Integer.parseInt(totalResults.getText());
@@ -210,20 +156,5 @@ public class WebReportPage extends BasePage {
     return element.findElement(By.xpath(String.format(".//*[@id='ch%s']", value)));
   }
 
-  public void horizontalScroll(WebElement element) {
-    WebElementFacade activeTabContent =
-        find(By.id(Serenity.sessionVariableCalled("activeTabContentId")));
-    int viewportIndex = DETAIL_VIEW_TAB_VIEWPORT_INDEX;
-    if (!activeTabContent.getAttribute("id").equals(DETAIL_VIEW_TAB_ID)) {
-      viewportIndex = TAB_VIEWPORT_INDEX;
-    }
-    int scrollX = element.getLocation().x;
-    String script =
-        String.format(
-            "document.getElementById('%s').getElementsByClassName('ui-grid-viewport')[%d].scrollLeft = %d",
-            activeTabContent.getAttribute("id"), viewportIndex, scrollX);
-    JavascriptExecutor executor = ((JavascriptExecutor) getDriver());
-    executor.executeScript(script);
-    scrollToElement(element);
-  }
+
 }

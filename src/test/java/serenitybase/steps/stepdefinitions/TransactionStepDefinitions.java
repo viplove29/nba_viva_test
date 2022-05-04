@@ -34,8 +34,13 @@ public class TransactionStepDefinitions {
   }
 
   @When(
-      "the user verifies that all the Customer Name values on the Transaction Report are equal to {string}")
-  public void the_user_verifies_that_all_the_policy_number_values_are_equal_to(String value) {
-    transactionTestSteps.verifyPolicyNumberColumnValue(value);
+      "the user verifies that all the Customer Name values on the Transaction Report start with {string}")
+  public void the_user_verifies_that_all_the_customer_name_values_start_with(String value) {
+    transactionTestSteps.verifyCustomerNameColumnValues(value);
+  }
+
+  @When("the user extracts all the report values in the grid")
+  public void the_user_extracts_all_the_report_values_in_the_grid() {
+    transactionTestSteps.extractReportValuesInTheGrid();
   }
 }

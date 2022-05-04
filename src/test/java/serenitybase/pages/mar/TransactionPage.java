@@ -12,68 +12,118 @@ import serenitybase.helpers.Utilities;
 
 public class TransactionPage extends BasePage {
 
-  @FindBy(id = "shc")
-  private WebElementFacade showHideIconButton;
-
-  @FindBy(id = "chDivision")
-  private WebElementFacade divisionDetailView;
-
-  @FindBy(id = "chBranch")
-  private WebElementFacade branchDetailView;
-
-  @FindBy(id = "chDepartment")
-  private WebElementFacade departmentDetailView;
-
-  @FindBy(id = "chGroup")
-  private WebElementFacade groupDetailView;
-
-  @FindBy(id = "f")
-  private WebElementFacade filterSymbol;
-
-  @FindBy(id = "drop_columns")
-  private WebElementFacade filterDropdown;
-
-  @FindBy(id = "drop_filteroperators")
-  private WebElementFacade filterPresetDropDown;
-
-  @FindBy(xpath = ".//span[text()=' Add Filters']")
-  private WebElementFacade addFiltersButton;
-
-  @FindBy(xpath = ".//button[text()='Apply']")
-  private WebElementFacade applyButton;
-
-  @FindBy(xpath = ".//a[contains(text(), 'Starts with')]")
-  private WebElementFacade startsWithValue;
-
-  @FindBy(xpath = "//input[@type='text'][1]")
-  private WebElementFacade valueTextBox;
-
-  @FindBy(xpath = ".//a[contains(text(), 'Equal to')]")
-  private WebElementFacade equalToValue;
-
-  @FindBy(id = "drop_columnvalues")
-  private WebElementFacade dropdownMenuButton;
-
-  @FindBy(id = "c802")
-  private WebElementFacade customerTypeDropdownMenu;
-
-  @FindBy(id = "Active CustomerInactive")
-  private WebElementFacade activeCustomerColumn;
-
-  @FindBy(id = "Customer TypeMaster")
-  private WebElementFacade masterTypeColumn;
-
-  @FindBy(id = "Current Personnel TypeRep")
-  private WebElementFacade currentPersonnelTypeColumn;
 
   @FindBy(xpath = ".//a[contains(text(), 'Customer Name')]")
   private WebElementFacade customerName;
 
-  @FindBy(xpath = ".//a[contains(text(), 'Policy Count')]")
-  private WebElementFacade policyCount;
-
   @FindBy(xpath = ".//a[contains(text(), 'Policy Id')]")
   private WebElementFacade policyId;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Bill Method')]")
+  private WebElementFacade billMethod;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Billed Premium')]")
+  private WebElementFacade billedPremium;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Business With Agency')]")
+  private WebElementFacade businessWithAgency;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Cancel Reason')]")
+  private WebElementFacade cancelReason;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Company Type')]")
+  private WebElementFacade companyType;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Company Underwriter')]")
+  private WebElementFacade companyUnderwriter;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Customer Added Date')]")
+  private WebElementFacade customerAddedDate;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Customer Number')]")
+  private WebElementFacade customerNumber;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Estimated Revenue')]")
+  private WebElementFacade estimatedRevenue;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Estimated Revenue Percent')]")
+  private WebElementFacade estimatedRevenuePercent;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Line of Business')]")
+  private WebElementFacade lineOfBusiness;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Parent Company')]")
+  private WebElementFacade parentCompany;
+
+
+  @FindBy(xpath = ".//a[contains(text(), 'Policy Branch')]")
+  private WebElementFacade policyBranch;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Policy Broker')]")
+  private WebElementFacade policyBroker;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Policy Department')]")
+  private WebElementFacade policyDepartment;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Policy Division')]")
+  private WebElementFacade policyDivision;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Policy Effective Date')]")
+  private WebElementFacade policyEffectiveDate;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Policy Expiration Date')]")
+  private WebElementFacade policyExpirationDate;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Policy Full Term Premium')]")
+  private WebElementFacade policyFullTermPremium;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Policy Group')]")
+  private WebElementFacade policyGroup;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Policy Notation')]")
+  private WebElementFacade policyNotation;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Policy Number')]")
+  private WebElementFacade policyNumber;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Policy Primary Executive')]")
+  private WebElementFacade policyPrimaryExecutive;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Policy Primary Representative')]")
+  private WebElementFacade policyPrimaryRepresentative;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Policy Status')]")
+  private WebElementFacade policyStatus;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Policy Type')]")
+  private WebElementFacade policyType;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Premium')]")
+  private WebElementFacade premium;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Processed By')]")
+  private WebElementFacade processedBy;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Total Cost')]")
+  private WebElementFacade totalCost;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Transaction Description')]")
+  private WebElementFacade transactionDescription;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Transaction Effective Date')]")
+  private WebElementFacade transactionEffectiveDate;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Transaction Premium')]")
+  private WebElementFacade transactionPremium;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Transaction Source')]")
+  private WebElementFacade transactionSource;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Transaction Type')]")
+  private WebElementFacade transactionType;
+
+  @FindBy(xpath = ".//a[contains(text(), 'Writing Company')]")
+  private WebElementFacade writingCompany;
 
   @FindBy(xpath = ".//a[contains(text(), 'Total Billed Premium')]")
   private WebElementFacade totalBilledPremium;
@@ -84,62 +134,10 @@ public class TransactionPage extends BasePage {
   @FindBy(xpath = ".//a[contains(text(), 'Transaction Count')]")
   private WebElementFacade transactionCount;
 
-  @FindBy(id = "chDivision")
-  private WebElementFacade divisionColumn;
-
   @FindBy(id = "chPolicy Number")
   private WebElementFacade policyNumberColumn;
 
-  @FindBy(xpath = "//span[@ng-show='grid.options.totalItems > 0']//b[2]")
-  private WebElementFacade totalResults;
-
-  protected static final String DETAIL_VIEW_TAB_ID = "vw1";
-  protected static final int DETAIL_VIEW_TAB_VIEWPORT_INDEX = 0;
-  protected static final int TAB_VIEWPORT_INDEX = 1;
-
   public TransactionPage() {}
-
-  public int getNumberOfResults() {
-    return Integer.parseInt(totalResults.getText());
-  }
-
-  public List<String> getReportHeaders() {
-    String activeTabContentId = Serenity.sessionVariableCalled("activeTabContentId");
-    WebElementFacade activeTabContent = find(By.id(activeTabContentId));
-    return activeTabContent
-        .findElements(By.xpath(".//i[@class='rpt-glyphicon fa fa-eye']/ancestor::a"))
-        .stream()
-        .map(e -> e.getAttribute("innerText"))
-        .collect(Collectors.toList());
-  }
-
-  public void selectOptionUnderHideShowIcon(String option) {
-    showHideIconButton.click();
-    find(String.format("//*[text()='%s']", option)).click();
-  }
-
-  public void selectTab(String tabName) {
-    find(String.format("//*[text()='%s']", tabName)).click();
-    String activeTabContentId = find(By.cssSelector(".rpt-tab-content.active")).getAttribute("id");
-    Serenity.setSessionVariable("activeTabContentId").to(activeTabContentId);
-    Utilities.waitForActiveTabLoadingSpinner();
-  }
-
-  public boolean isDivisionDisplayed() {
-    return divisionDetailView.isDisplayed();
-  }
-
-  public boolean isBranchDisplayed() {
-    return branchDetailView.isDisplayed();
-  }
-
-  public boolean isDepartmentDisplayed() {
-    return departmentDetailView.isDisplayed();
-  }
-
-  public boolean isGroupDisplayed() {
-    return groupDetailView.isDisplayed();
-  }
 
   public void clickOnFilterSymbol() {
     filterSymbol.click();
@@ -155,21 +153,113 @@ public class TransactionPage extends BasePage {
       case "Customer Name":
         customerName.click();
         break;
-      case "Policy Count":
-        policyCount.click();
-        break;
       case "Policy Id":
         policyId.click();
         break;
-      case "Total Billed Premium":
-        totalBilledPremium.click();
+      case "Bill Method":
+        billMethod.click();
         break;
-      case "Total Premium":
-        totalPremium.click();
+      case "Billed Premium":
+        billedPremium.click();
         break;
-      case "Transaction Count":
-        transactionCount.click();
+      case "Business With Agency":
+        businessWithAgency.click();
         break;
+      case "Cancel Reason":
+        cancelReason.click();
+        break;
+      case "Company Type":
+        companyType.click();
+        break;
+      case "Company Underwriter":
+        companyUnderwriter.click();
+        break;
+      case "Customer Added Date":
+        customerAddedDate.click();
+        break;
+      case "Customer Number":
+        customerNumber.click();
+        break;
+      case "Estimated Revenue":
+        estimatedRevenue.click();
+        break;
+      case "Estimated Revenue Percent":
+        estimatedRevenuePercent.click();
+        break;
+      case "Line of Business":
+        lineOfBusiness.click();
+        break;
+      case "Parent Company":
+        parentCompany.click();
+        break;
+      case "Policy Branch":
+        policyBranch.click();
+        break;
+      case "Policy Broker":
+        policyBroker.click();
+        break;
+      case "Policy Department":
+        policyDepartment.click();
+        break;
+      case "Policy Division":
+        policyDivision.click();
+        break;
+      case "Policy Effective Date":
+        policyEffectiveDate.click();
+        break;
+      case "Policy Expiration Date":
+        policyExpirationDate.click();
+        break;
+      case "Policy Full Term Premium":
+        policyFullTermPremium.click();
+        break;
+      case "Policy Group":
+        policyGroup.click();
+        break;
+      case "Policy Notation":
+        policyNotation.click();
+        break;
+      case "Policy Number":
+        policyNumber.click();
+        break;
+      case "Policy Primary Executive":
+        policyPrimaryExecutive.click();
+        break;
+      case "Policy Primary Representative":
+        policyPrimaryRepresentative.click();
+        break;
+      case "Policy Status":
+        policyStatus.click();
+        break;
+      case "Policy Type":
+        policyType.click();
+        break;
+      case "Premium":
+        premium.click();
+        break;
+      case "Processed By":
+        processedBy.click();
+        break;
+      case "Transaction Description":
+        transactionDescription.click();
+        break;
+      case "Transaction Effective Date":
+        transactionEffectiveDate.click();
+        break;
+      case "Transaction Premium":
+        transactionPremium.click();
+        break;
+      case "Transaction Source":
+        transactionSource.click();
+        break;
+      case "Transaction Type":
+        transactionType.click();
+        break;
+      case "Writing Company":
+        writingCompany.click();
+        break;
+
+
 
       default:
         throw new IllegalArgumentException(String.format("%s filter option not supported", option));
@@ -190,67 +280,12 @@ public class TransactionPage extends BasePage {
     valueTextBox.sendKeys(value);
   }
 
-  public void setFilterPresetToEqualTo() {
-    filterPresetDropDown.click();
-    equalToValue.click();
-  }
-
-  public void setFilterEqualTo(String value) {
-    dropdownMenuButton.click();
-    customerTypeDropdownMenu
-        .findElement(
-            By.xpath(
-                String.format("//label[contains(text(), '%s')]/preceding-sibling::input", value)))
-        .click();
-    if (dropdownMenuButton.getAttribute("aria-expanded").contains("true")) {
-      dropdownMenuButton.click();
-    }
-  }
-
-  public String getActiveCustomerColumnValue() {
-    return activeCustomerColumn.getText();
-  }
-
-  public String getCustomerTypeColumnValue() {
-    horizontalScroll(masterTypeColumn);
-    return masterTypeColumn.getText();
-  }
 
   public String getPolicyNumberColumnValue() {
     horizontalScroll(policyNumberColumn);
     return policyNumberColumn.getText();
   }
 
-  public String getDivisionColumnValue() {
-    horizontalScroll(divisionColumn);
-    return divisionColumn.getText();
-  }
 
-  public boolean validateColumnsAreDisplayedInTab(String columnName) {
-    WebElement activeTab = find(By.id(Serenity.sessionVariableCalled("activeTabContentId")));
-    WebElement column = findColumnByColumnNameInTab(activeTab, columnName);
-    horizontalScroll(column);
-    return column.isDisplayed();
-  }
 
-  public WebElement findColumnByColumnNameInTab(WebElement element, String value) {
-    return element.findElement(By.xpath(String.format(".//*[@id='ch%s']", value)));
-  }
-
-  public void horizontalScroll(WebElement element) {
-    WebElementFacade activeTabContent =
-        find(By.id(Serenity.sessionVariableCalled("activeTabContentId")));
-    int viewportIndex = DETAIL_VIEW_TAB_VIEWPORT_INDEX;
-    if (!activeTabContent.getAttribute("id").equals(DETAIL_VIEW_TAB_ID)) {
-      viewportIndex = TAB_VIEWPORT_INDEX;
-    }
-    int scrollX = element.getLocation().x;
-    String script =
-        String.format(
-            "document.getElementById('%s').getElementsByClassName('ui-grid-viewport')[%d].scrollLeft = %d",
-            activeTabContent.getAttribute("id"), viewportIndex, scrollX);
-    JavascriptExecutor executor = ((JavascriptExecutor) getDriver());
-    executor.executeScript(script);
-    scrollToElement(element);
-  }
 }

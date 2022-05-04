@@ -4,6 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import net.thucydides.core.annotations.Step;
 import serenitybase.pages.mar.TransactionPage;
+import java.util.Map;
+import java.util.List;
+
 
 public class TransactionTestSteps {
   private TransactionPage transactionPage;
@@ -35,7 +38,20 @@ public class TransactionTestSteps {
   }
 
   @Step
-  public void verifyPolicyNumberColumnValue(String value) {
-    assertThat(transactionPage.getPolicyNumberColumnValue() == value);
+  public void verifyCustomerNameColumnValues(String value) {
+    List<Map<String, String>> rows = transactionPage.getReportGridDataAsMaps();
+      Map<String, String> row = rows.get(0);
+      String str = row.get("CUSTOMER NAME");
+      Boolean b = str.startsWith(value);
+      assertThat(str.startsWith(value));
+  }
+  @Step
+  public void extractReportValuesInTheGrid() {
+    List<Map<String, String>> rows = transactionPage.getReportGridDataAsMaps();
+
+    System.out.println("MAR Report Grid Data:");
+    for (Map<String, String> row : rows) {
+      System.out.println(row);
+    }
   }
 }
