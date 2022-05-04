@@ -3,7 +3,7 @@ package serenitybase.pages.mar;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.support.FindBy;
 
-public class TransactionPage extends BasePage {
+public class TransactionPage extends ReportBasePage {
 
   @FindBy(xpath = ".//a[contains(text(), 'Customer Name')]")
   private WebElementFacade customerName;
@@ -130,13 +130,6 @@ public class TransactionPage extends BasePage {
 
   public TransactionPage() {}
 
-  public void clickOnFilterSymbol() {
-    filterSymbol.click();
-  }
-
-  public void clickOnAddFiltersButton() {
-    addFiltersButton.click();
-  }
 
   public void selectOptionUnderFilters(String option) {
     filterDropdown.click();
@@ -255,17 +248,4 @@ public class TransactionPage extends BasePage {
     }
   }
 
-  public void clickOnApply() {
-    applyButton.click();
-  }
-
-  public void setFilterPresetToStartWith() {
-    filterPresetDropDown.click();
-    startsWithValue.click();
-  }
-
-  public void setFilterStartsWith(String value) {
-    valueTextBox.click();
-    valueTextBox.sendKeys(value);
-  }
 }

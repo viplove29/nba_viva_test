@@ -9,13 +9,13 @@ import net.thucydides.core.annotations.Step;
 import org.apache.commons.lang3.StringUtils;
 import serenitybase.helpers.Utilities;
 import serenitybase.pages.mar.MarHomePage;
-import serenitybase.pages.mar.WebReportPage;
+import serenitybase.pages.mar.ReportTemplatePage;
 import serenitybase.pages.reports.CsvReport;
 import serenitybase.pages.reports.ExcelReport;
 
 public class ReportTemplateTestSteps {
   private MarHomePage marHomePage;
-  private WebReportPage webReportPage;
+  private ReportTemplatePage reportTemplatePage;
   private String reportName;
 
   @Step
@@ -48,7 +48,7 @@ public class ReportTemplateTestSteps {
 
   @Step
   public void selectTab(String tabName) {
-    webReportPage.selectTab(tabName);
+    reportTemplatePage.selectTab(tabName);
   }
 
   @Step
@@ -71,7 +71,7 @@ public class ReportTemplateTestSteps {
   public void verifyNumberOfRows() {
     ExcelReport excelReport = new ExcelReport();
     assertThat(excelReport.getLastRowNum("Report Data"))
-        .isEqualTo(webReportPage.getNumberOfResults());
+        .isEqualTo(reportTemplatePage.getNumberOfResults());
   }
 
   @Step
@@ -99,7 +99,7 @@ public class ReportTemplateTestSteps {
     } else {
       throw new IllegalArgumentException(String.format("File type %s not supported", extension));
     }
-    assertThat(headers).containsAll(webReportPage.getReportHeaders());
+    assertThat(headers).containsAll(reportTemplatePage.getReportHeaders());
   }
 
   @Step
@@ -133,7 +133,7 @@ public class ReportTemplateTestSteps {
 
   @Step
   public void selectOptionUnderHideShowIcon(String option) {
-    webReportPage.selectOptionUnderHideShowIcon(option);
+    reportTemplatePage.selectOptionUnderHideShowIcon(option);
   }
 
   @Step
@@ -141,16 +141,16 @@ public class ReportTemplateTestSteps {
     boolean isElementDisplayed;
     switch (policies) {
       case ("Division"):
-        isElementDisplayed = webReportPage.isDivisionDisplayed();
+        isElementDisplayed = reportTemplatePage.isDivisionDisplayed();
         break;
       case ("Branch"):
-        isElementDisplayed = webReportPage.isBranchDisplayed();
+        isElementDisplayed = reportTemplatePage.isBranchDisplayed();
         break;
       case ("Department"):
-        isElementDisplayed = webReportPage.isDepartmentDisplayed();
+        isElementDisplayed = reportTemplatePage.isDepartmentDisplayed();
         break;
       case ("Group"):
-        isElementDisplayed = webReportPage.isGroupDisplayed();
+        isElementDisplayed = reportTemplatePage.isGroupDisplayed();
         break;
       default:
         throw new IllegalArgumentException(String.format("'%s' is not a valid policy.", policies));
@@ -162,49 +162,49 @@ public class ReportTemplateTestSteps {
 
   @Step
   public void clickOnFilterSymbol() {
-    webReportPage.clickOnFilterSymbol();
+    reportTemplatePage.clickOnFilterSymbol();
   }
 
   @Step
   public void clickOnAddFiltersButton() {
-    webReportPage.clickOnAddFiltersButton();
+    reportTemplatePage.clickOnAddFiltersButton();
   }
 
   @Step
   public void selectOptionUnderFilters(String option) {
-    webReportPage.selectOptionUnderFilters(option);
+    reportTemplatePage.selectOptionUnderFilters(option);
   }
 
   @Step
   public void clickOnApply() {
-    webReportPage.clickOnApply();
+    reportTemplatePage.clickOnApply();
   }
 
   @Step
   public void setFilterValueToStartWith(String value) {
-    webReportPage.setFilterPresetToStartWith();
-    webReportPage.setFilterStartsWith(value);
+    reportTemplatePage.setFilterPresetToStartWith();
+    reportTemplatePage.setFilterStartsWith(value);
   }
 
   @Step
   public void setFilterValueToEqualTo(String value) {
-    webReportPage.setFilterPresetToEqualTo();
-    webReportPage.setFilterEqualTo(value);
+    reportTemplatePage.setFilterPresetToEqualTo();
+    reportTemplatePage.setFilterEqualTo(value);
   }
 
   @Step
   public void verifyActiveCustomerColumnValue(String value) {
-    assertThat(webReportPage.getActiveCustomerColumnValue()).isEqualTo(value);
+    assertThat(reportTemplatePage.getActiveCustomerColumnValue()).isEqualTo(value);
   }
 
   @Step
   public void verifyCustomerTypeColumnValue(String value) {
-    assertThat(webReportPage.getCustomerTypeColumnValue()).isEqualTo(value);
+    assertThat(reportTemplatePage.getCustomerTypeColumnValue()).isEqualTo(value);
   }
 
   @Step
   public void verifyColumnsAreDisplayedInTab(String columnName) {
-    assertThat(webReportPage.validateColumnsAreDisplayedInTab(columnName)).isTrue();
+    assertThat(reportTemplatePage.validateColumnsAreDisplayedInTab(columnName)).isTrue();
   }
 
   @Step
@@ -240,6 +240,6 @@ public class ReportTemplateTestSteps {
 
   @Step
   public void verifyCurrentPersonnelTypeColumnValue(String value) {
-    assertThat(webReportPage.getCurrentPersonnelTypeColumnValue()).isEqualTo(value);
+    assertThat(reportTemplatePage.getCurrentPersonnelTypeColumnValue()).isEqualTo(value);
   }
 }

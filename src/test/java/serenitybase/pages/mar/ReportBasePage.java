@@ -4,6 +4,8 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
@@ -13,58 +15,58 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import serenitybase.helpers.Utilities;
 
-public class BasePage extends PageObject {
+public class ReportBasePage extends PageObject {
 
   @FindBy(id = "shc")
-  public WebElementFacade showHideIconButton;
+  protected WebElementFacade showHideIconButton;
 
   @FindBy(xpath = "//span[@ng-show='grid.options.totalItems > 0']//b[2]")
-  public WebElementFacade totalResults;
+  protected WebElementFacade totalResults;
 
   @FindBy(id = "chDivision")
-  public WebElementFacade divisionDetailView;
+  protected WebElementFacade divisionDetailView;
 
   @FindBy(id = "chBranch")
-  public WebElementFacade branchDetailView;
+  protected WebElementFacade branchDetailView;
 
   @FindBy(id = "chDepartment")
-  public WebElementFacade departmentDetailView;
+  protected WebElementFacade departmentDetailView;
 
   @FindBy(id = "chGroup")
-  public WebElementFacade groupDetailView;
+  protected WebElementFacade groupDetailView;
 
   @FindBy(id = "f")
-  public WebElementFacade filterSymbol;
+  protected WebElementFacade filterSymbol;
 
   @FindBy(id = "drop_columns")
-  public WebElementFacade filterDropdown;
+  protected WebElementFacade filterDropdown;
 
   @FindBy(id = "drop_filteroperators")
-  public WebElementFacade filterPresetDropDown;
+  protected WebElementFacade filterPresetDropDown;
 
   @FindBy(id = "drop_columnvalues")
-  public WebElementFacade dropdownMenuButton;
+  protected WebElementFacade dropdownMenuButton;
 
   @FindBy(id = "c802")
-  public WebElementFacade customerTypeDropdownMenu;
+  protected WebElementFacade customerTypeDropdownMenu;
 
   @FindBy(xpath = "//input[@type='text'][1]")
-  public WebElementFacade valueTextBox;
+  protected WebElementFacade valueTextBox;
 
   @FindBy(id = "Active CustomerInactive")
-  public WebElementFacade activeCustomerColumn;
+  protected WebElementFacade activeCustomerColumn;
 
   @FindBy(xpath = ".//span[text()=' Add Filters']")
-  public WebElementFacade addFiltersButton;
+  protected WebElementFacade addFiltersButton;
 
   @FindBy(xpath = ".//button[text()='Apply']")
-  public WebElementFacade applyButton;
+  protected WebElementFacade applyButton;
 
   @FindBy(xpath = ".//a[contains(text(), 'Starts with')]")
-  public WebElementFacade startsWithValue;
+  protected WebElementFacade startsWithValue;
 
   @FindBy(xpath = ".//a[contains(text(), 'Equal to')]")
-  public WebElementFacade equalToValue;
+  protected WebElementFacade equalToValue;
 
   @FindBy(
       xpath = "//div[contains(@class, 'active')]//div[contains(@class, 'rpt-grid-header-text')]")
@@ -146,4 +148,84 @@ public class BasePage extends PageObject {
     System.out.println("Time taken: " + Duration.between(start, end).toMillis() + " milliseconds");
     return rows;
   }
+
+
+  public void clickOnApply() {
+    applyButton.click();
+  }
+
+  public void setFilterPresetToStartWith() {
+    filterPresetDropDown.click();
+    startsWithValue.click();
+  }
+
+  public void setFilterStartsWith(String value) {
+    valueTextBox.click();
+    valueTextBox.sendKeys(value);
+  }
+
+  public void clickOnFilterSymbol() {
+    filterSymbol.click();
+  }
+
+  public void clickOnAddFiltersButton() {
+    addFiltersButton.click();
+  }
+
+  public int getNumberOfResults() {
+    return Integer.parseInt(totalResults.getText());
+  }
+
+
+  public List<String> getReportHeaders() {
+    String activeTabContentId = Serenity.sessionVariableCalled("activeTabContentId");
+    WebElementFacade activeTabContent = find(By.id(activeTabContentId));
+    return activeTabContent
+            .findElements(By.xpath(".//i[@class='rpt-glyphicon fa fa-eye']/ancestor::a"))
+            .stream()
+            .map(e -> e.getAttribute("innerText"))
+            .collect(Collectors.toList());
+  }
+
+  public void selectOptionUnderHideShowIcon(String option) {
+    showHideIconButton.click();
+    find(String.format("//*[text()='%s']", option)).click();
+  }
+
+  public void selectTab(String tabName) {
+    find(String.format("//*[text()='%s']", tabName)).click();
+    String activeTabContentId = find(By.cssSelector(".rpt-tab-content.active")).getAttribute("id");
+    Serenity.setSessionVariable("activeTabContentId").to(activeTabContentId);
+    Utilities.waitForActiveTabLoadingSpinner();
+  }
+
+
+  public void setFilterPresetToEqualTo() {
+    filterPresetDropDown.click();
+    equalToValue.click();
+  }
+
+  public void setFilterEqualTo(String value) {
+    dropdownMenuButton.click();
+    customerTypeDropdownMenu
+            .findElement(
+                    By.xpath(
+                            String.format("//label[contains(text(), '%s')]/preceding-sibling::input", value)))
+            .click();
+    if (dropdownMenuButton.getAttribute("aria-expanded").contains("true")) {
+      dropdownMenuButton.click();
+    }
+  }
+
+  private WebElement findColumnByColumnNameInTab(WebElement element, String value) {
+    return element.findElement(By.xpath(String.format(".//*[@id='ch%s']", value)));
+  }
+  public boolean validateColumnsAreDisplayedInTab(String columnName) {
+    WebElement activeTab = find(By.id(Serenity.sessionVariableCalled("activeTabContentId")));
+    WebElement column = findColumnByColumnNameInTab(activeTab, columnName);
+    horizontalScroll(column);
+    return column.isDisplayed();
+  }
+
+
 }

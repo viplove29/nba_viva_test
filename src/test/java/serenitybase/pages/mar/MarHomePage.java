@@ -10,7 +10,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class MarHomePage extends BasePage {
+public class MarHomePage extends ReportBasePage {
   @FindBy(id = "rua")
   private WebElementFacade reportNameTextBox;
 
