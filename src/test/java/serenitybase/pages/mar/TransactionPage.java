@@ -1,14 +1,7 @@
 package serenitybase.pages.mar;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.pages.WebElementFacade;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import serenitybase.helpers.Utilities;
 
 public class TransactionPage extends BasePage {
 
@@ -54,7 +47,6 @@ public class TransactionPage extends BasePage {
 
   @FindBy(xpath = ".//a[contains(text(), 'Parent Company')]")
   private WebElementFacade parentCompany;
-
 
   @FindBy(xpath = ".//a[contains(text(), 'Policy Branch')]")
   private WebElementFacade policyBranch;
@@ -259,8 +251,6 @@ public class TransactionPage extends BasePage {
         writingCompany.click();
         break;
 
-
-
       default:
         throw new IllegalArgumentException(String.format("%s filter option not supported", option));
     }
@@ -279,13 +269,5 @@ public class TransactionPage extends BasePage {
     valueTextBox.click();
     valueTextBox.sendKeys(value);
   }
-
-
-  public String getPolicyNumberColumnValue() {
-    horizontalScroll(policyNumberColumn);
-    return policyNumberColumn.getText();
-  }
-
-
 
 }

@@ -40,10 +40,9 @@ public class TransactionTestSteps {
   @Step
   public void verifyCustomerNameColumnValues(String value) {
     List<Map<String, String>> rows = transactionPage.getReportGridDataAsMaps();
-      Map<String, String> row = rows.get(0);
-      String str = row.get("CUSTOMER NAME");
-      Boolean b = str.startsWith(value);
-      assertThat(str.startsWith(value));
+    Map<String, String> row = rows.get(0);
+    String customerName = row.get("CUSTOMER NAME");
+    assertThat(customerName.startsWith(value));
   }
   @Step
   public void extractReportValuesInTheGrid() {
