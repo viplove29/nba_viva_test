@@ -4,13 +4,15 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import serenitybase.helpers.Utilities;
 
-public class MarHomePage extends ReportBasePage {
+public class MarHomePage extends PageObject {
   @FindBy(id = "rua")
   private WebElementFacade reportNameTextBox;
 
@@ -203,7 +205,7 @@ public class MarHomePage extends ReportBasePage {
             .findElements(By.className("ui-grid-row"));
     WebElement checkBox = dropdownCheckboxes.get(itemIndex);
     if (!checkBox.isDisplayed()) {
-      scrollToElement(checkBox);
+      new Utilities().scrollToElement(checkBox);
     }
     checkBox.findElement(By.className("ui-grid-selection-row-header-buttons")).click();
   }

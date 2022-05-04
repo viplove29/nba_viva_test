@@ -9,6 +9,7 @@ import java.util.Comparator;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import net.serenitybdd.core.Serenity;
+import net.thucydides.core.pages.PageObject;
 import net.thucydides.core.webdriver.ThucydidesWebDriverSupport;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -16,11 +17,23 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Utilities {
+public class Utilities extends PageObject {
   private static int downloadsCount;
   private static String mostRecentFile;
   private static final File downloads =
       new File(String.format("%s/Downloads/", System.getProperty("user.home")));
+  private static WebDriver driver;
+
+  public  WebDriver getDriver() {
+    if (driver == null) {
+      driver = Serenity.getDriver();
+    }
+    return driver;
+  }
+
+  public  void scrollToElement(WebElement element) {
+    ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView();", element);
+  }
 
   public static void simpleSleep(int millis) {
     try {
