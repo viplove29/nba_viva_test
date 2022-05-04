@@ -4,7 +4,7 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.support.FindBy;
 
 public class ReportTemplatePage extends ReportBasePage {
-
+//TODO This class can be renamed to something associated with Personnel Extract
   @FindBy(id = "Customer TypeMaster")
   private WebElementFacade masterTypeColumn;
 
