@@ -52,8 +52,6 @@ public class ReportBasePage extends PageObject {
   @FindBy(xpath = "//input[@type='text'][1]")
   protected WebElementFacade valueTextBox;
 
-  @FindBy(id = "Active CustomerInactive")
-  protected WebElementFacade activeCustomerColumn;
 
   @FindBy(xpath = ".//span[text()=' Add Filters']")
   protected WebElementFacade addFiltersButton;

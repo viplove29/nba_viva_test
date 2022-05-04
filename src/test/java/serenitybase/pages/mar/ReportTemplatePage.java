@@ -23,6 +23,10 @@ public class ReportTemplatePage extends ReportBasePage {
   @FindBy(xpath = ".//a[contains(text(), 'Current Personnel Type')]")
   private WebElementFacade currentPersonnelTypeFilter;
 
+
+  @FindBy(id = "Active CustomerInactive")
+  protected WebElementFacade activeCustomerColumn;
+
   public boolean isDivisionDisplayed() {
     return divisionDetailView.isDisplayed();
   }
@@ -37,14 +41,6 @@ public class ReportTemplatePage extends ReportBasePage {
 
   public boolean isGroupDisplayed() {
     return groupDetailView.isDisplayed();
-  }
-
-  public void clickOnFilterSymbol() {
-    filterSymbol.click();
-  }
-
-  public void clickOnAddFiltersButton() {
-    addFiltersButton.click();
   }
 
   public void selectOptionUnderFilters(String option) {
