@@ -130,7 +130,6 @@ public class TransactionPage extends ReportBasePage {
 
   public TransactionPage() {}
 
-
   public void selectOptionUnderFilters(String option) {
     filterDropdown.click();
     switch (option) {
@@ -247,5 +246,4 @@ public class TransactionPage extends ReportBasePage {
         throw new IllegalArgumentException(String.format("%s filter option not supported", option));
     }
   }
-
 }

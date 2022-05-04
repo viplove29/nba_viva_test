@@ -5,7 +5,6 @@ import java.time.Instant;
 import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
@@ -149,7 +148,6 @@ public class ReportBasePage extends PageObject {
     return rows;
   }
 
-
   public void clickOnApply() {
     applyButton.click();
   }
@@ -176,15 +174,14 @@ public class ReportBasePage extends PageObject {
     return Integer.parseInt(totalResults.getText());
   }
 
-
   public List<String> getReportHeaders() {
     String activeTabContentId = Serenity.sessionVariableCalled("activeTabContentId");
     WebElementFacade activeTabContent = find(By.id(activeTabContentId));
     return activeTabContent
-            .findElements(By.xpath(".//i[@class='rpt-glyphicon fa fa-eye']/ancestor::a"))
-            .stream()
-            .map(e -> e.getAttribute("innerText"))
-            .collect(Collectors.toList());
+        .findElements(By.xpath(".//i[@class='rpt-glyphicon fa fa-eye']/ancestor::a"))
+        .stream()
+        .map(e -> e.getAttribute("innerText"))
+        .collect(Collectors.toList());
   }
 
   public void selectOptionUnderHideShowIcon(String option) {
@@ -199,7 +196,6 @@ public class ReportBasePage extends PageObject {
     Utilities.waitForActiveTabLoadingSpinner();
   }
 
-
   public void setFilterPresetToEqualTo() {
     filterPresetDropDown.click();
     equalToValue.click();
@@ -208,10 +204,10 @@ public class ReportBasePage extends PageObject {
   public void setFilterEqualTo(String value) {
     dropdownMenuButton.click();
     customerTypeDropdownMenu
-            .findElement(
-                    By.xpath(
-                            String.format("//label[contains(text(), '%s')]/preceding-sibling::input", value)))
-            .click();
+        .findElement(
+            By.xpath(
+                String.format("//label[contains(text(), '%s')]/preceding-sibling::input", value)))
+        .click();
     if (dropdownMenuButton.getAttribute("aria-expanded").contains("true")) {
       dropdownMenuButton.click();
     }
@@ -220,12 +216,11 @@ public class ReportBasePage extends PageObject {
   private WebElement findColumnByColumnNameInTab(WebElement element, String value) {
     return element.findElement(By.xpath(String.format(".//*[@id='ch%s']", value)));
   }
+
   public boolean validateColumnsAreDisplayedInTab(String columnName) {
     WebElement activeTab = find(By.id(Serenity.sessionVariableCalled("activeTabContentId")));
     WebElement column = findColumnByColumnNameInTab(activeTab, columnName);
     horizontalScroll(column);
     return column.isDisplayed();
   }
-
-
 }
