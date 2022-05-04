@@ -24,14 +24,14 @@ public class Utilities extends PageObject {
       new File(String.format("%s/Downloads/", System.getProperty("user.home")));
   private static WebDriver driver;
 
-  public  WebDriver getDriver() {
+  public WebDriver getDriver() {
     if (driver == null) {
       driver = Serenity.getDriver();
     }
     return driver;
   }
 
-  public  void scrollToElement(WebElement element) {
+  public void scrollToElement(WebElement element) {
     ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView();", element);
   }
 
