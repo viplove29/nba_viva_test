@@ -110,4 +110,40 @@ public class Utilities extends PageObject {
       System.out.println("Active tab loading spinner no longer found");
     }
   }
+
+  public static void waitForHomePageLoadingSpinners() {
+    int retries = 0;
+    int maxRetries = 100;
+    WebDriverWait wait = new WebDriverWait(ThucydidesWebDriverSupport.getDriver(), 5);
+
+    String leftLoadingStatusXPath =
+        "//div[@recent-report-left-view]//div[@http-loading-status]//span";
+    WebElement leftLoadingStatus =
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(leftLoadingStatusXPath)));
+    while (leftLoadingStatus.isDisplayed()) {
+      simpleSleep(1000);
+      retries++;
+      if (!leftLoadingStatus.isDisplayed()) {
+        break;
+      }
+      if (retries > maxRetries) {
+        throw new RuntimeException("Left Loading Status showing after 100 seconds");
+      }
+    }
+    retries = 0;
+    String rightLoadingStatusXPath =
+        "//div[@report-list-right-view]//div[@http-loading-status]//span";
+    WebElement rightLoadingStatus =
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(rightLoadingStatusXPath)));
+    while (rightLoadingStatus.isDisplayed()) {
+      simpleSleep(1000);
+      retries++;
+      if (!rightLoadingStatus.isDisplayed()) {
+        break;
+      }
+      if (retries > maxRetries) {
+        throw new RuntimeException("Right Loading Status showing after 100 seconds");
+      }
+    }
+  }
 }
