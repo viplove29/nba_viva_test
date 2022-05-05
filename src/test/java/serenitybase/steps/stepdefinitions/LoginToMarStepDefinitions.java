@@ -4,6 +4,7 @@ import io.cucumber.java.ParameterType;
 import io.cucumber.java.en.Given;
 import net.thucydides.core.annotations.Steps;
 import serenitybase.helpers.Configuration;
+import serenitybase.helpers.Utilities;
 import serenitybase.steps.teststeps.LoginToMarTestSteps;
 
 public class LoginToMarStepDefinitions {
@@ -35,5 +36,6 @@ public class LoginToMarStepDefinitions {
       default:
         throw new IllegalArgumentException(String.format("%s role not supported", userRole));
     }
+    Utilities.waitForHomePageLoadingSpinners();
   }
 }
