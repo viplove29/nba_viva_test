@@ -374,4 +374,16 @@ public class MarHomePage extends PageObject {
     WebElement section = getAccountNumbersSubLedgersSection(sectionName);
     return section.findElement(By.xpath(".//following::select[1]")).isDisplayed();
   }
+
+  public void waitForDropdownDisplayed(String sectionName) {
+    WebElement section = getAccountNumbersSubLedgersSection(sectionName);
+    int count = 0;
+    while (count < 30) {
+      if (section.findElement(By.xpath(".//following::select[1]")).isDisplayed()) {
+        return;
+      }
+      Utilities.simpleSleep(500);
+    }
+    return;
+  }
 }
