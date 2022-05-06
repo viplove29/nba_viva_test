@@ -20,6 +20,7 @@ Feature: Active Clients
   @sync-38373633
   Scenario Outline: Export to Excel/CSV File Format Options
     When the user navigates to the generated report
+    And the user selects "Detail View" tab
     And the user selects "Export Report" under Actions
     And use user exports the report with the following options
       | <File Format> | <Permission> | <CoverSheet> | Visible | Full Data Set |

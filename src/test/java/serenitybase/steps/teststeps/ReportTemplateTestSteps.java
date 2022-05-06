@@ -65,6 +65,7 @@ public class ReportTemplateTestSteps {
   @Screenshots(disabled = true)
   public void navigateToGeneratedReport() {
     marHomePage.clickOnReport(reportName);
+    Utilities.waitForReportPageLoadingSpinners();
   }
 
   @Step
