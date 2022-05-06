@@ -6,6 +6,7 @@ import java.awt.*;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import net.serenitybdd.core.Serenity;
@@ -144,6 +145,40 @@ public class Utilities extends PageObject {
       if (retries > maxRetries) {
         throw new RuntimeException("Right Loading Status showing after 100 seconds");
       }
+    }
+  }
+
+  public static void waitForReportPageLoadingSpinners() {
+    int retries = 0;
+    int maxRetries = 100;
+    int spinnerCount =
+        ThucydidesWebDriverSupport.getDriver()
+            .findElements(By.xpath("//i[contains(@class,'fa-spinner')]"))
+            .size();
+    for (int i = 0; i < spinnerCount; i++) {
+      while (getSpinnerDisplayState(i)) {
+        simpleSleep(1000);
+        retries++;
+        if (retries > maxRetries) {
+          throw new RuntimeException(
+              "Report Page Loading Spinners still showing after 100 seconds");
+        }
+      }
+    }
+  }
+
+  // Used to get Spinner display state since they throw Stale Element Exceptions a lot
+  private static boolean getSpinnerDisplayState(int spinnerNum) {
+    List<WebElement> spinners =
+        ThucydidesWebDriverSupport.getDriver()
+            .findElements(By.xpath("//i[contains(@class,'fa-spinner')]"));
+    try {
+      return spinners.get(spinnerNum).isDisplayed();
+    } catch (StaleElementReferenceException e) {
+      List<WebElement> retrySpinners =
+          ThucydidesWebDriverSupport.getDriver()
+              .findElements(By.xpath("//i[contains(@class,'fa-spinner')]"));
+      return retrySpinners.get(spinnerNum).isDisplayed();
     }
   }
 }
