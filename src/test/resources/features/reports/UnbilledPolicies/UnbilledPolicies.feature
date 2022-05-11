@@ -1,7 +1,7 @@
-Feature: Personnel Extract
+Feature: Unbilled Policies
 
   As A MAR user,
-  I want the ability to use generate Personnel Extract report
+  I want the ability to use generate Unbilled Policies report
 
   Background:
     Given the user logs into MAR as "RegularUser"
@@ -15,9 +15,9 @@ Feature: Personnel Extract
     And the user generates the report with a random name
     When the user navigates to the generated report
     And the user selects "Detail View" tab
-    And the user clicks on the Filter symbol on the Unbilled Policy report
-    And the user clicks on the Add Filters button on the Unbilled Policy Report
+    And the user clicks on the Filter symbol
+    And the user clicks on the Add Filters button
     And the user selects "Policy Number" under Filters on the Unbilled Policy Report
-    And the user sets the Filter to start with "CL01" on the Unbilled Policy Report
-    And the user clicks on the Apply button on the Unbilled Policy Report
-    Then the user verifies that all the Policy Number values on the Unbilled Policy start with "CL01"
+    And the user sets the Filter to start with "CL01"
+    And the user clicks on the Apply button
+    Then the user verifies that all the "Policy Number" values start with "CL01"
