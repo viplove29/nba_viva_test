@@ -97,6 +97,10 @@ public class ReportBasePage extends PageObject {
     scrollToElement(element);
   }
 
+  public void selectOptionUnderFilters(String option) {
+    throw new RuntimeException("Select Option under filters not implemented in ReportBasePage");
+  }
+
   public List<Map<String, String>> getReportGridDataAsMaps() {
     Instant start = Instant.now();
 
@@ -188,8 +192,7 @@ public class ReportBasePage extends PageObject {
 
   public void selectTab(String tabName) {
     find(String.format("//*[text()='%s']", tabName)).click();
-    String activeTabContentId = find(By.cssSelector(".rpt-tab-content.active")).getAttribute("id");
-    Serenity.setSessionVariable("activeTabContentId").to(activeTabContentId);
+    Utilities.setActiveTabContentIdSessionVariable();
     Utilities.waitForActiveTabLoadingSpinner();
   }
 

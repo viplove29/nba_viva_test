@@ -11,29 +11,8 @@ public class TransactionTestSteps {
   private TransactionPage transactionPage;
 
   @Step
-  public void clickOnFilterSymbol() {
-    transactionPage.clickOnFilterSymbol();
-  }
-
-  @Step
-  public void clickOnAddFiltersButton() {
-    transactionPage.clickOnAddFiltersButton();
-  }
-
-  @Step
   public void selectOptionUnderFilters(String option) {
     transactionPage.selectOptionUnderFilters(option);
-  }
-
-  @Step
-  public void setFilterValueToStartWith(String value) {
-    transactionPage.setFilterPresetToStartWith();
-    transactionPage.setFilterStartsWith(value);
-  }
-
-  @Step
-  public void clickOnApply() {
-    transactionPage.clickOnApply();
   }
 
   @Step

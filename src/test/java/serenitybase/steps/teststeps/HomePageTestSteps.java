@@ -56,6 +56,7 @@ public class HomePageTestSteps {
   public void navigateToGeneratedReport() {
     marHomePage.clickOnReport(reportName);
     Utilities.waitForReportPageLoadingSpinners();
+    Utilities.setActiveTabContentIdSessionVariable();
   }
 
   @Step
