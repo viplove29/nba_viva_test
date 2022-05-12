@@ -5,23 +5,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import net.thucydides.core.annotations.Step;
 import serenitybase.helpers.Utilities;
-import serenitybase.pages.mar.ReportTemplatePage;
+import serenitybase.pages.mar.SharedReportPage;
 import serenitybase.pages.reports.CsvReport;
 import serenitybase.pages.reports.ExcelReport;
 
-public class ReportTemplateTestSteps {
-  private ReportTemplatePage reportTemplatePage;
+public class SharedReportTestSteps {
+  private SharedReportPage sharedReportPage;
 
   @Step
   public void selectTab(String tabName) {
-    reportTemplatePage.selectTab(tabName);
+    sharedReportPage.selectTab(tabName);
   }
 
   @Step
   public void verifyNumberOfRows() {
     ExcelReport excelReport = new ExcelReport();
     assertThat(excelReport.getLastRowNum("Report Data"))
-        .isEqualTo(reportTemplatePage.getNumberOfResults());
+        .isEqualTo(sharedReportPage.getNumberOfResults());
   }
 
   @Step
@@ -44,7 +44,7 @@ public class ReportTemplateTestSteps {
     } else {
       throw new IllegalArgumentException(String.format("File type %s not supported", extension));
     }
-    assertThat(headers).containsAll(reportTemplatePage.getReportHeaders());
+    assertThat(headers).containsAll(sharedReportPage.getReportHeaders());
   }
 
   @Step
@@ -78,7 +78,7 @@ public class ReportTemplateTestSteps {
 
   @Step
   public void selectOptionUnderHideShowIcon(String option) {
-    reportTemplatePage.selectOptionUnderHideShowIcon(option);
+    sharedReportPage.selectOptionUnderHideShowIcon(option);
   }
 
   @Step
@@ -86,16 +86,16 @@ public class ReportTemplateTestSteps {
     boolean isElementDisplayed;
     switch (policies) {
       case ("Division"):
-        isElementDisplayed = reportTemplatePage.isDivisionDisplayed();
+        isElementDisplayed = sharedReportPage.isDivisionDisplayed();
         break;
       case ("Branch"):
-        isElementDisplayed = reportTemplatePage.isBranchDisplayed();
+        isElementDisplayed = sharedReportPage.isBranchDisplayed();
         break;
       case ("Department"):
-        isElementDisplayed = reportTemplatePage.isDepartmentDisplayed();
+        isElementDisplayed = sharedReportPage.isDepartmentDisplayed();
         break;
       case ("Group"):
-        isElementDisplayed = reportTemplatePage.isGroupDisplayed();
+        isElementDisplayed = sharedReportPage.isGroupDisplayed();
         break;
       default:
         throw new IllegalArgumentException(String.format("'%s' is not a valid policy.", policies));
@@ -107,53 +107,53 @@ public class ReportTemplateTestSteps {
 
   @Step
   public void clickOnFilterSymbol() {
-    reportTemplatePage.clickOnFilterSymbol();
+    sharedReportPage.clickOnFilterSymbol();
   }
 
   @Step
   public void clickOnAddFiltersButton() {
-    reportTemplatePage.clickOnAddFiltersButton();
+    sharedReportPage.clickOnAddFiltersButton();
   }
 
   @Step
   public void selectOptionUnderFilters(String option) {
-    reportTemplatePage.selectOptionUnderFilters(option);
+    sharedReportPage.selectOptionUnderFilters(option);
   }
 
   @Step
   public void clickOnApply() {
-    reportTemplatePage.clickOnApply();
+    sharedReportPage.clickOnApply();
   }
 
   @Step
   public void setFilterValueToStartWith(String value) {
-    reportTemplatePage.setFilterPresetToStartWith();
-    reportTemplatePage.setFilterStartsWith(value);
+    sharedReportPage.setFilterPresetToStartWith();
+    sharedReportPage.setFilterStartsWith(value);
   }
 
   @Step
   public void setFilterValueToEqualTo(String value) {
-    reportTemplatePage.setFilterPresetToEqualTo();
-    reportTemplatePage.setFilterEqualTo(value);
+    sharedReportPage.setFilterPresetToEqualTo();
+    sharedReportPage.setFilterEqualTo(value);
   }
 
   @Step
   public void verifyActiveCustomerColumnValue(String value) {
-    assertThat(reportTemplatePage.getActiveCustomerColumnValue()).isEqualTo(value);
+    assertThat(sharedReportPage.getActiveCustomerColumnValue()).isEqualTo(value);
   }
 
   @Step
   public void verifyCustomerTypeColumnValue(String value) {
-    assertThat(reportTemplatePage.getCustomerTypeColumnValue()).isEqualTo(value);
+    assertThat(sharedReportPage.getCustomerTypeColumnValue()).isEqualTo(value);
   }
 
   @Step
   public void verifyColumnsAreDisplayedInTab(String columnName) {
-    assertThat(reportTemplatePage.validateColumnsAreDisplayedInTab(columnName)).isTrue();
+    assertThat(sharedReportPage.validateColumnsAreDisplayedInTab(columnName)).isTrue();
   }
 
   @Step
   public void verifyCurrentPersonnelTypeColumnValue(String value) {
-    assertThat(reportTemplatePage.getCurrentPersonnelTypeColumnValue()).isEqualTo(value);
+    assertThat(sharedReportPage.getCurrentPersonnelTypeColumnValue()).isEqualTo(value);
   }
 }

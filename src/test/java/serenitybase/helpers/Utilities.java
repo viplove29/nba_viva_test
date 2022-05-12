@@ -36,6 +36,14 @@ public class Utilities extends PageObject {
     ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView();", element);
   }
 
+  public static void setActiveTabContentIdSessionVariable() {
+    String activeTabContentId =
+        ThucydidesWebDriverSupport.getDriver()
+            .findElement(By.cssSelector(".rpt-tab-content.active"))
+            .getAttribute("id");
+    Serenity.setSessionVariable("activeTabContentId").to(activeTabContentId);
+  }
+
   public static void simpleSleep(int millis) {
     try {
       Thread.sleep(millis);

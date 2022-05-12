@@ -125,11 +125,9 @@ public class TransactionPage extends ReportBasePage {
   @FindBy(xpath = ".//a[contains(text(), 'Transaction Count')]")
   private WebElementFacade transactionCount;
 
-  @FindBy(id = "chPolicy Number")
-  private WebElementFacade policyNumberColumn;
-
   public TransactionPage() {}
 
+  @Override
   public void selectOptionUnderFilters(String option) {
     filterDropdown.click();
     switch (option) {
