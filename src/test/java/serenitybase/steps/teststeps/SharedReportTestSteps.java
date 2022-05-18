@@ -3,6 +3,8 @@ package serenitybase.steps.teststeps;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import net.thucydides.core.annotations.Step;
 import serenitybase.helpers.Utilities;
 import serenitybase.pages.mar.SharedReportPage;
@@ -155,5 +157,13 @@ public class SharedReportTestSteps {
   @Step
   public void verifyCurrentPersonnelTypeColumnValue(String value) {
     assertThat(sharedReportPage.getCurrentPersonnelTypeColumnValue()).isEqualTo(value);
+  }
+
+  @Step
+  public void verifyColumnValue(String columnName, String value) {
+    List<Map<String, String>> rows = sharedReportPage.getReportGridDataAsMaps();
+    Map<String, String> row = rows.get(0);
+    String gridValue = row.get(columnName.toUpperCase(Locale.ROOT));
+    assert (gridValue.startsWith(value));
   }
 }

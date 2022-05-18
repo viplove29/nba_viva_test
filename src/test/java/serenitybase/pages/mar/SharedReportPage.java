@@ -1,6 +1,8 @@
 package serenitybase.pages.mar;
 
 import net.serenitybdd.core.pages.WebElementFacade;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class SharedReportPage extends ReportBasePage {
@@ -45,22 +47,9 @@ public class SharedReportPage extends ReportBasePage {
   @Override
   public void selectOptionUnderFilters(String option) {
     filterDropdown.click();
-    switch (option) {
-      case "Active Customer":
-        activeCustomerFilter.click();
-        break;
-      case "Branch":
-        branchFilter.click();
-        break;
-      case "Customer Type":
-        customerTypeFilter.click();
-        break;
-      case "Current Personnel Type":
-        currentPersonnelTypeFilter.click();
-        break;
-      default:
-        throw new IllegalArgumentException(String.format("%s filter option not supported", option));
-    }
+    WebElement filterOption =
+        getDriver().findElement(By.xpath(".//a[contains(text(), '" + option + "')]"));
+    filterOption.click();
   }
 
   public String getActiveCustomerColumnValue() {
