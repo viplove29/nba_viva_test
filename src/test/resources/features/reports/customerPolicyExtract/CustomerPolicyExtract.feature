@@ -100,4 +100,4 @@ Feature: Customer Policy Extract
     And the user selects "Customer Type" under Filters
     And the user sets the Filter to equal to "Master"
     And the user clicks on the Apply button
-    Then the user verifies that all the Customer Type values are equal to "Master"
+    Then the user verifies that all the "Customer Type" values on the Report are equal to "Master"

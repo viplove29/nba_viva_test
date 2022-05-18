@@ -71,5 +71,5 @@ Feature: Active Clients
     And the user selects "Active Customer" under Filters
     And the user sets the Filter to start with "I"
     And the user clicks on the Apply button
-    Then the user verifies that all the Active Customer values are equal to "Inactive"
+    Then the user verifies that all the "Active Customer" values on the Report are equal to "Inactive"
 

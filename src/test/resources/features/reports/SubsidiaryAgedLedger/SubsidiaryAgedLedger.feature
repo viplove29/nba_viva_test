@@ -19,4 +19,4 @@ Feature: Subsidiary Aged Ledger
     And the user selects "Division" under Filters
     And the user sets the Filter to start with "Div"
     And the user clicks on the Apply button
-    Then the user verifies that all the "Division" values start with "Div"
+    Then the user verifies that all the "Division" values on the Report start with "Div"

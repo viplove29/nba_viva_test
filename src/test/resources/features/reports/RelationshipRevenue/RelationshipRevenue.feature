@@ -19,4 +19,4 @@ Feature: Relationship Revenue
     And the user selects "Relationship Description" under Filters
     And the user sets the Filter to start with "Gr"
     And the user clicks on the Apply button
-    Then the user verifies that all the "Relationship Description" values start with "Gr"
+    Then the user verifies that all the "Relationship Description" values on the Report start with "Gr"

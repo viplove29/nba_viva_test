@@ -12,7 +12,7 @@ Feature: Balance Sheet
   @sync-30862900
   Scenario: Balance Sheet_Check Columns spelling and Show/Hide columns option
     When the user navigates to the generated report
-    Then the user verifies the following columns are displayed:
+    Then the user verifies the following columns are displayed in tab
       | Division       |
       | Level          |
       | Account        |

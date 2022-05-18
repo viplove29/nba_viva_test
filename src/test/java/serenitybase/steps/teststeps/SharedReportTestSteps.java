@@ -87,16 +87,16 @@ public class SharedReportTestSteps {
     boolean isElementDisplayed;
     switch (policies) {
       case ("Division"):
-        isElementDisplayed = sharedReportPage.isDivisionDisplayed();
+        isElementDisplayed = sharedReportPage.isColumnDisplayed("Division");
         break;
       case ("Branch"):
-        isElementDisplayed = sharedReportPage.isBranchDisplayed();
+        isElementDisplayed = sharedReportPage.isColumnDisplayed("Branch");
         break;
       case ("Department"):
-        isElementDisplayed = sharedReportPage.isDepartmentDisplayed();
+        isElementDisplayed = sharedReportPage.isColumnDisplayed("Department");
         break;
       case ("Group"):
-        isElementDisplayed = sharedReportPage.isGroupDisplayed();
+        isElementDisplayed = sharedReportPage.isColumnDisplayed("Group");
         break;
       default:
         throw new IllegalArgumentException(String.format("'%s' is not a valid policy.", policies));
@@ -139,23 +139,16 @@ public class SharedReportTestSteps {
   }
 
   @Step
-  public void verifyActiveCustomerColumnValue(String value) {
-    assertThat(sharedReportPage.getActiveCustomerColumnValue()).isEqualTo(value);
-  }
-
-  @Step
-  public void verifyCustomerTypeColumnValue(String value) {
-    assertThat(sharedReportPage.getCustomerTypeColumnValue()).isEqualTo(value);
+  public void verifyColumnValuesAreEqualTo(String columnName, String value) {
+    List<Map<String, String>> gridData = sharedReportPage.getReportGridDataAsMaps();
+    for (Map<String, String> rowData : gridData) {
+      assertThat(rowData.get(columnName.toUpperCase()).equals(value));
+    }
   }
 
   @Step
   public void verifyColumnIsDisplayedInTab(String columnName) {
     assertThat(sharedReportPage.validateColumnIsDisplayedInTab(columnName)).isTrue();
-  }
-
-  @Step
-  public void verifyCurrentPersonnelTypeColumnValue(String value) {
-    assertThat(sharedReportPage.getCurrentPersonnelTypeColumnValue()).isEqualTo(value);
   }
 
   @Step
