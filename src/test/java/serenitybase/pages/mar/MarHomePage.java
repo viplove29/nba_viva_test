@@ -141,7 +141,9 @@ public class MarHomePage extends PageObject {
   }
 
   public void clickOnReport(String reportName) {
-    getReportRow(reportName).findBy(String.format(".//span[text()='%s']", reportName)).click();
+    WebElement reportRow = getReportRow(reportName);
+    Utilities.setReportTypeSessionVariable(reportRow);
+    reportRow.findElement(By.xpath(String.format(".//span[text()='%s']", reportName))).click();
   }
 
   public void selectOptionUnderActions(String option) {

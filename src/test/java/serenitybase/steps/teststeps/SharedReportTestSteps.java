@@ -3,16 +3,33 @@ package serenitybase.steps.teststeps;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
+import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Step;
+import org.openqa.selenium.InvalidArgumentException;
 import serenitybase.helpers.Utilities;
+import serenitybase.pages.mar.ReportBasePage;
 import serenitybase.pages.mar.SharedReportPage;
+import serenitybase.pages.mar.TransactionPage;
 import serenitybase.pages.reports.CsvReport;
 import serenitybase.pages.reports.ExcelReport;
 
 public class SharedReportTestSteps {
-  private SharedReportPage sharedReportPage;
+  private ReportBasePage sharedReportPage;
+
+  SharedReportTestSteps() {
+    String reportPageType = Serenity.sessionVariableCalled("reportType");
+    if (reportPageType == null || reportPageType.isEmpty()) {
+      throw new InvalidArgumentException("Report Type Session Variable was not set");
+    }
+    switch (reportPageType) {
+      case "Transaction":
+        sharedReportPage = new TransactionPage();
+        break;
+      default:
+        sharedReportPage = new SharedReportPage();
+    }
+  }
 
   @Step
   public void selectTab(String tabName) {
@@ -150,8 +167,8 @@ public class SharedReportTestSteps {
   }
 
   @Step
-  public void verifyColumnsAreDisplayedInTab(String columnName) {
-    assertThat(sharedReportPage.validateColumnsAreDisplayedInTab(columnName)).isTrue();
+  public void verifyColumnIsDisplayedInTab(String columnName) {
+    assertThat(sharedReportPage.validateColumnIsDisplayedInTab(columnName)).isTrue();
   }
 
   @Step
@@ -160,10 +177,20 @@ public class SharedReportTestSteps {
   }
 
   @Step
-  public void verifyColumnValue(String columnName, String value) {
+  public void extractReportValuesInTheGrid() {
     List<Map<String, String>> rows = sharedReportPage.getReportGridDataAsMaps();
-    Map<String, String> row = rows.get(0);
-    String gridValue = row.get(columnName.toUpperCase(Locale.ROOT));
-    assert (gridValue.startsWith(value));
+
+    System.out.println("MAR Report Grid Data:");
+    for (Map<String, String> row : rows) {
+      System.out.println(row);
+    }
+  }
+
+  @Step
+  public void verifyColumnValuesStartWith(String columnName, String value) {
+    List<Map<String, String>> gridData = sharedReportPage.getReportGridDataAsMaps();
+    for (Map<String, String> rowData : gridData) {
+      assertThat(rowData.get(columnName.toUpperCase()).startsWith(value));
+    }
   }
 }

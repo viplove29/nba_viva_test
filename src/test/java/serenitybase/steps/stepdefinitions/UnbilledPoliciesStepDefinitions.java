@@ -17,6 +17,6 @@ public class UnbilledPoliciesStepDefinitions {
 
   @Then("the user verifies that all the {string} values start with {string}")
   public void the_user_verifies_that_all_the_values_start_with(String columnName, String value) {
-    sharedReportTestSteps.verifyColumnValue(columnName, value);
+    sharedReportTestSteps.verifyColumnValuesStartWith(columnName, value);
   }
 }

@@ -44,6 +44,12 @@ public class Utilities extends PageObject {
     Serenity.setSessionVariable("activeTabContentId").to(activeTabContentId);
   }
 
+  public static void setReportTypeSessionVariable(WebElement reportRow) {
+    String reportType =
+        reportRow.findElement(By.xpath("//div[@class='rpt-recent-table-line']//span[2]")).getText();
+    Serenity.setSessionVariable("reportType").to(reportType);
+  }
+
   public static void simpleSleep(int millis) {
     try {
       Thread.sleep(millis);
