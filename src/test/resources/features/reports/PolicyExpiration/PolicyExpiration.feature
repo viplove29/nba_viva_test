@@ -8,8 +8,8 @@ Feature: Policy Expiration
     And the user selects "Policy Expiration" Report Template
 
 
-  @TC-282
-  @sync-38124631
+  @TC-343
+  @sync-38702524
   Scenario: "Policy Expiration" report Filters option functions properly
     And the user generates the report with a random name
     When the user navigates to the generated report
