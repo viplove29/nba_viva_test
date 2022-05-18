@@ -4,32 +4,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.Map;
-import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Step;
-import org.openqa.selenium.InvalidArgumentException;
 import serenitybase.helpers.Utilities;
-import serenitybase.pages.mar.ReportBasePage;
 import serenitybase.pages.mar.SharedReportPage;
-import serenitybase.pages.mar.TransactionPage;
 import serenitybase.pages.reports.CsvReport;
 import serenitybase.pages.reports.ExcelReport;
 
 public class SharedReportTestSteps {
-  private ReportBasePage sharedReportPage;
-
-  SharedReportTestSteps() {
-    String reportPageType = Serenity.sessionVariableCalled("reportType");
-    if (reportPageType == null || reportPageType.isEmpty()) {
-      throw new InvalidArgumentException("Report Type Session Variable was not set");
-    }
-    switch (reportPageType) {
-      case "Transaction":
-        sharedReportPage = new TransactionPage();
-        break;
-      default:
-        sharedReportPage = new SharedReportPage();
-    }
-  }
+  private SharedReportPage sharedReportPage;
 
   @Step
   public void selectTab(String tabName) {
