@@ -1,7 +1,7 @@
 Feature: Cancellation Policies
 
   As A MAR user,
-  I want the ability to use generate Cancellation report
+  I want the ability to use generate Cancellation reportz
 
   Background:
     Given the user logs into MAR as "RegularUser"
