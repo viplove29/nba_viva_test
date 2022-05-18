@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.thucydides.core.annotations.Steps;
+import serenitybase.helpers.Utilities;
 import serenitybase.steps.teststeps.HomePageTestSteps;
 
 public class HomePageStepDefinitions {
@@ -13,10 +14,12 @@ public class HomePageStepDefinitions {
   @Given("the user selects {string} Report Template")
   public void the_user_selects_active_clients_report_template(String reportTemplate) {
     HomePageTestSteps.selectReportTemplate(reportTemplate);
+    Utilities.simpleSleep(5000);
   }
 
   @When("the user generates the report with a random name")
   public void the_user_generates_the_report_with_a_random_name() {
+    Utilities.simpleSleep(5000);
     HomePageTestSteps.generateReportWithRandomName();
   }
 
