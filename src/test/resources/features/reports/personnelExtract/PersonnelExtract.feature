@@ -58,7 +58,7 @@ Feature: Personnel Extract
     And the user selects "Current Personnel Type" under Filters
     And the user sets the Filter to start with "Rep"
     And the user clicks on the Apply button
-    Then the user verifies that all the Current Personnel Type values are equal to "Rep"
+    Then the user verifies that all the "Current Personnel Type" values on the Report are equal to "Rep"
 
   @TC-533
   @sync-53237065

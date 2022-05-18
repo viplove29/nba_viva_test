@@ -17,7 +17,7 @@ Feature: Unbilled Policies
     And the user selects "Detail View" tab
     And the user clicks on the Filter symbol
     And the user clicks on the Add Filters button
-    And the user selects "Policy Number" under Filters on the Unbilled Policy Report
+    And the user selects "Policy Number" under Filters
     And the user sets the Filter to start with "CL01"
     And the user clicks on the Apply button
-    Then the user verifies that all the "Policy Number" values start with "CL01"
+    Then the user verifies that all the "Policy Number" values on the Report start with "CL01"

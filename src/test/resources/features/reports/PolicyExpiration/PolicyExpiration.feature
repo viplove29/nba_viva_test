@@ -19,4 +19,4 @@ Feature: Policy Expiration
     And the user selects "Customer Name" under Filters
     And the user sets the Filter to start with "107"
     And the user clicks on the Apply button
-    Then the user verifies that all the "Customer Name" values start with "107"
+    Then the user verifies that all the "Customer Name" values on the Report start with "107"

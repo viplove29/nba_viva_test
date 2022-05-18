@@ -16,7 +16,7 @@ And the user selects "Broker Aged Accounts Receivable" Report Template
   And the user selects "Detail View" tab
   And the user clicks on the Filter symbol
   And the user clicks on the Add Filters button
-  And the user selects "Broker Name" under Filters on the Broker Aged Accounts Receivable Report
+  And the user selects "Broker Name" under Filters
   And the user sets the Filter to start with "BCD"
   And the user clicks on the Apply button
-  Then the user verifies that all the "Broker Name" values start with "BCD"
+  Then the user verifies that all the "Broker Name" values on the Report start with "BCD"

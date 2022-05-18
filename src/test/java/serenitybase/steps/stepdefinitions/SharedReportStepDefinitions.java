@@ -79,14 +79,10 @@ public class SharedReportStepDefinitions {
     sharedReportTestSteps.setFilterValueToEqualTo(value);
   }
 
-  @Then("the user verifies that all the Active Customer values are equal to {string}")
-  public void the_user_verifies_that_all_the_active_customer_values_are_equal_to(String value) {
-    sharedReportTestSteps.verifyActiveCustomerColumnValue(value);
-  }
-
-  @Then("the user verifies that all the Customer Type values are equal to {string}")
-  public void the_user_verifies_that_all_the_customer_type_values_are_equal_to(String value) {
-    sharedReportTestSteps.verifyCustomerTypeColumnValue(value);
+  @Then("the user verifies that all the {string} values on the Report are equal to {string}")
+  public void the_user_verifies_that_all_the_customer_type_values_are_equal_to(
+      String columnName, String value) {
+    sharedReportTestSteps.verifyColumnValuesAreEqualTo(columnName, value);
   }
 
   @Then("the user selects {string} tab")
@@ -99,12 +95,6 @@ public class SharedReportStepDefinitions {
     for (String columnName : columnNames) {
       sharedReportTestSteps.verifyColumnIsDisplayedInTab(columnName);
     }
-  }
-
-  @Then("the user verifies that all the Current Personnel Type values are equal to {string}")
-  public void the_user_verifies_that_all_the_current_personnel_type_values_are_equal_to(
-      String value) {
-    sharedReportTestSteps.verifyCurrentPersonnelTypeColumnValue(value);
   }
 
   @When("the user extracts all the report values in the grid")
