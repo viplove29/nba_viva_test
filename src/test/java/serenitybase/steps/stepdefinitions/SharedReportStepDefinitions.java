@@ -97,7 +97,7 @@ public class SharedReportStepDefinitions {
   @Then("the user verifies the following columns are displayed in tab")
   public void the_user_verifies_tab_contains_the_following_columns(List<String> columnNames) {
     for (String columnName : columnNames) {
-      sharedReportTestSteps.verifyColumnsAreDisplayedInTab(columnName);
+      sharedReportTestSteps.verifyColumnIsDisplayedInTab(columnName);
     }
   }
 
@@ -105,5 +105,16 @@ public class SharedReportStepDefinitions {
   public void the_user_verifies_that_all_the_current_personnel_type_values_are_equal_to(
       String value) {
     sharedReportTestSteps.verifyCurrentPersonnelTypeColumnValue(value);
+  }
+
+  @When("the user extracts all the report values in the grid")
+  public void the_user_extracts_all_the_report_values_in_the_grid() {
+    sharedReportTestSteps.extractReportValuesInTheGrid();
+  }
+
+  @When("the user verifies that all the {string} values on the Report start with {string}")
+  public void the_user_verifies_that_all_the_customer_name_values_start_with(
+      String columnName, String value) {
+    sharedReportTestSteps.verifyColumnValuesStartWith(columnName, value);
   }
 }

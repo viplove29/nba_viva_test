@@ -22,18 +22,6 @@ public class ReportBasePage extends PageObject {
   @FindBy(xpath = "//span[@ng-show='grid.options.totalItems > 0']//b[2]")
   protected WebElementFacade totalResults;
 
-  @FindBy(id = "chDivision")
-  protected WebElementFacade divisionDetailView;
-
-  @FindBy(id = "chBranch")
-  protected WebElementFacade branchDetailView;
-
-  @FindBy(id = "chDepartment")
-  protected WebElementFacade departmentDetailView;
-
-  @FindBy(id = "chGroup")
-  protected WebElementFacade groupDetailView;
-
   @FindBy(id = "f")
   protected WebElementFacade filterSymbol;
 
@@ -71,10 +59,23 @@ public class ReportBasePage extends PageObject {
   @FindBy(xpath = "//div[contains(@class, 'active')]//div[contains(@class, 'ui-grid-row')]")
   private List<WebElementFacade> reportGridRows;
 
+  @FindBy(id = "Active CustomerInactive")
+  protected WebElementFacade activeCustomerColumn;
+
+  @FindBy(id = "Customer TypeMaster")
+  private WebElementFacade masterTypeColumn;
+
+  @FindBy(id = "Current Personnel TypeRep")
+  private WebElementFacade currentPersonnelTypeColumn;
+
   private static String TABLE_CELL_XPATH = ".//div[contains(@class, 'rpt-ui-grid-cell-content')]";
   protected static final String DETAIL_VIEW_TAB_ID = "vw1";
   protected static final int DETAIL_VIEW_TAB_VIEWPORT_INDEX = 0;
   protected static final int TAB_VIEWPORT_INDEX = 1;
+
+  protected WebElementFacade getColumnWebElementFacade(String columnName) {
+    return findBy(".ch" + columnName);
+  }
 
   public void scrollToElement(WebElement element) {
     ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView();", element);
@@ -217,10 +218,40 @@ public class ReportBasePage extends PageObject {
     return element.findElement(By.xpath(String.format(".//*[@id='ch%s']", value)));
   }
 
-  public boolean validateColumnsAreDisplayedInTab(String columnName) {
+  public boolean validateColumnIsDisplayedInTab(String columnName) {
     WebElement activeTab = find(By.id(Serenity.sessionVariableCalled("activeTabContentId")));
     WebElement column = findColumnByColumnNameInTab(activeTab, columnName);
     horizontalScroll(column);
     return column.isDisplayed();
+  }
+
+  public boolean isDivisionDisplayed() {
+    return getColumnWebElementFacade("Division").isDisplayed();
+  }
+
+  public boolean isBranchDisplayed() {
+    return getColumnWebElementFacade("Branch").isDisplayed();
+  }
+
+  public boolean isDepartmentDisplayed() {
+    return getColumnWebElementFacade("Department").isDisplayed();
+  }
+
+  public boolean isGroupDisplayed() {
+    return getColumnWebElementFacade("Group").isDisplayed();
+  }
+
+  public String getActiveCustomerColumnValue() {
+    return activeCustomerColumn.getText();
+  }
+
+  public String getCustomerTypeColumnValue() {
+    horizontalScroll(masterTypeColumn);
+    return masterTypeColumn.getText();
+  }
+
+  public String getCurrentPersonnelTypeColumnValue() {
+    horizontalScroll(currentPersonnelTypeColumn);
+    return currentPersonnelTypeColumn.getText();
   }
 }
