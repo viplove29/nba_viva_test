@@ -4,40 +4,10 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import java.util.List;
 import net.thucydides.core.annotations.Steps;
-import org.apache.commons.lang3.StringUtils;
 import serenitybase.steps.teststeps.SharedReportTestSteps;
 
 public class SharedReportStepDefinitions {
   @Steps private SharedReportTestSteps sharedReportTestSteps;
-
-  @Then("the excel report has the same number of rows as the web report")
-  public void the_excel_report_has_the_same_number_of_rows_as_the_web_report() {
-    sharedReportTestSteps.verifyNumberOfRows();
-  }
-
-  @Then("the report is {string} if applicable")
-  public void the_report_has_permission(String permission) {
-    if (StringUtils.isNotBlank(permission)) {
-      sharedReportTestSteps.verifySheetPermissions(permission);
-    }
-  }
-
-  @Then("the report is a {string}")
-  public void the_report_has_file_format(String fileFormat) {
-    sharedReportTestSteps.verifyReportHasFileFormat(fileFormat);
-  }
-
-  @Then("the report has the same columns as the web report")
-  public void the_report_has_the_same_columns_as_the_web_report() {
-    sharedReportTestSteps.verifyColumns();
-  }
-
-  @Then("the report has a {string} if applicable")
-  public void the_report_has_a_cover_sheet_if_applicable(String includeCoverSheet) {
-    if (StringUtils.isNotBlank(includeCoverSheet)) {
-      sharedReportTestSteps.verifyCoverSheet(Boolean.parseBoolean(includeCoverSheet));
-    }
-  }
 
   @When("the user selects {string} under the hide show icon")
   public void the_user_selects_option_under_show_hide_icon(String option) {

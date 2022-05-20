@@ -24,10 +24,10 @@ Feature: Active Clients
     And the user selects "Export Report" under Actions
     And use user exports the report with the following options
       | <File Format> | <Permission> | <CoverSheet> | Visible | Full Data Set |
-    Then the report is a "<File Format>"
-    Then the report is "<Permission>" if applicable
-    Then the report has a "<CoverSheet>" if applicable
-    Then the report has the same columns as the web report
+    Then the exported report is a "<File Format>" file format
+    Then the exported report has "<Permission>" permission if applicable
+    Then the exported report has a "<CoverSheet>" cover sheet if applicable
+    Then the exported report has the same columns as the web report
 
     Examples:
       | File Format | Permission | CoverSheet |
