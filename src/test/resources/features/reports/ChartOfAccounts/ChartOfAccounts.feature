@@ -19,4 +19,4 @@ Feature: Chart Of Accounts Policies
     And the user selects "Account Name" under Filters
     And the user sets the Filter to start with "Petty"
     And the user clicks on the Apply button
-    Then the user verifies that all the "Account Name" values start with "Petty"
+    Then the user verifies that all the "Account Name" values on the Report start with "Petty"
