@@ -80,5 +80,4 @@ public class ScreenRecorder {
       e.printStackTrace();
     }
   }
-  
 }
