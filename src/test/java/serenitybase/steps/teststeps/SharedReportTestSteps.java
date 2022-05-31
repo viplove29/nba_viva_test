@@ -135,9 +135,9 @@ public class SharedReportTestSteps {
           columns.add(map.get(columnName.toUpperCase(Locale.ROOT)));
         });
     if (order.equals("ascending")) {
-      assertThat(Ordering.natural().isOrdered(columns));
+      assertThat(Ordering.natural().isOrdered(columns)).isTrue();
     } else {
-      assertThat(Ordering.natural().reverse().isOrdered(columns));
+      assertThat(Ordering.natural().reverse().isOrdered(columns)).isTrue();
     }
   }
 
