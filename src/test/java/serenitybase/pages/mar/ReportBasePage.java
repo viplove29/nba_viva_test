@@ -25,8 +25,14 @@ public class ReportBasePage extends PageObject {
   @FindBy(id = "f")
   protected WebElementFacade filterSymbol;
 
+  @FindBy(id = "sortColDropdown")
+  protected WebElementFacade sortColumnDropDown;
+
   @FindBy(id = "drop_columns")
   protected WebElementFacade filterDropdown;
+
+  @FindBy(id = "drop_directions")
+  protected WebElementFacade sortDropDirections;
 
   @FindBy(id = "drop_filteroperators")
   protected WebElementFacade filterPresetDropDown;
@@ -45,6 +51,9 @@ public class ReportBasePage extends PageObject {
 
   @FindBy(xpath = ".//button[text()='Apply']")
   protected WebElementFacade applyButton;
+
+  @FindBy(id = "slc")
+  protected WebElementFacade cancelButton;
 
   @FindBy(xpath = ".//a[contains(text(), 'Starts with')]")
   protected WebElementFacade startsWithValue;
@@ -145,6 +154,10 @@ public class ReportBasePage extends PageObject {
     applyButton.click();
   }
 
+  public void clickOnCancel() {
+    cancelButton.click();
+  }
+
   public void setFilterPresetToStartWith() {
     filterPresetDropDown.click();
     startsWithValue.click();
@@ -157,6 +170,10 @@ public class ReportBasePage extends PageObject {
 
   public void clickOnFilterSymbol() {
     filterSymbol.click();
+  }
+
+  public void clickOnSortSymbol() {
+    sortColumnDropDown.click();
   }
 
   public void clickOnAddFiltersButton() {
@@ -218,5 +235,11 @@ public class ReportBasePage extends PageObject {
 
   public boolean isColumnDisplayed(String columnName) {
     return getColumnWebElementFacade(columnName).isDisplayed();
+  }
+
+  public void selectOptionUnderSort(String option) {
+    sortDropDirections.click();
+    Utilities.simpleSleep(1000);
+    findBy(".//a[contains(text(), '" + option + "')]").click();
   }
 }

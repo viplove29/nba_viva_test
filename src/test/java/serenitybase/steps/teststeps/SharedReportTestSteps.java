@@ -2,8 +2,9 @@ package serenitybase.steps.teststeps;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.List;
-import java.util.Map;
+import com.google.common.collect.Ordering;
+import java.util.*;
+import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Step;
 import serenitybase.pages.mar.*;
 
@@ -50,6 +51,11 @@ public class SharedReportTestSteps {
   }
 
   @Step
+  public void clickOnSortSymbol() {
+    sharedReportPage.clickOnSortSymbol();
+  }
+
+  @Step
   public void clickOnAddFiltersButton() {
     sharedReportPage.clickOnAddFiltersButton();
   }
@@ -60,8 +66,18 @@ public class SharedReportTestSteps {
   }
 
   @Step
+  public void selectOptionUnderSort(String option) {
+    sharedReportPage.selectOptionUnderSort(option);
+  }
+
+  @Step
   public void clickOnApply() {
     sharedReportPage.clickOnApply();
+  }
+
+  @Step
+  public void clickOnCancel() {
+    sharedReportPage.clickOnCancel();
   }
 
   @Step
@@ -96,6 +112,32 @@ public class SharedReportTestSteps {
     System.out.println("MAR Report Grid Data:");
     for (Map<String, String> row : rows) {
       System.out.println(row);
+    }
+  }
+
+  @Step
+  public void extractReportValuesInTheGridToVariable(String variableName) {
+    List<Map<String, String>> rows = sharedReportPage.getReportGridDataAsMaps();
+    Serenity.setSessionVariable(variableName).to(rows);
+  }
+
+  @Step
+  public void clickOnCancelButton() {
+    sharedReportPage.clickOnCancel();
+  }
+
+  @Step
+  public void verifyDatasetColumnValuesAreInOrder(String columnName, String order) {
+    List<Map<String, String>> dataset = sharedReportPage.getReportGridDataAsMaps();
+    ArrayList<String> columns = new ArrayList<>();
+    dataset.forEach(
+        map -> {
+          columns.add(map.get(columnName.toUpperCase(Locale.ROOT)));
+        });
+    if (order.equals("ascending")) {
+      assertThat(Ordering.natural().isOrdered(columns));
+    } else {
+      assertThat(Ordering.natural().reverse().isOrdered(columns));
     }
   }
 

@@ -4,6 +4,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import java.util.List;
 import net.thucydides.core.annotations.Steps;
+import serenitybase.helpers.Utilities;
 import serenitybase.steps.teststeps.SharedReportTestSteps;
 
 public class SharedReportStepDefinitions {
@@ -24,6 +25,11 @@ public class SharedReportStepDefinitions {
     sharedReportTestSteps.clickOnFilterSymbol();
   }
 
+  @Then("the user clicks on the Sort symbol")
+  public void the_user_clicks_on_the_sort_symbol() {
+    sharedReportTestSteps.clickOnSortSymbol();
+  }
+
   @Then("the user clicks on the Add Filters button")
   public void the_user_clicks_on_the_add_filters_button() {
     sharedReportTestSteps.clickOnAddFiltersButton();
@@ -32,6 +38,17 @@ public class SharedReportStepDefinitions {
   @Then("the user selects {string} under Filters")
   public void the_user_selects_option_under_filters(String option) {
     sharedReportTestSteps.selectOptionUnderFilters(option);
+  }
+
+  @Then("the user selects {string} under Sort")
+  public void the_user_selects_option_under_sort(String option) {
+    sharedReportTestSteps.selectOptionUnderSort(option);
+  }
+
+  @Then("the user clicks on the Cancel button")
+  public void the_user_clicks_on_the_cancel_button() {
+    Utilities.simpleSleep(500);
+    sharedReportTestSteps.clickOnCancel();
   }
 
   @Then("the user clicks on the Apply button")
@@ -76,5 +93,25 @@ public class SharedReportStepDefinitions {
   public void the_user_verifies_that_all_the_customer_name_values_start_with(
       String columnName, String value) {
     sharedReportTestSteps.verifyColumnValuesStartWith(columnName, value);
+  }
+
+  @When("the user verifies that the values of {string} are in ascending order")
+  public void the_user_verifies_that_the_dataset_values_are_in_ascending_order(String columnName) {
+    sharedReportTestSteps.verifyDatasetColumnValuesAreInOrder(columnName, "ascending");
+  }
+
+  @When("the user verifies that the values of {string} are in descending order")
+  public void the_user_verifies_that_the_dataset_values_are_in_descending_order(String columnName) {
+    sharedReportTestSteps.verifyDatasetColumnValuesAreInOrder(columnName, "descending");
+  }
+
+  @When("the user stores the report grid to {string}")
+  public void the_user_stores_the_report_grid_to(String value) {
+    sharedReportTestSteps.extractReportValuesInTheGridToVariable(value);
+  }
+
+  @When("the user clicks the cancel button")
+  public void the_user_clicks_the_cancel_button() {
+    sharedReportTestSteps.clickOnCancelButton();
   }
 }
