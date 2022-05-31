@@ -8,8 +8,8 @@ Feature: Finance Company Aged Accounts Receivable
     And the user selects "Finance Company Aged Accounts Receivable" Report Template
 
 
-  @TC-342
-  @sync-38702522
+  @TC-322
+  @sync-38659034
   Scenario: "Finance Company Aged Accounts Receivable" report sort option functions properly
   And the user generates the report with a random name
   When the user navigates to the generated report
