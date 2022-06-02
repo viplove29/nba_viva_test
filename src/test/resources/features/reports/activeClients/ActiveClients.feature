@@ -73,3 +73,20 @@ Feature: Active Clients
     And the user clicks on the Apply button
     Then the user verifies that all the "Active Customer" values on the Report are equal to "Inactive"
 
+  @TC-287
+  @sync-38373492
+  Scenario: "Active Clients" report sort option functions properly
+    When the user navigates to the generated report
+    And the user selects "Detail View" tab
+    And the user clicks on the Sort symbol
+    And the user selects "Z-A" under Sort
+    And the user clicks on the Apply button
+    And the user verifies that the values of "Customer Name" are in descending order
+    And the user clicks the cancel button
+    And the user clicks on the Sort symbol
+    And the user selects "A-Z" under Sort
+    And the user clicks on the Apply button
+    And the user verifies that the values of "Customer Name" are in ascending order
+    And the user clicks the cancel button
+
+
