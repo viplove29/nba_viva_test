@@ -135,9 +135,12 @@ public class SharedReportTestSteps {
           columns.add(map.get(columnName.toUpperCase(Locale.ROOT)));
         });
     if (order.equals("ascending")) {
-      assertThat(Ordering.from(String.CASE_INSENSITIVE_ORDER).isOrdered(columns)).isTrue();
+      assertThat(Ordering.from(String.CASE_INSENSITIVE_ORDER).isOrdered(columns))
+          .as("Column data is not in ascending order: '%s'", columns)
+          .isTrue();
     } else {
       assertThat(Ordering.from(String.CASE_INSENSITIVE_ORDER).reverse().isOrdered(columns))
+          .as("Column data is not in descending order: '%s'", columns)
           .isTrue();
     }
   }
