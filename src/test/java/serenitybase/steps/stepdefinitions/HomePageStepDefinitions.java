@@ -4,6 +4,8 @@ import io.cucumber.java.ParameterType;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import net.thucydides.core.annotations.Steps;
 import serenitybase.helpers.Utilities;
 import serenitybase.steps.teststeps.HomePageTestSteps;
@@ -77,6 +79,14 @@ public class HomePageStepDefinitions {
   @Then("the user sets date range from {string} to {string}")
   public void the_user_sets_date_range_from_to(String from, String to) {
     HomePageTestSteps.setDateRangeFromTo(from, to);
+  }
+
+  @Then("the user sets date range from {string} to today")
+  public void the_user_sets_date_range_from_to_today(String from) {
+    LocalDateTime date = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+    String dateAsText = date.format(formatter);
+    HomePageTestSteps.setDateRangeFromTo(from, dateAsText);
   }
 
   @Then(
