@@ -11,7 +11,7 @@ Feature: Download Detail
   @TC-374
   @sync-38827194
   Scenario: "Download Detail" report Filters option functions properly
-    Then the user sets date range from "01/01/2010" to "12/30/2022"
+    Then the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
     When the user navigates to the generated report
     And the user selects "Detail View" tab
