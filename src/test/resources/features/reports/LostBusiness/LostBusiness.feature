@@ -11,7 +11,7 @@ Feature: Lost Business
   @TC-333
   @sync-38666740
   Scenario: "Lost Business" report Filters option functions properly
-    Then the user sets date range from "01/01/2010" to "12/31/2022"
+    Then the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
     When the user navigates to the generated report
     And the user selects "Detail View" tab
