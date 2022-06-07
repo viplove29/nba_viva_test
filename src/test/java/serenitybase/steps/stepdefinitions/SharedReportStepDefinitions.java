@@ -40,6 +40,11 @@ public class SharedReportStepDefinitions {
     sharedReportTestSteps.selectOptionUnderFilters(option);
   }
 
+  @Then("the user selects {string} under drop down")
+  public void the_user_selects_option_under_drop_down(String option) {
+    sharedReportTestSteps.selectOptionUnderFilters(option);
+  }
+
   @Then("the user selects {string} under Sort")
   public void the_user_selects_option_under_sort(String option) {
     sharedReportTestSteps.selectOptionUnderSort(option);
