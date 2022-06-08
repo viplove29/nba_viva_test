@@ -11,7 +11,7 @@ Feature: Transaction
   @TC-359
   @sync-38737417
   Scenario: "Transaction" report Filters option functions properly
-    Then the user sets date range from "01/01/2010" to "12/31/2021"
+    Then the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
     When the user navigates to the generated report
     And the user selects "Detail View" tab
