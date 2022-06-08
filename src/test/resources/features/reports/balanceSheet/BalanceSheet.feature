@@ -36,3 +36,21 @@ Background:
     And the user clicks on the Apply button
     Then the user verifies that all the "Description" values on the Report start with "LIA"
 
+  @TC-265
+  @sync-36868106
+  Scenario: "Balance Sheet" report sort option functions properly
+    And the user generates the report with a random name
+    When the user navigates to the generated report
+    And the user selects "Detail View" tab
+    And the user clicks on the Sort symbol
+    And the user selects "Division" under drop down
+    And the user selects "Z-A" under Sort
+    And the user clicks on the Apply button
+    Then the user verifies that the values of "Division" are in descending order
+    And the user clicks the cancel button
+    And the user clicks on the Sort symbol
+    And the user selects "A-Z" under Sort
+    And the user clicks on the Apply button
+    Then the user verifies that the values of "Division" are in ascending order
+    And the user clicks the cancel button
+
