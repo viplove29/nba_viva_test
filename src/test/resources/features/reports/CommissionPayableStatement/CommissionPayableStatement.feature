@@ -19,11 +19,11 @@ Feature: Commission Payable Statement
   And the user selects "Invoice Type" under drop down
   And the user selects "Z-A" under Sort
   And the user clicks on the Apply button
-  And the user verifies that the values of "Invoice Type" are in descending order
+  Then the user verifies that the values of "Invoice Type" are in descending order
   And the user clicks the cancel button
   And the user clicks on the Sort symbol
   And the user selects "Invoice Type" under drop down
   And the user selects "A-Z" under Sort
   And the user clicks on the Apply button
-  And the user verifies that the values of "Invoice Type" are in ascending order
+  Then the user verifies that the values of "Invoice Type" are in ascending order
   And the user clicks the cancel button
