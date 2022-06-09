@@ -34,25 +34,16 @@ default:
       -BatchSize 0
   after_script:
     - aws storagegateway refresh-cache --file-share-arn arn:aws:storagegateway:us-east-1:065073025992:share/share-99B425F3
-  only:
-    - schedules
-    - web
-  except:
-    variables:
-      - $SMOKE_TEST
+  rules:
+    - if: ($CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web") && $SMOKE_TEST == null
   interruptible: false
   when: always
   allow_failure: true
 
 .merge launches:
   extends: .windows scripts
-  only:
-    - schedules
-    - web
-  except:
-    variables:
-      - $SMOKE_TEST
-  when: always
+  rules:
+    - if: ($CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web") && $SMOKE_TEST == null
   variables:
     GIT_STRATEGY: none
   dependencies: []
@@ -70,11 +61,10 @@ spotless:
   script:
     - ./gradlew spotlessJavaCheck
     - ./gradlew compileTestJava
-  only:
-    refs:
-      - merge_requests
-    changes:
-      - "**/*.java"
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - "**/*.java"
 
 scenarios:
   stage: project checks
@@ -90,23 +80,21 @@ scenarios:
       Import-Module ./scripts/TestScenarios.psm1;
       Test-SyncTags;
       Test-DuplicateScenarioNames;"
-  only:
-    refs:
-      - merge_requests
-    changes:
-      - "**/*.feature"
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - "**/*.feature"
 
 dry run:
   stage: project checks
   image: openjdk:14-jdk-slim
   script:
     - ./gradlew test --tests TestSupport -Dcucumber.execution.dry-run=true
-  only:
-    refs:
-      - merge_requests
-    changes:
-      - "**/*StepDefinitions.java"
-      - "**/*.feature"
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - "**/*StepDefinitions.java"
+        - "**/*.feature"
   cache:
     paths:
       - build/
