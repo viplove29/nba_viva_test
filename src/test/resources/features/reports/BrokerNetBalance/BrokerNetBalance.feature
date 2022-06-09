@@ -30,10 +30,10 @@ Feature: Broker Net Balance
     And the user clicks on the Sort symbol
     And the user selects "Z-A" under Sort
     And the user clicks on the Apply button
-    And the user verifies that the values of "Broker Name" are in descending order
+    Then the user verifies that the values of "Broker Name" are in descending order
     And the user clicks the cancel button
     And the user clicks on the Sort symbol
     And the user selects "A-Z" under Sort
     And the user clicks on the Apply button
-    And the user verifies that the values of "Broker Name" are in ascending order
+    Then the user verifies that the values of "Broker Name" are in ascending order
     And the user clicks the cancel button
