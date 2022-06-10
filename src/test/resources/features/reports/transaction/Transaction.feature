@@ -22,3 +22,20 @@ Feature: Transaction
     And the user clicks on the Apply button
     And the user extracts all the report values in the grid
     And the user verifies that all the "Customer Name" values on the Report start with "1"
+
+  @TC-358
+  @sync-38737188
+  Scenario: "Transaction" report sort option functions properly
+    And the user generates the report with a random name
+    When the user navigates to the generated report
+    And the user selects "Detail View" tab
+    And the user clicks on the Sort symbol
+    And the user selects "Z-A" under Sort
+    And the user clicks on the Apply button
+    Then the user verifies that the values of "Customer Name" are in descending order
+    And the user clicks the cancel button
+    And the user clicks on the Sort symbol
+    And the user selects "A-Z" under Sort
+    And the user clicks on the Apply button
+    Then the user verifies that the values of "Customer Name" are in ascending order
+    And the user clicks the cancel button
