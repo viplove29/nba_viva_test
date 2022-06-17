@@ -149,6 +149,7 @@ public class SharedReportStepDefinitions {
     Utilities.simpleSleep(1000);
     sharedReportTestSteps.saveAsANewTemplate();
   }
+
   @When("the user names the summary {string}")
   public void the_user_names_the_summary(@NotNull String name) {
     Utilities.simpleSleep(2000);
@@ -194,5 +195,4 @@ public class SharedReportStepDefinitions {
   public void the_user_selects_the_delete_menu_item() {
     sharedReportTestSteps.clickOnDeleteMenuItem();
   }
-
 }
