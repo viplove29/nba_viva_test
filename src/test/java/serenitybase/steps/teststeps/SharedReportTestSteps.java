@@ -127,6 +127,71 @@ public class SharedReportTestSteps {
   }
 
   @Step
+  public void clickOnAddSummaryTab() {
+    sharedReportPage.clickOnAddSummaryTab();
+  }
+
+  @Step
+  public void clickOnAddSummaryButton() {
+    sharedReportPage.clickOnAddSummaryButton();
+  }
+
+  @Step
+  public void clickOnOkButton() {
+    sharedReportPage.clickOnOk();
+  }
+
+  @Step
+  public void clickOnSummaryCheckbox(String label) {
+    sharedReportPage.clickOnSummaryCheckbox(label);
+  }
+
+  @Step
+  public void enterSummaryName(String label) {
+    sharedReportPage.setSummaryName(label);
+  }
+
+  @Step
+  public void enterTemplateName(String label) {
+    sharedReportPage.enterANewTemplateName(label);
+  }
+
+  @Step
+  public void selectActionButton() {
+    sharedReportPage.selectActionButton();
+  }
+
+  @Step
+  public void saveAsANewTemplate() {
+    sharedReportPage.saveAsANewTemplate();
+  }
+
+  @Step
+  public void saveNewTemplate() {
+    sharedReportPage.saveNewTemplate();
+  }
+
+  @Step
+  public void pressBackArrow() {
+    sharedReportPage.clickOnBackArrow();
+  }
+
+  @Step
+  public void clickTemplatesActionMenu() {
+    sharedReportPage.clickOnTemplatesActionMenu();
+  }
+
+  @Step
+  public void clickOnDeleteMenuItem() {
+    sharedReportPage.clickOnDeleteMenuItem();
+  }
+
+  @Step
+  public void searchForTemplate(String templateName) {
+    sharedReportPage.searchForTemplate(templateName);
+  }
+
+  @Step
   public void verifyDatasetColumnValuesAreInOrder(String columnName, String order) {
     List<Map<String, String>> dataset = sharedReportPage.getReportGridDataAsMaps();
     ArrayList<String> columns = new ArrayList<>();
