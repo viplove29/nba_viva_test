@@ -54,7 +54,7 @@ public class SharedReportStepDefinitions {
   @Then("the user clicks on the Cancel button")
   public void the_user_clicks_on_the_cancel_button() {
     Utilities.simpleSleep(500);
-    sharedReportTestSteps.clickOnCancel();
+    sharedReportTestSteps.clickOnCancelButton();
   }
 
   @Then("the user clicks on the Apply button")
@@ -152,42 +152,42 @@ public class SharedReportStepDefinitions {
 
   @When("the user names the summary {string}")
   public void the_user_names_the_summary(@NotNull String name) {
-    Utilities.simpleSleep(2000);
+    Utilities.simpleSleep(500);
     sharedReportTestSteps.enterSummaryName(name);
   }
 
   @When("the user names the template {string}")
   public void the_user_names_the_template(@NotNull String name) {
-    Utilities.simpleSleep(2000);
+    Utilities.simpleSleep(500);
     sharedReportTestSteps.enterTemplateName(name);
   }
 
   @When("the user saves the template")
   public void the_user_saves_the_template() {
-    Utilities.simpleSleep(2000);
+    Utilities.simpleSleep(500);
     sharedReportTestSteps.saveNewTemplate();
   }
 
   @When("the user clicks the Ok button")
   public void the_user_clicks_the_ok_button() {
-    Utilities.simpleSleep(2000);
+    Utilities.simpleSleep(500);
     sharedReportTestSteps.clickOnOkButton();
   }
 
   @When("the user search for the template named {string}")
   public void the_user_saves_the_template(String templateName) {
     sharedReportTestSteps.searchForTemplate(templateName);
-    Utilities.simpleSleep(2000);
+    Utilities.simpleSleep(500);
   }
 
-  @When("the user pushes the back arrow")
-  public void the_user_pushes_the_back_button() {
-    Utilities.simpleSleep(2000);
+  @When("the user presses the back arrow")
+  public void the_user_presses_the_back_button() {
+    Utilities.simpleSleep(500);
     sharedReportTestSteps.pressBackArrow();
   }
 
-  @When("the user pushes the templates action menu")
-  public void the_user_pushes_the_templates_action_menu() {
+  @When("the user presses the templates action menu")
+  public void the_user_presses_the_templates_action_menu() {
     sharedReportTestSteps.clickTemplatesActionMenu();
   }
 

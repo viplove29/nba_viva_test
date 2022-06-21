@@ -75,10 +75,6 @@ public class SharedReportTestSteps {
     sharedReportPage.clickOnApply();
   }
 
-  @Step
-  public void clickOnCancel() {
-    sharedReportPage.clickOnCancel();
-  }
 
   @Step
   public void setFilterValueToStartWith(String value) {
@@ -123,7 +119,7 @@ public class SharedReportTestSteps {
 
   @Step
   public void clickOnCancelButton() {
-    sharedReportPage.clickOnCancel();
+    sharedReportPage.clickOnCancelButton();
   }
 
   @Step
@@ -138,12 +134,12 @@ public class SharedReportTestSteps {
 
   @Step
   public void clickOnOkButton() {
-    sharedReportPage.clickOnOk();
+    sharedReportPage.clickOnOkButton();
   }
 
   @Step
   public void clickOnSummaryCheckbox(String label) {
-    sharedReportPage.clickOnSummaryCheckbox(label);
+    sharedReportPage.selectSummaryCheckbox(label);
   }
 
   @Step

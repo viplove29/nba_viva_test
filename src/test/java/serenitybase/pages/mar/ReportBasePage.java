@@ -193,11 +193,11 @@ public class ReportBasePage extends PageObject {
     applyButton.click();
   }
 
-  public void clickOnOk() {
+  public void clickOnOkButton() {
     okButton.click();
   }
 
-  public void clickOnCancel() {
+  public void clickOnCancelButton() {
     cancelButton.click();
   }
 
@@ -243,7 +243,7 @@ public class ReportBasePage extends PageObject {
     addSummaryButton.click();
   }
 
-  public void clickOnSummaryCheckbox(String label) {
+  public void selectSummaryCheckbox(String label) {
     WebElementFacade checkBox =
         summaryPage.findBy("//input[@type='checkbox'][@id='" + label + "']");
     if (!checkBox.isSelected()) {
