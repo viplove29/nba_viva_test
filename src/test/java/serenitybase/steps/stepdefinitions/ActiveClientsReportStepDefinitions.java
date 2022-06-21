@@ -10,7 +10,8 @@ public class ActiveClientsReportStepDefinitions {
   @Steps private SharedReportTestSteps sharedReportTestSteps;
 
   @When("the user clicks the following checkboxes on the Active Client summary page")
-  public void the_user_clicks_the_following_checkboxes_on_the_active_client_summary_page(@NotNull List<String> labels) {
+  public void the_user_clicks_the_following_checkboxes_on_the_active_client_summary_page(
+      @NotNull List<String> labels) {
     for (String label : labels) {
       switch (label) {
         case "Branch":

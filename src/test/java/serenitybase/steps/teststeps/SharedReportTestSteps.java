@@ -75,7 +75,6 @@ public class SharedReportTestSteps {
     sharedReportPage.clickOnApply();
   }
 
-
   @Step
   public void setFilterValueToStartWith(String value) {
     sharedReportPage.setFilterPresetToStartWith();
