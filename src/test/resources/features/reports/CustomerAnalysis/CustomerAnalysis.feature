@@ -20,4 +20,4 @@ Feature: Customer Analysis
     And the user sets the Filter to start with "Accardi"
     And the user clicks on the Apply button
     And the user extracts all the report values in the grid
-    And the user verifies that all the "Customer Name" values on the Report start with "Accardi"
+    Then the user verifies that all the "Customer Name" values on the Report start with "Accardi"
