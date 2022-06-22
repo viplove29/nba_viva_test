@@ -195,4 +195,12 @@ public class SharedReportStepDefinitions {
   public void the_user_selects_the_delete_menu_item() {
     sharedReportTestSteps.clickOnDeleteMenuItem();
   }
+
+  @When("the user selects the following checkboxes on the summary page")
+  public void the_user_selects_the_following_checkboxes_on_the_summary_page(
+      @NotNull List<String> labels) {
+    for (String label : labels) {
+      sharedReportTestSteps.selectSummaryCheckbox(label);
+    }
+  }
 }

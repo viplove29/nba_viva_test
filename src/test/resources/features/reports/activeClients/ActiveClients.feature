@@ -94,11 +94,11 @@ Feature: Active Clients
   Scenario: Active Clients Add new Summary View tab in the report
     When the user navigates to the generated report
     And the user clicks the add summary tab
-    And the user clicks the following checkboxes on the Active Client summary page
-      |Branch            |
-      |Customer          |
+    And the user selects the following checkboxes on the summary page
       |Customer Executive|
       |Policy Count      |
+      |Bill Method       |
+      |Branch            |
     And the user names the summary "testSummary"
     And the user clicks the add summary button
     And the user clicks the action button

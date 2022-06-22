@@ -137,7 +137,7 @@ public class SharedReportTestSteps {
   }
 
   @Step
-  public void clickOnSummaryCheckbox(String label) {
+  public void selectSummaryCheckbox(String label) {
     sharedReportPage.selectSummaryCheckbox(label);
   }
 
