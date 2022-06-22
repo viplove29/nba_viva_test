@@ -4,6 +4,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import java.util.List;
 import net.thucydides.core.annotations.Steps;
+import org.jetbrains.annotations.NotNull;
 import serenitybase.helpers.Utilities;
 import serenitybase.steps.teststeps.SharedReportTestSteps;
 
@@ -53,7 +54,7 @@ public class SharedReportStepDefinitions {
   @Then("the user clicks on the Cancel button")
   public void the_user_clicks_on_the_cancel_button() {
     Utilities.simpleSleep(500);
-    sharedReportTestSteps.clickOnCancel();
+    sharedReportTestSteps.clickOnCancelButton();
   }
 
   @Then("the user clicks on the Apply button")
@@ -79,6 +80,11 @@ public class SharedReportStepDefinitions {
 
   @Then("the user selects {string} tab")
   public void the_user_selects_tab(String tabName) {
+    sharedReportTestSteps.selectTab(tabName);
+  }
+
+  @Then("the user verifies the {string} tab exists")
+  public void the_user_verifies_the_tab_exists(String tabName) {
     sharedReportTestSteps.selectTab(tabName);
   }
 
@@ -115,8 +121,78 @@ public class SharedReportStepDefinitions {
     sharedReportTestSteps.extractReportValuesInTheGridToVariable(value);
   }
 
+  @When("the user clicks the add summary tab")
+  public void the_user_clicks_the_add_summary_tab() {
+    Utilities.simpleSleep(1000);
+    sharedReportTestSteps.clickOnAddSummaryTab();
+  }
+
+  @When("the user clicks the add summary button")
+  public void the_user_clicks_the_add_summary_button() {
+    Utilities.simpleSleep(1000);
+    sharedReportTestSteps.clickOnAddSummaryButton();
+  }
+
   @When("the user clicks the cancel button")
   public void the_user_clicks_the_cancel_button() {
     sharedReportTestSteps.clickOnCancelButton();
+  }
+
+  @When("the user clicks the action button")
+  public void the_user_clicks_the_action_button() {
+    Utilities.simpleSleep(1000);
+    sharedReportTestSteps.selectActionButton();
+  }
+
+  @When("the user clicks the Save as a New Template menu item")
+  public void the_user_clicks_the_save_as_a_new_template() {
+    Utilities.simpleSleep(1000);
+    sharedReportTestSteps.saveAsANewTemplate();
+  }
+
+  @When("the user names the summary {string}")
+  public void the_user_names_the_summary(@NotNull String name) {
+    Utilities.simpleSleep(500);
+    sharedReportTestSteps.enterSummaryName(name);
+  }
+
+  @When("the user names the template {string}")
+  public void the_user_names_the_template(@NotNull String name) {
+    Utilities.simpleSleep(500);
+    sharedReportTestSteps.enterTemplateName(name);
+  }
+
+  @When("the user saves the template")
+  public void the_user_saves_the_template() {
+    Utilities.simpleSleep(500);
+    sharedReportTestSteps.saveNewTemplate();
+  }
+
+  @When("the user clicks the Ok button")
+  public void the_user_clicks_the_ok_button() {
+    Utilities.simpleSleep(500);
+    sharedReportTestSteps.clickOnOkButton();
+  }
+
+  @When("the user search for the template named {string}")
+  public void the_user_saves_the_template(String templateName) {
+    sharedReportTestSteps.searchForTemplate(templateName);
+    Utilities.simpleSleep(500);
+  }
+
+  @When("the user presses the back arrow")
+  public void the_user_presses_the_back_button() {
+    Utilities.simpleSleep(500);
+    sharedReportTestSteps.pressBackArrow();
+  }
+
+  @When("the user presses the templates action menu")
+  public void the_user_presses_the_templates_action_menu() {
+    sharedReportTestSteps.clickTemplatesActionMenu();
+  }
+
+  @When("the user selects the delete menu item")
+  public void the_user_selects_the_delete_menu_item() {
+    sharedReportTestSteps.clickOnDeleteMenuItem();
   }
 }

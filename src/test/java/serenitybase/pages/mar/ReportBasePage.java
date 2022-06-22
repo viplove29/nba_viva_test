@@ -19,6 +19,36 @@ public class ReportBasePage extends PageObject {
   @FindBy(id = "shc")
   protected WebElementFacade showHideIconButton;
 
+  @FindBy(id = "templates_action_menu")
+  protected WebElementFacade templatesActionMenu;
+
+  @FindBy(id = "rptSearch")
+  protected WebElementFacade templateSearchText;
+
+  @FindBy(id = "ar")
+  protected WebElementFacade backArrow;
+
+  @FindBy(id = "agdd")
+  protected WebElementFacade actionsButton;
+
+  @FindBy(id = "sln")
+  protected WebElementFacade saveTemplateName;
+
+  @FindBy(id = "sls")
+  protected WebElementFacade saveTemplateButton;
+
+  @FindBy(id = "vn")
+  protected WebElementFacade summaryName;
+
+  @FindBy(id = "agsnt")
+  protected WebElementFacade saveAsANewTemplate;
+
+  @FindBy(id = "rpt-add-summary-tab")
+  protected WebElementFacade addSummaryTab;
+
+  @FindBy(id = "asas")
+  protected WebElementFacade addSummaryButton;
+
   @FindBy(xpath = "//span[@ng-show='grid.options.totalItems > 0']//b[2]")
   protected WebElementFacade totalResults;
 
@@ -52,6 +82,12 @@ public class ReportBasePage extends PageObject {
   @FindBy(xpath = ".//button[text()='Apply']")
   protected WebElementFacade applyButton;
 
+  @FindBy(xpath = ".//span[text()='OK']")
+  protected WebElementFacade okButton;
+
+  @FindBy(xpath = ".//a[text()='Delete']")
+  protected WebElementFacade deleteMenuItem;
+
   @FindBy(id = "slc")
   protected WebElementFacade cancelButton;
 
@@ -67,6 +103,9 @@ public class ReportBasePage extends PageObject {
 
   @FindBy(xpath = "//div[contains(@class, 'active')]//div[contains(@class, 'ui-grid-row')]")
   private List<WebElementFacade> reportGridRows;
+
+  @FindBy(id = "vwadd-summary")
+  protected WebElementFacade summaryPage;
 
   private static String TABLE_CELL_XPATH = ".//div[contains(@class, 'rpt-ui-grid-cell-content')]";
   protected static final String DETAIL_VIEW_TAB_ID = "vw1";
@@ -154,8 +193,20 @@ public class ReportBasePage extends PageObject {
     applyButton.click();
   }
 
-  public void clickOnCancel() {
+  public void clickOnOkButton() {
+    okButton.click();
+  }
+
+  public void clickOnCancelButton() {
     cancelButton.click();
+  }
+
+  public void clickOnBackArrow() {
+    backArrow.click();
+  }
+
+  public void clickOnTemplatesActionMenu() {
+    templatesActionMenu.click();
   }
 
   public void setFilterPresetToStartWith() {
@@ -178,6 +229,30 @@ public class ReportBasePage extends PageObject {
 
   public void clickOnAddFiltersButton() {
     addFiltersButton.click();
+  }
+
+  public void clickOnDeleteMenuItem() {
+    deleteMenuItem.click();
+  }
+
+  public void clickOnAddSummaryTab() {
+    addSummaryTab.click();
+  }
+
+  public void clickOnAddSummaryButton() {
+    addSummaryButton.click();
+  }
+
+  public void selectSummaryCheckbox(String label) {
+    WebElementFacade checkBox =
+        summaryPage.findBy("//input[@type='checkbox'][@id='" + label + "']");
+    if (!checkBox.isSelected()) {
+      checkBox.click();
+    }
+  }
+
+  public void setSummaryName(String label) {
+    summaryName.typeAndEnter(label);
   }
 
   public int getNumberOfResults() {
@@ -241,5 +316,26 @@ public class ReportBasePage extends PageObject {
     sortDropDirections.click();
     Utilities.simpleSleep(1000);
     findBy(".//a[contains(text(), '" + option + "')]").click();
+  }
+
+  public void selectActionButton() {
+    actionsButton.click();
+  }
+
+  public void saveAsANewTemplate() {
+    saveAsANewTemplate.click();
+  }
+
+  public void saveNewTemplate() {
+    saveTemplateButton.click();
+    Utilities.simpleSleep(1000);
+  }
+
+  public void enterANewTemplateName(String name) {
+    saveTemplateName.typeAndEnter(name);
+  }
+
+  public void searchForTemplate(String name) {
+    templateSearchText.typeAndEnter(name);
   }
 }

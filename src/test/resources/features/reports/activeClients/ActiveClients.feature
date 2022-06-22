@@ -89,4 +89,35 @@ Feature: Active Clients
     And the user verifies that the values of "Customer Name" are in ascending order
     And the user clicks the cancel button
 
+  @TC-301
+  @sync-38406567
+  Scenario: Active Clients Add new Summary View tab in the report
+    When the user navigates to the generated report
+    And the user clicks the add summary tab
+    And the user clicks the following checkboxes on the Active Client summary page
+      |Branch            |
+      |Customer          |
+      |Customer Executive|
+      |Policy Count      |
+    And the user names the summary "testSummary"
+    And the user clicks the add summary button
+    And the user clicks the action button
+    And the user clicks the Save as a New Template menu item
+    And the user names the template "testSummaryTemplate"
+    And the user saves the template
+    And the user clicks the Ok button
+    And the user presses the back arrow
+    And the user search for the template named "testSummaryTemplate"
+    And the user selects "testSummaryTemplate" Report Template
+    And the user generates the report with a random name
+    And the user navigates to the generated report
+    Then the user verifies the "testSummary" tab exists
+    And the user presses the back arrow
+    And the user search for the template named "testSummaryTemplate"
+    And the user presses the templates action menu
+    And the user selects the delete menu item
+
+
+
+
 

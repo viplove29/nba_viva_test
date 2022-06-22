@@ -76,11 +76,6 @@ public class SharedReportTestSteps {
   }
 
   @Step
-  public void clickOnCancel() {
-    sharedReportPage.clickOnCancel();
-  }
-
-  @Step
   public void setFilterValueToStartWith(String value) {
     sharedReportPage.setFilterPresetToStartWith();
     sharedReportPage.setFilterStartsWith(value);
@@ -123,7 +118,72 @@ public class SharedReportTestSteps {
 
   @Step
   public void clickOnCancelButton() {
-    sharedReportPage.clickOnCancel();
+    sharedReportPage.clickOnCancelButton();
+  }
+
+  @Step
+  public void clickOnAddSummaryTab() {
+    sharedReportPage.clickOnAddSummaryTab();
+  }
+
+  @Step
+  public void clickOnAddSummaryButton() {
+    sharedReportPage.clickOnAddSummaryButton();
+  }
+
+  @Step
+  public void clickOnOkButton() {
+    sharedReportPage.clickOnOkButton();
+  }
+
+  @Step
+  public void clickOnSummaryCheckbox(String label) {
+    sharedReportPage.selectSummaryCheckbox(label);
+  }
+
+  @Step
+  public void enterSummaryName(String label) {
+    sharedReportPage.setSummaryName(label);
+  }
+
+  @Step
+  public void enterTemplateName(String label) {
+    sharedReportPage.enterANewTemplateName(label);
+  }
+
+  @Step
+  public void selectActionButton() {
+    sharedReportPage.selectActionButton();
+  }
+
+  @Step
+  public void saveAsANewTemplate() {
+    sharedReportPage.saveAsANewTemplate();
+  }
+
+  @Step
+  public void saveNewTemplate() {
+    sharedReportPage.saveNewTemplate();
+  }
+
+  @Step
+  public void pressBackArrow() {
+    sharedReportPage.clickOnBackArrow();
+  }
+
+  @Step
+  public void clickTemplatesActionMenu() {
+    sharedReportPage.clickOnTemplatesActionMenu();
+  }
+
+  @Step
+  public void clickOnDeleteMenuItem() {
+    sharedReportPage.clickOnDeleteMenuItem();
+  }
+
+  @Step
+  public void searchForTemplate(String templateName) {
+    sharedReportPage.searchForTemplate(templateName);
   }
 
   @Step
