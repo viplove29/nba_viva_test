@@ -38,3 +38,33 @@ Feature: Cancellation Policies
     And the user clicks on the Apply button
     Then the user verifies that the values of "Customer Name" are in ascending order
     And the user clicks the cancel button
+
+  @TC-301
+  @sync-38406567
+  Scenario: Add Cancellation summary View tab in the report
+    When the user generates the report with a random name
+    And the user navigates to the generated report
+    And the user clicks the add summary tab
+    And the user selects the following checkboxes on the summary page
+      |Total Cost|
+      |Division|
+      |Cancel Type|
+      |Branch|
+    And the user names the summary "cancellationSummary"
+    And the user clicks the add summary button
+    And the user clicks the action button
+    And the user clicks the Save as a New Template menu item
+    And the user names the template "cancellationSummaryTemplate"
+    And the user saves the template
+    And the user clicks the Ok button
+    And the user presses the back arrow
+    And the user search for the template named "cancellationSummaryTemplate"
+    And the user selects "cancellationSummaryTemplate" Report Template
+    And the user generates the report with a random name
+    And the user navigates to the generated report
+    Then the user verifies the "cancellationSummary" tab exists
+    And the user presses the back arrow
+    And the user search for the template named "cancellationSummaryTemplate"
+    And the user presses the templates action menu
+    And the user selects the delete menu item
+
