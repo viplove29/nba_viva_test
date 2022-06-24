@@ -245,7 +245,7 @@ public class ReportBasePage extends PageObject {
 
   public void selectSummaryCheckbox(String label) {
     WebElementFacade checkBox =
-        summaryPage.findBy("//input[@type='checkbox'][@id='" + label + "']");
+        summaryPage.findBy("//label[contains(text(), " + "'" + label + "')]");
     if (!checkBox.isSelected()) {
       checkBox.click();
     }

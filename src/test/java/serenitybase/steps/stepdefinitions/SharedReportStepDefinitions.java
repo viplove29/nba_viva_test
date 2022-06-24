@@ -106,6 +106,16 @@ public class SharedReportStepDefinitions {
     sharedReportTestSteps.verifyColumnValuesStartWith(columnName, value);
   }
 
+  @When("the user presses the templates action menu")
+  public void the_user_presses_the_templates_action_menu() {
+    sharedReportTestSteps.clickTemplatesActionMenu();
+  }
+
+  @When("the user selects the delete menu item")
+  public void the_user_selects_the_delete_menu_item() {
+    sharedReportTestSteps.clickOnDeleteMenuItem();
+  }
+
   @When("the user verifies that the values of {string} are in ascending order")
   public void the_user_verifies_that_the_dataset_values_are_in_ascending_order(String columnName) {
     sharedReportTestSteps.verifyDatasetColumnValuesAreInOrder(columnName, "ascending");
@@ -127,12 +137,6 @@ public class SharedReportStepDefinitions {
     sharedReportTestSteps.clickOnAddSummaryTab();
   }
 
-  @When("the user clicks the add summary button")
-  public void the_user_clicks_the_add_summary_button() {
-    Utilities.simpleSleep(1000);
-    sharedReportTestSteps.clickOnAddSummaryButton();
-  }
-
   @When("the user clicks the cancel button")
   public void the_user_clicks_the_cancel_button() {
     sharedReportTestSteps.clickOnCancelButton();
@@ -148,12 +152,6 @@ public class SharedReportStepDefinitions {
   public void the_user_clicks_the_save_as_a_new_template() {
     Utilities.simpleSleep(1000);
     sharedReportTestSteps.saveAsANewTemplate();
-  }
-
-  @When("the user names the summary {string}")
-  public void the_user_names_the_summary(@NotNull String name) {
-    Utilities.simpleSleep(500);
-    sharedReportTestSteps.enterSummaryName(name);
   }
 
   @When("the user names the template {string}")
@@ -184,15 +182,5 @@ public class SharedReportStepDefinitions {
   public void the_user_presses_the_back_button() {
     Utilities.simpleSleep(500);
     sharedReportTestSteps.pressBackArrow();
-  }
-
-  @When("the user presses the templates action menu")
-  public void the_user_presses_the_templates_action_menu() {
-    sharedReportTestSteps.clickTemplatesActionMenu();
-  }
-
-  @When("the user selects the delete menu item")
-  public void the_user_selects_the_delete_menu_item() {
-    sharedReportTestSteps.clickOnDeleteMenuItem();
   }
 }
