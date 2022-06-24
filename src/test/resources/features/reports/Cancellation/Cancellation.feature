@@ -39,7 +39,7 @@ Feature: Cancellation Policies
     Then the user verifies that the values of "Customer Name" are in ascending order
     And the user clicks the cancel button
 
-  @TC-301
+  @TC-300
   @sync-38406567
   Scenario: Add Cancellation summary View tab in the report
     When the user generates the report with a random name
