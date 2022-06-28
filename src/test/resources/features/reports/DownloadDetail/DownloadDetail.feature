@@ -38,3 +38,35 @@ Feature: Download Detail
     And the user clicks on the Apply button
     Then the user verifies that the values of "Parent Company" are in ascending order
     And the user clicks the cancel button
+
+
+  @TC-377
+  @sync-38827325
+  Scenario: Add Download Detail summary View tab in the report
+    When the user generates the report with a random name
+    And the user navigates to the generated report
+    And the user clicks the add summary tab
+    And the user selects the following checkboxes on the summary page
+      |Transaction Status Count|
+      |Master Agent Code|
+      |Sub Agent Code|
+      |Branch|
+    And the user names the summary "downloadDetailSummary"
+    And the user clicks the add summary button
+    And the user clicks the action button
+    And the user clicks the Save as a New Template menu item
+    And the user names the template "downloadDetailSummaryTemplate"
+    And the user saves the template
+    And the user clicks the Ok button
+    And the user presses the back arrow
+    And the user search for the template named "downloadDetailSummaryTemplate"
+    And the user selects "downloadDetailSummaryTemplate" Report Template
+    And the user generates the report with a random name
+    And the user navigates to the generated report
+    Then the user verifies the "downloadDetailSummary" tab exists
+    And the user presses the back arrow
+    And the user search for the template named "downloadDetailSummaryTemplate"
+    And the user presses the templates action menu
+    And the user selects the delete menu item
+
+
