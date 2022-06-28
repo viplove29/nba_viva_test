@@ -21,3 +21,35 @@ Feature: Customer Aged Account
     And the user clicks on the Apply button
     And the user extracts all the report values in the grid
     Then the user verifies that all the "Customer Name" values on the Report start with "Cust"
+
+
+  @TC-306
+  @sync-38478006
+  Scenario: Add Customer Aged Account summary View tab in the report
+    When the user generates the report with a random name
+    And the user navigates to the generated report
+    And the user clicks the add summary tab
+    And the user selects the following checkboxes on the summary page
+      |Total Invoice Balance|
+      |Division|
+      |Invoice Date Age|
+      |Branch|
+    And the user names the summary "customerAgedAccountSummary"
+    And the user clicks the add summary button
+    And the user clicks the action button
+    And the user clicks the Save as a New Template menu item
+    And the user names the template "cAASummaryTemplate"
+    And the user saves the template
+    And the user clicks the Ok button
+    And the user presses the back arrow
+    And the user search for the template named "cAASummaryTemplate"
+    And the user selects "cAASummaryTemplate" Report Template
+    And the user generates the report with a random name
+    And the user navigates to the generated report
+    Then the user verifies the "customerAgedAccountSummary" tab exists
+    And the user presses the back arrow
+    And the user search for the template named "cAASummaryTemplate"
+    And the user presses the templates action menu
+    And the user selects the delete menu item
+
+
