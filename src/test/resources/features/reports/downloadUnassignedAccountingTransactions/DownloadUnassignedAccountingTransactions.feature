@@ -38,3 +38,34 @@ Feature: Download Unassigned Accounting Transactions
     And the user clicks on the Apply button
     Then the user verifies that the values of "Customer Name" are in ascending order
     And the user clicks the cancel button
+
+
+  @TC-319
+  @sync-38582956
+  Scenario: Add Download Unassigned Accounting Transactions summary View tab in the report
+    When the user generates the report with a random name
+    And the user navigates to the generated report
+    And the user clicks the add summary tab
+    And the user selects the following checkboxes on the summary page
+      |Total Amount|
+      |Status|
+      |Writing Company|
+      |Master Agent|
+    And the user names the summary "downloadUnassignedAccountingTransactionsSummary"
+    And the user clicks the add summary button
+    And the user clicks the action button
+    And the user clicks the Save as a New Template menu item
+    And the user names the template "downloadUnassignedAccountingTransactionsTemplate"
+    And the user saves the template
+    And the user clicks the Ok button
+    And the user presses the back arrow
+    And the user search for the template named "downloadUnassignedAccountingTransactionsTemplate"
+    And the user selects "downloadUnassignedAccountingTransactionsTemplate" Report Template
+    And the user generates the report with a random name
+    And the user navigates to the generated report
+    Then the user verifies the "downloadUnassignedAccountingTransactionsSummary" tab exists
+    And the user presses the back arrow
+    And the user search for the template named "downloadUnassignedAccountingTransactionsTemplate"
+    And the user presses the templates action menu
+    And the user selects the delete menu item
+
