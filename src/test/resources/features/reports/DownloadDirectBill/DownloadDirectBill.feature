@@ -38,3 +38,34 @@ Feature: Download Direct Bill Statement
     And the user clicks on the Apply button
     Then the user verifies that the values of "Statement Division" are in ascending order
     And the user clicks the cancel button
+
+
+  @TC-382
+  @sync-38827963
+  Scenario: Add Download Direct Bill summary View tab in the report
+    When the user generates the report with a random name
+    And the user navigates to the generated report
+    And the user clicks the add summary tab
+    And the user selects the following checkboxes on the summary page
+      |Total Gross Amount|
+      |Department|
+      |Income Group|
+      |Branch|
+    And the user names the summary "downloadDirectBillSummary"
+    And the user clicks the add summary button
+    And the user clicks the action button
+    And the user clicks the Save as a New Template menu item
+    And the user names the template "downloadDirectBillSummaryTemplate"
+    And the user saves the template
+    And the user clicks the Ok button
+    And the user presses the back arrow
+    And the user search for the template named "downloadDirectBillSummaryTemplate"
+    And the user selects "downloadDirectBillSummaryTemplate" Report Template
+    And the user generates the report with a random name
+    And the user navigates to the generated report
+    Then the user verifies the "downloadDirectBillSummary" tab exists
+    And the user presses the back arrow
+    And the user search for the template named "downloadDirectBillSummaryTemplate"
+    And the user presses the templates action menu
+    And the user selects the delete menu item
+
