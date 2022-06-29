@@ -39,3 +39,35 @@ Feature: Lost Business
     And the user clicks on the Apply button
     Then the user verifies that the values of "Customer Name" are in ascending order
     And the user clicks the cancel button
+
+
+  @TC-336
+  @sync-38666745
+  Scenario: Add Lost Business summary View tab in the report
+    When the user generates the report with a random name
+    And the user navigates to the generated report
+    And the user clicks the add summary tab
+    And the user selects the following checkboxes on the summary page
+      |Total Premium|
+      |Division|
+      |Cancel Reason|
+      |Branch|
+    And the user names the summary "lostBusinessSummary"
+    And the user clicks the add summary button
+    And the user clicks the action button
+    And the user clicks the Save as a New Template menu item
+    And the user names the template "lostBusinessSummaryTemplate"
+    And the user saves the template
+    And the user clicks the Ok button
+    And the user presses the back arrow
+    And the user search for the template named "lostBusinessSummaryTemplate"
+    And the user selects "lostBusinessSummaryTemplate" Report Template
+    And the user generates the report with a random name
+    And the user navigates to the generated report
+    Then the user verifies the "lostBusinessSummary" tab exists
+    And the user presses the back arrow
+    And the user search for the template named "lostBusinessSummaryTemplate"
+    And the user presses the templates action menu
+    And the user selects the delete menu item
+
+
