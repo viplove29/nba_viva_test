@@ -20,3 +20,34 @@ Feature: Relationship Revenue
     And the user sets the Filter to start with "Gr"
     And the user clicks on the Apply button
     Then the user verifies that all the "Relationship Description" values on the Report start with "Gr"
+
+
+  @TC-352
+  @sync-38729773
+  Scenario: Add Relationship Revenue summary View tab in the report
+    When the user generates the report with a random name
+    And the user navigates to the generated report
+    And the user clicks the add summary tab
+    And the user selects the following checkboxes on the summary page
+      |Total Premium|
+      |Division|
+      |Role Description|
+      |Branch|
+    And the user names the summary "relationshipRevenueSummary"
+    And the user clicks the add summary button
+    And the user clicks the action button
+    And the user clicks the Save as a New Template menu item
+    And the user names the template "relationshipRevenueSummaryTemplate"
+    And the user saves the template
+    And the user clicks the Ok button
+    And the user presses the back arrow
+    And the user search for the template named "relationshipRevenueSummaryTemplate"
+    And the user selects "relationshipRevenueSummaryTemplate" Report Template
+    And the user generates the report with a random name
+    And the user navigates to the generated report
+    Then the user verifies the "relationshipRevenueSummary" tab exists
+    And the user presses the back arrow
+    And the user search for the template named "relationshipRevenueSummaryTemplate"
+    And the user presses the templates action menu
+    And the user selects the delete menu item
+
