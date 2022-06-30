@@ -29,10 +29,10 @@ Feature: Relationship Revenue
     And the user navigates to the generated report
     And the user clicks the add summary tab
     And the user selects the following checkboxes on the summary page
-      |Total Premium|
-      |Division|
-      |Role Description|
-      |Branch|
+      |Total Premium    |
+      |Division         |
+      |Role Description |
+      |Branch           |
     And the user names the summary "relationshipRevenueSummary"
     And the user clicks the add summary button
     And the user clicks the action button
