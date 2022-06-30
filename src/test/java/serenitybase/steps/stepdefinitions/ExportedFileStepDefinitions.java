@@ -36,4 +36,11 @@ public class ExportedFileStepDefinitions {
       exportedFileTestSteps.verifyCoverSheet(Boolean.parseBoolean(includeCoverSheet));
     }
   }
+
+  @Then(
+      "the user verifies all of the data under the {string} header in the file from the generated report is set to {string}")
+  public void the_user_verifies_the_data_under_header_in_exported_file_from_generated_report(
+      String header, String expectedValue) {
+    exportedFileTestSteps.verifyDataUnderHeaderForGeneratedReport(header, expectedValue);
+  }
 }
