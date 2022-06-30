@@ -117,10 +117,6 @@ Feature: Active Clients
     And the user presses the templates action menu
     And the user selects the delete menu item
 
-
-
-
-
   @TC-551
   @sync-55481207
   Scenario: Verify Functionality of BU Filters in Active Client Report in MAR
@@ -131,3 +127,21 @@ Feature: Active Clients
     Then the user verifies all the options in the dropdown from the "Branch" category are in the "April Division" division
     Then the user verifies all the options in the dropdown from the "Department" category are in the "April Division" division
     Then the user verifies all the options in the dropdown from the "Group" category are in the "April Division" division
+
+  @TC-552
+  @sync-55481381
+  Scenario: Data Validation Using New BU Filters for the Active Client Report in MAR
+    And the user selects "Active Clients" Report Template
+    And the user expands "Business Unit" filter
+    And the user selects "April Division" from "Division" category
+    And the user generates the report with a random name
+    And the user navigates to the generated report
+    And the user selects "Detail View" tab
+    And the user selects "Export Report" under Actions
+    And use user exports the report with the following options
+      | CSV |        |        | Visible | Full Data Set |
+    Then the user verifies all of the data under the "Division" header in the file from the generated report is set to "April Division"
+    And the user selects "Export Report" under Actions
+    And use user exports the report with the following options
+      | Excel | Editable | False | Visible | Full Data Set |
+    Then the user verifies all of the data under the "Division" header in the file from the generated report is set to "April Division"
