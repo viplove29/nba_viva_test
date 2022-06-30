@@ -2,6 +2,7 @@ package serenitybase.steps.teststeps;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 import java.util.UUID;
 import net.thucydides.core.annotations.Screenshots;
 import net.thucydides.core.annotations.Step;
@@ -94,5 +95,20 @@ public class HomePageTestSteps {
       marHomePage.waitForDropdownDisplayed(section);
       assertThat(marHomePage.isDropdownDisplayed(section)).isTrue();
     }
+  }
+
+  @Step
+  public void verifyAllTheDropDownOptionsAreInSpecificDivision(
+      String expectedDivision, String categoryName) {
+    List<String> dropdownDivisions = marHomePage.getDivisionsInDropdown(categoryName);
+    assertThat(dropdownDivisions.size()).isGreaterThan(0);
+    for (int i = 0; i < dropdownDivisions.size(); i++) {
+      assertThat(dropdownDivisions.get(i)).isEqualTo(expectedDivision);
+    }
+  }
+
+  @Step
+  public void clickStatusRadioButton(String status) {
+    marHomePage.clickStatusRadioButton(status);
   }
 }

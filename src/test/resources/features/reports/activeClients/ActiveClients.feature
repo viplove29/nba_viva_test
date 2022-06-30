@@ -121,3 +121,13 @@ Feature: Active Clients
 
 
 
+  @TC-551
+  @sync-55481207
+  Scenario: Verify Functionality of BU Filters in Active Client Report in MAR
+    And the user selects "Active Clients" Report Template
+    And the user expands "Business Unit" filter
+    And the user selects "April Division" from "Division" category
+    And the user selects the "All" option under the Status section
+    Then the user verifies all the options in the dropdown from the "Branch" category are in the "April Division" division
+    Then the user verifies all the options in the dropdown from the "Department" category are in the "April Division" division
+    Then the user verifies all the options in the dropdown from the "Group" category are in the "April Division" division

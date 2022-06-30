@@ -105,4 +105,17 @@ public class HomePageStepDefinitions {
   public void the_user_verifies_the_dropdown_is_displayed(String section) {
     HomePageTestSteps.verifyDropdownIsDisplayed(section);
   }
+
+  @Then(
+      "the user verifies all the options in the dropdown from the {string} category are in the {string} division")
+  public void the_user_verifies_all_the_options_in_the_dropdown_are_in_the_division(
+      String categoryName, String expectedDivision) {
+    HomePageTestSteps.verifyAllTheDropDownOptionsAreInSpecificDivision(
+        expectedDivision, categoryName);
+  }
+
+  @When("the user selects the {string} option under the Status section")
+  public void the_user_selects_option_under_the_status_section(String status) {
+    HomePageTestSteps.clickStatusRadioButton(status);
+  }
 }
