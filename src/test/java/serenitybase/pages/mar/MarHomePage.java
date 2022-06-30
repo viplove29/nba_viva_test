@@ -388,4 +388,47 @@ public class MarHomePage extends PageObject {
     }
     return;
   }
+
+  public List<String> getDivisionsInDropdown(String categoryName) {
+    clickOnSelectMultipleForCategory(categoryName);
+    getDriver()
+        .findElement(
+            By.xpath(
+                "//div[@ng-if=\""
+                    + categoryName.toLowerCase()
+                    + "Option === 'multiple'\"]//div//a[@id='drop_columnvalues']"))
+        .click();
+
+    List<String> divisionList;
+    WebElementFacade categoryDropdown = getCategoryDropdown(categoryName);
+
+    divisionList = getDivisionFromCategoryDropdown(categoryName, categoryDropdown);
+    getDriver()
+        .findElement(
+            By.xpath(
+                "//div[@ng-if=\""
+                    + categoryName.toLowerCase()
+                    + "Option === 'multiple'\"]//div//a[@id='drop_columnvalues']"))
+        .click();
+
+    return divisionList;
+  }
+
+  private List<String> getDivisionFromCategoryDropdown(
+      String categoryName, WebElementFacade categoryDropdown) {
+    List<WebElement> dropdownList =
+        categoryDropdown
+            .findElement(By.className("ui-grid-render-container-body"))
+            .findElement(By.className("rpt-ui-grid-canvas"))
+            .findElements(By.xpath(".//div[contains(@id, 'Division')]"));
+    List<String> dropdownValues = new ArrayList<>();
+    dropdownList.forEach(option -> dropdownValues.add(option.getText()));
+    return dropdownValues;
+  }
+
+  public void clickStatusRadioButton(String status) {
+    getDriver()
+        .findElement(By.xpath("//input[@name='status-option-" + status.toLowerCase() + "']"))
+        .click();
+  }
 }
