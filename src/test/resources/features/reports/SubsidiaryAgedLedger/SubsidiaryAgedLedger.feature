@@ -38,3 +38,12 @@ Feature: Subsidiary Aged Ledger
     Then the user verifies that the values of "GL Number" are in ascending order
     And the user clicks the cancel button
 
+  @TC-550
+  @sync-55355857
+  Scenario: Verify Functionality of BU Filters in Subsidiary Aged Ledger Report in MAR
+    And the user expands "Business Unit" filter
+    And the user selects "April Division" from "Division" category
+    And the user selects the "All" option under the Status section
+    Then the user verifies all the options in the dropdown from the "Branch" category are in the "April Division" division
+    Then the user verifies all the options in the dropdown from the "Department" category are in the "April Division" division
+    Then the user verifies all the options in the dropdown from the "Group" category are in the "April Division" division
