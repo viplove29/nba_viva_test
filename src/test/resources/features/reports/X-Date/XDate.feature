@@ -40,3 +40,35 @@ Feature: X-Date
     And the user clicks on the Apply button
     Then the user verifies that all the "Customer Name" values on the Report start with "Firm"
 
+
+  @TC-372
+  @sync-38773266
+  Scenario: Add X-date summary View tab in the report
+    When the user generates the report with a random name
+    And the user navigates to the generated report
+    And the user clicks the add summary tab
+    And the user selects the following checkboxes on the summary page
+      |Customer Count |
+      |Division       |
+      |Current Agent  |
+      |Branch         |
+    And the user names the summary "x-dateSummary"
+    And the user clicks the add summary button
+    And the user clicks the action button
+    And the user clicks the Save as a New Template menu item
+    And the user names the template "x-dateSummaryTemplate"
+    And the user saves the template
+    And the user clicks the Ok button
+    And the user presses the back arrow
+    And the user search for the template named "x-dateSummaryTemplate"
+    And the user selects "x-dateSummaryTemplate" Report Template
+    And the user generates the report with a random name
+    And the user navigates to the generated report
+    Then the user verifies the "x-dateSummary" tab exists
+    And the user presses the back arrow
+    And the user search for the template named "x-dateSummaryTemplate"
+    And the user presses the templates action menu
+    And the user selects the delete menu item
+
+
+
