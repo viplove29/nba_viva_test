@@ -304,10 +304,25 @@ public class ReportBasePage extends PageObject {
   }
 
   public boolean validateColumnIsDisplayedInTab(String columnName) {
+    try {
+      WebElement activeTab = find(By.id(Serenity.sessionVariableCalled("activeTabContentId")));
+      WebElement column = findColumnByColumnNameInTab(activeTab, columnName);
+      horizontalScroll(column);
+      return column.isDisplayed();
+    } catch (Exception ex) {
+      return false;
+    }
+  }
+
+  public boolean validateColumnIsNotDisplayedInTab(String columnName) {
     WebElement activeTab = find(By.id(Serenity.sessionVariableCalled("activeTabContentId")));
-    WebElement column = findColumnByColumnNameInTab(activeTab, columnName);
-    horizontalScroll(column);
-    return column.isDisplayed();
+    List<WebElement> columns =
+        activeTab.findElements(By.xpath(String.format(".//*[@id='ch%s']", columnName)));
+    if (columns.size() == 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public boolean isColumnDisplayed(String columnName) {

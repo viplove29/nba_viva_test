@@ -101,6 +101,11 @@ public class SharedReportTestSteps {
   }
 
   @Step
+  public void verifyColumnIsNotDisplayedInTab(String columnName) {
+    assertThat(sharedReportPage.validateColumnIsNotDisplayedInTab(columnName)).isTrue();
+  }
+
+  @Step
   public void extractReportValuesInTheGrid() {
     List<Map<String, String>> rows = sharedReportPage.getReportGridDataAsMaps();
 

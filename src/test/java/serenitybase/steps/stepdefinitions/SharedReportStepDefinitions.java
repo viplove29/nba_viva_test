@@ -95,6 +95,14 @@ public class SharedReportStepDefinitions {
     }
   }
 
+  @Then("the user verifies the following columns are not displayed in tab")
+  public void the_user_verifies_tab_does_not_contain_the_following_columns(
+      List<String> columnNames) {
+    for (String columnName : columnNames) {
+      sharedReportTestSteps.verifyColumnIsNotDisplayedInTab(columnName);
+    }
+  }
+
   @When("the user extracts all the report values in the grid")
   public void the_user_extracts_all_the_report_values_in_the_grid() {
     sharedReportTestSteps.extractReportValuesInTheGrid();
