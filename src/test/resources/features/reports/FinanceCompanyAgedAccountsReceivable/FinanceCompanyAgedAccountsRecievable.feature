@@ -24,3 +24,34 @@ Feature: Finance Company Aged Accounts Receivable
   And the user clicks on the Apply button
   Then the user verifies that the values of "Finance Company Name" are in ascending order
   And the user clicks the cancel button
+
+
+  @TC-326
+  @sync-38659104
+  Scenario: Add Finance Company Aged Accounts Receivable summary View tab in the report
+    When the user generates the report with a random name
+    And the user navigates to the generated report
+    And the user clicks the add summary tab
+    And the user selects the following checkboxes on the summary page
+      |Total Invoice Balance|
+      |Branch               |
+      |Customer Name        |
+    And the user names the summary "financeCompanyAgedAccountsSummary"
+    And the user clicks the add summary button
+    And the user clicks the action button
+    And the user clicks the Save as a New Template menu item
+    And the user names the template "financeCompanyAgedAccountsTemplate"
+    And the user saves the template
+    And the user clicks the Ok button
+    And the user presses the back arrow
+    And the user search for the template named "financeCompanyAgedAccountsTemplate"
+    And the user selects "financeCompanyAgedAccountsTemplate" Report Template
+    And the user generates the report with a random name
+    And the user navigates to the generated report
+    Then the user verifies the "financeCompanyAgedAccountsSummary" tab exists
+    And the user presses the back arrow
+    And the user search for the template named "financeCompanyAgedAccountsTemplate"
+    And the user presses the templates action menu
+    And the user selects the delete menu item
+
+
