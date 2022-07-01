@@ -145,3 +145,34 @@ Feature: Active Clients
     And use user exports the report with the following options
       | Excel | Editable | False | Visible | Full Data Set |
     Then the user verifies all of the data under the "Division" header in the file from the generated report is set to "April Division"
+
+  @TC-290
+  @sync-38374686
+  Scenario: Active Clients Check Columns spelling and Show/Hide columns option
+    When the user navigates to the generated report
+    And the user selects "Detail View" tab
+    Then the user verifies the following columns are displayed in tab
+      | Customer Name                       |
+      | Customer Type                       |
+      | Active Customer                     |
+      | Policy Number                       |
+      | Division                            |
+      | Branch                              |
+      | Department                          |
+      | Group                               |
+      | Customer Executive                  |
+      | Customer Representative             |
+      | Broker Name                         |
+      | Customer Phone Number - Residential |
+      | Customer Phone Number - Business    |
+      | Customer Email                      |
+      | Policy Effective Date               |
+      | Policy Expiration Date              |
+      | Type of Business                    |
+      | Policy Status                       |
+      | Policy Executive                    |
+    And the user selects "Customer Name" under the hide show icon
+    Then the user verifies the following columns are not displayed in tab
+      | Customer Name                |
+
+
