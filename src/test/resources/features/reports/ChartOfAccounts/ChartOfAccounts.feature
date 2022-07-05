@@ -37,3 +37,22 @@ Feature: Chart Of Accounts Policies
     And the user clicks on the Apply button
     Then the user verifies that the values of "GL Number" are in ascending order
     And the user clicks the cancel button
+
+
+  @TC-278
+  @sync-37444609
+  Scenario: Chart of Accounts Check Columns spelling and Show/Hide columns option
+    When the user generates the report with a random name
+    And the user navigates to the generated report
+    And the user selects "Detail View" tab
+    Then the user verifies the following columns are displayed in tab
+      | GL Number          |
+      | Account Name       |
+      | Type               |
+      | Level Number       |
+      | Subledger Name     |
+      | Zero Balance       |
+    And the user selects "Level Number" under the hide show icon
+    Then the user verifies the following columns are not displayed in tab
+      | Level Number       |
+
