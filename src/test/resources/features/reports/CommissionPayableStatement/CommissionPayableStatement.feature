@@ -27,3 +27,30 @@ Feature: Commission Payable Statement
   And the user clicks on the Apply button
   Then the user verifies that the values of "Invoice Type" are in ascending order
   And the user clicks the cancel button
+
+
+  @TC-57
+  @sync-30863346
+  Scenario: Commission Payable Statement Check Columns spelling and Show/Hide columns option
+    Then the user sets date range from "01/01/2010" to today
+    And the user generates the report with a random name
+    When the user navigates to the generated report
+    And the user selects "Detail View" tab
+    Then the user verifies the following columns are displayed in tab
+      | Division                           |
+      | Insured Name                       |
+      | Policy Number                      |
+      | Statement                          |
+      | Invoice Type                       |
+      | Invoice Number                     |
+      | Effective Date                     |
+      | Line of Business/Charge Short Name |
+      | Transaction Type                   |
+      | Agency Gross                       |
+      | Agency Commission                  |
+      | Employee/Broker Pay Amount         |
+      | Statement Payment Amount           |
+      | Is Prorated                        |
+    And the user selects "Is Prorated" under the hide show icon
+    Then the user verifies the following columns are not displayed in tab
+      | Is Prorated |
