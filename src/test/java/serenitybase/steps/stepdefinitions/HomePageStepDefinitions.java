@@ -118,4 +118,23 @@ public class HomePageStepDefinitions {
   public void the_user_selects_option_under_the_status_section(String status) {
     HomePageTestSteps.clickStatusRadioButton(status);
   }
+
+  @When("the user clicks the {string} option under the {string} section")
+  public void the_user_clicks_the_select_multiple_option_under_section(
+      String radioButtonOption, String section) {
+    HomePageTestSteps.clickAllOrSelectMultipleRadioButton(radioButtonOption, section);
+  }
+
+  @When(
+      "the user searches for {string} in the dropdown under the {string} section and selects the top option")
+  public void the_user_searches_in_the_dropdown_under_section_and_selects_the_top_options(
+      String options, String section) {
+    HomePageTestSteps.searchFromDropdownAndSelectTopOption(section, options);
+  }
+
+  @Then("the user verifies the dropdown value in the {string} section is set to {string}")
+  public void the_user_verifies_the_dropdown_value_in_section_is_set_to_certain_text(
+      String section, String expectedText) {
+    HomePageTestSteps.verifyTheDropdownValue(section, expectedText);
+  }
 }

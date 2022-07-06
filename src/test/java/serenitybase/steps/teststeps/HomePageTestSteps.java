@@ -111,4 +111,19 @@ public class HomePageTestSteps {
   public void clickStatusRadioButton(String status) {
     marHomePage.clickStatusRadioButton(status);
   }
+
+  @Step
+  public void clickAllOrSelectMultipleRadioButton(String radioButtonOption, String section) {
+    marHomePage.clickAllOrSelectMultipleRadioButton(radioButtonOption, section);
+  }
+
+  @Step
+  public void searchFromDropdownAndSelectTopOption(String section, String options) {
+    marHomePage.searchPersonnelDropdownElement(section, options);
+  }
+
+  @Step
+  public void verifyTheDropdownValue(String section, String expectedText) {
+    assertThat(marHomePage.getDropdownValueText(section)).isEqualTo(expectedText);
+  }
 }
