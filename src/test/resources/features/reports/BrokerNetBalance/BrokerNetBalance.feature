@@ -67,3 +67,33 @@ Feature: Broker Net Balance
     And the user presses the templates action menu
     And the user selects the delete menu item
 
+
+  @TC-294
+  @sync-38392820
+  Scenario: Broker Net Balance Check Columns spelling and Show/Hide columns option
+    When the user generates the report with a random name
+    And the user navigates to the generated report
+    And the user selects "Detail View" tab
+    Then the user verifies the following columns are displayed in tab
+      | Broker Name                 |
+      | Customer Number             |
+      | Customer Name               |
+      | Policy Number               |
+      | Policy Type                 |
+      | Policy Effective Date       |
+      | Policy Expiration Date      |
+      | Division                    |
+      | Branch                      |
+      | Department                  |
+      | Invoice General Ledger Date |
+      | Invoice Number              |
+      | Invoice Effective Date      |
+      | Type                        |
+      | Description                 |
+      | Age                         |
+      | Amount                      |
+      | Broker Balance              |
+      | Current Invoice Balance     |
+    And the user selects "Age" under the hide show icon
+    Then the user verifies the following columns are not displayed in tab
+      | Age  |
