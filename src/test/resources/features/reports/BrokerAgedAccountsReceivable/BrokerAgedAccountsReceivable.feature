@@ -69,3 +69,34 @@ And the user selects "Broker Aged Accounts Receivable" Report Template
     Then the user verifies that the values of "Broker Name" are in ascending order
     And the user clicks the cancel button
 
+
+  @TC-270
+  @sync-37285637
+  Scenario: Broker Ages Accounts Receivable Check Columns spelling and Show/Hide columns option
+    When the user generates the report with a random name
+    And the user navigates to the generated report
+    And the user selects "Detail View" tab
+    Then the user verifies the following columns are displayed in tab
+      | Broker Name                 |
+      | Customer Name               |
+      | Invoice Executive           |
+      | Invoice Representative      |
+      | Policy Number               |
+      | Invoice Number              |
+      | Invoice Balance             |
+      | Invoice Date Age            |
+      | Invoice Effective Date Age  |
+      | Aging Category              |
+      | Late Charge                 |
+      | Last Invoice Payment Date   |
+      | Last Invoice Payment Amount |
+      | Division                    |
+      | Branch                      |
+      | Department                  |
+      | Group                       |
+      | Account Balance             |
+    And the user selects "Broker Name" under the hide show icon
+    Then the user verifies the following columns are not displayed in tab
+      | Broker Name                |
+
+
