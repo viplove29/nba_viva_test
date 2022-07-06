@@ -68,3 +68,30 @@ Feature: Cancellation Policies
     And the user presses the templates action menu
     And the user selects the delete menu item
 
+
+  @TC-299
+  @sync-38405345
+  Scenario: Cancellation Check Columns spelling and Show/Hide columns option
+    When the user generates the report with a random name
+    And the user navigates to the generated report
+    And the user selects "Detail View" tab
+    Then the user verifies the following columns are displayed in tab
+      | Customer Name                 |
+      | Policy Number                 |
+      | Parent Company                |
+      | Policy Primary Executive      |
+      | Policy Primary Representative |
+      | Policy Type                   |
+      | Cancel Type                   |
+      | Cancel Date                   |
+      | Cancel Description            |
+      | Cancel Reason                 |
+      | Cancel Premium                |
+      | Total Cost                    |
+      | Policy Full Term Premium      |
+      | Active Customer               |
+      | Company Type                  |
+    And the user selects "Total Cost" under the hide show icon
+    Then the user verifies the following columns are not displayed in tab
+      | Total Cost  |
+
