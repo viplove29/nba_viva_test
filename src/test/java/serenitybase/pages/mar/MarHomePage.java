@@ -112,6 +112,9 @@ public class MarHomePage extends PageObject {
   @FindBy(xpath = "//p[contains(text(),'Sub-ledgers:')]//following::select[1]")
   private WebElementFacade subLedgersDropdown;
 
+  @FindBy(xpath = "//input[@placeholder='Search']")
+  private WebElementFacade dropdownSearchBox;
+
   private WebElementFacade getReportRow(String reportName) {
     return find(String.format("//tr[@id='%s']", reportName));
   }
@@ -430,5 +433,49 @@ public class MarHomePage extends PageObject {
     getDriver()
         .findElement(By.xpath("//input[@name='status-option-" + status.toLowerCase() + "']"))
         .click();
+  }
+
+  public void clickAllOrSelectMultipleRadioButton(String radioButtonOption, String section) {
+    if (radioButtonOption.equals("Select Multiple")) {
+      getDriver().findElement(By.xpath("//input[@name='" + section + "-option-multiple']")).click();
+    } else {
+      getDriver()
+          .findElement(
+              By.xpath(
+                  "//input[@name='"
+                      + section
+                      + "-option-"
+                      + radioButtonOption.toLowerCase()
+                      + "']"))
+          .click();
+    }
+  }
+
+  public void searchPersonnelDropdownElement(String section, String options) {
+    getDriver()
+        .findElement(
+            By.xpath(
+                "//multi_select_dropdown[@model='"
+                    + section
+                    + "Model']//a[@id='drop_columnvalues']"))
+        .click();
+    dropdownSearchBox.clear();
+    dropdownSearchBox.sendKeys(options);
+
+    getDriver().findElement(By.xpath("//input[@id='" + section + "Id_checkbox0']")).click();
+    getDriver()
+        .findElement(
+            By.xpath(
+                "//multi_select_dropdown[@model='"
+                    + section
+                    + "Model']//a[@id='drop_columnvalues']"))
+        .click();
+  }
+
+  public String getDropdownValueText(String section) {
+    return getDriver()
+        .findElement(
+            By.xpath("//multi_select_dropdown[@model='" + section + "Model']//input[@id='fveq']"))
+        .getAttribute("value");
   }
 }
