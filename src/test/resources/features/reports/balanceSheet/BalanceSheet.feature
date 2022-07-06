@@ -54,3 +54,21 @@ Background:
     Then the user verifies that the values of "Division" are in ascending order
     And the user clicks the cancel button
 
+
+  @TC-3
+  @sync-30862900
+  Scenario: Balance Sheet Check Columns spelling and Show/Hide columns option
+    When the user generates the report with a random name
+    And the user navigates to the generated report
+    And the user selects "Detail View" tab
+    Then the user verifies the following columns are displayed in tab
+      | Division        |
+      | Level           |
+      | Account         |
+      | Description     |
+      | Amount          |
+      | Compare Amount  |
+    And the user selects "Description" under the hide show icon
+    Then the user verifies the following columns are not displayed in tab
+      | Description     |
+
