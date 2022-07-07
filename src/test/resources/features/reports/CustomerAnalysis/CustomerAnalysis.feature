@@ -52,3 +52,35 @@ Feature: Customer Analysis
     And the user presses the templates action menu
     And the user selects the delete menu item
 
+
+  @TC-310
+  @sync-38527154
+  Scenario: Customer Analysis Check Columns spelling and Show/Hide columns option
+    When the user generates the report with a random name
+    And the user navigates to the generated report
+    And the user selects "Detail View" tab
+    Then the user verifies the following columns are displayed in tab
+      | Customer Name                    |
+      | Customer Number                  |
+      | Customer Address 1               |
+      | Customer Address 2               |
+      | Customer City                    |
+      | Customer State                   |
+      | Active Customer                  |
+      | Customer Email                   |
+      | Customer Phone Number - Business |
+      | Customer Added Date              |
+      | Customer Type                    |
+      | Known Since                      |
+      | Multi-Entity Group               |
+      | Customer Executive               |
+      | Customer Representative          |
+      | Broker Name                      |
+      | Notation Description             |
+      | Division                         |
+      | Branch                           |
+      |  Department                      |
+    And the user selects "Customer Name" under the hide show icon
+    Then the user verifies the following columns are not displayed in tab
+      | Customer Name |
+
