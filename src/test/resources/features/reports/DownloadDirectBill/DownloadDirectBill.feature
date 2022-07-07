@@ -69,3 +69,35 @@ Feature: Download Direct Bill Statement
     And the user presses the templates action menu
     And the user selects the delete menu item
 
+
+  @TC-381
+  @sync-38827961
+  Scenario: Download Direct Bill Check Columns spelling and Show/Hide columns option
+    When the user generates the report with a random name
+    And the user navigates to the generated report
+    And the user selects "Detail View" tab
+    Then the user verifies the following columns are displayed in tab
+      | Statement Division         |
+      | Parent Company             |
+      | Statement Id               |
+      | Sort Order                 |
+      | Statement Date             |
+      | Customer Name              |
+      | Policy Number              |
+      | Division                   |
+      | Branch                     |
+      | Department                 |
+      | Group                      |
+      | Writing Company            |
+      | Transaction Effective Date |
+      | Transaction Description    |
+      | Line of Business           |
+      | Gross Amount               |
+      | Agency Percentage          |
+      | Accounting Method          |
+      | Agency Commission          |
+    And the user selects "Gross Amount" under the hide show icon
+    Then the user verifies the following columns are not displayed in tab
+      | Gross Amount  |
+
+
