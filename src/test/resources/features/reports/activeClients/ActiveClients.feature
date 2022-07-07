@@ -202,4 +202,50 @@ Feature: Active Clients
     Then the user verifies the following columns are not displayed in tab
       | Customer Name                |
 
+  @TC-554
+  @sync-55485588
+  Scenario: Data Validation Using New Personnel Filters for the Active Client Report in MAR
+    And the user selects "Active Clients" Report Template
+    And the user expands "Personnel" filter
+    And the user clicks the "Select Multiple" option under the "Executive" section
+    And the user searches for "Jenkins ,Josh" in the dropdown under the "Executive" section and selects the top option
+    And the user generates the report with a random name
+    And the user clicks on the Quick Actions "CSV" button
+    Then the user verifies all of the data under the "Customer Executive" header in the file from the generated report is set to "Jenkins, Josh"
+    And the user clicks on the Quick Actions "XLS" button
+    Then the user verifies all of the data under the "Customer Executive" header in the file from the generated report is set to "Jenkins, Josh"
+    And the user selects "Active Clients" Report Template
+    And the user expands "Personnel" filter
+    And the user clicks the "Select Multiple" option under the "Executive" section
+    And the user searches for "Jenkins ,Josh" in the dropdown under the "Executive" section and selects the top option
+    And the user searches for "!Aleks" in the dropdown under the "Executive" section and selects the top option
+    And the user generates the report with a random name
+    And the user clicks on the Quick Actions "CSV" button
+    Then the user verifies the data under the "Customer Executive" header in the file from the generated report has these values
+      | Jenkins, Josh   |
+      | !Aleks          |
+    And the user clicks on the Quick Actions "XLS" button
+    Then the user verifies the data under the "Customer Executive" header in the file from the generated report has these values
+      | Jenkins, Josh   |
+      | !Aleks          |
+    And the user selects "Active Clients" Report Template
+    And the user expands "Personnel" filter
+    And the user clicks the "Select Multiple" option under the "Representative" section
+    And the user searches for "CSR" in the dropdown under the "Representative" section and selects the top option
+    And the user generates the report with a random name
+    And the user clicks on the Quick Actions "CSV" button
+    Then the user verifies all of the data under the "Customer Representative" header in the file from the generated report is set to "CSR -CSR"
+    And the user clicks on the Quick Actions "XLS" button
+    Then the user verifies all of the data under the "Customer Representative" header in the file from the generated report is set to "CSR -CSR"
+    And the user selects "Active Clients" Report Template
+    And the user expands "Personnel" filter
+    And the user clicks the "Select Multiple" option under the "Broker" section
+    And the user searches for "BCD Broker" in the dropdown under the "Broker" section and selects the top option
+    And the user generates the report with a random name
+    And the user clicks on the Quick Actions "CSV" button
+    Then the user verifies all of the data under the "Broker Name" header in the file from the generated report is set to "BCD Broker"
+    And the user clicks on the Quick Actions "XLS" button
+    Then the user verifies all of the data under the "Broker Name" header in the file from the generated report is set to "BCD Broker"
+
+
 
