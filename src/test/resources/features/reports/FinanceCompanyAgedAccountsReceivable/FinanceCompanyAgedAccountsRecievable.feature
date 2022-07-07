@@ -54,4 +54,27 @@ Feature: Finance Company Aged Accounts Receivable
     And the user presses the templates action menu
     And the user selects the delete menu item
 
+  @TC-325
+  @sync-38659084
+  Scenario: Finance Company Aged Accounts Receivable Check Columns spelling and Show/Hide columns option
+    And the user generates the report with a random name
+    When the user navigates to the generated report
+    And the user selects "Detail View" tab
+    Then the user verifies the following columns are displayed in tab
+      | Finance Company Name       |
+      | Company Phone              |
+      | Company Email              |
+      | Customer Name              |
+      | Invoice Executive          |
+      | Invoice Representative     |
+      | Policy Number              |
+      | Invoice Number             |
+      | Invoice Balance            |
+      | Invoice Date Age           |
+      | Invoice Effective Date Age |
+      | Aging Category             |
+      | Account Balance            |
+    And the user selects "Customer Name" under the hide show icon
+    Then the user verifies the following columns are not displayed in tab
+      | Customer Name  |
 
