@@ -21,3 +21,20 @@ Feature: Download Session Log
     And the user sets the Filter to start with "Store"
     And the user clicks on the Apply button
     Then the user verifies that all the "Log Message" values on the Report start with "Store"
+
+
+  @TC-386
+  @sync-38374686
+  Scenario: Download Session Log Check Columns spelling and Show/Hide columns option
+    When the user sets date range from "01/01/2010" to today
+    And the user generates the report with a random name
+    And the user navigates to the generated report
+    And the user selects "Detail View" tab
+    Then the user verifies the following columns are displayed in tab
+      | Process Date  |
+      | Message Order |
+      | Log Message   |
+    And the user selects "Message Order" under the hide show icon
+    Then the user verifies the following columns are not displayed in tab
+      | Message Order |
+
