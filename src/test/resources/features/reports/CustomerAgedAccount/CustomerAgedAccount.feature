@@ -53,3 +53,30 @@ Feature: Customer Aged Account
     And the user selects the delete menu item
 
 
+  @TC-305
+  @sync-38477992
+  Scenario: Customer Aged Account  Check Columns spelling and Show/Hide columns option
+    When the user generates the report with a random name
+    And the user navigates to the generated report
+    And the user selects "Detail View" tab
+    Then the user verifies the following columns are displayed in tab
+      | Customer Name                       |
+      | Customer Phone Number - Residential |
+      | Customer Phone Number - Business    |
+      | Invoice Executive                   |
+      | Invoice Representative              |
+      | Policy Number                       |
+      | Invoice Number                      |
+      | Invoice Balance                     |
+      | Invoice Date Age                    |
+      | Invoice Effective Date Age          |
+      | Aging Category                      |
+      | Late Charge                         |
+      | Last Invoice Payment Date           |
+      | Last Invoice Payment Amount         |
+      | Customer Balance                    |
+    And the user selects "Customer Name" under the hide show icon
+    Then the user verifies the following columns are not displayed in tab
+      | Customer Name  |
+
+
