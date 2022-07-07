@@ -1,6 +1,7 @@
 package serenitybase.steps.stepdefinitions;
 
 import io.cucumber.java.en.Then;
+import java.util.List;
 import net.thucydides.core.annotations.Steps;
 import org.apache.commons.lang3.StringUtils;
 import serenitybase.steps.teststeps.ExportedFileTestSteps;
@@ -42,5 +43,14 @@ public class ExportedFileStepDefinitions {
   public void the_user_verifies_the_data_under_header_in_exported_file_from_generated_report(
       String header, String expectedValue) {
     exportedFileTestSteps.verifyDataUnderHeaderForGeneratedReport(header, expectedValue);
+  }
+
+  @Then(
+      "the user verifies the data under the {string} header in the file from the generated report has these values")
+  public void
+      the_user_verifies_the_data_under_header_in_exported_file_from_generated_report_for_list_of_strings(
+          String header, List<String> expectedValues) {
+    exportedFileTestSteps.verifyDataUnderHeaderForGeneratedReportForStringList(
+        header, expectedValues);
   }
 }

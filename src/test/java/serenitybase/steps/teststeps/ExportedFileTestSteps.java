@@ -93,4 +93,31 @@ public class ExportedFileTestSteps {
       throw new IllegalArgumentException(String.format("File type %s not supported", extension));
     }
   }
+
+  @Step
+  public void verifyDataUnderHeaderForGeneratedReportForStringList(
+      String header, List<String> expectedValues) {
+    Utilities.waitForDownload();
+    String extension = Utilities.getExtension(Utilities.getMostRecentFile());
+    String[] filePath = Utilities.getMostRecentFile().split("[\\\\/]");
+    String name = filePath[filePath.length - 1];
+    String regex = String.join("|", expectedValues);
+    if (extension.equalsIgnoreCase("CSV")) {
+      CsvReport csvReport = new CsvReport();
+      List<String> columnValues;
+      columnValues = csvReport.getValuesInColumnUnderHeader(header, name);
+      for (String columnValue : columnValues) {
+        assertThat(columnValue.matches(regex)).isTrue();
+      }
+    } else if (extension.equalsIgnoreCase("XLSX")) {
+      ExcelReport excelReport = new ExcelReport();
+      List<String> columnValues;
+      columnValues = excelReport.getValuesInColumnUnderHeader(header, "Report Data");
+      for (String columnValue : columnValues) {
+        assertThat(columnValue.matches(regex)).isTrue();
+      }
+    } else {
+      throw new IllegalArgumentException(String.format("File type %s not supported", extension));
+    }
+  }
 }
