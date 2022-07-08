@@ -47,10 +47,10 @@ Feature: Finance Company Net Balance
     And the user navigates to the generated report
     And the user clicks the add summary tab
     And the user selects the following checkboxes on the summary page
-      |Total Net Balance|
-      |Age|
-      |Department|
-      |Branch|
+      | Total Net Balance |
+      | Age               |
+      | Department        |
+      | Branch            |
     And the user names the summary "customerNetBalanceSummary"
     And the user clicks the add summary button
     And the user clicks the action button
@@ -68,4 +68,34 @@ Feature: Finance Company Net Balance
     And the user search for the template named "customerNetBalanceSummaryTemplate"
     And the user presses the templates action menu
     And the user selects the delete menu item
+
+  @TC-280
+  @sync-37629972
+  Scenario: Finance Company Net Balance Check Columns spelling and Show/Hide columns option Receivable Check Columns spelling and Show/Hide columns option
+    And the user generates the report with a random name
+    When the user navigates to the generated report
+    And the user selects "Detail View" tab
+    Then the user verifies the following columns are displayed in tab
+      | Finance Company Name        |
+      | Customer Number             |
+      | Customer Name               |
+      | Policy Number               |
+      | Policy Type                 |
+      | Policy Effective Date       |
+      | Division                    |
+      | Branch                      |
+      | Department                  |
+      | Group                       |
+      | Invoice General Ledger Date |
+      | Invoice Number              |
+      | Invoice Effective Date      |
+      | Type                        |
+      | Description                 |
+      | Age                         |
+      | Amount                      |
+      | Finance Company Balance     |
+      | Current Invoice Balance     |
+    And the user selects "Department" under the hide show icon
+    Then the user verifies the following columns are not displayed in tab
+      | Department |
 
