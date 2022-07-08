@@ -48,7 +48,6 @@ Feature: General Ledger
       | Specific Vendor            | Vendor   |
 
 
-
   @TC-327
   @sync-38660858
   Scenario: "General Ledger" report sort option functions properly
@@ -73,10 +72,10 @@ Feature: General Ledger
     And the user navigates to the generated report
     And the user clicks the add summary tab
     And the user selects the following checkboxes on the summary page
-      |Total Debit|
-      |Division|
-      |Department|
-      |Branch|
+      | Total Debit |
+      | Division    |
+      | Department  |
+      | Branch      |
     And the user names the summary "generalLedgerSummary"
     And the user clicks the add summary button
     And the user clicks the action button
@@ -94,5 +93,31 @@ Feature: General Ledger
     And the user search for the template named "generalLedgerSummaryTemplate"
     And the user presses the templates action menu
     And the user selects the delete menu item
+
+  @TC-330
+  @sync-38660865
+  Scenario: General Ledger Check Columns spelling and Show/Hide columns option
+    When the user generates the report with a random name
+    And the user navigates to the generated report
+    And the user selects "Detail View" tab
+    Then the user verifies the following columns are displayed in tab
+      | GL Number                 |
+      | Account Name              |
+      | Division                  |
+      | Branch                    |
+      | Department                |
+      | Subledger Name            |
+      | GL Date                   |
+      | Description               |
+      | Beginning Running Balance |
+      | Debit                     |
+      | Credit                    |
+      | Ending Running Balance    |
+      | Type                      |
+      | GL Code                   |
+      | Source Reference Number   |
+    And the user selects "Department" under the hide show icon
+    Then the user verifies the following columns are not displayed in tab
+      | Department |
 
 
