@@ -47,3 +47,15 @@ Feature: Subsidiary Aged Ledger
     Then the user verifies all the options in the dropdown from the "Branch" category are in the "April Division" division
     Then the user verifies all the options in the dropdown from the "Department" category are in the "April Division" division
     Then the user verifies all the options in the dropdown from the "Group" category are in the "April Division" division
+
+  @TC-549
+  @sync-55355856
+  Scenario: Data Validation Using New BU Filters for the Subsidiary Aged Ledger in MAR
+    And the user expands "Business Unit" filter
+    And the user selects "April Division" from "Division" category
+    And the user selects the "All" option under the Status section
+    And the user generates the report with a random name
+    And the user clicks on the Quick Actions "CSV" button
+    Then the user verifies all of the data under the "Division" header in the file from the generated report is set to "April Division"
+    And the user clicks on the Quick Actions "XLS" button
+    Then the user verifies all of the data under the "Division" header in the file from the generated report is set to "April Division"
