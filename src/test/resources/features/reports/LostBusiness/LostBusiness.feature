@@ -48,10 +48,10 @@ Feature: Lost Business
     And the user navigates to the generated report
     And the user clicks the add summary tab
     And the user selects the following checkboxes on the summary page
-      |Total Premium|
-      |Division|
-      |Cancel Reason|
-      |Branch|
+      | Total Premium |
+      | Division      |
+      | Cancel Reason |
+      | Branch        |
     And the user names the summary "lostBusinessSummary"
     And the user clicks the add summary button
     And the user clicks the action button
@@ -69,5 +69,31 @@ Feature: Lost Business
     And the user search for the template named "lostBusinessSummaryTemplate"
     And the user presses the templates action menu
     And the user selects the delete menu item
+
+  @TC-335
+  @sync-38666744
+  Scenario: Lost Business Check Columns spelling and Show/Hide columns option
+    And the user generates the report with a random name
+    When the user navigates to the generated report
+    And the user selects "Detail View" tab
+    Then the user verifies the following columns are displayed in tab
+      | Customer Name                |
+      | Division                     |
+      | Branch                       |
+      | Department                   |
+      | Type of Business             |
+      | Line of Business/Non-Premium |
+      | Cancel Reason                |
+      | Revenue                      |
+      | Annualized Premium           |
+      | Primary Executive            |
+      | Primary Representative       |
+      | Parent Company               |
+      | Writing Company              |
+      | Current Broker Name          |
+      | Lost Customer                |
+    And the user selects "Writing Company" under the hide show icon
+    Then the user verifies the following columns are not displayed in tab
+      | Writing Company |
 
 
