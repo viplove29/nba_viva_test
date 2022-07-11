@@ -48,10 +48,10 @@ Feature: Transaction
     And the user navigates to the generated report
     And the user clicks the add summary tab
     And the user selects the following checkboxes on the summary page
-      |Total Premium    |
-      |Parent Company   |
-      |Policy Group     |
-      |Transaction Type |
+      | Total Premium    |
+      | Parent Company   |
+      | Policy Group     |
+      | Transaction Type |
     And the user names the summary "transactionSummary"
     And the user clicks the add summary button
     And the user clicks the action button
@@ -69,5 +69,32 @@ Feature: Transaction
     And the user search for the template named "transactionSummaryTemplate"
     And the user presses the templates action menu
     And the user selects the delete menu item
+
+  @TC-361
+  @sync-38737194
+  Scenario: Transaction Check Columns spelling and Show/Hide columns option
+    And the user generates the report with a random name
+    When the user navigates to the generated report
+    And the user selects "Detail View" tab
+    Then the user verifies the following columns are displayed in tab
+      | Customer Name              |
+      | Policy Number              |
+      | Policy Effective Date      |
+      | Policy Expiration Date     |
+      | Policy Status              |
+      | Transaction Effective Date |
+      | Line of Business           |
+      | Premium                    |
+      | Transaction Premium        |
+      | Transaction Description    |
+      | Policy Division            |
+      | Policy Branch              |
+      | Policy Department          |
+      | Parent Company             |
+      | Business With Agency       |
+      | Policy Id                  |
+    And the user selects "Transaction Premium" under the hide show icon
+    Then the user verifies the following columns are not displayed in tab
+      | Transaction Premium |
 
 
