@@ -39,3 +39,27 @@ Feature: Production Analysis
     Then the user verifies that the values of "Division" are in ascending order
     And the user clicks the cancel button
 
+  @TC-240
+  @sync-30863642
+  Scenario: Production Analysis Check Columns spelling and Show/Hide columns option
+    And the user generates the report with a random name
+    When the user navigates to the generated report
+    And the user selects "Detail View" tab
+    Then the user verifies the following columns are displayed in tab
+      | Date Range                    |
+      | Division                      |
+      | Branch                        |
+      | Department                    |
+      | Customer Name                 |
+      | Policy Number                 |
+      | Policy Status                 |
+      | Premium                       |
+      | Revenue                       |
+      | Gross Profit                  |
+      | Parent Company                |
+      | Customer Business Origin Code |
+      | Invoice GL Month              |
+    And the user selects "Premium" under the hide show icon
+    Then the user verifies the following columns are not displayed in tab
+      | Premium |
+
