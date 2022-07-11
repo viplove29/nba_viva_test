@@ -46,10 +46,10 @@ Feature: Policy Expiration
     And the user navigates to the generated report
     And the user clicks the add summary tab
     And the user selects the following checkboxes on the summary page
-      |Total Cost|
-      |Policy Branch|
-      |Writing Company|
-      |Company Underwriter|
+      | Total Cost          |
+      | Policy Branch       |
+      | Writing Company     |
+      | Company Underwriter |
     And the user names the summary "policyExpirationSummary"
     And the user clicks the add summary button
     And the user clicks the action button
@@ -67,5 +67,35 @@ Feature: Policy Expiration
     And the user search for the template named "policyExpirationSummaryTemplate"
     And the user presses the templates action menu
     And the user selects the delete menu item
+
+  @TC-345
+  @sync-38702532
+  Scenario: Policy Expiration Check Columns spelling and Show/Hide columns option
+    And the user generates the report with a random name
+    When the user navigates to the generated report
+    And the user selects "Detail View" tab
+    Then the user verifies the following columns are displayed in tab
+      | Customer Name                              |
+      | Renewal Contact Name                       |
+      | Renewal Contact Phone Number - Residential |
+      | Renewal Contact Phone Number - Business    |
+      | Renewal Contact Email                      |
+      | Policy Number                              |
+      | Policy Effective Date                      |
+      | Policy Expiration Date                     |
+      | Parent Company                             |
+      | Primary Executive                          |
+      | Primary Representative                     |
+      | Policy Status                              |
+      | Policy Type LOB                            |
+      | Bill Method                                |
+      | Business With Agency                       |
+      | Total Cost                                 |
+      | Policy Full Term Premium                   |
+      | Line Of Business                           |
+    And the user selects "Policy Type LOB" under the hide show icon
+    Then the user verifies the following columns are not displayed in tab
+      | Policy Type LOB |
+
 
 
