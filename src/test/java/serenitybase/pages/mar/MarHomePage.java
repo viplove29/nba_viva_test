@@ -478,4 +478,54 @@ public class MarHomePage extends PageObject {
             By.xpath("//multi_select_dropdown[@model='" + section + "Model']//input[@id='fveq']"))
         .getAttribute("value");
   }
+
+  public void clickDropdownUnderCategory(String categoryName) {
+    getDriver()
+        .findElement(
+            By.xpath(
+                "//div[@ng-if=\""
+                    + categoryName.toLowerCase()
+                    + "Option === 'multiple'\"]//div//a[@id='drop_columnvalues']"))
+        .click();
+  }
+
+  public List<String> getActiveStatusFromDropdownForSearchedItem(
+      String options, String categoryName) {
+    clickOnSelectMultipleForCategory(categoryName);
+    clickDropdownUnderCategory(categoryName);
+    dropdownSearchBox.clear();
+    dropdownSearchBox.sendKeys(options);
+    List<String> ActiveAndInactiveList = new ArrayList<>();
+    List<WebElement> inactiveWebElementList =
+        getDriver().findElements(By.xpath("//div[@id='InactiveX']"));
+    List<WebElement> activeWebElementList =
+        getDriver().findElements(By.xpath("//div[@id='Inactive']"));
+    for (WebElement webElement : inactiveWebElementList) {
+      ActiveAndInactiveList.add(webElement.getText());
+    }
+    for (WebElement webElement : activeWebElementList) {
+      ActiveAndInactiveList.add(webElement.getText());
+    }
+    clickDropdownUnderCategory(categoryName);
+    return ActiveAndInactiveList;
+  }
+
+  public List<String> getActiveStatusFromDropdownForAllItems(String categoryName) {
+    clickOnSelectMultipleForCategory(categoryName);
+    clickDropdownUnderCategory(categoryName);
+    List<String> ActiveAndInactiveList = new ArrayList<>();
+    List<WebElement> inactiveWebElementList =
+        getDriver().findElements(By.xpath("//div[@id='InactiveX']"));
+    List<WebElement> activeWebElementList =
+        getDriver().findElements(By.xpath("//div[@id='Inactive']"));
+    for (WebElement webElement : inactiveWebElementList) {
+      ActiveAndInactiveList.add(webElement.getAttribute("innerText"));
+    }
+    for (WebElement webElement : activeWebElementList) {
+      ActiveAndInactiveList.add(webElement.getAttribute("innerText"));
+    }
+
+    clickDropdownUnderCategory(categoryName);
+    return ActiveAndInactiveList;
+  }
 }

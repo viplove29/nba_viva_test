@@ -137,4 +137,25 @@ public class HomePageStepDefinitions {
       String section, String expectedText) {
     HomePageTestSteps.verifyTheDropdownValue(section, expectedText);
   }
+
+  @Then(
+      "the user searches for {string} in the {string} section dropdown and verifies all of the statuses are equal to {string}")
+  public void the_user_verifies_all_of_the_statuses_in_dropdown_are_equal_to_expected_value(
+      String option, String section, String expectedStatus) {
+    HomePageTestSteps.verifyActiveStatusInDropdownForSearchedItem(option, section, expectedStatus);
+  }
+
+  @Then(
+      "the user searches for {string} in the {string} section dropdown and verifies the name does not show")
+  public void the_user_searches_in_dropdown_and_verifies_the_string_does_not_appear_in_the_list(
+      String search, String section) {
+    HomePageTestSteps.verifyDivisionDoesNotShowInDropdown(search, section);
+  }
+
+  @Then(
+      "the user verifies all of the statuses in the {string} section dropdown are set to {string}")
+  public void the_user_verifies_all_of_statuses_in_the_dropdown_are_set_to_string(
+      String section, String expectedValue) {
+    HomePageTestSteps.verifyActiveStatusInDropdown(section, expectedValue);
+  }
 }
