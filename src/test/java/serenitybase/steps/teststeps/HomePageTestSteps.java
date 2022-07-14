@@ -126,4 +126,38 @@ public class HomePageTestSteps {
   public void verifyTheDropdownValue(String section, String expectedText) {
     assertThat(marHomePage.getDropdownValueText(section)).isEqualTo(expectedText);
   }
+
+  @Step
+  public void verifyActiveStatusInDropdownForSearchedItem(
+      String option, String categoryName, String expectedStatus) {
+    List<String> statusList =
+        marHomePage.getActiveStatusFromDropdownForSearchedItem(option, categoryName);
+    if (expectedStatus.equalsIgnoreCase("active")) {
+      assertThat(statusList).doesNotContain("X");
+    } else if (expectedStatus.equalsIgnoreCase("inactive")) {
+      assertThat(statusList).containsOnly("X");
+    } else {
+      throw new IllegalArgumentException(
+          String.format("Status type %s not supported", expectedStatus));
+    }
+  }
+
+  @Step
+  public void verifyDivisionDoesNotShowInDropdown(String value, String categoryName) {
+    List<String> dropdownDivisions = marHomePage.getDivisionsInDropdown(categoryName);
+    assertThat(dropdownDivisions).doesNotContain(value);
+  }
+
+  @Step
+  public void verifyActiveStatusInDropdown(String categoryName, String expectedStatus) {
+    List<String> statusList = marHomePage.getActiveStatusFromDropdownForAllItems(categoryName);
+    if (expectedStatus.equalsIgnoreCase("active")) {
+      assertThat(statusList).doesNotContain("X");
+    } else if (expectedStatus.equalsIgnoreCase("inactive")) {
+      assertThat(statusList).containsOnly("X");
+    } else {
+      throw new IllegalArgumentException(
+          String.format("Status type %s not supported", expectedStatus));
+    }
+  }
 }
