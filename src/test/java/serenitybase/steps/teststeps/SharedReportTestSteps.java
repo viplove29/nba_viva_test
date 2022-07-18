@@ -97,12 +97,24 @@ public class SharedReportTestSteps {
 
   @Step
   public void verifyColumnIsDisplayedInTab(String columnName) {
-    assertThat(sharedReportPage.validateColumnIsDisplayedInTab(columnName)).isTrue();
+    assertThat(sharedReportPage.validateColumnIsDisplayedInTab(columnName))
+        .as(
+            "Column Names - "
+                + sharedReportPage.getReportHeaders()
+                + " did not contain - "
+                + columnName)
+        .isTrue();
   }
 
   @Step
   public void verifyColumnIsNotDisplayedInTab(String columnName) {
-    assertThat(sharedReportPage.validateColumnIsNotDisplayedInTab(columnName)).isTrue();
+    assertThat(sharedReportPage.validateColumnIsNotDisplayedInTab(columnName))
+        .as(
+            "Column Names - "
+                + sharedReportPage.getReportHeaders()
+                + " should not contain - "
+                + columnName)
+        .isTrue();
   }
 
   @Step
