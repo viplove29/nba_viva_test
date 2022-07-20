@@ -79,3 +79,25 @@ Feature: Personnel Extract
       | Excel       | Editable   | false      |
       | Excel       | Locked     | true       |
 
+  @TC-561
+  @sync-55872224
+  Scenario: Verify Functionality of Active/Inactive/All BU Filters in Personnel Extract Report in MAR
+    And the user expands "Business Unit" filter
+    Then the user searches for "JJ Inactive" in the "Division" section dropdown and verifies all of the statuses are equal to "Inactive"
+    Then the user searches for "JJ Active" in the "Division" section dropdown and verifies all of the statuses are equal to "Active"
+    And the user selects the "Active" option under the Status section
+    Then the user searches for "JJ Inactive" in the "Division" section dropdown and verifies the name does not show
+    Then the user searches for "JJ Active" in the "Division" section dropdown and verifies all of the statuses are equal to "Active"
+    And the user selects "JJ Active" from "Division" category
+    And the user selects the "Active" option under the Status section
+    Then the user verifies all of the statuses in the "Branch" section dropdown are set to "Active"
+    Then the user verifies all of the statuses in the "Department" section dropdown are set to "Active"
+    Then the user verifies all of the statuses in the "Group" section dropdown are set to "Active"
+    And the user selects the "Inactive" option under the Status section
+    Then the user searches for "JJ Active" in the "Division" section dropdown and verifies the name does not show
+    Then the user searches for "JJ Inactive" in the "Division" section dropdown and verifies all of the statuses are equal to "Inactive"
+    And the user selects "JJ Inactive" from "Division" category
+    And the user selects the "Inactive" option under the Status section
+    Then the user verifies all of the statuses in the "Branch" section dropdown are set to "Inactive"
+    Then the user verifies all of the statuses in the "Department" section dropdown are set to "Inactive"
+    Then the user verifies all of the statuses in the "Group" section dropdown are set to "Inactive"
