@@ -54,6 +54,7 @@ stages:
   - test
   - regression
   - merge regression
+  - report
 
 spotless:
   stage: project checks
@@ -139,3 +140,15 @@ first merge:
   extends: .merge launches
   script:
     - Merge-Launches -Project MAR -Name "$LAUNCH_NAME" -Description "GitLab CI - Merged - First Try" -Try 1
+
+report:
+  stage: report
+  extends: .windows scripts
+  script:
+    - cd scripts
+    - npm install
+    - python SendResults_EMS.py mar 1
+  rules:
+    - if: ($CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web")
+  retry: 2
+  dependencies: []
