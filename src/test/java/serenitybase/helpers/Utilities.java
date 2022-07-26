@@ -142,7 +142,7 @@ public class Utilities extends PageObject {
         break;
       }
       if (retries > maxRetries) {
-        throw new RuntimeException("Left Loading Status showing after 100 seconds");
+        throw new RuntimeException("Left Loading Status Spinner showing after 100 seconds");
       }
     }
     retries = 0;
