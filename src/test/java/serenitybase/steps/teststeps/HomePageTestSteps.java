@@ -160,4 +160,9 @@ public class HomePageTestSteps {
           String.format("Status type %s not supported", expectedStatus));
     }
   }
+
+  @Step
+  public void selectItemFromCategoryAndCloseDropdown(String itemName, String categoryName) {
+    marHomePage.selectItemFromCategoryAndCloseDropdown(itemName, categoryName);
+  }
 }
