@@ -158,4 +158,10 @@ public class HomePageStepDefinitions {
       String section, String expectedValue) {
     HomePageTestSteps.verifyActiveStatusInDropdown(section, expectedValue);
   }
+
+  @When("the user selects {string} from {string} category and closes the dropdown")
+  public void the_user_selects_item_from_category_and_closes_the_dropdown(
+      String itemName, String categoryName) {
+    HomePageTestSteps.selectItemFromCategoryAndCloseDropdown(itemName, categoryName);
+  }
 }

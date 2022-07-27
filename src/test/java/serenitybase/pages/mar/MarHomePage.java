@@ -528,4 +528,14 @@ public class MarHomePage extends PageObject {
     clickDropdownUnderCategory(categoryName);
     return ActiveAndInactiveList;
   }
+
+  public void selectItemFromCategoryAndCloseDropdown(String itemName, String categoryName) {
+    clickOnSelectMultipleForCategory(categoryName);
+    clickDropdownUnderCategory(categoryName);
+    WebElementFacade categoryDropdown = getCategoryDropdown(categoryName);
+    categoryDropdown.find(By.xpath(".//a[contains(text(),'Clear')]")).click();
+    int itemIndex = searchForItemIndexInCategoryDropdown(itemName, categoryName, categoryDropdown);
+    selectItemCheckboxByIndex(itemIndex, categoryDropdown);
+    clickDropdownUnderCategory(categoryName);
+  }
 }
