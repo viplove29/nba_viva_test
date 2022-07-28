@@ -534,8 +534,8 @@ public class MarHomePage extends PageObject {
     clickDropdownUnderCategory(categoryName);
     WebElementFacade categoryDropdown = getCategoryDropdown(categoryName);
     categoryDropdown.find(By.xpath(".//a[contains(text(),'Clear')]")).click();
-    int itemIndex = searchForItemIndexInCategoryDropdown(itemName, categoryName, categoryDropdown);
-    selectItemCheckboxByIndex(itemIndex, categoryDropdown);
+    categoryDropdown.findElement(By.xpath(".//input[@placeholder='Search']")).sendKeys(itemName);
+    selectItemCheckboxByIndex(0, categoryDropdown);
     clickDropdownUnderCategory(categoryName);
   }
 }
