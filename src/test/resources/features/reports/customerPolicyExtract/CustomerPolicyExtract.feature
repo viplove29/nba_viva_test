@@ -106,6 +106,45 @@ Feature: Customer Policy Extract
     Then the user verifies all of the statuses in the "Department" section dropdown are set to "Inactive"
     Then the user verifies all of the statuses in the "Group" section dropdown are set to "Inactive"
 
+  @TC-567
+  @sync-56018850
+  Scenario: Data Validation Using New BU Active/Inactive Filters - Customer Policy Extract (MAR)
+    And the user expands "Business Unit" filter
+    And the user selects the "All" option under the Status section
+    And the user selects "JJ Active" from "Division" category and closes the dropdown
+    And the user selects "JJ Active 1" from "Branch" category and closes the dropdown
+    And the user selects "JJ Active 1" from "Department" category and closes the dropdown
+    And the user selects "JJ Active 1" from "Group" category and closes the dropdown
+    And the user generates the report with a random name
+    And the user clicks on the Quick Actions "CSV" button
+    Then the user verifies all of the data under the "Division" header in the file from the generated report is set to "JJ Active"
+    Then the user verifies all of the data under the "Branch" header in the file from the generated report is set to "JJ Active 1"
+    Then the user verifies all of the data under the "Department" header in the file from the generated report is set to "JJ Active 1"
+    Then the user verifies all of the data under the "Group" header in the file from the generated report is set to "JJ Active 1"
+    And the user clicks on the Quick Actions "XLS" button
+    Then the user verifies all of the data under the "Division" header in the file from the generated report is set to "JJ Active"
+    Then the user verifies all of the data under the "Branch" header in the file from the generated report is set to "JJ Active 1"
+    Then the user verifies all of the data under the "Department" header in the file from the generated report is set to "JJ Active 1"
+    Then the user verifies all of the data under the "Group" header in the file from the generated report is set to "JJ Active 1"
+    And the user selects "Customer/Policy Extract" Report Template
+    And the user expands "Business Unit" filter
+    And the user selects the "Inactive" option under the Status section
+    And the user selects "JJ Inactive" from "Division" category and closes the dropdown
+    And the user selects "JJ Inactive 1" from "Branch" category and closes the dropdown
+    And the user selects "JJ Inactive 1" from "Department" category and closes the dropdown
+    And the user selects "JJ Inactive 1" from "Group" category and closes the dropdown
+    And the user generates the report with a random name
+    And the user clicks on the Quick Actions "CSV" button
+    Then the user verifies all of the data under the "Division" header in the file from the generated report is set to "JJ Inactive"
+    Then the user verifies all of the data under the "Branch" header in the file from the generated report is set to "JJ Inactive 1"
+    Then the user verifies all of the data under the "Department" header in the file from the generated report is set to "JJ Inactive 1"
+    Then the user verifies all of the data under the "Group" header in the file from the generated report is set to "JJ Inactive 1"
+    And the user clicks on the Quick Actions "XLS" button
+    Then the user verifies all of the data under the "Division" header in the file from the generated report is set to "JJ Inactive"
+    Then the user verifies all of the data under the "Branch" header in the file from the generated report is set to "JJ Inactive 1"
+    Then the user verifies all of the data under the "Department" header in the file from the generated report is set to "JJ Inactive 1"
+    Then the user verifies all of the data under the "Group" header in the file from the generated report is set to "JJ Inactive 1"
+
   @TC-522
   @sync-53071667
   @TC-526
@@ -124,3 +163,4 @@ Feature: Customer Policy Extract
     And the user sets the Filter to equal to "Master"
     And the user clicks on the Apply button
     Then the user verifies that all the "Customer Type" values on the Report are equal to "Master"
+
