@@ -101,3 +101,42 @@ Feature: Personnel Extract
     Then the user verifies all of the statuses in the "Branch" section dropdown are set to "Inactive"
     Then the user verifies all of the statuses in the "Department" section dropdown are set to "Inactive"
     Then the user verifies all of the statuses in the "Group" section dropdown are set to "Inactive"
+
+  @TC-569
+  @sync-56019105
+  Scenario: Data Validation Using New BU Active/Inactive Filters - Personnel Extract (MAR)
+    And the user expands "Business Unit" filter
+    And the user selects the "All" option under the Status section
+    And the user selects "JJ Active" from "Division" category and closes the dropdown
+    And the user selects "JJ Active 1" from "Branch" category and closes the dropdown
+    And the user selects "JJ Active 1" from "Department" category and closes the dropdown
+    And the user selects "JJ Active 1" from "Group" category and closes the dropdown
+    And the user generates the report with a random name
+    And the user clicks on the Quick Actions "CSV" button
+    Then the user verifies all of the data under the "Division" header in the file from the generated report is set to "JJ Active"
+    Then the user verifies all of the data under the "Branch" header in the file from the generated report is set to "JJ Active 1"
+    Then the user verifies all of the data under the "Department" header in the file from the generated report is set to "JJ Active 1"
+    Then the user verifies all of the data under the "Group" header in the file from the generated report is set to "JJ Active 1"
+    And the user clicks on the Quick Actions "XLS" button
+    Then the user verifies all of the data under the "Division" header in the file from the generated report is set to "JJ Active"
+    Then the user verifies all of the data under the "Branch" header in the file from the generated report is set to "JJ Active 1"
+    Then the user verifies all of the data under the "Department" header in the file from the generated report is set to "JJ Active 1"
+    Then the user verifies all of the data under the "Group" header in the file from the generated report is set to "JJ Active 1"
+    And the user selects "Personnel Extract" Report Template
+    And the user expands "Business Unit" filter
+    And the user selects the "Inactive" option under the Status section
+    And the user selects "JJ Inactive" from "Division" category and closes the dropdown
+    And the user selects "JJ Inactive 1" from "Branch" category and closes the dropdown
+    And the user selects "JJ Inactive 1" from "Department" category and closes the dropdown
+    And the user selects "JJ Inactive 1" from "Group" category and closes the dropdown
+    And the user generates the report with a random name
+    And the user clicks on the Quick Actions "CSV" button
+    Then the user verifies all of the data under the "Division" header in the file from the generated report is set to "JJ Inactive"
+    Then the user verifies all of the data under the "Branch" header in the file from the generated report is set to "JJ Inactive 1"
+    Then the user verifies all of the data under the "Department" header in the file from the generated report is set to "JJ Inactive 1"
+    Then the user verifies all of the data under the "Group" header in the file from the generated report is set to "JJ Inactive 1"
+    And the user clicks on the Quick Actions "XLS" button
+    Then the user verifies all of the data under the "Division" header in the file from the generated report is set to "JJ Inactive"
+    Then the user verifies all of the data under the "Branch" header in the file from the generated report is set to "JJ Inactive 1"
+    Then the user verifies all of the data under the "Department" header in the file from the generated report is set to "JJ Inactive 1"
+    Then the user verifies all of the data under the "Group" header in the file from the generated report is set to "JJ Inactive 1"
