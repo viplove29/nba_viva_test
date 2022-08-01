@@ -86,8 +86,11 @@ Feature: Active Clients
     And the user clicks on the Sort symbol
     And the user selects "A-Z" under Sort
     And the user clicks on the Apply button
-    And the user verifies that the values of "Customer Name" are in ascending order
     And the user clicks the cancel button
+    # Use next page to avoid strange characters in client names
+    And the user clicks the next page button
+    And the user verifies that the values of "Customer Name" are in ascending order
+
 
   @TC-301
   @sync-38406567

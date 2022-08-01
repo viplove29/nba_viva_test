@@ -139,6 +139,11 @@ public class SharedReportTestSteps {
   }
 
   @Step
+  public void clickOnNextPageButton() {
+    sharedReportPage.clickOnNextPageButton();
+  }
+
+  @Step
   public void clickOnAddSummaryTab() {
     sharedReportPage.clickOnAddSummaryTab();
   }
