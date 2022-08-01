@@ -91,6 +91,9 @@ public class ReportBasePage extends PageObject {
   @FindBy(id = "slc")
   protected WebElementFacade cancelButton;
 
+  @FindBy(xpath = "//div[contains(@ng-click, 'paginationApi.nextPage()')]")
+  protected WebElementFacade nextPageButton;
+
   @FindBy(xpath = ".//a[contains(text(), 'Starts with')]")
   protected WebElementFacade startsWithValue;
 
@@ -199,6 +202,10 @@ public class ReportBasePage extends PageObject {
 
   public void clickOnCancelButton() {
     cancelButton.click();
+  }
+
+  public void clickOnNextPageButton() {
+    nextPageButton.click();
   }
 
   public void clickOnBackArrow() {

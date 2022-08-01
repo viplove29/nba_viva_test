@@ -126,11 +126,13 @@ public class SharedReportStepDefinitions {
 
   @When("the user verifies that the values of {string} are in ascending order")
   public void the_user_verifies_that_the_dataset_values_are_in_ascending_order(String columnName) {
+    Utilities.simpleSleep(3000);
     sharedReportTestSteps.verifyDatasetColumnValuesAreInOrder(columnName, "ascending");
   }
 
   @When("the user verifies that the values of {string} are in descending order")
   public void the_user_verifies_that_the_dataset_values_are_in_descending_order(String columnName) {
+    Utilities.simpleSleep(3000);
     sharedReportTestSteps.verifyDatasetColumnValuesAreInOrder(columnName, "descending");
   }
 
@@ -148,6 +150,11 @@ public class SharedReportStepDefinitions {
   @When("the user clicks the cancel button")
   public void the_user_clicks_the_cancel_button() {
     sharedReportTestSteps.clickOnCancelButton();
+  }
+
+  @When("the user clicks the next page button")
+  public void the_user_clicks_the_next_page_button() {
+    sharedReportTestSteps.clickOnNextPageButton();
   }
 
   @When("the user clicks the action button")
