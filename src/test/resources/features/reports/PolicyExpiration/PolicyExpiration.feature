@@ -97,5 +97,13 @@ Feature: Policy Expiration
     Then the user verifies the following columns are not displayed in tab
       | Policy Type LOB |
 
-
+  @TC-575
+  @sync-56127671
+  Scenario: Verify Functionality of BU Filters in Policy Expiration Report in MAR
+    And the user expands "Business Unit" filter
+    And the user selects "Division One" from "Division" category and closes the dropdown
+    And the user selects the "All" option under the Status section
+    Then the user verifies all the options in the dropdown from the "Branch" category are in the "Division One" division
+    Then the user verifies all the options in the dropdown from the "Department" category are in the "Division One" division
+    Then the user verifies all the options in the dropdown from the "Group" category are in the "Division One" division
 
