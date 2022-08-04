@@ -158,6 +158,18 @@ public class ReportBasePage extends PageObject {
       headerStrings.add(gridHeader.getText());
     }
 
+    // Wait till first element is not empty or up to 10 seconds
+    int count = 0;
+    do {
+      WebElement firstElement = reportGridRows.get(0).findElement(By.xpath(TABLE_CELL_XPATH));
+      if (!firstElement.getText().isEmpty()) {
+        break;
+      } else {
+        Utilities.simpleSleep(1000);
+        count++;
+      }
+    } while (count < 10);
+
     // Get strings for Cells in each Row
     List<List<String>> rowStrings = new ArrayList<>();
     for (WebElement gridRow : reportGridRows) {
