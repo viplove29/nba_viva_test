@@ -18,6 +18,7 @@ import net.thucydides.core.pages.PageObject;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.openxml4j.exceptions.NotOfficeXmlFileException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -64,7 +65,21 @@ public class ExcelReport extends PageObject {
   public XSSFSheet setExcelFile(String SheetName) {
     try {
       String reportPath = getReportPath();
-      OPCPackage excelFile = OPCPackage.open(reportPath);
+      int count = 0;
+      OPCPackage excelFile = null;
+      do {
+        try {
+          excelFile = OPCPackage.open(reportPath);
+          break;
+        } catch (NotOfficeXmlFileException e) {
+          Utilities.simpleSleep(1000);
+          count++;
+          if (count == 5) {
+            throw new RuntimeException(
+                "Opening file Error: " + reportPath + " Message: " + e.getMessage());
+          }
+        }
+      } while (count < 5);
       XSSFWorkbook excelTargetBook = new XSSFWorkbook(excelFile);
       return excelTargetBook.getSheet(SheetName);
     } catch (InvalidFormatException | IOException e) {
