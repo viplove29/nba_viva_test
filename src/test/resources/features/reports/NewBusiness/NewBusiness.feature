@@ -26,18 +26,21 @@ Feature: New Business
   @TC-337
   @sync-38702112
   Scenario: "New Business" report sort option functions properly
+    And the user selects Current year to date date range from list
     And the user generates the report with a random name
     When the user navigates to the generated report
     And the user selects "Detail View" tab
     And the user clicks on the Sort symbol
+    And the user selects "Parent Company" under drop down
     And the user selects "Z-A" under Sort
     And the user clicks on the Apply button
-    Then the user verifies that the values of "Finance Company Name" are in descending order
+    Then the user verifies that the values of "Parent Company" are in descending order
     And the user clicks the cancel button
     And the user clicks on the Sort symbol
+    And the user selects "Parent Company" under drop down
     And the user selects "A-Z" under Sort
     And the user clicks on the Apply button
-    Then the user verifies that the values of "Finance Company Name" are in ascending order
+    Then the user verifies that the values of "Parent Company" are in ascending order
     And the user clicks the cancel button
 
 
