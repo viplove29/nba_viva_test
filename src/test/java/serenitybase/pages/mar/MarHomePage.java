@@ -538,4 +538,34 @@ public class MarHomePage extends PageObject {
     selectItemCheckboxByIndex(0, categoryDropdown);
     clickDropdownUnderCategory(categoryName);
   }
+
+  public void selectFromCompanyTypeDropdown(String type) {
+    WebElement typeDropDown = getDriver().findElement(By.xpath("//sel-option-company//select"));
+    typeDropDown.click();
+    typeDropDown.findElement(By.xpath(".//option[@label='" + type + "']")).click();
+  }
+
+  public void searchCompanyDropdown(String section, String options) {
+    getDriver()
+        .findElement(
+            By.xpath(
+                "//multi_select_dropdown[@model='"
+                    + section
+                    + "Model']//a[@id='drop_columnvalues']"))
+        .click();
+    WebElement dropdownSearch =
+        getDriver()
+            .findElement(By.xpath("//ul[@id='" + section + "Id']//input[@placeholder='Search']"));
+    dropdownSearch.clear();
+    dropdownSearch.sendKeys(options);
+
+    getDriver().findElement(By.xpath("//input[@id='" + section + "Id_checkbox0']")).click();
+    getDriver()
+        .findElement(
+            By.xpath(
+                "//multi_select_dropdown[@model='"
+                    + section
+                    + "Model']//a[@id='drop_columnvalues']"))
+        .click();
+  }
 }

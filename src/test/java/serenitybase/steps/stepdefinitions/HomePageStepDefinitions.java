@@ -164,4 +164,16 @@ public class HomePageStepDefinitions {
       String itemName, String categoryName) {
     HomePageTestSteps.selectItemFromCategoryAndCloseDropdown(itemName, categoryName);
   }
+
+  @When("the user selects {string} from the company type dropdown")
+  public void the_user_selects_from_company_type_dropdown(String type) {
+    HomePageTestSteps.selectItemFromCompanyTypeDropdown(type);
+  }
+
+  @When(
+      "the user searches for {string} in the dropdown under the Company {string} section and selects the top option")
+  public void the_user_searches_in_the_dropdown_under_company_section_and_selects_the_top_options(
+      String options, String section) {
+    HomePageTestSteps.searchFromDropdownUnderCompany(options, section);
+  }
 }

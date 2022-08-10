@@ -118,3 +118,39 @@ Feature: Policy Expiration
     And the user clicks on the Quick Actions "XLS" button
     Then the user verifies all of the data under the "Division" header in the file from the generated report is set to "Division One"
 
+  @TC-580
+  @sync-56156226
+  Scenario: Verify Functionality of Company Filters in Policy Expiration Report in MAR
+    And the user expands "Company" filter
+    And the user clicks the "Select Multiple" option under the "Written" section
+    And the user searches for "AFCO" in the dropdown under the Company "Written" section and selects the top option
+    Then the user verifies the dropdown value in the "Written" section is set to "AFCO - AFCO - AFCO"
+    And the user searches for "10194 - 10194 - Progressive" in the dropdown under the Company "Written" section and selects the top option
+    Then the user verifies the dropdown value in the "Written" section is set to "2 items"
+    And the user clicks the "Select Multiple" option under the "Parent" section
+    And the user searches for "Progressive" in the dropdown under the Company "Parent" section and selects the top option
+    Then the user verifies the dropdown value in the "Parent" section is set to "Progressive"
+    And the user searches for "AFCO" in the dropdown under the Company "Parent" section and selects the top option
+    Then the user verifies the dropdown value in the "Parent" section is set to "2 items"
+    And the user selects "Insurance" from the company type dropdown
+    And the user clicks the "Select Multiple" option under the "Written" section
+    And the user searches for "ABC Insurance - ABC - ABC Insurance" in the dropdown under the Company "Written" section and selects the top option
+    Then the user verifies the dropdown value in the "Written" section is set to "ABC Insurance - ABC - ABC Insurance"
+    And the user searches for "10194 - 10194 - Progressive" in the dropdown under the Company "Written" section and selects the top option
+    Then the user verifies the dropdown value in the "Written" section is set to "2 items"
+    And the user clicks the "Select Multiple" option under the "Parent" section
+    And the user searches for "Progressive" in the dropdown under the Company "Parent" section and selects the top option
+    Then the user verifies the dropdown value in the "Parent" section is set to "Progressive"
+    And the user searches for "ABC Insurance" in the dropdown under the Company "Parent" section and selects the top option
+    Then the user verifies the dropdown value in the "Parent" section is set to "2 items"
+    And the user selects "Brokerage" from the company type dropdown
+    And the user clicks the "Select Multiple" option under the "Written" section
+    And the user searches for "Brokerage 1 - BROK1 - Brokerage 1" in the dropdown under the Company "Written" section and selects the top option
+    Then the user verifies the dropdown value in the "Written" section is set to "Brokerage 1 - BROK1 - Brokerage 1"
+    And the user searches for "BrokerageParent - BrokeP - BrokerageParent" in the dropdown under the Company "Written" section and selects the top option
+    Then the user verifies the dropdown value in the "Written" section is set to "2 items"
+    And the user clicks the "Select Multiple" option under the "Parent" section
+    And the user searches for "Brokerage 1" in the dropdown under the Company "Parent" section and selects the top option
+    Then the user verifies the dropdown value in the "Parent" section is set to "Brokerage 1"
+    And the user searches for "BrokerageParent" in the dropdown under the Company "Parent" section and selects the top option
+    Then the user verifies the dropdown value in the "Parent" section is set to "2 items"
