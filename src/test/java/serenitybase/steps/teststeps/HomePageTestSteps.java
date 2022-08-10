@@ -165,4 +165,14 @@ public class HomePageTestSteps {
   public void selectItemFromCategoryAndCloseDropdown(String itemName, String categoryName) {
     marHomePage.selectItemFromCategoryAndCloseDropdown(itemName, categoryName);
   }
+
+  @Step
+  public void selectItemFromCompanyTypeDropdown(String type) {
+    marHomePage.selectFromCompanyTypeDropdown(type);
+  }
+
+  @Step
+  public void searchFromDropdownUnderCompany(String options, String section) {
+    marHomePage.searchCompanyDropdown(section, options);
+  }
 }
