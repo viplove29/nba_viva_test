@@ -107,3 +107,14 @@ Feature: Policy Expiration
     Then the user verifies all the options in the dropdown from the "Department" category are in the "Division One" division
     Then the user verifies all the options in the dropdown from the "Group" category are in the "Division One" division
 
+  @TC-576
+  @sync-56127692
+  Scenario: Data Validation Using New BU Filters for the Policy Expiration Report in MAR
+    And the user expands "Business Unit" filter
+    And the user selects "Division One" from "Division" category and closes the dropdown
+    And the user generates the report with a random name
+    And the user clicks on the Quick Actions "CSV" button
+    Then the user verifies all of the data under the "Division" header in the file from the generated report is set to "Division One"
+    And the user clicks on the Quick Actions "XLS" button
+    Then the user verifies all of the data under the "Division" header in the file from the generated report is set to "Division One"
+
