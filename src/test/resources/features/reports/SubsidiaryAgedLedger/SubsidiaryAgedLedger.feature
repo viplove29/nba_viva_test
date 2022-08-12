@@ -40,6 +40,7 @@ Feature: Subsidiary Aged Ledger
 
   @TC-550
   @sync-55355857
+  @Version-22R2
   Scenario: Verify Functionality of BU Filters in Subsidiary Aged Ledger Report in MAR
     And the user expands "Business Unit" filter
     And the user selects "April Division" from "Division" category
@@ -79,6 +80,7 @@ Feature: Subsidiary Aged Ledger
 
   @TC-549
   @sync-55355856
+  @Version-22R2
   Scenario: Data Validation Using New BU Filters for the Subsidiary Aged Ledger in MAR
     And the user expands "Business Unit" filter
     And the user selects "April Division" from "Division" category
@@ -91,6 +93,7 @@ Feature: Subsidiary Aged Ledger
 
   @TC-563
   @sync-55872262
+  @Version-22R2
   Scenario: Verify Functionality of Active/Inactive/All BU Filters in Subsidiary Aged Ledger Report in MAR
     And the user expands "Business Unit" filter
     Then the user searches for "JJ Inactive" in the "Division" section dropdown and verifies all of the statuses are equal to "Inactive"
@@ -114,6 +117,7 @@ Feature: Subsidiary Aged Ledger
 
   @TC-571
   @sync-56019136
+  @Version-22R2
   Scenario: Data Validation Using New BU Active/Inactive Filters - Subsidiary Aged Ledger (MAR)
     And the user expands "Business Unit" filter
     And the user selects the "All" option under the Status section

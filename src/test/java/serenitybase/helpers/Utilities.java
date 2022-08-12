@@ -195,4 +195,19 @@ public class Utilities extends PageObject {
       return retrySpinners.get(spinnerNum).isDisplayed();
     }
   }
+
+  public static boolean checkEnvironmentVersion(String requiredVersion, String environmentVersion) {
+    int requiredMajorVersion = Integer.parseInt(requiredVersion.substring(0, 2));
+    int envMajorVersion = Integer.parseInt(environmentVersion.substring(0, 2));
+    if (envMajorVersion > requiredMajorVersion) {
+      return true;
+    } else if (envMajorVersion < requiredMajorVersion) {
+      return false;
+    } else {
+      // Handle envMajorVersion == requiredMajorVersion
+      int requiredMinorVersion = Integer.parseInt(requiredVersion.substring(3, 4));
+      int envMinorVersion = Integer.parseInt(environmentVersion.substring(3, 4));
+      return envMinorVersion >= requiredMinorVersion;
+    }
+  }
 }

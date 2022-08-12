@@ -122,6 +122,7 @@ Feature: Active Clients
 
   @TC-553
   @sync-55481667
+  @Version-22R2
   Scenario: Verify Functionality of Personnel Filters in Active Client Report in MAR
     And the user selects "Active Clients" Report Template
     And the user expands "Personnel" filter
@@ -149,6 +150,7 @@ Feature: Active Clients
 
   @TC-551
   @sync-55481207
+  @Version-22R2
   Scenario: Verify Functionality of BU Filters in Active Client Report in MAR
     And the user selects "Active Clients" Report Template
     And the user expands "Business Unit" filter
@@ -160,6 +162,7 @@ Feature: Active Clients
 
   @TC-552
   @sync-55481381
+  @Version-22R2
   Scenario: Data Validation Using New BU Filters for the Active Client Report in MAR
     And the user selects "Active Clients" Report Template
     And the user expands "Business Unit" filter
@@ -207,6 +210,7 @@ Feature: Active Clients
 
   @TC-554
   @sync-55485588
+  @Version-22R2
   Scenario: Data Validation Using New Personnel Filters for the Active Client Report in MAR
     And the user selects "Active Clients" Report Template
     And the user expands "Personnel" filter
@@ -252,6 +256,7 @@ Feature: Active Clients
 
   @TC-556
   @sync-55870491
+  @Version-22R2
   Scenario: Verify Functionality of Active/Inactive/All BU Filters in Active Clients Report in MAR
     And the user selects "Active Clients" Report Template
     And the user expands "Business Unit" filter
@@ -276,6 +281,7 @@ Feature: Active Clients
 
   @TC-568
   @sync-56019102
+  @Version-22R2
   Scenario: Data Validation Using New BU Active/Inactive Filters - Active Client (MAR)
     And the user selects "Active Clients" Report Template
     And the user expands "Business Unit" filter

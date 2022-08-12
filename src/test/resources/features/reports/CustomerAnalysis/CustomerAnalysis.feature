@@ -86,6 +86,7 @@ Feature: Customer Analysis
 
   @TC-558
   @sync-55872134
+  @Version-22R2
   Scenario: Verify Functionality of Active/Inactive/All BU Filters in Customer Analysis Report in MAR
     And the user expands "Business Unit" filter
     Then the user searches for "JJ Inactive" in the "Division" section dropdown and verifies all of the statuses are equal to "Inactive"
@@ -109,6 +110,7 @@ Feature: Customer Analysis
 
   @TC-565
   @sync-56018733
+  @Version-22R2
   Scenario: Data Validation Using New BU Active/Inactive Filters - Customer Analysis (MAR)
     And the user selects Current year to date date range from list
     And the user expands "Business Unit" filter

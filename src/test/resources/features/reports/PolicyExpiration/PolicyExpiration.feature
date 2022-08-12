@@ -99,6 +99,7 @@ Feature: Policy Expiration
 
   @TC-575
   @sync-56127671
+  @Version-22R2
   Scenario: Verify Functionality of BU Filters in Policy Expiration Report in MAR
     And the user expands "Business Unit" filter
     And the user selects "Division One" from "Division" category and closes the dropdown
