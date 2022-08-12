@@ -65,6 +65,7 @@ Feature: Production Analysis
 
   @TC-559
   @sync-55872138
+  @Version-22R2
   Scenario: Verify Functionality of Active/Inactive/All BU Filters in Production Analysis Report in MAR
     And the user expands "Business Unit" filter
     Then the user searches for "JJ Inactive" in the "Division" section dropdown and verifies all of the statuses are equal to "Inactive"
@@ -88,6 +89,7 @@ Feature: Production Analysis
 
   @TC-566
   @sync-56018830
+  @Version-22R2
   Scenario: Data Validation Using New BU Active/Inactive Filters - Production Analysis (MAR)
     And the user selects Current year to date date range from list
     And the user expands "Business Unit" filter

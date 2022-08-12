@@ -9,6 +9,7 @@ Feature: Book of Business
 
   @TC-557
   @sync-55872102
+  @Version-22R2
   Scenario: Verify Functionality of Active/Inactive/All BU Filters in Book of Business Report in MAR
     And the user expands "Business Unit" filter
     Then the user searches for "JJ Inactive" in the "Division" section dropdown and verifies all of the statuses are equal to "Inactive"
@@ -32,6 +33,7 @@ Feature: Book of Business
 
   @TC-564
   @sync-56015237
+  @Version-22R2
   Scenario: Data Validation Using New BU Active/Inactive Filters - Book of Business (MAR)
     And the user expands "Business Unit" filter
     And the user selects the "All" option under the Status section

@@ -55,4 +55,12 @@ public class Configuration {
     String logLevel = System.getProperty("appium.log.level");
     return logLevel == null ? "debug" : logLevel.toLowerCase();
   }
+
+  public static String getEnvironment() {
+    return System.getProperty("environment");
+  }
+
+  public static String getVersion() {
+    return getProperty("version");
+  }
 }

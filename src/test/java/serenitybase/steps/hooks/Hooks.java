@@ -5,17 +5,55 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.List;
+import java.util.stream.Collectors;
+import org.junit.Assume;
 import serenitybase.helpers.AppiumManager;
+import serenitybase.helpers.Configuration;
 import serenitybase.helpers.ScreenRecorder;
 import serenitybase.helpers.Utilities;
 
 public class Hooks {
+
+  public static Scenario scenario;
+
   @Before
   public void before() {
     AppiumManager.startAppium();
     AppiumManager.getSession();
     if (System.getProperty("screenRecorder.url") != null) ScreenRecorder.startRecording();
     Utilities.setDownloadsCount();
+  }
+
+  @Before(order = 0)
+  public void skipTestBasedOnVersionTag(Scenario scenario) {
+    Hooks.scenario = scenario;
+    List<String> versionTags =
+        scenario.getSourceTagNames().stream()
+            .filter(name -> name.startsWith("@Version"))
+            .collect(Collectors.toList());
+    if (versionTags.size() == 0) {
+      System.out.println(
+          "Unversioned Scenario - unknown behavior in different MAR releases or environments");
+      return;
+    } else if (versionTags.size() > 1) {
+      throw new RuntimeException("Multiple Version Tags per Scenario not supported");
+    }
+    String version = versionTags.get(0).substring(versionTags.get(0).lastIndexOf("-") + 1);
+    if (version.length() != 4 || !version.matches("^\\d{2}[R]\\d")) {
+      throw new RuntimeException("Version Tag not in correct format: " + versionTags.get(0));
+    }
+    String envVersion = Configuration.getVersion();
+    if (!envVersion.equalsIgnoreCase("main")) {
+      boolean check = Utilities.checkEnvironmentVersion(version, envVersion);
+      Assume.assumeTrue(
+          String.format(
+              "Skipping scenario due to version, requires %s test environment is %s",
+              version, envVersion),
+          check);
+    } else {
+      return;
+    }
   }
 
   @After

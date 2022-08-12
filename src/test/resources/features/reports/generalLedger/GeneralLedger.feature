@@ -122,6 +122,7 @@ Feature: General Ledger
 
   @TC-562
   @sync-55872259
+  @Version-22R2
   Scenario: Verify Functionality of Active/Inactive/All BU Filters in General Ledger Report in MAR
     And the user expands "Business Unit" filter
     Then the user searches for "JJ Inactive" in the "Division" section dropdown and verifies all of the statuses are equal to "Inactive"
@@ -145,6 +146,7 @@ Feature: General Ledger
 
   @TC-570
   @sync-56019132
+  @Version-22R2
   Scenario: Data Validation Using New BU Active/Inactive Filters - General Ledger (MAR)
     And the user selects Current year to date date range from list
     And the user expands "Business Unit" filter
