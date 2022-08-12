@@ -33,8 +33,7 @@ public class Hooks {
             .filter(name -> name.startsWith("@Version"))
             .collect(Collectors.toList());
     if (versionTags.size() == 0) {
-      System.out.println(
-          "Unversioned Scenario - unknown behavior in different MAR releases or environments");
+      System.out.println("Scenario without version - will be run in all MAR environments");
       return;
     } else if (versionTags.size() > 1) {
       throw new RuntimeException("Multiple Version Tags per Scenario not supported");

@@ -110,6 +110,7 @@ Feature: Policy Expiration
 
   @TC-576
   @sync-56127692
+  @Version-22R2
   Scenario: Data Validation Using New BU Filters for the Policy Expiration Report in MAR
     And the user expands "Business Unit" filter
     And the user selects "Division One" from "Division" category and closes the dropdown
@@ -158,6 +159,7 @@ Feature: Policy Expiration
 
   @TC-577
   @sync-56127732
+  @Version-22R2
   Scenario: Verify Functionality of Active/Inactive/All BU Filters in Policy Expiration Report in MAR
     And the user expands "Business Unit" filter
     Then the user searches for "JJ Inactive" in the "Division" section dropdown and verifies all of the statuses are equal to "Inactive"
@@ -187,6 +189,7 @@ Feature: Policy Expiration
 
   @TC-578
   @sync-56127754
+  @Version-22R2
   Scenario: Data Validation Using New BU Active/Inactive Filters - Policy Expiration (MAR)
     And the user selects Current quarter to date date range from list
     And the user expands "Business Unit" filter
