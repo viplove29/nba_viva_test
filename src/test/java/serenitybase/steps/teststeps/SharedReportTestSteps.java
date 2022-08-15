@@ -3,6 +3,8 @@ package serenitybase.steps.teststeps;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.google.common.collect.Ordering;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Step;
@@ -223,6 +225,36 @@ public class SharedReportTestSteps {
     } else {
       assertThat(Ordering.from(String.CASE_INSENSITIVE_ORDER).reverse().isOrdered(columns))
           .as("Column data is not in descending order: '%s'", columns)
+          .isTrue();
+    }
+  }
+
+  @Step
+  public void verifyDatasetColumnValuesAreInDateOrder(String columnName, String order) {
+    List<Map<String, String>> dataset = sharedReportPage.getReportGridDataAsMaps();
+    ArrayList<String> columnStrings = new ArrayList<>();
+    dataset.forEach(
+        map -> {
+          columnStrings.add(map.get(columnName.toUpperCase(Locale.ROOT)));
+        });
+    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+    ArrayList<LocalDate> columnDates = new ArrayList<>();
+
+    columnStrings.forEach(
+        date -> {
+          columnDates.add(LocalDate.from(dateFormatter.parse(date)));
+        });
+
+    if (order.equals("ascending")) {
+      assertThat(Ordering.from(Comparator.comparing((LocalDate ldt) -> ldt)).isOrdered(columnDates))
+          .as("Column data is not in date ascending order: '%s'", columnDates)
+          .isTrue();
+    } else {
+      assertThat(
+              Ordering.from(Comparator.comparing((LocalDate ldt) -> ldt))
+                  .reverse()
+                  .isOrdered(columnDates))
+          .as("Column data is not in date descending order: '%s'", columnDates)
           .isTrue();
     }
   }

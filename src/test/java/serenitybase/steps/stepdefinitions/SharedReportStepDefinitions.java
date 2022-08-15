@@ -136,6 +136,20 @@ public class SharedReportStepDefinitions {
     sharedReportTestSteps.verifyDatasetColumnValuesAreInOrder(columnName, "descending");
   }
 
+  @When("the user verifies that the values of {string} are in ascending date order")
+  public void the_user_verifies_that_the_dataset_values_are_in_ascending_date_order(
+      String columnName) {
+    Utilities.simpleSleep(3000);
+    sharedReportTestSteps.verifyDatasetColumnValuesAreInDateOrder(columnName, "ascending");
+  }
+
+  @When("the user verifies that the values of {string} are in descending date order")
+  public void the_user_verifies_that_the_dataset_values_are_in_descending_date_order(
+      String columnName) {
+    Utilities.simpleSleep(3000);
+    sharedReportTestSteps.verifyDatasetColumnValuesAreInDateOrder(columnName, "descending");
+  }
+
   @When("the user stores the report grid to {string}")
   public void the_user_stores_the_report_grid_to(String value) {
     sharedReportTestSteps.extractReportValuesInTheGridToVariable(value);
