@@ -228,3 +228,28 @@ Feature: Policy Expiration
     Then the user verifies all of the data under the "Branch" header in the file from the generated report is set to "JJ Inactive 1"
     Then the user verifies all of the data under the "Department" header in the file from the generated report is set to "JJ Inactive 1"
     Then the user verifies all of the data under the "Group" header in the file from the generated report is set to "JJ Inactive 1"
+
+  @TC-581
+  @sync-56168910
+  @Version-22R2
+  Scenario: Data Validation Using New Company Filters for the Policy Expiration Report in MAR
+    And the user selects Current quarter to date date range from list
+    And the user expands "Company" filter
+    And the user clicks the "Select Multiple" option under the "Parent" section
+    And the user searches for "Progressive" in the dropdown under the Company "Parent" section and selects the top option
+    And the user generates the report with a random name
+    And the user clicks on the Quick Actions "CSV" button
+    Then the user verifies all of the data under the "Parent Company" header in the file from the generated report is set to "Progressive"
+    And the user clicks on the Quick Actions "XLS" button
+    Then the user verifies all of the data under the "Parent Company" header in the file from the generated report is set to "Progressive"
+    And the user selects "Policy Expiration" Report Template
+    And the user selects Current quarter to date date range from list
+    And the user expands "Company" filter
+    And the user selects "Brokerage" from the company type dropdown
+    And the user clicks the "Select Multiple" option under the "Parent" section
+    And the user searches for "JJ Brokerage 1" in the dropdown under the Company "Parent" section and selects the top option
+    And the user generates the report with a random name
+    And the user clicks on the Quick Actions "CSV" button
+    Then the user verifies all of the data under the "Parent Company" header in the file from the generated report is set to "JJ Brokerage 1"
+    And the user clicks on the Quick Actions "XLS" button
+    Then the user verifies all of the data under the "Parent Company" header in the file from the generated report is set to "JJ Brokerage 1"
