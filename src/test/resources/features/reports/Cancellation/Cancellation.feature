@@ -25,6 +25,7 @@ Feature: Cancellation Policies
   @TC-296
   @sync-38405342
   Scenario: "Cancellation" report sort option functions properly
+    And the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
     When the user navigates to the generated report
     And the user selects "Detail View" tab
