@@ -18,9 +18,9 @@ Feature: Cancellation Policies
     And the user clicks on the Filter symbol
     And the user clicks on the Add Filters button
     And the user selects "Policy Number" under Filters
-    And the user sets the Filter to start with "CL01"
+    And the user sets the Filter to start with "BE"
     And the user clicks on the Apply button
-    Then the user verifies that all the "Policy Number" values on the Report start with "CL01"
+    Then the user verifies that all the "Policy Number" values on the Report start with "BE"
 
   @TC-296
   @sync-38405342
