@@ -253,3 +253,26 @@ Feature: Policy Expiration
     Then the user verifies all of the data under the "Parent Company" header in the file from the generated report is set to "JJ Brokerage 1"
     And the user clicks on the Quick Actions "XLS" button
     Then the user verifies all of the data under the "Parent Company" header in the file from the generated report is set to "JJ Brokerage 1"
+
+  @TC-573
+  @sync-56127390
+  @Version-22R2
+  Scenario: Verify Functionality of Personnel Filters in Policy Expiration Report in MAR
+    And the user expands "Personnel" filter
+    And the user clicks the "Select Multiple" option under the "Executive" section
+    And the user searches for "Jenkins ,Josh" in the dropdown under the "Executive" section and selects the top option
+    Then the user verifies the dropdown value in the "Executive" section is set to "Jenkins ,Josh"
+    And the user searches for "!Aleks" in the dropdown under the "Executive" section and selects the top option
+    Then the user verifies the dropdown value in the "Executive" section is set to "2 items"
+    And the user clicks the "All" option under the "Executive" section
+    And the user clicks the "Select Multiple" option under the "Representative" section
+    And the user searches for "CSR" in the dropdown under the "Representative" section and selects the top option
+    Then the user verifies the dropdown value in the "Representative" section is set to "CSR"
+    And the user searches for "!Aleks" in the dropdown under the "Representative" section and selects the top option
+    Then the user verifies the dropdown value in the "Representative" section is set to "2 items"
+    And the user clicks the "All" option under the "Representative" section
+    And the user clicks the "Select Multiple" option under the "Broker" section
+    And the user searches for "BCD Broker" in the dropdown under the "Broker" section and selects the top option
+    Then the user verifies the dropdown value in the "Broker" section is set to "BCD Broker"
+    And the user searches for "ABC Broker" in the dropdown under the "Broker" section and selects the top option
+    Then the user verifies the dropdown value in the "Broker" section is set to "2 items"
