@@ -276,3 +276,53 @@ Feature: Policy Expiration
     Then the user verifies the dropdown value in the "Broker" section is set to "BCD Broker"
     And the user searches for "ABC Broker" in the dropdown under the "Broker" section and selects the top option
     Then the user verifies the dropdown value in the "Broker" section is set to "2 items"
+
+  @TC-574
+  @sync-56127414
+  @Version-22R2
+  Scenario: Data Validation Using New Personnel Filters for the Policy Expiration Report in MAR
+    And the user sets date range from "01/01/2010" to today
+    And the user expands "Personnel" filter
+    And the user clicks the "Select Multiple" option under the "Executive" section
+    And the user searches for "Jenkins ,Josh" in the dropdown under the "Executive" section and selects the top option
+    And the user generates the report with a random name
+    And the user clicks on the Quick Actions "CSV" button
+    Then the user verifies all of the data under the "Customer Executive" header in the file from the generated report is set to "Jenkins, Josh"
+    And the user clicks on the Quick Actions "XLS" button
+    Then the user verifies all of the data under the "Customer Executive" header in the file from the generated report is set to "Jenkins, Josh"
+    And the user selects "Policy Expiration" Report Template
+    And the user sets date range from "01/01/2010" to today
+    And the user expands "Personnel" filter
+    And the user clicks the "Select Multiple" option under the "Executive" section
+    And the user searches for "Jenkins ,Josh" in the dropdown under the "Executive" section and selects the top option
+    And the user searches for "!Aleks" in the dropdown under the "Executive" section and selects the top option
+    And the user generates the report with a random name
+    And the user clicks on the Quick Actions "CSV" button
+    Then the user verifies the data under the "Customer Executive" header in the file from the generated report has these values
+      | Jenkins, Josh   |
+      | !Aleks          |
+    And the user clicks on the Quick Actions "XLS" button
+    Then the user verifies the data under the "Customer Executive" header in the file from the generated report has these values
+      | Jenkins, Josh   |
+      | !Aleks          |
+    And the user selects "Policy Expiration" Report Template
+    And the user sets date range from "01/01/2010" to today
+    And the user expands "Personnel" filter
+    And the user clicks the "Select Multiple" option under the "Representative" section
+    And the user searches for "CSR" in the dropdown under the "Representative" section and selects the top option
+    And the user generates the report with a random name
+    And the user clicks on the Quick Actions "CSV" button
+    Then the user verifies all of the data under the "Customer Representative" header in the file from the generated report is set to "CSR -CSR"
+    And the user clicks on the Quick Actions "XLS" button
+    Then the user verifies all of the data under the "Customer Representative" header in the file from the generated report is set to "CSR -CSR"
+    And the user selects "Policy Expiration" Report Template
+    And the user sets date range from "01/01/2010" to today
+    And the user expands "Personnel" filter
+    And the user clicks the "Select Multiple" option under the "Broker" section
+    And the user searches for "BCD Broker" in the dropdown under the "Broker" section and selects the top option
+    And the user generates the report with a random name
+    And the user clicks on the Quick Actions "CSV" button
+    Then the user verifies all of the data under the "Broker Name" header in the file from the generated report is set to "BCD Broker"
+    And the user clicks on the Quick Actions "XLS" button
+    Then the user verifies all of the data under the "Broker Name" header in the file from the generated report is set to "BCD Broker"
+
