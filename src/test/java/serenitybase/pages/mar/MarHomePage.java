@@ -132,7 +132,7 @@ public class MarHomePage extends PageObject {
   }
 
   public void waitForReportToComplete(String reportName) {
-    withTimeoutOf(Duration.ofMinutes(5)).waitFor(getReportRow(reportName));
+    withTimeoutOf(Duration.ofMinutes(10)).waitFor(getReportRow(reportName));
   }
 
   public void clickExcelQuickActions(String reportName) {

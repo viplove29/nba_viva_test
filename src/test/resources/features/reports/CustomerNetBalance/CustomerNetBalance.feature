@@ -9,24 +9,30 @@ Feature: Customer Net Balance Policies
 
 
 
-  @TC-276
-  @sync-37443848
+  @TC-312
+  @sync-38582368
   Scenario: "Customer Net Balance" report sort option functions properly
-  And the user generates the report with a random name
-  When the user navigates to the generated report
-  And the user selects "Detail View" tab
-  And the user clicks on the Sort symbol
-  And the user selects "Policy Type" under drop down
-  And the user selects "Z-A" under Sort
-  And the user clicks on the Apply button
-  Then the user verifies that the values of "Policy Type" are in descending order
-  And the user clicks the cancel button
-  And the user clicks on the Sort symbol
-  And the user selects "Policy Type" under drop down
-  And the user selects "A-Z" under Sort
-  And the user clicks on the Apply button
-  Then the user verifies that the values of "Policy Type" are in ascending order
-  And the user clicks the cancel button
+    And the user generates the report with a random name
+    When the user navigates to the generated report
+    And the user selects "Detail View" tab
+    And the user clicks on the Sort symbol
+    And the user selects "Policy Type" under drop down
+    And the user selects "Z-A" under Sort
+    And the user clicks on the Apply button
+    And the user names the template "customerNetBalanceSummaryTemplate"
+    And the user saves the template
+    And the user clicks the Ok button
+    Then the user verifies that the values of "Policy Type" are in descending order
+    And the user clicks on the Sort symbol
+    And the user selects "Policy Type" under drop down
+    And the user selects "A-Z" under Sort
+    And the user clicks on the Apply button
+    Then the user verifies that the values of "Policy Type" are in ascending order
+    And the user clicks on the Sort symbol
+    And the user presses the back arrow
+    And the user search for the template named "customerNetBalanceSummaryTemplate"
+    And the user presses the templates action menu
+    And the user selects the delete menu item
 
   @TC-313
   @sync-38582373
