@@ -35,10 +35,31 @@ default:
   after_script:
     - aws storagegateway refresh-cache --file-share-arn arn:aws:storagegateway:us-east-1:065073025992:share/share-99B425F3
   rules:
-    - if: ($CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web") && $SMOKE_TEST == null
+    - if: ($CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web") && $PIPELINE_ID == null && $SMOKE_TEST == null
   interruptible: false
   when: always
   allow_failure: true
+
+.rerun_regression:
+  parallel: 5
+  extends: .windows scripts
+  script:
+    - Expand-Outlines
+    - Set-ReportPortalProperties -Project MAR -Try $Env:TRY
+    - Invoke-RegressionQueue
+      -Command "./gradlew test --tests TestSupport -Denvironment=$ENVIRONMENT -DignoreFailures=true"
+      -Project MAR
+      -Pipeline $PIPELINE_ID
+      -Try 1
+      -BatchSize 0
+  after_script:
+    - aws storagegateway refresh-cache --file-share-arn arn:aws:storagegateway:us-east-1:065073025992:share/share-99B425F3
+  rules:
+    - if: ($CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web") && $PIPELINE_ID != null && $SMOKE_TEST == null
+  interruptible: false
+  when: always
+  allow_failure: true
+
 
 .merge launches:
   extends: .windows scripts
@@ -135,9 +156,15 @@ first attempt:
   variables:
     TRY: 1
 
+rerun attempt:
+  extends: .rerun_regression
+  stage: regression
+  variables:
+    TRY: 1
+
 first merge:
-  stage: merge regression
   extends: .merge launches
+  stage: merge regression
   script:
     - Merge-Launches -Project MAR -Name "$LAUNCH_NAME" -Description "GitLab CI - Merged - First Try" -Try 1
 
