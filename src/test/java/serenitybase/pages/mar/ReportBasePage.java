@@ -110,7 +110,8 @@ public class ReportBasePage extends PageObject {
   @FindBy(id = "vwadd-summary")
   protected WebElementFacade summaryPage;
 
-  private static String TABLE_CELL_XPATH = ".//div[contains(@class, 'rpt-ui-grid-cell-content')]";
+  private static String TABLE_CELL_XPATH =
+      ".//div[contains(@class, 'rpt-ui-grid-cell-content')] | .//a[contains(@class, 'ng-binding')]";
   protected static final String DETAIL_VIEW_TAB_ID = "vw1";
   protected static final int DETAIL_VIEW_TAB_VIEWPORT_INDEX = 0;
   protected static final int TAB_VIEWPORT_INDEX = 1;

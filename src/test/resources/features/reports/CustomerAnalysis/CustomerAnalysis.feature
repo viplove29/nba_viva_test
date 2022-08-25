@@ -17,10 +17,10 @@ Feature: Customer Analysis
     And the user clicks on the Filter symbol
     And the user clicks on the Add Filters button
     And the user selects "Customer Name" under Filters
-    And the user sets the Filter to start with "Accardi"
+    And the user sets the Filter to start with "A"
     And the user clicks on the Apply button
     And the user extracts all the report values in the grid
-    Then the user verifies that all the "Customer Name" values on the Report start with "Accardi"
+    Then the user verifies that all the "Customer Name" values on the Report start with "A"
 
 
   @TC-311
