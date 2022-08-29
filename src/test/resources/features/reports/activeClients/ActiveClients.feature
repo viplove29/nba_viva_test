@@ -78,18 +78,27 @@ Feature: Active Clients
   Scenario: "Active Clients" report sort option functions properly
     When the user navigates to the generated report
     And the user selects "Detail View" tab
+    And the user clicks on the Filter symbol
+    And the user clicks on the Add Filters button
+    And the user selects "Customer Name" under Filters
+    And the user sets the Filter to start with "A"
+    And the user clicks on the Apply button
     And the user clicks on the Sort symbol
     And the user selects "Z-A" under Sort
     And the user clicks on the Apply button
+    And the user names the template "activeClientsSortTemplate"
+    And the user saves the template
+    And the user clicks the Ok button
     And the user verifies that the values of "Customer Name" are in descending order
-    And the user clicks the cancel button
     And the user clicks on the Sort symbol
     And the user selects "A-Z" under Sort
     And the user clicks on the Apply button
-    And the user clicks the cancel button
-    # Use next page to avoid strange characters in client names
-    And the user clicks the next page button
     And the user verifies that the values of "Customer Name" are in ascending order
+    And the user clicks on the Sort symbol
+    And the user presses the back arrow
+    And the user search for the template named "activeClientsSortTemplate"
+    And the user presses the templates action menu
+    And the user selects the delete menu item
 
 
   @TC-301
