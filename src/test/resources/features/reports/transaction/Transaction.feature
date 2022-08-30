@@ -32,13 +32,19 @@ Feature: Transaction
     And the user clicks on the Sort symbol
     And the user selects "Z-A" under Sort
     And the user clicks on the Apply button
+    And the user names the template "transactionTemplate"
+    And the user saves the template
+    And the user clicks the Ok button
     Then the user verifies that the values of "Customer Name" are in descending order
-    And the user clicks the cancel button
     And the user clicks on the Sort symbol
     And the user selects "A-Z" under Sort
     And the user clicks on the Apply button
     Then the user verifies that the values of "Customer Name" are in ascending order
-    And the user clicks the cancel button
+    And the user clicks on the Sort symbol
+    And the user presses the back arrow
+    And the user search for the template named "transactionTemplate"
+    And the user presses the templates action menu
+    And the user selects the delete menu item
 
 
   @TC-362
