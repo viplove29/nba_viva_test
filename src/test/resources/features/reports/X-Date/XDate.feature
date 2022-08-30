@@ -17,13 +17,20 @@ Feature: X-Date
     And the user clicks on the Sort symbol
     And the user selects "Old-New" under Sort
     And the user clicks on the Apply button
-    And the user clicks the cancel button
+    And the user names the template "xdateTemplate"
+    And the user saves the template
+    And the user clicks the Ok button
     Then the user verifies that the values of "X-Date" are in ascending date order
     And the user clicks on the Sort symbol
     And the user selects "New-Old" under Sort
     And the user clicks on the Apply button
-    And the user clicks the cancel button
     Then the user verifies that the values of "X-Date" are in descending date order
+    And the user clicks on the Sort symbol
+    And the user presses the back arrow
+    And the user search for the template named "xdateTemplate"
+    And the user presses the templates action menu
+    And the user selects the delete menu item
+
 
 
   @TC-369
