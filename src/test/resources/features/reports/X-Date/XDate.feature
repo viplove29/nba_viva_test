@@ -9,6 +9,7 @@ Feature: X-Date
 
   @TC-368
   @sync-38773261
+  @X-Date
   Scenario: "X-Date" report sort option functions properly
     Then the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
@@ -28,6 +29,7 @@ Feature: X-Date
 
   @TC-369
   @sync-38773262
+  @X-Date
   Scenario: "X-Date" report Filters option functions properly
     Then the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
@@ -43,6 +45,7 @@ Feature: X-Date
 
   @TC-372
   @sync-38773266
+  @X-Date
   Scenario: Add X-date summary View tab in the report
     When the user generates the report with a random name
     And the user navigates to the generated report
@@ -73,6 +76,7 @@ Feature: X-Date
 
   @TC-371
   @sync-38773265
+  @X-Date
   Scenario: X-Date Check Columns spelling and Show/Hide columns option
     When the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name

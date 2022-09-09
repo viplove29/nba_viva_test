@@ -10,6 +10,7 @@ Feature: Policy Expiration
 
   @TC-343
   @sync-38702524
+  @PolicyExpiration
   Scenario: "Policy Expiration" report Filters option functions properly
     And the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
@@ -24,6 +25,7 @@ Feature: Policy Expiration
 
   @TC-342
   @sync-38702522
+  @PolicyExpiration
   Scenario: "Policy Expiration" report sort option functions properly
     And the user generates the report with a random name
     When the user navigates to the generated report
@@ -42,6 +44,7 @@ Feature: Policy Expiration
 
   @TC-346
   @sync-38702533
+  @PolicyExpiration
   Scenario: Add Policy Expiration summary View tab in the report
     When the user generates the report with a random name
     And the user navigates to the generated report
@@ -71,6 +74,7 @@ Feature: Policy Expiration
 
   @TC-345
   @sync-38702532
+  @PolicyExpiration
   Scenario: Policy Expiration Check Columns spelling and Show/Hide columns option
     And the user generates the report with a random name
     When the user navigates to the generated report
@@ -101,6 +105,8 @@ Feature: Policy Expiration
   @TC-575
   @sync-56127671
   @Version-22R2
+  @PolicyExpiration
+  @SmokeTest
   Scenario: Verify Functionality of BU Filters in Policy Expiration Report in MAR
     And the user expands "Business Unit" filter
     And the user selects "Division One" from "Division" category and closes the dropdown
@@ -112,6 +118,7 @@ Feature: Policy Expiration
   @TC-576
   @sync-56127692
   @Version-22R2
+  @PolicyExpiration
   Scenario: Data Validation Using New BU Filters for the Policy Expiration Report in MAR
     And the user expands "Business Unit" filter
     And the user selects "Division One" from "Division" category and closes the dropdown
@@ -123,6 +130,7 @@ Feature: Policy Expiration
 
   @TC-580
   @sync-56156226
+  @PolicyExpiration
   Scenario: Verify Functionality of Company Filters in Policy Expiration Report in MAR
     And the user expands "Company" filter
     And the user clicks the "Select Multiple" option under the "Written" section
@@ -161,6 +169,7 @@ Feature: Policy Expiration
   @TC-577
   @sync-56127732
   @Version-22R2
+  @PolicyExpiration
   Scenario: Verify Functionality of Active/Inactive/All BU Filters in Policy Expiration Report in MAR
     And the user expands "Business Unit" filter
     Then the user searches for "JJ Inactive" in the "Division" section dropdown and verifies all of the statuses are equal to "Inactive"
@@ -191,6 +200,7 @@ Feature: Policy Expiration
   @TC-578
   @sync-56127754
   @Version-22R2
+  @PolicyExpiration
   Scenario: Data Validation Using New BU Active/Inactive Filters - Policy Expiration (MAR)
     And the user selects Current quarter to date date range from list
     And the user expands "Business Unit" filter
@@ -232,6 +242,7 @@ Feature: Policy Expiration
   @TC-581
   @sync-56168910
   @Version-22R2
+  @PolicyExpiration
   Scenario: Data Validation Using New Company Filters for the Policy Expiration Report in MAR
     And the user selects Current quarter to date date range from list
     And the user expands "Company" filter
@@ -257,6 +268,7 @@ Feature: Policy Expiration
   @TC-573
   @sync-56127390
   @Version-22R2
+  @PolicyExpiration
   Scenario: Verify Functionality of Personnel Filters in Policy Expiration Report in MAR
     And the user expands "Personnel" filter
     And the user clicks the "Select Multiple" option under the "Executive" section
@@ -280,6 +292,7 @@ Feature: Policy Expiration
   @TC-574
   @sync-56127414
   @Version-22R2
+  @PolicyExpiration
   Scenario: Data Validation Using New Personnel Filters for the Policy Expiration Report in MAR
     And the user sets date range from "01/01/2010" to today
     And the user expands "Personnel" filter

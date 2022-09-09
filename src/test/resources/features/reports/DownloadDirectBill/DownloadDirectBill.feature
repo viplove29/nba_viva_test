@@ -10,6 +10,7 @@ Feature: Download Direct Bill Statement
 
   @TC-379
   @sync-38827957
+  @DownloadDirectBillStatement
   Scenario: "Download Direct Bill Statement" report Filters option functions properly
     Then the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
@@ -24,6 +25,7 @@ Feature: Download Direct Bill Statement
 
   @TC-378
   @sync-38827955
+  @DownloadDirectBillStatement
   Scenario: "Download Direct Bill Statement" report sort option functions properly
     Then the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
@@ -49,6 +51,7 @@ Feature: Download Direct Bill Statement
 
   @TC-382
   @sync-38827963
+  @DownloadDirectBillStatement
   Scenario: Add Download Direct Bill summary View tab in the report
     When the user generates the report with a random name
     And the user navigates to the generated report
@@ -79,6 +82,7 @@ Feature: Download Direct Bill Statement
 
   @TC-381
   @sync-38827961
+  @DownloadDirectBillStatement
   Scenario: Download Direct Bill Check Columns spelling and Show/Hide columns option
     When the user generates the report with a random name
     And the user navigates to the generated report

@@ -10,6 +10,7 @@ Feature: Cancellation Policies
 
   @TC-297
   @sync-38405343
+  @Cancellation
   Scenario: "Cancellation" report Filters option functions properly
     Then the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
@@ -24,6 +25,7 @@ Feature: Cancellation Policies
 
   @TC-296
   @sync-38405342
+  @Cancellation
   Scenario: "Cancellation" report sort option functions properly
     And the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
@@ -42,6 +44,7 @@ Feature: Cancellation Policies
 
   @TC-300
   @sync-38406567
+  @Cancellation
   Scenario: Add Cancellation summary View tab in the report
     When the user generates the report with a random name
     And the user navigates to the generated report
@@ -72,6 +75,7 @@ Feature: Cancellation Policies
 
   @TC-299
   @sync-38405345
+  @Cancellation
   Scenario: Cancellation Check Columns spelling and Show/Hide columns option
     When the user generates the report with a random name
     And the user navigates to the generated report

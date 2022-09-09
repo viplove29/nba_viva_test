@@ -10,6 +10,7 @@ And the user selects "Broker Aged Accounts Receivable" Report Template
 
   @TC-338
   @sync-38702114
+  @BrokerAgedAccountsReceivable
   Scenario: "Broker Aged Accounts Receivable" report Filters option functions properly
   And the user generates the report with a random name
   When the user navigates to the generated report
@@ -23,6 +24,8 @@ And the user selects "Broker Aged Accounts Receivable" Report Template
 
   @TC-273
   @sync-37288426
+  @BrokerAgedAccountsReceivable
+  @SmokeTest
   Scenario: Broker Aged Accounts Receivable Add new Summary View tab in the report
     When the user generates the report with a random name
     And the user navigates to the generated report
@@ -54,6 +57,7 @@ And the user selects "Broker Aged Accounts Receivable" Report Template
 
   @TC-272
   @sync-37286304
+  @BrokerAgedAccountsReceivable
   Scenario: "Broker Aged Accounts Receivable" report sort option functions properly
     And the user generates the report with a random name
     When the user navigates to the generated report
@@ -72,6 +76,7 @@ And the user selects "Broker Aged Accounts Receivable" Report Template
 
   @TC-270
   @sync-37285637
+  @BrokerAgedAccountsReceivable
   Scenario: Broker Ages Accounts Receivable Check Columns spelling and Show/Hide columns option
     When the user generates the report with a random name
     And the user navigates to the generated report

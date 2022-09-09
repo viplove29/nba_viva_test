@@ -10,6 +10,7 @@ Feature: Download Unassigned Accounting Transactions
 
   @TC-318
   @sync-38582955
+  @DownloadUnassignedAccountingTransactions
   Scenario: "Download Unassigned Accounting Transactions" report Filters option functions properly
     Then the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
@@ -24,6 +25,7 @@ Feature: Download Unassigned Accounting Transactions
 
   @TC-317
   @sync-38582954
+  @DownloadUnassignedAccountingTransactions
   Scenario: "Download Unassigned Accounting Transactions" report sort option functions properly
     Then the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
@@ -49,6 +51,7 @@ Feature: Download Unassigned Accounting Transactions
 
   @TC-319
   @sync-38582956
+  @DownloadUnassignedAccountingTransactions
   Scenario: Add Download Unassigned Accounting Transactions summary View tab in the report
     When the user generates the report with a random name
     And the user navigates to the generated report
@@ -79,6 +82,7 @@ Feature: Download Unassigned Accounting Transactions
 
   @TC-62
   @sync-30863351
+  @DownloadUnassignedAccountingTransactions
   Scenario: Download Unassigned Accounting Transactions Check Columns spelling and Show/Hide columns option
     When the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name

@@ -10,6 +10,7 @@ Feature: Customer Analysis
 
   @TC-308
   @sync-38527152
+  @CustomerAnalysis
   Scenario: "Customer Analysis" report Filters option functions properly
     And the user generates the report with a random name
     When the user navigates to the generated report
@@ -25,6 +26,7 @@ Feature: Customer Analysis
 
   @TC-311
   @sync-38527156
+  @CustomerAnalysis
   Scenario: Add Customer Analysis summary View tab in the report
     When the user generates the report with a random name
     And the user navigates to the generated report
@@ -55,6 +57,7 @@ Feature: Customer Analysis
 
   @TC-310
   @sync-38527154
+  @CustomerAnalysis
   Scenario: Customer Analysis Check Columns spelling and Show/Hide columns option
     When the user generates the report with a random name
     And the user navigates to the generated report
@@ -87,6 +90,7 @@ Feature: Customer Analysis
   @TC-558
   @sync-55872134
   @Version-22R2
+  @CustomerAnalysis
   Scenario: Verify Functionality of Active/Inactive/All BU Filters in Customer Analysis Report in MAR
     And the user expands "Business Unit" filter
     Then the user searches for "JJ Inactive" in the "Division" section dropdown and verifies all of the statuses are equal to "Inactive"
@@ -111,6 +115,7 @@ Feature: Customer Analysis
   @TC-565
   @sync-56018733
   @Version-22R2
+  @CustomerAnalysis
   Scenario: Data Validation Using New BU Active/Inactive Filters - Customer Analysis (MAR)
     And the user selects Current year to date date range from list
     And the user expands "Business Unit" filter

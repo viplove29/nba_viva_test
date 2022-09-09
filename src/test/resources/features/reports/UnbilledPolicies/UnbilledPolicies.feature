@@ -10,6 +10,7 @@ Feature: Unbilled Policies
 
   @TC-364
   @sync-38737417
+  @UnbilledPolicies
   Scenario: "Unbilled Policies" report Filters option functions properly
     Then the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
@@ -24,6 +25,7 @@ Feature: Unbilled Policies
 
   @TC-363
   @sync-38737412
+  @UnbilledPolicies
   Scenario: "Unbilled Policies" report sort option functions properly
     Then the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
@@ -49,6 +51,7 @@ Feature: Unbilled Policies
 
   @TC-367
   @sync-38737426
+  @UnbilledPolicies
   Scenario: Add Unbilled Policies summary View tab in the report
     When the user generates the report with a random name
     And the user navigates to the generated report
@@ -78,6 +81,7 @@ Feature: Unbilled Policies
 
   @TC-366
   @sync-38737425
+  @UnbilledPolicies
   Scenario: Unbilled Policies Check Columns spelling and Show/Hide columns option
     And the user generates the report with a random name
     When the user navigates to the generated report

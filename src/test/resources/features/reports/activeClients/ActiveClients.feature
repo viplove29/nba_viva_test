@@ -11,6 +11,8 @@ Feature: Active Clients
 
   @TC-90
   @sync-30863379
+  @ActiveClients
+  @SmokeTest
   Scenario: Quick Actions to Excel Exports Properly
     When the user clicks on the Quick Actions "XLS" button
     And the user navigates to the generated report
@@ -18,6 +20,8 @@ Feature: Active Clients
 
   @TC-289
   @sync-38373633
+  @ActiveClients
+  @SmokeTest
   Scenario Outline: Export to Excel/CSV File Format Options
     When the user navigates to the generated report
     And the user selects "Detail View" tab
@@ -38,6 +42,7 @@ Feature: Active Clients
 
   @TC-97
   @sync-30863439
+  @ActiveClients
   Scenario Outline: Business Unit columns appear together in the proper order
     When the user navigates to the generated report
     And the user selects "<Options>" under the hide show icon
@@ -52,6 +57,7 @@ Feature: Active Clients
 
   @TC-152
   @sync-30863494
+  @ActiveClients
   Scenario Outline: Branch and Group are not available when not enabled in source database
     When the user navigates to the generated report
     And the user selects "<Options>" under the hide show icon
@@ -64,6 +70,7 @@ Feature: Active Clients
 
   @TC-288
   @sync-38373567
+  @ActiveClients
   Scenario: Active Clients Filters option functions properly
     When the user navigates to the generated report
     And the user clicks on the Filter symbol
@@ -75,6 +82,7 @@ Feature: Active Clients
 
   @TC-287
   @sync-38373492
+  @ActiveClients
   Scenario: "Active Clients" report sort option functions properly
     When the user navigates to the generated report
     And the user selects "Detail View" tab
@@ -103,6 +111,7 @@ Feature: Active Clients
 
   @TC-301
   @sync-38406567
+  @ActiveClients
   Scenario: Active Clients Add new Summary View tab in the report
     When the user navigates to the generated report
     And the user clicks the add summary tab
@@ -132,6 +141,7 @@ Feature: Active Clients
   @TC-553
   @sync-55481667
   @Version-22R2
+  @ActiveClients
   Scenario: Verify Functionality of Personnel Filters in Active Client Report in MAR
     And the user selects "Active Clients" Report Template
     And the user expands "Personnel" filter
@@ -160,6 +170,7 @@ Feature: Active Clients
   @TC-551
   @sync-55481207
   @Version-22R2
+  @ActiveClients
   Scenario: Verify Functionality of BU Filters in Active Client Report in MAR
     And the user selects "Active Clients" Report Template
     And the user expands "Business Unit" filter
@@ -172,6 +183,7 @@ Feature: Active Clients
   @TC-552
   @sync-55481381
   @Version-22R2
+  @ActiveClients
   Scenario: Data Validation Using New BU Filters for the Active Client Report in MAR
     And the user selects "Active Clients" Report Template
     And the user expands "Business Unit" filter
@@ -190,6 +202,7 @@ Feature: Active Clients
 
   @TC-290
   @sync-38374686
+  @ActiveClients
   Scenario: Active Clients Check Columns spelling and Show/Hide columns option
     When the user navigates to the generated report
     And the user selects "Detail View" tab
@@ -220,6 +233,7 @@ Feature: Active Clients
   @TC-554
   @sync-55485588
   @Version-22R2
+  @ActiveClients
   Scenario: Data Validation Using New Personnel Filters for the Active Client Report in MAR
     And the user selects "Active Clients" Report Template
     And the user expands "Personnel" filter
@@ -266,6 +280,7 @@ Feature: Active Clients
   @TC-556
   @sync-55870491
   @Version-22R2
+  @ActiveClients
   Scenario: Verify Functionality of Active/Inactive/All BU Filters in Active Clients Report in MAR
     And the user selects "Active Clients" Report Template
     And the user expands "Business Unit" filter
@@ -291,6 +306,7 @@ Feature: Active Clients
   @TC-568
   @sync-56019102
   @Version-22R2
+  @ActiveClients
   Scenario: Data Validation Using New BU Active/Inactive Filters - Active Client (MAR)
     And the user selects "Active Clients" Report Template
     And the user expands "Business Unit" filter

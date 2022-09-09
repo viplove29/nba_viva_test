@@ -9,6 +9,8 @@ Feature: General Ledger
 
   @TC-536
   @sync-53674482
+  @GeneralLedger
+  @SmokeTest
   Scenario: Verify updated General ledger modal
     Then the user sets date range from "01/01/2021" to "12/31/2021"
     And the user expands "Business Unit" filter
@@ -22,6 +24,7 @@ Feature: General Ledger
 
   @TC-537
   @sync-53675629
+  @GeneralLedger
   Scenario: Verify Range of Accounts option from Account Numbers/Sub-ledgers section
     Then the user selects "Range of Accounts" from "Numbers" dropdown under Account Numbers/Sub-ledgers section
     And the user selects "11120000 - Premium Trust Account" from "Ending" dropdown under Account Numbers/Sub-ledgers section
@@ -30,6 +33,7 @@ Feature: General Ledger
 
   @TC-539
   @sync-53688478
+  @GeneralLedger
   Scenario Outline: Verify Specific Account Number new filters
     Then the user selects "Specific Account Number" from "Numbers" dropdown under Account Numbers/Sub-ledgers section
     And the user selects random value from "Specific Number" dropdown under Account Numbers/Sub-ledgers section
@@ -50,6 +54,7 @@ Feature: General Ledger
 
   @TC-327
   @sync-38660858
+  @GeneralLedger
   Scenario: "General Ledger" report sort option functions properly
     And the user generates the report with a random name
     When the user navigates to the generated report
@@ -67,6 +72,7 @@ Feature: General Ledger
 
   @TC-331
   @sync-38660867
+  @GeneralLedger
   Scenario: Add General Ledger summary View tab in the report
     When the user generates the report with a random name
     And the user navigates to the generated report
@@ -96,6 +102,7 @@ Feature: General Ledger
 
   @TC-330
   @sync-38660865
+  @GeneralLedger
   Scenario: General Ledger Check Columns spelling and Show/Hide columns option
     When the user generates the report with a random name
     And the user navigates to the generated report
@@ -123,6 +130,7 @@ Feature: General Ledger
   @TC-562
   @sync-55872259
   @Version-22R2
+  @GeneralLedger
   Scenario: Verify Functionality of Active/Inactive/All BU Filters in General Ledger Report in MAR
     And the user expands "Business Unit" filter
     Then the user searches for "JJ Inactive" in the "Division" section dropdown and verifies all of the statuses are equal to "Inactive"
@@ -147,6 +155,7 @@ Feature: General Ledger
   @TC-570
   @sync-56019132
   @Version-22R2
+  @GeneralLedger
   Scenario: Data Validation Using New BU Active/Inactive Filters - General Ledger (MAR)
     And the user selects Current year to date date range from list
     And the user expands "Business Unit" filter

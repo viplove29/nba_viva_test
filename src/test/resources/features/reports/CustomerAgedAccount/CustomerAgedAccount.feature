@@ -10,6 +10,7 @@ Feature: Customer Aged Account
 
   @TC-303
   @sync-38477963
+  @CustomerAgedAccount
   Scenario: "Customer Aged Account" report Filters option functions properly
     And the user generates the report with a random name
     When the user navigates to the generated report
@@ -25,6 +26,7 @@ Feature: Customer Aged Account
 
   @TC-306
   @sync-38478006
+  @CustomerAgedAccount
   Scenario: Add Customer Aged Account summary View tab in the report
     When the user generates the report with a random name
     And the user navigates to the generated report
@@ -55,6 +57,7 @@ Feature: Customer Aged Account
 
   @TC-305
   @sync-38477992
+  @CustomerAgedAccount
   Scenario: Customer Aged Account  Check Columns spelling and Show/Hide columns option
     When the user generates the report with a random name
     And the user navigates to the generated report

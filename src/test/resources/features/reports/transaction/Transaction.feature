@@ -10,6 +10,7 @@ Feature: Transaction
 
   @TC-359
   @sync-38737417
+  @Transaction
   Scenario: "Transaction" report Filters option functions properly
     Then the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
@@ -25,6 +26,7 @@ Feature: Transaction
 
   @TC-358
   @sync-38737188
+  @Transaction
   Scenario: "Transaction" report sort option functions properly
     And the user generates the report with a random name
     When the user navigates to the generated report
@@ -49,6 +51,7 @@ Feature: Transaction
 
   @TC-362
   @sync-38737195
+  @Transaction
   Scenario: Add Transaction summary View tab in the report
     When the user generates the report with a random name
     And the user navigates to the generated report
@@ -78,6 +81,7 @@ Feature: Transaction
 
   @TC-361
   @sync-38737194
+  @Transaction
   Scenario: Transaction Check Columns spelling and Show/Hide columns option
     And the user generates the report with a random name
     When the user navigates to the generated report

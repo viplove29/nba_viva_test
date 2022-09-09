@@ -10,6 +10,7 @@ Feature: New Business
 
   @TC-338
   @sync-38702114
+  @NewBusiness
   Scenario: "New Business" report Filters option functions properly
     Then the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
@@ -25,6 +26,7 @@ Feature: New Business
 
   @TC-337
   @sync-38702112
+  @NewBusiness
   Scenario: "New Business" report sort option functions properly
     And the user selects Current year to date date range from list
     And the user generates the report with a random name
@@ -52,6 +54,7 @@ Feature: New Business
 
   @TC-341
   @sync-38702126
+  @NewBusiness
   Scenario: Add New Business summary View tab in the report
     When the user generates the report with a random name
     And the user navigates to the generated report
@@ -82,6 +85,7 @@ Feature: New Business
 
   @TC-340
   @sync-38702124
+  @NewBusiness
   Scenario: New Business Check Columns spelling and Show/Hide columns option
     And the user generates the report with a random name
     When the user navigates to the generated report

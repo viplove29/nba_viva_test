@@ -10,6 +10,7 @@ Feature: Finance Company Net Balance
 
   @TC-94
   @sync-30863436
+  @FinanceCompanyNetBalance
   Scenario: "Finance Company Net Balance" report Filters option functions properly
     And the user generates the report with a random name
     When the user navigates to the generated report
@@ -24,6 +25,7 @@ Feature: Finance Company Net Balance
 
   @TC-281
   @sync-37630839
+  @FinanceCompanyNetBalance
   Scenario: "Finance Company Net Balance" report sort option functions properly
     And the user generates the report with a random name
     When the user navigates to the generated report
@@ -42,6 +44,7 @@ Feature: Finance Company Net Balance
 
   @TC-320
   @sync-38590249
+  @FinanceCompanyNetBalance
   Scenario: Add Finance Company Net Balance summary View tab in the report
     When the user generates the report with a random name
     And the user navigates to the generated report
@@ -71,6 +74,7 @@ Feature: Finance Company Net Balance
 
   @TC-280
   @sync-37629972
+  @FinanceCompanyNetBalance
   Scenario: Finance Company Net Balance Check Columns spelling and Show/Hide columns option Receivable Check Columns spelling and Show/Hide columns option
     And the user generates the report with a random name
     When the user navigates to the generated report

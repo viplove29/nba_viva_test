@@ -10,6 +10,7 @@ Feature: Commission Payable Statement
 
   @TC-279
   @sync-37490509
+  @CommissionPayableStatement
   Scenario: "Commission Payable Statement" report sort option functions properly
   Then the user sets date range from "01/01/2010" to today
   And the user generates the report with a random name
@@ -31,6 +32,7 @@ Feature: Commission Payable Statement
 
   @TC-57
   @sync-30863346
+  @CommissionPayableStatement
   Scenario: Commission Payable Statement Check Columns spelling and Show/Hide columns option
     Then the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name

@@ -10,6 +10,7 @@ Background:
 
   @TC-3
   @sync-30862900
+  @BalanceSheet
   Scenario: Balance Sheet_Check Columns spelling and Show/Hide columns option
     When the user generates the report with a random name
     And the user navigates to the generated report
@@ -24,6 +25,8 @@ Background:
 
   @TC-266
   @sync-38702114
+  @BalanceSheet
+  @SmokeTest
   Scenario: "Balance Sheet" report Filters option functions properly
     Then the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
@@ -38,6 +41,8 @@ Background:
 
   @TC-265
   @sync-36868106
+  @BalanceSheet
+  @SmokeTest
   Scenario: "Balance Sheet" report sort option functions properly
     And the user generates the report with a random name
     When the user navigates to the generated report
@@ -57,6 +62,7 @@ Background:
 
   @TC-3
   @sync-30862900
+  @BalanceSheet
   Scenario: Balance Sheet Check Columns spelling and Show/Hide columns option
     When the user generates the report with a random name
     And the user navigates to the generated report
