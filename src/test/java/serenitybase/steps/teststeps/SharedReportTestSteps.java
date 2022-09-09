@@ -90,6 +90,12 @@ public class SharedReportTestSteps {
   }
 
   @Step
+  public void setFilterValueToRangeFromTo(String from, String to) {
+    sharedReportPage.setFilterPresetToRange();
+    sharedReportPage.setFilterRangeFromAndTo(from, to);
+  }
+
+  @Step
   public void verifyColumnValuesAreEqualTo(String columnName, String value) {
     List<Map<String, String>> gridData = sharedReportPage.getReportGridDataAsMaps();
     for (Map<String, String> rowData : gridData) {

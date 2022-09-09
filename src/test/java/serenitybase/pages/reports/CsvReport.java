@@ -2,14 +2,13 @@ package serenitybase.pages.reports;
 
 import au.com.bytecode.opencsv.CSVReader;
 import com.google.common.primitives.Ints;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 import java.util.stream.IntStream;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.apache.commons.io.input.BOMInputStream;
 import serenitybase.helpers.Utilities;
 
 public class CsvReport {
@@ -22,7 +21,8 @@ public class CsvReport {
   public List<String> getCsvReportHeaders() {
     try {
       String absolutePath = Utilities.getMostRecentFile();
-      return Arrays.asList(new CSVReader(new FileReader(absolutePath)).readNext());
+      BOMInputStream bomStream = new BOMInputStream(new FileInputStream(absolutePath));
+      return Arrays.asList(new CSVReader(new InputStreamReader(bomStream)).readNext());
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
