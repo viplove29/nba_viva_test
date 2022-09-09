@@ -100,6 +100,15 @@ public class ReportBasePage extends PageObject {
   @FindBy(xpath = ".//a[contains(text(), 'Equal to')]")
   protected WebElementFacade equalToValue;
 
+  @FindBy(xpath = ".//a[contains(text(), 'Range')]")
+  protected WebElementFacade rangeValue;
+
+  @FindBy(xpath = "//date-popup[contains(@control, 'minControl')]//input")
+  protected WebElementFacade rangeFrom;
+
+  @FindBy(xpath = "//date-popup[contains(@control, 'maxControl')]//input")
+  protected WebElementFacade rangeTo;
+
   @FindBy(
       xpath = "//div[contains(@class, 'active')]//div[contains(@class, 'rpt-grid-header-text')]")
   private List<WebElementFacade> reportGridHeaders;
@@ -317,6 +326,18 @@ public class ReportBasePage extends PageObject {
     if (dropdownMenuButton.getAttribute("aria-expanded").contains("true")) {
       dropdownMenuButton.click();
     }
+  }
+
+  public void setFilterPresetToRange() {
+    filterPresetDropDown.click();
+    rangeValue.click();
+  }
+
+  public void setFilterRangeFromAndTo(String from, String to) {
+    rangeFrom.click();
+    rangeFrom.sendKeys(from);
+    rangeTo.click();
+    rangeTo.sendKeys(to);
   }
 
   private WebElement findColumnByColumnNameInTab(WebElement element, String value) {

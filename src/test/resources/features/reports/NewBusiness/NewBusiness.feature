@@ -111,3 +111,26 @@ Feature: New Business
     Then the user verifies the following columns are not displayed in tab
       | Revenue |
 
+  @TC-587
+  @sync-116430385
+  @NewBusiness
+  Scenario: "New Business" report displaying correct data after exporting to excel
+    Then the user sets date range from "01/01/2022" to today
+    And the user generates the report with a random name
+    When the user navigates to the generated report
+    And the user selects "Detail View" tab
+    And the user clicks on the Filter symbol
+    And the user clicks on the Add Filters button
+    And the user selects "Policy Effective Date" under Filters
+    And the user sets the Filter to range from "01/01/2022" to today
+    And the user clicks on the Apply button
+    And the user selects "Export Report" under Actions
+    And use user exports the report with the following options
+      | Excel | Editable | False | Visible | Full Data Set |
+    Then the exported report is a "Excel" file format
+    Then the exported report has the same columns as the web report
+    And the user selects "Export Report" under Actions
+    And use user exports the report with the following options
+      | CSV |        |        | Visible | Full Data Set |
+    Then the exported report is a "CSV" file format
+    Then the exported report has the same columns as the web report

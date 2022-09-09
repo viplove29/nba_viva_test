@@ -2,6 +2,8 @@ package serenitybase.steps.stepdefinitions;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import net.thucydides.core.annotations.Steps;
 import org.jetbrains.annotations.NotNull;
@@ -211,5 +213,13 @@ public class SharedReportStepDefinitions {
   public void the_user_presses_the_back_button() {
     Utilities.simpleSleep(500);
     sharedReportTestSteps.pressBackArrow();
+  }
+
+  @When("the user sets the Filter to range from {string} to today")
+  public void the_user_sets_the_filter_to_range_from_to_today(String from) {
+    LocalDateTime date = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+    String dateAsText = date.format(formatter);
+    sharedReportTestSteps.setFilterValueToRangeFromTo(from, dateAsText);
   }
 }
