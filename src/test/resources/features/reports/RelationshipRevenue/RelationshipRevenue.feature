@@ -10,6 +10,7 @@ Feature: Relationship Revenue
 
   @TC-350
   @sync-38729771
+  @RelationshipRevenue
   Scenario: "Relationship Revenue" report Filters option functions properly
     And the user generates the report with a random name
     When the user navigates to the generated report
@@ -24,6 +25,7 @@ Feature: Relationship Revenue
 
   @TC-352
   @sync-38729773
+  @RelationshipRevenue
   Scenario: Add Relationship Revenue summary View tab in the report
     When the user generates the report with a random name
     And the user navigates to the generated report
@@ -53,6 +55,7 @@ Feature: Relationship Revenue
 
   @TC-353
   @sync-38729776
+  @RelationshipRevenue
   Scenario: Relationship Revenue Check Columns spelling and Show/Hide columns option
     And the user generates the report with a random name
     When the user navigates to the generated report

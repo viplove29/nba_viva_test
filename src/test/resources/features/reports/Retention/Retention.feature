@@ -10,6 +10,7 @@ Feature: Retention
 
   @TC-354
   @sync-38736483
+  @Retention
   Scenario: "Retention" report sort option functions properly
     And the user generates the report with a random name
     When the user navigates to the generated report
@@ -34,6 +35,7 @@ Feature: Retention
 
   @TC-356
   @sync-38736486
+  @Retention
   Scenario: Add Retention summary View tab in the report
     When the user generates the report with a random name
     And the user navigates to the generated report
@@ -63,6 +65,7 @@ Feature: Retention
 
   @TC-357
   @sync-38736487
+  @Retention
   Scenario: Retention Check Columns spelling and Show/Hide columns option
     And the user generates the report with a random name
     When the user navigates to the generated report

@@ -10,6 +10,7 @@ Feature: Chart Of Accounts Policies
 
   @TC-277
   @sync-37443980
+  @ChartOfAccounts
   Scenario: "Chart Of Accounts" report Filters option functions properly
     And the user generates the report with a random name
     When the user navigates to the generated report
@@ -23,6 +24,7 @@ Feature: Chart Of Accounts Policies
 
   @TC-276
   @sync-37443848
+  @ChartOfAccounts
   Scenario: "Chart Of Accounts" report sort option functions properly
     And the user generates the report with a random name
     When the user navigates to the generated report
@@ -41,6 +43,7 @@ Feature: Chart Of Accounts Policies
 
   @TC-278
   @sync-37444609
+  @ChartOfAccounts
   Scenario: Chart of Accounts Check Columns spelling and Show/Hide columns option
     When the user generates the report with a random name
     And the user navigates to the generated report

@@ -9,6 +9,7 @@ Feature: Customer Policy Extract
 
   @TC-523
   @sync-53071667
+  @CustomerPolicyExtract
   Scenario: Customer Extract tab check columns spelling and Show/Hide columns option
     And the user generates the report with a random name
     When the user navigates to the generated report
@@ -36,6 +37,7 @@ Feature: Customer Policy Extract
 
   @TC-524
   @sync-53071667
+  @CustomerPolicyExtract
   Scenario: Policy Extract tab check columns spelling and Show/Hide columns option
     And the user generates the report with a random name
     When the user navigates to the generated report
@@ -66,6 +68,7 @@ Feature: Customer Policy Extract
 
   @TC-525
   @sync-53079560
+  @CustomerPolicyExtract
   Scenario Outline: "Customer/Policy Extract" report export to Excel File Format Options
     And the user generates the report with a random name
     When the user navigates to the generated report
@@ -86,6 +89,7 @@ Feature: Customer Policy Extract
   @TC-560
   @sync-55872146
   @Version-22R2
+  @CustomerPolicyExtract
   Scenario: Verify Functionality of Active/Inactive/All BU Filters in Customer/Policy Extract Report in MAR
     And the user expands "Business Unit" filter
     Then the user searches for "JJ Inactive" in the "Division" section dropdown and verifies all of the statuses are equal to "Inactive"
@@ -110,6 +114,7 @@ Feature: Customer Policy Extract
   @TC-567
   @sync-56018850
   @Version-22R2
+  @CustomerPolicyExtract
   Scenario: Data Validation Using New BU Active/Inactive Filters - Customer Policy Extract (MAR)
     And the user expands "Business Unit" filter
     And the user selects the "All" option under the Status section
@@ -151,6 +156,7 @@ Feature: Customer Policy Extract
   @sync-53071667
   @TC-526
   @sync-53079875
+  @CustomerPolicyExtract
   Scenario: "Customer/Policy Extract" report Filters option functions properly
     And the user expands "Business Unit" filter
     And the user selects "April Division" from "Division" category

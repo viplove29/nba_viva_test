@@ -10,6 +10,7 @@ Feature: Lost Business
 
   @TC-333
   @sync-38666740
+  @LostBusiness
   Scenario: "Lost Business" report Filters option functions properly
     Then the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
@@ -25,6 +26,7 @@ Feature: Lost Business
 
   @TC-332
   @sync-38666738
+  @LostBusiness
   Scenario: "Lost Business" report sort option functions properly
     Then the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
@@ -50,6 +52,7 @@ Feature: Lost Business
 
   @TC-336
   @sync-38666745
+  @LostBusiness
   Scenario: Add Lost Business summary View tab in the report
     When the user generates the report with a random name
     And the user navigates to the generated report
@@ -79,6 +82,7 @@ Feature: Lost Business
 
   @TC-335
   @sync-38666744
+  @LostBusiness
   Scenario: Lost Business Check Columns spelling and Show/Hide columns option
     And the user generates the report with a random name
     When the user navigates to the generated report

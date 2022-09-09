@@ -11,6 +11,7 @@ Feature: Customer Net Balance Policies
 
   @TC-312
   @sync-38582368
+  @CustomerNetBalance
   Scenario: "Customer Net Balance" report sort option functions properly
     And the user generates the report with a random name
     When the user navigates to the generated report
@@ -36,6 +37,7 @@ Feature: Customer Net Balance Policies
 
   @TC-313
   @sync-38582373
+  @CustomerNetBalance
   Scenario: "Customer Net Balance" report Filters option functions properly
     And the user generates the report with a random name
     When the user navigates to the generated report
@@ -50,6 +52,7 @@ Feature: Customer Net Balance Policies
 
   @TC-316
   @sync-38582376
+  @CustomerNetBalance
   Scenario: Add Customer Net Balance summary View tab in the report
     When the user generates the report with a random name
     And the user navigates to the generated report
@@ -80,6 +83,7 @@ Feature: Customer Net Balance Policies
 
   @TC-315
   @sync-38582375
+  @CustomerNetBalance
   Scenario: Customer Net Balance Check Columns spelling and Show/Hide columns option
     When the user generates the report with a random name
     And the user navigates to the generated report

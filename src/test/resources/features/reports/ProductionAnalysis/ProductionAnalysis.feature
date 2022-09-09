@@ -10,6 +10,7 @@ Feature: Production Analysis
 
   @TC-285
   @sync-38233623
+  @ProductionAnalysis
   Scenario: "Production Analysis" report Filters option functions properly
     Then the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
@@ -24,6 +25,7 @@ Feature: Production Analysis
 
   @TC-284
   @sync-38233581
+  @ProductionAnalysis
   Scenario: "Production Analysis" report sort option functions properly
     And the user generates the report with a random name
     When the user navigates to the generated report
@@ -47,6 +49,7 @@ Feature: Production Analysis
 
   @TC-240
   @sync-30863642
+  @ProductionAnalysis
   Scenario: Production Analysis Check Columns spelling and Show/Hide columns option
     And the user generates the report with a random name
     When the user navigates to the generated report
@@ -72,6 +75,7 @@ Feature: Production Analysis
   @TC-559
   @sync-55872138
   @Version-22R2
+  @ProductionAnalysis
   Scenario: Verify Functionality of Active/Inactive/All BU Filters in Production Analysis Report in MAR
     And the user expands "Business Unit" filter
     Then the user searches for "JJ Inactive" in the "Division" section dropdown and verifies all of the statuses are equal to "Inactive"
@@ -96,6 +100,7 @@ Feature: Production Analysis
   @TC-566
   @sync-56018830
   @Version-22R2
+  @ProductionAnalysis
   Scenario: Data Validation Using New BU Active/Inactive Filters - Production Analysis (MAR)
     And the user selects Current year to date date range from list
     And the user expands "Business Unit" filter

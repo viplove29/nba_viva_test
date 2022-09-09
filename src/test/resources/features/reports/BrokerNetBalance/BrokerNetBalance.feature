@@ -10,6 +10,7 @@ Feature: Broker Net Balance
 
   @TC-292
   @sync-38392818
+  @BrokerNetBalance
   Scenario: "Broker Net Balance" report Filters option functions properly
     And the user generates the report with a random name
     When the user navigates to the generated report
@@ -23,6 +24,7 @@ Feature: Broker Net Balance
 
   @TC-291
   @sync-38392817
+  @BrokerNetBalance
   Scenario: "Broker Net Balance" report sort option functions properly
     And the user generates the report with a random name
     When the user navigates to the generated report
@@ -41,6 +43,7 @@ Feature: Broker Net Balance
 
   @TC-295
   @sync-38393252
+  @BrokerNetBalance
   Scenario: Broker Net Balance Add new Summary View tab in the report
     When the user generates the report with a random name
     And the user navigates to the generated report
@@ -70,6 +73,8 @@ Feature: Broker Net Balance
 
   @TC-294
   @sync-38392820
+  @BrokerNetBalance
+  @SmokeTest
   Scenario: Broker Net Balance Check Columns spelling and Show/Hide columns option
     When the user generates the report with a random name
     And the user navigates to the generated report

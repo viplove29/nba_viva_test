@@ -10,6 +10,7 @@ Feature: Download Detail
 
   @TC-374
   @sync-38827194
+  @DownloadDetail
   Scenario: "Download Detail" report Filters option functions properly
     Then the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
@@ -24,6 +25,7 @@ Feature: Download Detail
 
   @TC-373
   @sync-38827188
+  @DownloadDetail
   Scenario: "Download Detail" report sort option functions properly
     Then the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
@@ -49,6 +51,7 @@ Feature: Download Detail
 
   @TC-377
   @sync-38827325
+  @DownloadDetail
   Scenario: Add Download Detail summary View tab in the report
     When the user generates the report with a random name
     And the user navigates to the generated report
@@ -79,6 +82,7 @@ Feature: Download Detail
 
   @TC-376
   @sync-38827301
+  @DownloadDetail
   Scenario: Download Detail Check Columns spelling and Show/Hide columns option
     When the user generates the report with a random name
     And the user navigates to the generated report

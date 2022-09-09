@@ -10,6 +10,7 @@ Feature: Finance Company Aged Accounts Receivable
 
   @TC-322
   @sync-38659034
+  @FinanceCompanyAgedAccountsReceivable
   Scenario: "Finance Company Aged Accounts Receivable" report sort option functions properly
   And the user generates the report with a random name
   When the user navigates to the generated report
@@ -28,6 +29,7 @@ Feature: Finance Company Aged Accounts Receivable
 
   @TC-326
   @sync-38659104
+  @FinanceCompanyAgedAccountsReceivable
   Scenario: Add Finance Company Aged Accounts Receivable summary View tab in the report
     When the user generates the report with a random name
     And the user navigates to the generated report
@@ -56,6 +58,7 @@ Feature: Finance Company Aged Accounts Receivable
 
   @TC-325
   @sync-38659084
+  @FinanceCompanyAgedAccountsReceivable
   Scenario: Finance Company Aged Accounts Receivable Check Columns spelling and Show/Hide columns option
     And the user generates the report with a random name
     When the user navigates to the generated report

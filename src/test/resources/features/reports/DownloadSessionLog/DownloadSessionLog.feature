@@ -10,6 +10,7 @@ Feature: Download Session Log
 
   @TC-384
   @sync-38853862
+  @DownloadSessionLog
   Scenario: "Download Session Log" report Filters option functions properly
     Then the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
@@ -25,6 +26,7 @@ Feature: Download Session Log
 
   @TC-386
   @sync-38374686
+  @DownloadSessionLog
   Scenario: Download Session Log Check Columns spelling and Show/Hide columns option
     When the user sets date range from "01/01/2010" to today
     And the user generates the report with a random name
