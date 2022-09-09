@@ -46,13 +46,19 @@ Background:
     And the user selects "Division" under drop down
     And the user selects "Z-A" under Sort
     And the user clicks on the Apply button
+    And the user names the template "balanceSheetTemplate"
+    And the user saves the template
+    And the user clicks the Ok button
     Then the user verifies that the values of "Division" are in descending order
-    And the user clicks the cancel button
     And the user clicks on the Sort symbol
     And the user selects "A-Z" under Sort
     And the user clicks on the Apply button
     Then the user verifies that the values of "Division" are in ascending order
-    And the user clicks the cancel button
+    And the user clicks on the Sort symbol
+    And the user presses the back arrow
+    And the user search for the template named "balanceSheetTemplate"
+    And the user presses the templates action menu
+    And the user selects the delete menu item
 
 
   @TC-3
