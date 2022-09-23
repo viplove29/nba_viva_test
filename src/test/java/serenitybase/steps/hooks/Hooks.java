@@ -77,7 +77,7 @@ public class Hooks {
         Runtime.getRuntime().exec("taskkill /F /IM " + processName);
       }
     } catch (Exception e) {
-      System.out.println("Exception during taskKill");
+      System.out.println("Exception during taskKill of process - " + processName);
     }
   }
 
