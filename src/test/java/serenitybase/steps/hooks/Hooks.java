@@ -36,7 +36,7 @@ public class Hooks {
       System.out.println("Scenario without version - will be run in all MAR environments");
       return;
     } else if (versionTags.size() > 1) {
-      throw new RuntimeException("Multiple Version Tags per Scenario not supported");
+      throw new RuntimeException("Multiple Version Tags per Scenario are not supported");
     }
     String version = versionTags.get(0).substring(versionTags.get(0).lastIndexOf("-") + 1);
     if (version.length() != 4 || !version.matches("^\\d{2}[R]\\d")) {
