@@ -222,4 +222,9 @@ public class SharedReportStepDefinitions {
     String dateAsText = date.format(formatter);
     sharedReportTestSteps.setFilterValueToRangeFromTo(from, dateAsText);
   }
+
+  @When("the user scrolls the current tab horizontally to the end")
+  public void the_user_scrolls_the_current_tab_horizontally_to_the_end() {
+    sharedReportTestSteps.scrollTheCurrentTabHorizontallyToTheEnd();
+  }
 }
