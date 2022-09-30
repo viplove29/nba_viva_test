@@ -107,4 +107,16 @@ Feature: Transaction
     Then the user verifies the following columns are not displayed in tab
       | Transaction Premium |
 
-
+  @TC-545
+  @sync-54792178
+  @Transaction
+  Scenario: Transaction report contains Estimated Revenue and Estimated Revenue Percent default hidden columns
+    And the user generates the report with a random name
+    When the user navigates to the generated report
+    And the user selects "Detail View" tab
+    And the user selects "Estimated Revenue" under the hide show icon
+    And the user selects "Estimated Revenue Percent" under the hide show icon
+    And the user scrolls the current tab horizontally to the end
+    Then the user verifies the following columns are displayed in tab
+      | Estimated Revenue         |
+      | Estimated Revenue Percent |

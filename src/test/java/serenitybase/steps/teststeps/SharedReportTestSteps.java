@@ -272,4 +272,9 @@ public class SharedReportTestSteps {
       assertThat(rowData.get(columnName.toUpperCase()).startsWith(value));
     }
   }
+
+  @Step
+  public void scrollTheCurrentTabHorizontallyToTheEnd() {
+    sharedReportPage.scrollTheCurrentTabHorizontallyToTheEnd();
+  }
 }

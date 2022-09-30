@@ -150,6 +150,22 @@ public class ReportBasePage extends PageObject {
     scrollToElement(element);
   }
 
+  public void scrollTheCurrentTabHorizontallyToTheEnd() {
+    WebElementFacade activeTabContent =
+        find(By.id(Serenity.sessionVariableCalled("activeTabContentId")));
+    int viewportIndex = DETAIL_VIEW_TAB_VIEWPORT_INDEX;
+    if (!activeTabContent.getAttribute("id").equals(DETAIL_VIEW_TAB_ID)) {
+      viewportIndex = TAB_VIEWPORT_INDEX;
+    }
+    int tabWidth = activeTabContent.getSize().width;
+    String script =
+        String.format(
+            "document.getElementById('%s').getElementsByClassName('ui-grid-viewport')[%d].scrollLeft = %d",
+            activeTabContent.getAttribute("id"), viewportIndex, tabWidth);
+    JavascriptExecutor executor = ((JavascriptExecutor) getDriver());
+    executor.executeScript(script);
+  }
+
   public void selectOptionUnderFilters(String option) {
     throw new RuntimeException("Select Option under filters not implemented in ReportBasePage");
   }
@@ -303,6 +319,7 @@ public class ReportBasePage extends PageObject {
   public void selectOptionUnderHideShowIcon(String option) {
     showHideIconButton.click();
     find(String.format("//*[text()='%s']", option)).click();
+    showHideIconButton.click();
   }
 
   public void selectTab(String tabName) {
@@ -351,6 +368,7 @@ public class ReportBasePage extends PageObject {
       horizontalScroll(column);
       return column.isDisplayed();
     } catch (Exception ex) {
+      ex.printStackTrace();
       return false;
     }
   }
