@@ -15,4 +15,12 @@ public class AgencySelectionPage extends PageObject {
         .click();
     loginButton.click();
   }
+
+  public String getCurrentURL() {
+    return getDriver().getCurrentUrl();
+  }
+
+  public void backup() {
+    getDriver().navigate().back();
+  }
 }

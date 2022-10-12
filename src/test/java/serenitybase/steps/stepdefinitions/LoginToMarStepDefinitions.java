@@ -21,16 +21,19 @@ public class LoginToMarStepDefinitions {
       case "SuperAdmin":
         loginToMarTestSteps.logIn(
             Configuration.MAR_SUPERADMIN, Configuration.MAR_SUPERADMIN_PASSWORD);
+        loginToMarTestSteps.waitForAgencyPage();
         loginToMarTestSteps.selectAgency();
         break;
       case "AgencyAdmin":
         loginToMarTestSteps.logIn(
             Configuration.MAR_AGENCYADMIN, Configuration.MAR_AGENCYADMIN_PASSWORD);
+        loginToMarTestSteps.waitForAgencyPage();
         loginToMarTestSteps.selectAgency();
         break;
       case "RegularUser":
         loginToMarTestSteps.logIn(
             Configuration.MAR_REGULARUSER, Configuration.MAR_REGULARUSER_PASSWORD);
+        loginToMarTestSteps.waitForAgencyPage();
         loginToMarTestSteps.selectAgency();
         break;
       default:
