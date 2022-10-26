@@ -72,3 +72,38 @@ Feature: Book of Business
     Then the user verifies all of the data under the "Branch" header in the file from the generated report is set to "JJ Inactive 1"
     Then the user verifies all of the data under the "Department" header in the file from the generated report is set to "JJ Inactive 1"
     Then the user verifies all of the data under the "Group" header in the file from the generated report is set to "JJ Inactive 1"
+
+  @TC-590
+  @TC-591
+  @sync-116722312
+  @sync-116722312
+  @Version-22R2
+  @BookOfBusiness
+  Scenario: Book of Business report contains newly added columns and they are exported to the excel file
+    And the user generates the report with a random name
+    When the user navigates to the generated report
+    And the user selects "Detail View" tab
+    And the user selects "Customer Id" under the hide show icon
+    And the user selects "Underwriter" under the hide show icon
+    And the user selects "Acquisition Description" under the hide show icon
+    And the user selects "Customer Is In A Relationship" under the hide show icon
+    And the user selects "Customer Business Entity" under the hide show icon
+    And the user selects "Policy Entered Date" under the hide show icon
+    And the user scrolls the current tab horizontally to the end
+    Then the user verifies the following columns are displayed in tab
+      | Customer Id                   |
+      | Underwriter                   |
+      | Acquisition Description       |
+      | Customer Is In A Relationship |
+      | Customer Business Entity      |
+      | Policy Entered Date           |
+    And the user selects "Export Report" under Actions
+    And use user exports the report with the following options
+      | Excel | Editable | False | Visible | Full Data Set |
+    Then the exported report is a "Excel" file format
+    Then the exported report has the same columns as the web report
+    And the user selects "Export Report" under Actions
+    And use user exports the report with the following options
+      | CSV |        |        | Visible | Full Data Set |
+    Then the exported report is a "CSV" file format
+    Then the exported report has the same columns as the web report
