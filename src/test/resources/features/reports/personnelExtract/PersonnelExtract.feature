@@ -15,16 +15,17 @@ Feature: Personnel Extract
     When the user navigates to the generated report
     And the user selects "Policy Personnel Extract" tab
     Then the user verifies the following columns are displayed in tab
-      | Customer Name                       |
-      | Customer Number                     |
-      | Policy Number                       |
-      | Policy Id                           |
-      | Current Personnel Name              |
-      | Current Personnel Type              |
-      | Type of Business                    |
-      | Primary                             |
-      | New Personnel Name (optional)       |
-      | New Personnel Short Name (required) |
+      | Customer Name                |
+      | Customer Number              |
+      | Policy Number                |
+      | Policy Id                    |
+      | Current Personnel Name       |
+      | Current Personnel Short Name |
+      | Current Personnel Type       |
+      | Type of Business             |
+      | Primary                      |
+      | New Personnel Name           |
+      | New Personnel Short Name     |
 
   @TC-532
   @sync-53235678
@@ -34,13 +35,14 @@ Feature: Personnel Extract
     When the user navigates to the generated report
     And the user selects "Customer Personnel Extract" tab
     Then the user verifies the following columns are displayed in tab
-      | Customer Name                       |
-      | Customer Number                     |
-      | Current Personnel Name              |
-      | Current Personnel Type              |
-      | Primary                             |
-      | New Personnel Name (optional)       |
-      | New Personnel Short Name (required) |
+      | Customer Name                |
+      | Customer Number              |
+      | Current Personnel Name       |
+      | Current Personnel Short Name |
+      | Current Personnel Type       |
+      | Primary                      |
+      | New Personnel Name           |
+      | New Personnel Short Name     |
 
 
   @TC-530
