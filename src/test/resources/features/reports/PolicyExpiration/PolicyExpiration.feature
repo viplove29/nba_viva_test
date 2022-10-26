@@ -202,7 +202,7 @@ Feature: Policy Expiration
   @Version-22R2
   @PolicyExpiration
   Scenario: Data Validation Using New BU Active/Inactive Filters - Policy Expiration (MAR)
-    And the user selects Current quarter to date date range from list
+    And the user selects Current year to date date range from list
     And the user expands "Business Unit" filter
     And the user selects the "All" option under the Status section
     And the user selects "JJ Active" from "Division" category and closes the dropdown
@@ -221,6 +221,7 @@ Feature: Policy Expiration
     Then the user verifies all of the data under the "Department" header in the file from the generated report is set to "JJ Active 1"
     Then the user verifies all of the data under the "Group" header in the file from the generated report is set to "JJ Active 1"
     And the user selects "Policy Expiration" Report Template
+    And the user selects Current year to date date range from list
     And the user expands "Business Unit" filter
     And the user selects the "Inactive" option under the Status section
     And the user selects "JJ Inactive" from "Division" category and closes the dropdown
