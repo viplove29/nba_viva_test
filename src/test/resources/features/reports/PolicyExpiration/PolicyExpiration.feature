@@ -244,7 +244,7 @@ Feature: Policy Expiration
   @Version-22R2
   @PolicyExpiration
   Scenario: Data Validation Using New Company Filters for the Policy Expiration Report in MAR
-    And the user selects Current quarter to date date range from list
+    And the user selects Current year to date date range from list
     And the user expands "Company" filter
     And the user clicks the "Select Multiple" option under the "Parent" section
     And the user searches for "Progressive" in the dropdown under the Company "Parent" section and selects the top option
@@ -254,7 +254,7 @@ Feature: Policy Expiration
     And the user clicks on the Quick Actions "XLS" button
     Then the user verifies all of the data under the "Parent Company" header in the file from the generated report is set to "Progressive"
     And the user selects "Policy Expiration" Report Template
-    And the user selects Current quarter to date date range from list
+    And the user selects Current year to date date range from list
     And the user expands "Company" filter
     And the user selects "Brokerage" from the company type dropdown
     And the user clicks the "Select Multiple" option under the "Parent" section
