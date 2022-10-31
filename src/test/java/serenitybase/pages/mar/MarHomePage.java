@@ -46,6 +46,9 @@ public class MarHomePage extends PageObject {
   @FindBy(name = "association-option-policy")
   private WebElementFacade policyOption;
 
+  @FindBy(name = "option-isnotbillable")
+  private WebElementFacade notBillableOnlyOption;
+
   @FindBy(id = "drop_columnvalues")
   private WebElementFacade dropDownButton;
 
@@ -470,6 +473,10 @@ public class MarHomePage extends PageObject {
                     + section
                     + "Model']//a[@id='drop_columnvalues']"))
         .click();
+  }
+
+  public void clickNotBillableOnlyRadioButton() {
+    notBillableOnlyOption.click();
   }
 
   public String getDropdownValueText(String section) {

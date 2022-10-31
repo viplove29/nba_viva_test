@@ -175,4 +175,9 @@ public class HomePageTestSteps {
   public void searchFromDropdownUnderCompany(String options, String section) {
     marHomePage.searchCompanyDropdown(section, options);
   }
+
+  @Step
+  public void clickNotBillableOnlyRadioButton() {
+    marHomePage.clickNotBillableOnlyRadioButton();
+  }
 }
