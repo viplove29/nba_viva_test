@@ -104,5 +104,19 @@ Feature: Unbilled Policies
     Then the user verifies the following columns are not displayed in tab
       | Parent Company |
 
-
+  @TC-601
+  @sync-116973338
+  @Version-22R2
+  @UnbilledPolicies
+  Scenario: "Unbilled Policies" report should pull Not Billable policies when option is selected
+    Then the user selects Not Billable Only option
+    And the user sets date range from "01/01/2021" to today
+    And the user generates the report with a random name
+    When the user navigates to the generated report
+    And the user selects "Detail View" tab
+    And the user selects "How Billed" under the hide show icon
+    And the user scrolls the current tab horizontally to the end
+    Then the user verifies the following columns are displayed in tab
+      | How Billed |
+    Then the user verifies that all the "How Billed" values on the Report are equal to "Not Billable"
 
