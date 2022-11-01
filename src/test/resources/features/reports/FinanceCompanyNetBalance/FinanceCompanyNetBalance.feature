@@ -54,21 +54,21 @@ Feature: Finance Company Net Balance
       | Age               |
       | Department        |
       | Branch            |
-    And the user names the summary "customerNetBalanceSummary"
+    And the user names the summary "companyNetBalanceSummary"
     And the user clicks the add summary button
     And the user clicks the action button
     And the user clicks the Save as a New Template menu item
-    And the user names the template "customerNetBalanceSummaryTemplate"
+    And the user names the template "companyNetBalanceSummaryTemplate"
     And the user saves the template
     And the user clicks the Ok button
     And the user presses the back arrow
-    And the user search for the template named "customerNetBalanceSummaryTemplate"
-    And the user selects "customerNetBalanceSummaryTemplate" Report Template
+    And the user search for the template named "companyNetBalanceSummaryTemplate"
+    And the user selects "companyNetBalanceSummaryTemplate" Report Template
     And the user generates the report with a random name
     And the user navigates to the generated report
-    Then the user verifies the "customerNetBalanceSummary" tab exists
+    Then the user verifies the "companyNetBalanceSummary" tab exists
     And the user presses the back arrow
-    And the user search for the template named "customerNetBalanceSummaryTemplate"
+    And the user search for the template named "companyNetBalanceSummaryTemplate"
     And the user presses the templates action menu
     And the user selects the delete menu item
 
