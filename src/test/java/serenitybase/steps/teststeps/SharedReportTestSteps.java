@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Step;
+import serenitybase.helpers.Utilities;
 import serenitybase.pages.mar.*;
 
 public class SharedReportTestSteps {
@@ -209,6 +210,7 @@ public class SharedReportTestSteps {
   @Step
   public void clickOnDeleteMenuItem() {
     sharedReportPage.clickOnDeleteMenuItem();
+    Utilities.simpleSleep(1000);
   }
 
   @Step

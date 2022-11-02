@@ -7,15 +7,20 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.stream.Collectors;
+import net.serenitybdd.core.Serenity;
+import net.thucydides.core.webdriver.ThucydidesWebDriverSupport;
 import org.junit.Assume;
 import serenitybase.helpers.AppiumManager;
 import serenitybase.helpers.Configuration;
 import serenitybase.helpers.ScreenRecorder;
 import serenitybase.helpers.Utilities;
+import serenitybase.steps.teststeps.SharedReportTestSteps;
 
 public class Hooks {
 
   public static Scenario scenario;
+
+  private SharedReportTestSteps sharedReportTestSteps;
 
   @Before
   public void before() {
@@ -52,6 +57,25 @@ public class Hooks {
           check);
     } else {
       return;
+    }
+  }
+
+  @After(order = 0)
+  public void cleanUpCreatedTemplates() {
+    if (Serenity.sessionVariableCalled("createdTemplate") != null) {
+      try {
+        if (ThucydidesWebDriverSupport.getDriver().getCurrentUrl().contains("viewer")) {
+          sharedReportTestSteps.pressBackArrow();
+          Utilities.simpleSleep(500);
+        }
+        sharedReportTestSteps.searchForTemplate(
+            Serenity.sessionVariableCalled("createdTemplate").toString());
+        Utilities.simpleSleep(500);
+        sharedReportTestSteps.clickTemplatesActionMenu();
+        sharedReportTestSteps.clickOnDeleteMenuItem();
+      } catch (Exception e) {
+        System.out.println("Exception while deleting test created template");
+      }
     }
   }
 
