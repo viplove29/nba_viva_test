@@ -5,6 +5,7 @@ import io.cucumber.java.en.When;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Steps;
 import org.jetbrains.annotations.NotNull;
 import serenitybase.helpers.Utilities;
@@ -124,6 +125,7 @@ public class SharedReportStepDefinitions {
   @When("the user selects the delete menu item")
   public void the_user_selects_the_delete_menu_item() {
     sharedReportTestSteps.clickOnDeleteMenuItem();
+    Serenity.setSessionVariable("createdTemplate").to(null);
   }
 
   @When("the user verifies that the values of {string} are in ascending order")
@@ -189,6 +191,7 @@ public class SharedReportStepDefinitions {
   public void the_user_names_the_template(@NotNull String name) {
     Utilities.simpleSleep(500);
     sharedReportTestSteps.enterTemplateName(name);
+    Serenity.setSessionVariable("createdTemplate").to(name);
   }
 
   @When("the user saves the template")
