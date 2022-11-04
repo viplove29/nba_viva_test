@@ -32,6 +32,11 @@ public class Utilities extends PageObject {
     return driver;
   }
 
+  public static void resetZoom() {
+    ((JavascriptExecutor) Serenity.getDriver()).executeScript("document.body.style.zoom = '100%'");
+    Utilities.simpleSleep(1000);
+  }
+
   public void scrollToElement(WebElement element) {
     ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView();", element);
   }
