@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.stream.Collectors;
 import net.serenitybdd.core.Serenity;
+import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.webdriver.ThucydidesWebDriverSupport;
 import org.junit.Assume;
 import serenitybase.helpers.AppiumManager;
@@ -20,7 +21,7 @@ public class Hooks {
 
   public static Scenario scenario;
 
-  private SharedReportTestSteps sharedReportTestSteps;
+  @Steps private SharedReportTestSteps sharedReportTestSteps;
 
   @Before
   public void before() {
@@ -65,8 +66,10 @@ public class Hooks {
     if (Serenity.sessionVariableCalled("createdTemplate") != null) {
       try {
         if (ThucydidesWebDriverSupport.getDriver().getCurrentUrl().contains("viewer")) {
+          Utilities.resetZoom();
           sharedReportTestSteps.pressBackArrow();
-          Utilities.simpleSleep(500);
+          Utilities.simpleSleep(1500);
+          Utilities.waitForHomePageLoadingSpinners();
         }
         sharedReportTestSteps.searchForTemplate(
             Serenity.sessionVariableCalled("createdTemplate").toString());
