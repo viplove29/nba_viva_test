@@ -27,6 +27,7 @@ Feature: Production Analysis
   @sync-38233581
   @ProductionAnalysis
   Scenario: "Production Analysis" report sort option functions properly
+    And the user selects Current year to date date range from list
     And the user generates the report with a random name
     When the user navigates to the generated report
     And the user selects "Detail View" tab
