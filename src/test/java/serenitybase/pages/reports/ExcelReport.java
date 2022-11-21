@@ -54,7 +54,6 @@ public class ExcelReport extends PageObject {
     Sheet sheet = setExcelFile(sheetName);
     Row row = sheet.getRow(0);
     row.forEach(r -> headers.add(r.getStringCellValue()));
-
     return headers.stream().map(StringUtils::normalizeSpace).collect(Collectors.toList());
   }
 
