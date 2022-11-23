@@ -87,6 +87,7 @@ spotless:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       changes:
         - "**/*.java"
+        - "**/*.conf"
 
 scenarios:
   stage: project checks
