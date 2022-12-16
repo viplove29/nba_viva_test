@@ -10,6 +10,12 @@ public class LoginPage extends PageObject {
   @FindBy(id = "username")
   WebElementFacade emailTextBox;
 
+  @FindBy(id = "identifierInput")
+  WebElementFacade newEmailTextBox;
+
+  @FindBy(id = "postButton")
+  WebElementFacade nextButton;
+
   @FindBy(id = "password")
   WebElementFacade passwordTextBox;
 
@@ -17,8 +23,16 @@ public class LoginPage extends PageObject {
   WebElementFacade loginButton;
 
   public void logIn(String email, String password) {
-    typeInto(emailTextBox, email);
-    typeInto(passwordTextBox, password);
-    loginButton.click();
+    if (emailTextBox.isPresent()) {
+      typeInto(emailTextBox, email);
+      typeInto(passwordTextBox, password);
+      loginButton.click();
+    } else {
+      // New VSSO login workflow
+      typeInto(newEmailTextBox, email);
+      nextButton.click();
+      typeInto(passwordTextBox, password);
+      loginButton.click();
+    }
   }
 }

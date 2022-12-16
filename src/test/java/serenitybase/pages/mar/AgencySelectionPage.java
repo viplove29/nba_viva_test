@@ -23,4 +23,8 @@ public class AgencySelectionPage extends PageObject {
   public void backup() {
     getDriver().navigate().back();
   }
+
+  public void refresh() {
+    getDriver().navigate().refresh();
+  }
 }
