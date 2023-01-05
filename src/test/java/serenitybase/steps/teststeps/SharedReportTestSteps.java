@@ -25,6 +25,11 @@ public class SharedReportTestSteps {
   }
 
   @Step
+  public void selectMultipleOptionUnderHideShowIcon(List<String> options, Boolean show) {
+    sharedReportPage.selectMultipleOptionsUnderHideShowIcon(options, true);
+  }
+
+  @Step
   public void verifyPoliciesAreDisplayed(String policies) {
     boolean isElementDisplayed;
     switch (policies) {
@@ -102,6 +107,22 @@ public class SharedReportTestSteps {
     for (Map<String, String> rowData : gridData) {
       assertThat(rowData.get(columnName.toUpperCase()).equals(value));
     }
+  }
+
+  @Step
+  public void validateTheListOfColumnsAreDisplayedInTheGrid(List<String> expectedColumns) {
+    List<String> actualColumnsList =
+        sharedReportPage.getAllColumnsDisplayedInCurrentTabByUsingHorizontalScroll();
+    expectedColumns.forEach(
+        expColumnName -> {
+          assertThat(actualColumnsList.stream().anyMatch(expColumnName::equalsIgnoreCase))
+              .as(
+                  "Column Names - "
+                      + sharedReportPage.getReportHeaders()
+                      + " did not contain - "
+                      + expColumnName)
+              .isTrue();
+        });
   }
 
   @Step
