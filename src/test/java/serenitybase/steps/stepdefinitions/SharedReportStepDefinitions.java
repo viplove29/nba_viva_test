@@ -98,6 +98,14 @@ public class SharedReportStepDefinitions {
     }
   }
 
+  @Then(
+      "the user verifies the following columns are displayed in the report by scrolling to the right")
+  public void
+      the_user_verifies_the_following_columns_are_displayed_in_the_report_by_scrolling_to_the_right(
+          List<String> columnNames) {
+    sharedReportTestSteps.validateTheListOfColumnsAreDisplayedInTheGrid(columnNames);
+  }
+
   @Then("the user verifies the following columns are not displayed in tab")
   public void the_user_verifies_tab_does_not_contain_the_following_columns(
       List<String> columnNames) {
@@ -229,5 +237,11 @@ public class SharedReportStepDefinitions {
   @When("the user scrolls the current tab horizontally to the end")
   public void the_user_scrolls_the_current_tab_horizontally_to_the_end() {
     sharedReportTestSteps.scrollTheCurrentTabHorizontallyToTheEnd();
+  }
+
+  @When("the user selects the following columns to show using the hide show icon")
+  public void the_user_selects_the_following_columns_to_show_using_the_hide_show_icon(
+      List<String> options) {
+    sharedReportTestSteps.selectMultipleOptionUnderHideShowIcon(options, true);
   }
 }

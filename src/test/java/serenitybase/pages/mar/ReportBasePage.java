@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -118,6 +119,9 @@ public class ReportBasePage extends PageObject {
 
   @FindBy(id = "vwadd-summary")
   protected WebElementFacade summaryPage;
+
+  @FindBy(xpath = ".//div[contains(@class,'rpt-grid-header-text')]/span")
+  protected List<WebElementFacade> displayedColumns;
 
   private static String TABLE_CELL_XPATH =
       ".//div[contains(@class, 'rpt-ui-grid-cell-content')] | .//a[contains(@class, 'ng-binding')]";
@@ -322,6 +326,28 @@ public class ReportBasePage extends PageObject {
     showHideIconButton.click();
   }
 
+  public void selectMultipleOptionsUnderHideShowIcon(List<String> options, Boolean show) {
+    showHideIconButton.click();
+    if (show) {
+      selectMultipleOptionsToShowOrHide(
+          options, String.format("./ancestor::li[contains(@class, 'rmedMenuItem')]"));
+    } else {
+      selectMultipleOptionsToShowOrHide(
+          options, String.format("./ancestor::li[contains(@class, 'rmMenuItem')]"));
+    }
+    showHideIconButton.click();
+  }
+
+  private void selectMultipleOptionsToShowOrHide(List<String> options, String listItemXpath) {
+    options.forEach(
+        (option) -> {
+          WebElement listOptionElement = find(String.format("//*[text()='%s']", option));
+          if (listOptionElement.findElements(By.xpath(listItemXpath)).size() > 0) {
+            listOptionElement.click();
+          }
+        });
+  }
+
   public void selectTab(String tabName) {
     find(String.format("//*[text()='%s']", tabName)).click();
     Utilities.setActiveTabContentIdSessionVariable();
@@ -371,6 +397,46 @@ public class ReportBasePage extends PageObject {
       ex.printStackTrace();
       return false;
     }
+  }
+
+  public List<String> getAllColumnsDisplayedInCurrentTabByUsingHorizontalScroll() {
+    Set<String> allDisplayedColumns = new HashSet<String>();
+    WebElement activeTab = find(By.id(Serenity.sessionVariableCalled("activeTabContentId")));
+    int viewportIndex = DETAIL_VIEW_TAB_VIEWPORT_INDEX;
+    if (!activeTab.getAttribute("id").equals(DETAIL_VIEW_TAB_ID)) {
+      viewportIndex = TAB_VIEWPORT_INDEX;
+    }
+    JavascriptExecutor executor = ((JavascriptExecutor) getDriver());
+    String scrollWidthScript =
+        String.format(
+            "return document.getElementById('%s').getElementsByClassName('ui-grid-viewport')[%d].scrollWidth;",
+            activeTab.getAttribute("id"), viewportIndex);
+    int scrollWidth = Long.valueOf((long) executor.executeScript(scrollWidthScript)).intValue();
+    String clientWidthScript =
+        String.format(
+            "return document.getElementById('%s').getElementsByClassName('ui-grid-viewport')[%d].clientWidth;",
+            activeTab.getAttribute("id"), viewportIndex);
+    int clientWidth = Long.valueOf((long) executor.executeScript(clientWidthScript)).intValue();
+    int scrollLength = clientWidth / 3;
+    do {
+      List<String> displayedColumnsList =
+          reportGridHeaders.stream()
+              .map(
+                  colElement -> {
+                    return colElement.getText().trim();
+                  })
+              .collect(Collectors.toList());
+      allDisplayedColumns.addAll(displayedColumnsList);
+      scrollLength = scrollLength + 400;
+      String scrollScript =
+          String.format(
+              "document.getElementById('%s').getElementsByClassName('ui-grid-viewport')[%d].scrollLeft = %d;",
+              activeTab.getAttribute("id"), viewportIndex, scrollLength);
+      executor.executeScript(scrollScript);
+    } while (scrollLength <= scrollWidth);
+    return allDisplayedColumns.stream()
+        .filter(StringUtils::isNotBlank)
+        .collect(Collectors.toList());
   }
 
   public boolean validateColumnIsNotDisplayedInTab(String columnName) {
