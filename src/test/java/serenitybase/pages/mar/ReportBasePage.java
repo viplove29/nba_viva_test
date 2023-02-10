@@ -80,6 +80,9 @@ public class ReportBasePage extends PageObject {
   @FindBy(xpath = ".//span[text()=' Add Filters']")
   protected WebElementFacade addFiltersButton;
 
+  @FindBy(xpath = ".//span[text()=' Edit']")
+  protected WebElementFacade editFiltersButton;
+
   @FindBy(xpath = ".//button[text()='Apply']")
   protected WebElementFacade applyButton;
 
@@ -239,7 +242,11 @@ public class ReportBasePage extends PageObject {
   }
 
   public void clickOnOkButton() {
-    okButton.click();
+    try {
+      okButton.click();
+    } catch (Exception e) {
+      System.out.println("No OK button to click");
+    }
   }
 
   public void clickOnCancelButton() {
@@ -277,7 +284,11 @@ public class ReportBasePage extends PageObject {
   }
 
   public void clickOnAddFiltersButton() {
-    addFiltersButton.click();
+    try {
+      addFiltersButton.click();
+    } catch (Exception e) {
+      editFiltersButton.click();
+    }
   }
 
   public void clickOnDeleteMenuItem() {

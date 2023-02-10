@@ -66,7 +66,7 @@ public class HomePageStepDefinitions {
   }
 
   @ParameterType(
-      "Current (date|month($| to date| minus 1)|quarter($| to date| minus 1)|year($| to date| minus 1))|Through current date")
+      "(Current (date|month($| to date| minus 1)|quarter($| to date| minus 1)|year($| to date| minus 1))|Through current date)")
   public String dateRange(String dateRange) {
     return dateRange;
   }
