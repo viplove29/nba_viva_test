@@ -175,7 +175,7 @@ report:
   script:
     - cd scripts
     - npm install
-    - python SendResults_EMS.py mar 1
+    - python SendResults_MAR.py mar 1
   rules:
     - if: ($CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web")
   retry: 2
