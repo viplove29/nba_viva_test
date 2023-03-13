@@ -34,7 +34,7 @@ public class ExcelReport extends PageObject {
   }
 
   /**
-   * This method uses Apache POI lib, due to that Appium is very unstable if it used as Excel parser
+   * This method uses Apache POI lib, as there isn't need to interact with Excel
    *
    * @return List of report headers(from the first row of the report)
    */
@@ -246,7 +246,7 @@ public class ExcelReport extends PageObject {
   protected Workbook getCurrentReportWorkbook() {
     String reportPath = getReportPath();
     //    closeExcelFile();
-    Utilities.simpleSleep(200);
+    Utilities.simpleSleep(500);
     return getWorkbookForReport(reportPath);
   }
 
