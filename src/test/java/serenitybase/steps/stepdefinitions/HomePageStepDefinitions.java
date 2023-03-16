@@ -6,6 +6,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Steps;
 import serenitybase.helpers.Utilities;
 import serenitybase.steps.teststeps.HomePageTestSteps;
@@ -27,12 +28,15 @@ public class HomePageStepDefinitions {
 
   @When("the user clicks on the Quick Actions {string} button")
   public void the_user_clicks_on_the_quick_actions_button(String reportType) {
+    Utilities.setDownloadsCount();
     switch (reportType) {
       case "XLS":
         homePageTestSteps.excelQuickActions();
+        Serenity.setSessionVariable("lastReportType").to(reportType);
         break;
       case "CSV":
         homePageTestSteps.csvQuickActions();
+        Serenity.setSessionVariable("lastReportType").to(reportType);
         break;
       default:
         throw new IllegalArgumentException(
