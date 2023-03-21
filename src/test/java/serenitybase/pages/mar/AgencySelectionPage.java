@@ -24,6 +24,10 @@ public class AgencySelectionPage extends PageObject {
     getDriver().navigate().back();
   }
 
+  public boolean onResubmitPage() {
+    return getDriver().getPageSource().contains("Confirm Form Resubmission");
+  }
+
   public void refresh() {
     getDriver().navigate().refresh();
   }

@@ -26,6 +26,11 @@ public class LoginToMarTestSteps {
       if (onURL.contains("/Error")) {
         System.out.println("Got Error Page - Selecting Back Button");
         agencySelectionPage.backup();
+        Utilities.simpleSleep(2000);
+        if (agencySelectionPage.onResubmitPage()) {
+          agencySelectionPage.backup();
+          Utilities.simpleSleep(2000);
+        }
       } else if (onURL.contains("/SelectAgency")) {
         return;
       }
