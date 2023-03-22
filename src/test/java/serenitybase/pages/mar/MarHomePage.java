@@ -139,10 +139,21 @@ public class MarHomePage extends PageObject {
   }
 
   public void clickExcelQuickActions(String reportName) {
+    String style =
+        getReportRow(reportName).findBy(".//img[contains(@ng-src,'excel')]").getAttribute("style");
+    if (style.equalsIgnoreCase("cursor: default;")) {
+      throw new RuntimeException(
+          "Excel Quick Action button not active, probably no rows in Report");
+    }
     getReportRow(reportName).findBy(".//img[contains(@ng-src,'excel')]").click();
   }
 
   public void clickCsvQuickActions(String reportName) {
+    String style =
+        getReportRow(reportName).findBy(".//img[contains(@ng-src,'csv')]").getAttribute("style");
+    if (style.equalsIgnoreCase("cursor: default;")) {
+      throw new RuntimeException("CSV Quick Action button not active, probably no rows in Report");
+    }
     getReportRow(reportName).findBy(".//img[contains(@ng-src,'csv')]").click();
   }
 

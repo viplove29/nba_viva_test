@@ -309,16 +309,16 @@ Feature: Policy Expiration
     And the user expands "Personnel" filter
     And the user clicks the "Select Multiple" option under the "Executive" section
     And the user searches for "Jenkins ,Josh" in the dropdown under the "Executive" section and selects the top option
-    And the user searches for "!Aleks" in the dropdown under the "Executive" section and selects the top option
+    And the user searches for "HannaK" in the dropdown under the "Executive" section and selects the top option
     And the user generates the report with a random name
     And the user clicks on the Quick Actions "CSV" button
     Then the user verifies the data under the "Customer Executive" header in the file from the generated report has these values
       | Jenkins, Josh   |
-      | !Aleks          |
+      | HannaK          |
     And the user clicks on the Quick Actions "XLS" button
     Then the user verifies the data under the "Customer Executive" header in the file from the generated report has these values
       | Jenkins, Josh   |
-      | !Aleks          |
+      | HannaK          |
     And the user selects "Policy Expiration" Report Template
     And the user sets date range from "01/01/2010" to today
     And the user expands "Personnel" filter
