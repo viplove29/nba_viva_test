@@ -147,7 +147,7 @@ public class ReportBasePage extends PageObject {
     if (!activeTabContent.getAttribute("id").equals(DETAIL_VIEW_TAB_ID)) {
       viewportIndex = TAB_VIEWPORT_INDEX;
     }
-    int scrollX = element.getLocation().x;
+    int scrollX = element.getLocation().x + (element.getRect().width / 2);
     String script =
         String.format(
             "document.getElementById('%s').getElementsByClassName('ui-grid-viewport')[%d].scrollLeft = %d",
@@ -242,11 +242,17 @@ public class ReportBasePage extends PageObject {
   }
 
   public void clickOnOkButton() {
-    try {
-      okButton.click();
-    } catch (Exception e) {
-      System.out.println("No OK button to click");
-    }
+    int counter = 0;
+    do {
+      try {
+        okButton.click();
+        return;
+      } catch (Exception e) {
+        counter++;
+        Utilities.simpleSleep(2000);
+      }
+    } while (counter < 5);
+    System.out.println("No OK button to click after 5 tries");
   }
 
   public void clickOnCancelButton() {
