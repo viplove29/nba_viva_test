@@ -109,6 +109,7 @@ spotless:
       changes:
         - "**/*.java"
         - "**/*.conf"
+        - "**/*.md"
 
 scenarios:
   stage: project checks
