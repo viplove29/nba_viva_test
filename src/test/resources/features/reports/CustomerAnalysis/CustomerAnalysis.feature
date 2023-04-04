@@ -154,3 +154,5 @@ Feature: Customer Analysis
     Then the user verifies all of the data under the "Branch" header in the file from the generated report is set to "JJ Inactive 1"
     Then the user verifies all of the data under the "Department" header in the file from the generated report is set to "JJ Inactive 1"
     Then the user verifies all of the data under the "Group" header in the file from the generated report is set to "JJ Inactive 1"
+
+    
