@@ -91,6 +91,7 @@ on the tests that are run.
 
 First, find the Scenario Tag in the Feature files that you want to run.  The pipeline only works with a **single**
 Scenario Tag. Remove the  `@` in front of the Tag to get the value to use for `SCENARIO_TAG` variable.
+
 ![Scenario Tags in Feature file](./images/Readme_scenario_tag1.JPG)
 
 Run a Pipeline in Gitlab with the `SCENARIO_TAG`, `ENVIRONMENT`, and `LAUNCH_NAME` variables.  
@@ -105,6 +106,7 @@ for that branch, and run the tests on that branch.
 
 Scenario Tag Pipelines results are sent to Report Portal, but no Email report results are sent out.
 The Launch Name will have `ScenarioTag - ` added to it to show that it is not a full regression run.
+
 ![Scenario Tag Pipelines in Report Portal launches page](./images/Readme_scenario_tag2.JPG)
 
 
