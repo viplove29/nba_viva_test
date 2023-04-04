@@ -6,7 +6,8 @@ UI tests for MAR (My Agency Reports) on AMS360
 - [SerenityBDD](#serenitybdd-framework)
 - [Run Serenity Project with Gradlew](#run-serenity-project-with-gradlew)
 - [Regression CI Pipelines](#regression-ci-pipelines) 
-- [Regression Rerun CI Pipelines](#regression-rerun-ci-pipelines) 
+- [Regression Rerun CI Pipelines](#regression-rerun-ci-pipelines)
+- [Scenario Tag CI Pipelines](#scenario-tag-ci-pipelines)
 - [Report Portal Integration](#report-portal-integration) 
 - [MAR test case versioning](#mar-test-case-versioning) 
 - [Spotless CI](#spotless-ci) 
@@ -78,6 +79,34 @@ Use a `LAUNCH_NAME` that indicates this is a rerun of a previous Pipeline.
 ![Rerun Pipelines in Gitlab](./images/Readme_rerun2.JPG)
 
 Rerun Pipelines are run with a reduced number of parallel test runners to allow running during work hours.
+
+
+## Scenario Tag CI Pipelines
+
+CI Pipelines can be set up to tests that have a particular Scenario Tag using the `SCENARIO_TAG` variable.
+
+These CI Pipelines run all the tests with this Scenario Tag in 5 parallel jobs and sends the results to Report Portal.  
+This can be useful for testing fixes to automation or a particular feature of MAR that is changing.  It acts as a filter
+on the tests that are run.
+
+First, find the Scenario Tag in the Feature files that you want to run.  The pipeline only works with a **single**
+Scenario Tag. Remove the  `@` in front of the Tag to get the value to use for `SCENARIO_TAG` variable.
+![Scenario Tags in Feature file](./images/Readme_scenario_tag1.JPG)
+
+Run a Pipeline in Gitlab with the `SCENARIO_TAG`, `ENVIRONMENT`, and `LAUNCH_NAME` variables.  
+Use a `LAUNCH_NAME` that indicates this is a related to a Scenario Tag.
+
+![Scenario Tag Pipelines in Gitlab](./images/Readme_scenario_tag3.JPG)
+
+Scenario Tag Pipelines are run with 5 parallel test runners to allow running during work hours.  
+The Scenarios are run in a queue so all tests with the Tag are run even if the number exceeds the number of test runners.
+If more parallel test runners are needed for even faster runs, you can make a branch and change the parallel number in the `.gitlab-ci.yml` file 
+for that branch, and run the tests on that branch.
+
+Scenario Tag Pipelines results are sent to Report Portal, but no Email report results are sent out.
+The Launch Name will have `ScenarioTag - ` added to it to show that it is not a full regression run.
+![Scenario Tag Pipelines in Report Portal launches page](./images/Readme_scenario_tag2.JPG)
+
 
 
 ## Report Portal Integration
