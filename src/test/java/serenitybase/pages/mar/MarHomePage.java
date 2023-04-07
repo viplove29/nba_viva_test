@@ -79,6 +79,9 @@ public class MarHomePage extends PageObject {
   @FindBy(xpath = "//span[contains(text(),'To')]/following::input")
   private WebElementFacade dateToInput;
 
+  @FindBy(xpath = "//date-selector//date-popup//input")
+  private WebElementFacade dateInForceInput;
+
   @FindBy(xpath = "//label[contains(text(),'Account Numbers/Sub-ledgers:')]")
   private WebElementFacade accountNumbersSubLedgersSection;
 
@@ -307,6 +310,10 @@ public class MarHomePage extends PageObject {
 
   public void setDateTo(String to) {
     typeInto(dateToInput, to);
+  }
+
+  public void setInForceDateTo(String to) {
+    typeInto(dateInForceInput, to);
   }
 
   public void selectValueFromDropdown(String option, String sectionName) {
