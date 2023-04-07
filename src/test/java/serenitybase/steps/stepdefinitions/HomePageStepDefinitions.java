@@ -93,6 +93,11 @@ public class HomePageStepDefinitions {
     homePageTestSteps.setDateRangeFromTo(from, dateAsText);
   }
 
+  @Then("the user sets the In-Force date to {string}")
+  public void the_user_sets_the_in_force_date_range_to(String inForceDate) {
+    homePageTestSteps.setInForceDateTo(inForceDate);
+  }
+
   @Then(
       "the user selects {string} from {string} dropdown under Account Numbers\\/Sub-ledgers section")
   public void the_user_selects_value_from_dropdown(String value, String section) {
