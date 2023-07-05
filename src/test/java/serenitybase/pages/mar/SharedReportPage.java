@@ -9,7 +9,10 @@ public class SharedReportPage extends ReportBasePage {
   public void selectOptionUnderFilters(String option) {
     filterDropdown.click();
     ListOfWebElementFacades allFilterOptionList =
-        findAll(".//a[contains(text(), '" + option + "')]");
+        findAll(
+            "//ul[contains(@class, 'rpt-add-filter-dropdown')]//a[contains(text(), '"
+                + option
+                + "')]");
     for (WebElementFacade selectedFilterOption : allFilterOptionList) {
       try {
         if (selectedFilterOption.isClickable()) {
