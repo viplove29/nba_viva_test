@@ -25,4 +25,24 @@ public class SharedReportPage extends ReportBasePage {
     }
     throw new RuntimeException("Drop down element not found");
   }
+
+  public void selectOptionForSortColumns(String column) {
+    sortDropdown.click();
+    ListOfWebElementFacades sortOptions =
+        findAll(
+            "//ul[contains(@class, 'rpt-sortpanel-columns')]//a[contains(text(), '"
+                + column
+                + "')]");
+    for (WebElementFacade sortColumn : sortOptions) {
+      try {
+        if (sortColumn.isClickable()) {
+          sortColumn.click();
+          return;
+        }
+      } catch (Exception ex) {
+        System.out.println("Could not find menu item");
+      }
+    }
+    throw new RuntimeException(column + " sort column not found");
+  }
 }

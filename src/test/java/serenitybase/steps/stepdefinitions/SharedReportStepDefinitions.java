@@ -2,6 +2,7 @@ package serenitybase.steps.stepdefinitions;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -46,7 +47,7 @@ public class SharedReportStepDefinitions {
 
   @Then("the user selects {string} under drop down")
   public void the_user_selects_option_under_drop_down(String option) {
-    sharedReportTestSteps.selectOptionUnderFilters(option);
+    sharedReportTestSteps.selectOptionForSortColumns(option);
   }
 
   @Then("the user selects {string} under Sort")
@@ -77,7 +78,7 @@ public class SharedReportStepDefinitions {
 
   @Then("the user verifies that all the {string} values on the Report are equal to {string}")
   public void the_user_verifies_that_all_the_customer_type_values_are_equal_to(
-      String columnName, String value) {
+      String columnName, String value) throws AWTException {
     sharedReportTestSteps.verifyColumnValuesAreEqualTo(columnName, value);
   }
 
@@ -115,13 +116,13 @@ public class SharedReportStepDefinitions {
   }
 
   @When("the user extracts all the report values in the grid")
-  public void the_user_extracts_all_the_report_values_in_the_grid() {
+  public void the_user_extracts_all_the_report_values_in_the_grid() throws AWTException {
     sharedReportTestSteps.extractReportValuesInTheGrid();
   }
 
   @When("the user verifies that all the {string} values on the Report start with {string}")
   public void the_user_verifies_that_all_the_customer_name_values_start_with(
-      String columnName, String value) {
+      String columnName, String value) throws AWTException {
     sharedReportTestSteps.verifyColumnValuesStartWith(columnName, value);
   }
 
@@ -137,33 +138,35 @@ public class SharedReportStepDefinitions {
   }
 
   @When("the user verifies that the values of {string} are in ascending order")
-  public void the_user_verifies_that_the_dataset_values_are_in_ascending_order(String columnName) {
+  public void the_user_verifies_that_the_dataset_values_are_in_ascending_order(String columnName)
+      throws AWTException {
     Utilities.simpleSleep(3000);
     sharedReportTestSteps.verifyDatasetColumnValuesAreInOrder(columnName, "ascending");
   }
 
   @When("the user verifies that the values of {string} are in descending order")
-  public void the_user_verifies_that_the_dataset_values_are_in_descending_order(String columnName) {
+  public void the_user_verifies_that_the_dataset_values_are_in_descending_order(String columnName)
+      throws AWTException {
     Utilities.simpleSleep(3000);
     sharedReportTestSteps.verifyDatasetColumnValuesAreInOrder(columnName, "descending");
   }
 
   @When("the user verifies that the values of {string} are in ascending date order")
   public void the_user_verifies_that_the_dataset_values_are_in_ascending_date_order(
-      String columnName) {
+      String columnName) throws AWTException {
     Utilities.simpleSleep(3000);
     sharedReportTestSteps.verifyDatasetColumnValuesAreInDateOrder(columnName, "ascending");
   }
 
   @When("the user verifies that the values of {string} are in descending date order")
   public void the_user_verifies_that_the_dataset_values_are_in_descending_date_order(
-      String columnName) {
+      String columnName) throws AWTException {
     Utilities.simpleSleep(3000);
     sharedReportTestSteps.verifyDatasetColumnValuesAreInDateOrder(columnName, "descending");
   }
 
   @When("the user stores the report grid to {string}")
-  public void the_user_stores_the_report_grid_to(String value) {
+  public void the_user_stores_the_report_grid_to(String value) throws AWTException {
     sharedReportTestSteps.extractReportValuesInTheGridToVariable(value);
   }
 
