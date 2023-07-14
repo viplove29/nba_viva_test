@@ -1,5 +1,7 @@
 package serenitybase.pages.mar;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
@@ -57,10 +59,13 @@ public class ReportBasePage extends PageObject {
   protected WebElementFacade filterSymbol;
 
   @FindBy(id = "sortColDropdown")
-  protected WebElementFacade sortColumnDropDown;
+  protected WebElementFacade sortButton;
 
   @FindBy(id = "drop_columns")
   protected WebElementFacade filterDropdown;
+
+  @FindBy(id = "drop_columns")
+  protected WebElementFacade sortDropdown;
 
   @FindBy(id = "drop_directions")
   protected WebElementFacade sortDropDirections;
@@ -177,12 +182,11 @@ public class ReportBasePage extends PageObject {
     throw new RuntimeException("Select Option under filters not implemented in ReportBasePage");
   }
 
-  public List<Map<String, String>> getReportGridDataAsMaps() {
+  public List<Map<String, String>> getReportGridDataAsMaps() throws AWTException {
     Instant start = Instant.now();
 
     // Shrink the web page, so all cells are in the DOM
-    JavascriptExecutor executor = ((JavascriptExecutor) getDriver());
-    executor.executeScript("document.body.style.zoom = '50%'");
+    setPageZoomLevelTo(ZoomLevel.FIFTY);
     Utilities.simpleSleep(200);
 
     // Get Header strings
@@ -214,7 +218,7 @@ public class ReportBasePage extends PageObject {
       rowStrings.add(rowString);
     }
 
-    executor.executeScript("document.body.style.zoom = '100%'");
+    resetZoomLevel();
 
     List<Map<String, String>> rows = new ArrayList<>();
     for (List<String> cellStrings : rowStrings) {
@@ -286,7 +290,7 @@ public class ReportBasePage extends PageObject {
   }
 
   public void clickOnSortSymbol() {
-    sortColumnDropDown.click();
+    sortButton.click();
   }
 
   public void clickOnAddFiltersButton() {
@@ -496,5 +500,34 @@ public class ReportBasePage extends PageObject {
 
   public void searchForTemplate(String name) {
     templateSearchText.typeAndEnter(name);
+  }
+
+  public void setPageZoomLevelTo(ZoomLevel level) throws AWTException {
+    Robot robot = new Robot();
+    for (int i = 0; i < level.ordinal(); i++) {
+      robot.keyPress(KeyEvent.VK_CONTROL);
+      robot.keyPress(KeyEvent.VK_SUBTRACT);
+      robot.keyRelease(KeyEvent.VK_SUBTRACT);
+      robot.keyRelease(KeyEvent.VK_CONTROL);
+    }
+  }
+
+  public void resetZoomLevel() throws AWTException {
+    Robot robot = new Robot();
+    robot.keyPress(KeyEvent.VK_CONTROL);
+    robot.keyPress(KeyEvent.VK_0);
+    robot.keyRelease(KeyEvent.VK_0);
+    robot.keyRelease(KeyEvent.VK_CONTROL);
+  }
+
+  enum ZoomLevel {
+    FULL,
+    NINETY,
+    EIGHTY,
+    SEVENTYFIVE,
+    SIXTYSEVEN,
+    FIFTY,
+    THIRTYTHREE,
+    TWENTYFIVE;
   }
 }
