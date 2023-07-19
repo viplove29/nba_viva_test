@@ -73,6 +73,7 @@ Feature: Active Clients
   @ActiveClients
   Scenario: Active Clients Filters option functions properly
     When the user navigates to the generated report
+    And the user selects "Detail View" tab
     And the user clicks on the Filter symbol
     And the user clicks on the Add Filters button
     And the user selects "Active Customer" under Filters
