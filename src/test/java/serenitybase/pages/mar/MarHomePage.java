@@ -168,7 +168,7 @@ public class MarHomePage extends PageObject {
 
   public void selectOptionUnderActions(String option) {
     actionsButton.click();
-    find(String.format("//*[text()='%s']", option)).click();
+    find(String.format("//*[text()='%s']", option)).withTimeoutOf(Duration.ofSeconds(90)).click();
   }
 
   public void expandFilter(String filterName) {
