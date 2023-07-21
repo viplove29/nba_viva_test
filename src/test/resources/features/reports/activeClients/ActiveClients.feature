@@ -16,6 +16,7 @@ Feature: Active Clients
   Scenario: Quick Actions to Excel Exports Properly
     When the user clicks on the Quick Actions "XLS" button
     And the user navigates to the generated report
+    And the user selects "Detail View" tab
     Then the excel report has the same number of rows as the web report
 
   @TC-289
