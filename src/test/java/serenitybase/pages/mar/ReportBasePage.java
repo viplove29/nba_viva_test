@@ -310,7 +310,7 @@ public class ReportBasePage extends PageObject {
   }
 
   public void clickOnAddSummaryButton() {
-    addSummaryButton.click();
+    addSummaryButton.withTimeoutOf(Duration.ofSeconds(90)).click();
   }
 
   public void selectSummaryCheckbox(String label) {
