@@ -45,6 +45,7 @@ Feature: Active Clients
   @ActiveClients
   Scenario Outline: Business Unit columns appear together in the proper order
     When the user navigates to the generated report
+    And the user selects "Detail View" tab
     And the user selects "<Options>" under the hide show icon
     Then the user verifies the "<Policies>" are displayed in the detail view tab
 
@@ -60,6 +61,7 @@ Feature: Active Clients
   @ActiveClients
   Scenario Outline: Branch and Group are not available when not enabled in source database
     When the user navigates to the generated report
+    And the user selects "Detail View" tab
     And the user selects "<Options>" under the hide show icon
     Then the user verifies the "<Selected Policies>" are displayed in the detail view tab
 
