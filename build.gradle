@@ -37,6 +37,7 @@ ext {
     logbackVersion = '1.2.3'
     apachePoiVersion = '5.0.0'
     rpIntegrationVersion = "1.5.8"
+    webDriverManagerVersion ="5.4.1"
 }
 
 dependencies {
@@ -52,7 +53,8 @@ dependencies {
             "org.apache.poi:poi:${apachePoiVersion}",
             "org.apache.poi:poi-ooxml:${apachePoiVersion}",
             "org.apache.poi:poi-scratchpad:${apachePoiVersion}",
-            "com.github.invictum:serenity-reportportal-integration:${rpIntegrationVersion}"
+            "com.github.invictum:serenity-reportportal-integration:${rpIntegrationVersion}",
+            "io.github.bonigarcia:webdrivermanager:${webDriverManagerVersion}"
 }
 
 test {
