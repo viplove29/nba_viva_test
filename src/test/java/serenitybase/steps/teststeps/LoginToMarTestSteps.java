@@ -24,8 +24,13 @@ public class LoginToMarTestSteps {
       String onURL = agencySelectionPage.getCurrentURL();
       // Workaround for when VSSO login sends user to wrong page
       if (onURL.contains("/Error")) {
-        System.out.println("Got Error Page - Selecting Refresh Button");
-        agencySelectionPage.refresh();
+        System.out.println("Got Error Page - Selecting Back Button");
+        agencySelectionPage.backup();
+        Utilities.simpleSleep(2000);
+        if (agencySelectionPage.onResubmitPage()) {
+          agencySelectionPage.backup();
+          Utilities.simpleSleep(2000);
+        }
       } else if (onURL.contains("/SelectAgency")) {
         return;
       }

@@ -83,14 +83,14 @@ Feature: Book of Business
     And the user generates the report with a random name
     When the user navigates to the generated report
     And the user selects "Detail View" tab
-    And the user selects "Customer Id" under the hide show icon
-    And the user selects "Underwriter" under the hide show icon
-    And the user selects "Acquisition Description" under the hide show icon
-    And the user selects "Customer Is In A Relationship" under the hide show icon
-    And the user selects "Customer Business Entity" under the hide show icon
-    And the user selects "Policy Entered Date" under the hide show icon
-    And the user scrolls the current tab horizontally to the end
-    Then the user verifies the following columns are displayed in tab
+    And the user selects the following columns to show using the hide show icon
+      | Customer Id                   |
+      | Underwriter                   |
+      | Acquisition Description       |
+      | Customer Is In A Relationship |
+      | Customer Business Entity      |
+      | Policy Entered Date           |
+    Then the user verifies the following columns are displayed in the report by scrolling to the right
       | Customer Id                   |
       | Underwriter                   |
       | Acquisition Description       |
@@ -104,6 +104,6 @@ Feature: Book of Business
     Then the exported report has the same columns as the web report
     And the user selects "Export Report" under Actions
     And use user exports the report with the following options
-      | CSV |        |        | Visible | Full Data Set |
+      | CSV |  |  | Visible | Full Data Set |
     Then the exported report is a "CSV" file format
     Then the exported report has the same columns as the web report

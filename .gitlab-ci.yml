@@ -35,7 +35,7 @@ default:
   after_script:
     - aws storagegateway refresh-cache --file-share-arn arn:aws:storagegateway:us-east-1:065073025992:share/share-99B425F3
   rules:
-    - if: ($CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web") && $PIPELINE_ID == null && $SMOKE_TEST == null
+    - if: ($CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web") && $PIPELINE_ID == null && $SMOKE_TEST == null && $SCENARIO_TAG == null
   interruptible: false
   when: always
   allow_failure: true
@@ -55,10 +55,31 @@ default:
   after_script:
     - aws storagegateway refresh-cache --file-share-arn arn:aws:storagegateway:us-east-1:065073025992:share/share-99B425F3
   rules:
-    - if: ($CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web") && $PIPELINE_ID != null && $SMOKE_TEST == null
+    - if: ($CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web") && $PIPELINE_ID != null && $SMOKE_TEST == null && $SCENARIO_TAG == null
   interruptible: false
   when: always
   allow_failure: true
+
+
+.scenario_tag_test_run:
+  parallel: 5
+  extends: .windows scripts
+  script:
+    - Expand-Outlines
+    - Set-ReportPortalProperties -Project MAR -Try $Env:TRY
+    - Invoke-ScenarioTagQueue
+      -Command "./gradlew test --tests TestSupport -Denvironment=$ENVIRONMENT -DignoreFailures=true"
+      -Project MAR
+      -ScenarioTag $SCENARIO_TAG
+      -Try 1
+  after_script:
+    - aws storagegateway refresh-cache --file-share-arn arn:aws:storagegateway:us-east-1:065073025992:share/share-99B425F3
+  rules:
+    - if: ($CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web") && $PIPELINE_ID == null && $SMOKE_TEST == null && $SCENARIO_TAG != null
+  interruptible: false
+  when: always
+  allow_failure: true
+
 
 
 .merge launches:
@@ -88,6 +109,7 @@ spotless:
       changes:
         - "**/*.java"
         - "**/*.conf"
+        - "**/*.md"
 
 scenarios:
   stage: project checks
@@ -163,11 +185,20 @@ rerun attempt:
   variables:
     TRY: 1
 
+scenario tag attempt:
+  extends: .scenario_tag_test_run
+  stage: regression
+  variables:
+    TRY: 1
+
 first merge:
   extends: .merge launches
   stage: merge regression
   script:
-    - Merge-Launches -Project MAR -Name "$LAUNCH_NAME" -Description "GitLab CI - Merged - First Try" -Try 1
+    - $LAUNCH_VAR = $LAUNCH_NAME
+    - If ($SCENARIO_TAG) { $LAUNCH_VAR = "ScenarioTag - ${LAUNCH_VAR}" }  
+    - Write-Host $LAUNCH_VAR
+    - Merge-Launches -Project MAR -Name "$LAUNCH_VAR" -Description "GitLab CI - Merged - First Try" -Try 1
 
 report:
   stage: report
@@ -175,8 +206,8 @@ report:
   script:
     - cd scripts
     - npm install
-    - python SendResults_EMS.py mar 1
+    - python SendResults_MAR.py mar 1
   rules:
-    - if: ($CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web")
+    - if: ($CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web")  && $SCENARIO_TAG == null
   retry: 2
   dependencies: []

@@ -112,5 +112,4 @@ Feature: Download Detail
     Then the user verifies the following columns are not displayed in tab
       | Transaction Status |
 
-
-
+    

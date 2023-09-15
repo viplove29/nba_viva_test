@@ -12,6 +12,7 @@ Feature: Relationship Revenue
   @sync-38729771
   @RelationshipRevenue
   Scenario: "Relationship Revenue" report Filters option functions properly
+    And the user sets the In-Force date to '01/01/2023'
     And the user generates the report with a random name
     When the user navigates to the generated report
     And the user selects "Detail View" tab

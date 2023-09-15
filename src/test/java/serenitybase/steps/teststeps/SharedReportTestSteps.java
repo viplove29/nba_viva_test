@@ -3,9 +3,11 @@ package serenitybase.steps.teststeps;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.google.common.collect.Ordering;
+import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.List;
 import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Step;
 import serenitybase.helpers.Utilities;
@@ -74,6 +76,11 @@ public class SharedReportTestSteps {
   }
 
   @Step
+  public void selectOptionForSortColumns(String column) {
+    sharedReportPage.selectOptionForSortColumns(column);
+  }
+
+  @Step
   public void selectOptionUnderSort(String option) {
     sharedReportPage.selectOptionUnderSort(option);
   }
@@ -102,7 +109,7 @@ public class SharedReportTestSteps {
   }
 
   @Step
-  public void verifyColumnValuesAreEqualTo(String columnName, String value) {
+  public void verifyColumnValuesAreEqualTo(String columnName, String value) throws AWTException {
     List<Map<String, String>> gridData = sharedReportPage.getReportGridDataAsMaps();
     for (Map<String, String> rowData : gridData) {
       assertThat(rowData.get(columnName.toUpperCase()).equals(value));
@@ -148,7 +155,7 @@ public class SharedReportTestSteps {
   }
 
   @Step
-  public void extractReportValuesInTheGrid() {
+  public void extractReportValuesInTheGrid() throws AWTException {
     List<Map<String, String>> rows = sharedReportPage.getReportGridDataAsMaps();
 
     System.out.println("MAR Report Grid Data:");
@@ -158,7 +165,7 @@ public class SharedReportTestSteps {
   }
 
   @Step
-  public void extractReportValuesInTheGridToVariable(String variableName) {
+  public void extractReportValuesInTheGridToVariable(String variableName) throws AWTException {
     List<Map<String, String>> rows = sharedReportPage.getReportGridDataAsMaps();
     Serenity.setSessionVariable(variableName).to(rows);
   }
@@ -240,7 +247,8 @@ public class SharedReportTestSteps {
   }
 
   @Step
-  public void verifyDatasetColumnValuesAreInOrder(String columnName, String order) {
+  public void verifyDatasetColumnValuesAreInOrder(String columnName, String order)
+      throws AWTException {
     List<Map<String, String>> dataset = sharedReportPage.getReportGridDataAsMaps();
     ArrayList<String> columns = new ArrayList<>();
     dataset.forEach(
@@ -259,7 +267,8 @@ public class SharedReportTestSteps {
   }
 
   @Step
-  public void verifyDatasetColumnValuesAreInDateOrder(String columnName, String order) {
+  public void verifyDatasetColumnValuesAreInDateOrder(String columnName, String order)
+      throws AWTException {
     List<Map<String, String>> dataset = sharedReportPage.getReportGridDataAsMaps();
     ArrayList<String> columnStrings = new ArrayList<>();
     dataset.forEach(
@@ -289,7 +298,7 @@ public class SharedReportTestSteps {
   }
 
   @Step
-  public void verifyColumnValuesStartWith(String columnName, String value) {
+  public void verifyColumnValuesStartWith(String columnName, String value) throws AWTException {
     List<Map<String, String>> gridData = sharedReportPage.getReportGridDataAsMaps();
     for (Map<String, String> rowData : gridData) {
       assertThat(rowData.get(columnName.toUpperCase()).startsWith(value));

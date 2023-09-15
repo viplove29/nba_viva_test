@@ -1,5 +1,7 @@
 package serenitybase.pages.mar;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
@@ -57,10 +59,13 @@ public class ReportBasePage extends PageObject {
   protected WebElementFacade filterSymbol;
 
   @FindBy(id = "sortColDropdown")
-  protected WebElementFacade sortColumnDropDown;
+  protected WebElementFacade sortButton;
 
   @FindBy(id = "drop_columns")
   protected WebElementFacade filterDropdown;
+
+  @FindBy(id = "drop_columns")
+  protected WebElementFacade sortDropdown;
 
   @FindBy(id = "drop_directions")
   protected WebElementFacade sortDropDirections;
@@ -79,6 +84,9 @@ public class ReportBasePage extends PageObject {
 
   @FindBy(xpath = ".//span[text()=' Add Filters']")
   protected WebElementFacade addFiltersButton;
+
+  @FindBy(xpath = ".//span[text()=' Edit']")
+  protected WebElementFacade editFiltersButton;
 
   @FindBy(xpath = ".//button[text()='Apply']")
   protected WebElementFacade applyButton;
@@ -144,7 +152,7 @@ public class ReportBasePage extends PageObject {
     if (!activeTabContent.getAttribute("id").equals(DETAIL_VIEW_TAB_ID)) {
       viewportIndex = TAB_VIEWPORT_INDEX;
     }
-    int scrollX = element.getLocation().x;
+    int scrollX = element.getLocation().x + (element.getRect().width / 2);
     String script =
         String.format(
             "document.getElementById('%s').getElementsByClassName('ui-grid-viewport')[%d].scrollLeft = %d",
@@ -174,12 +182,11 @@ public class ReportBasePage extends PageObject {
     throw new RuntimeException("Select Option under filters not implemented in ReportBasePage");
   }
 
-  public List<Map<String, String>> getReportGridDataAsMaps() {
+  public List<Map<String, String>> getReportGridDataAsMaps() throws AWTException {
     Instant start = Instant.now();
 
     // Shrink the web page, so all cells are in the DOM
-    JavascriptExecutor executor = ((JavascriptExecutor) getDriver());
-    executor.executeScript("document.body.style.zoom = '50%'");
+    setPageZoomLevelTo(ZoomLevel.FIFTY);
     Utilities.simpleSleep(200);
 
     // Get Header strings
@@ -211,7 +218,7 @@ public class ReportBasePage extends PageObject {
       rowStrings.add(rowString);
     }
 
-    executor.executeScript("document.body.style.zoom = '100%'");
+    resetZoomLevel();
 
     List<Map<String, String>> rows = new ArrayList<>();
     for (List<String> cellStrings : rowStrings) {
@@ -239,7 +246,17 @@ public class ReportBasePage extends PageObject {
   }
 
   public void clickOnOkButton() {
-    okButton.click();
+    int counter = 0;
+    do {
+      try {
+        okButton.click();
+        return;
+      } catch (Exception e) {
+        counter++;
+        Utilities.simpleSleep(2000);
+      }
+    } while (counter < 5);
+    System.out.println("No OK button to click after 5 tries");
   }
 
   public void clickOnCancelButton() {
@@ -273,11 +290,15 @@ public class ReportBasePage extends PageObject {
   }
 
   public void clickOnSortSymbol() {
-    sortColumnDropDown.click();
+    sortButton.click();
   }
 
   public void clickOnAddFiltersButton() {
-    addFiltersButton.click();
+    try {
+      addFiltersButton.click();
+    } catch (Exception e) {
+      editFiltersButton.click();
+    }
   }
 
   public void clickOnDeleteMenuItem() {
@@ -289,7 +310,7 @@ public class ReportBasePage extends PageObject {
   }
 
   public void clickOnAddSummaryButton() {
-    addSummaryButton.click();
+    addSummaryButton.withTimeoutOf(Duration.ofSeconds(90)).click();
   }
 
   public void selectSummaryCheckbox(String label) {
@@ -479,5 +500,34 @@ public class ReportBasePage extends PageObject {
 
   public void searchForTemplate(String name) {
     templateSearchText.typeAndEnter(name);
+  }
+
+  public void setPageZoomLevelTo(ZoomLevel level) throws AWTException {
+    Robot robot = new Robot();
+    for (int i = 0; i < level.ordinal(); i++) {
+      robot.keyPress(KeyEvent.VK_CONTROL);
+      robot.keyPress(KeyEvent.VK_SUBTRACT);
+      robot.keyRelease(KeyEvent.VK_SUBTRACT);
+      robot.keyRelease(KeyEvent.VK_CONTROL);
+    }
+  }
+
+  public void resetZoomLevel() throws AWTException {
+    Robot robot = new Robot();
+    robot.keyPress(KeyEvent.VK_CONTROL);
+    robot.keyPress(KeyEvent.VK_0);
+    robot.keyRelease(KeyEvent.VK_0);
+    robot.keyRelease(KeyEvent.VK_CONTROL);
+  }
+
+  enum ZoomLevel {
+    FULL,
+    NINETY,
+    EIGHTY,
+    SEVENTYFIVE,
+    SIXTYSEVEN,
+    FIFTY,
+    THIRTYTHREE,
+    TWENTYFIVE;
   }
 }

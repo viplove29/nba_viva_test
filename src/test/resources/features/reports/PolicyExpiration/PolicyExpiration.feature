@@ -202,7 +202,7 @@ Feature: Policy Expiration
   @Version-22R2
   @PolicyExpiration
   Scenario: Data Validation Using New BU Active/Inactive Filters - Policy Expiration (MAR)
-    And the user selects Current year to date date range from list
+    And the user selects Through current date date range from list
     And the user expands "Business Unit" filter
     And the user selects the "All" option under the Status section
     And the user selects "JJ Active" from "Division" category and closes the dropdown
@@ -221,7 +221,7 @@ Feature: Policy Expiration
     Then the user verifies all of the data under the "Department" header in the file from the generated report is set to "JJ Active 1"
     Then the user verifies all of the data under the "Group" header in the file from the generated report is set to "JJ Active 1"
     And the user selects "Policy Expiration" Report Template
-    And the user selects Current year to date date range from list
+    And the user selects Through current date date range from list
     And the user expands "Business Unit" filter
     And the user selects the "Inactive" option under the Status section
     And the user selects "JJ Inactive" from "Division" category and closes the dropdown
@@ -245,7 +245,7 @@ Feature: Policy Expiration
   @Version-22R2
   @PolicyExpiration
   Scenario: Data Validation Using New Company Filters for the Policy Expiration Report in MAR
-    And the user selects Current year to date date range from list
+    And the user selects Through current date date range from list
     And the user expands "Company" filter
     And the user clicks the "Select Multiple" option under the "Parent" section
     And the user searches for "Progressive" in the dropdown under the Company "Parent" section and selects the top option
@@ -255,7 +255,7 @@ Feature: Policy Expiration
     And the user clicks on the Quick Actions "XLS" button
     Then the user verifies all of the data under the "Parent Company" header in the file from the generated report is set to "Progressive"
     And the user selects "Policy Expiration" Report Template
-    And the user selects Current year to date date range from list
+    And the user selects Through current date date range from list
     And the user expands "Company" filter
     And the user selects "Brokerage" from the company type dropdown
     And the user clicks the "Select Multiple" option under the "Parent" section
@@ -309,16 +309,16 @@ Feature: Policy Expiration
     And the user expands "Personnel" filter
     And the user clicks the "Select Multiple" option under the "Executive" section
     And the user searches for "Jenkins ,Josh" in the dropdown under the "Executive" section and selects the top option
-    And the user searches for "!Aleks" in the dropdown under the "Executive" section and selects the top option
+    And the user searches for "HannaK" in the dropdown under the "Executive" section and selects the top option
     And the user generates the report with a random name
     And the user clicks on the Quick Actions "CSV" button
     Then the user verifies the data under the "Customer Executive" header in the file from the generated report has these values
       | Jenkins, Josh   |
-      | !Aleks          |
+      | HannaK          |
     And the user clicks on the Quick Actions "XLS" button
     Then the user verifies the data under the "Customer Executive" header in the file from the generated report has these values
       | Jenkins, Josh   |
-      | !Aleks          |
+      | HannaK          |
     And the user selects "Policy Expiration" Report Template
     And the user sets date range from "01/01/2010" to today
     And the user expands "Personnel" filter

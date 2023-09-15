@@ -79,6 +79,9 @@ public class MarHomePage extends PageObject {
   @FindBy(xpath = "//span[contains(text(),'To')]/following::input")
   private WebElementFacade dateToInput;
 
+  @FindBy(xpath = "//date-selector//date-popup//input")
+  private WebElementFacade dateInForceInput;
+
   @FindBy(xpath = "//label[contains(text(),'Account Numbers/Sub-ledgers:')]")
   private WebElementFacade accountNumbersSubLedgersSection;
 
@@ -139,10 +142,21 @@ public class MarHomePage extends PageObject {
   }
 
   public void clickExcelQuickActions(String reportName) {
+    String style =
+        getReportRow(reportName).findBy(".//img[contains(@ng-src,'excel')]").getAttribute("style");
+    if (style.equalsIgnoreCase("cursor: default;")) {
+      throw new RuntimeException(
+          "Excel Quick Action button not active, probably no rows in Report");
+    }
     getReportRow(reportName).findBy(".//img[contains(@ng-src,'excel')]").click();
   }
 
   public void clickCsvQuickActions(String reportName) {
+    String style =
+        getReportRow(reportName).findBy(".//img[contains(@ng-src,'csv')]").getAttribute("style");
+    if (style.equalsIgnoreCase("cursor: default;")) {
+      throw new RuntimeException("CSV Quick Action button not active, probably no rows in Report");
+    }
     getReportRow(reportName).findBy(".//img[contains(@ng-src,'csv')]").click();
   }
 
@@ -154,7 +168,7 @@ public class MarHomePage extends PageObject {
 
   public void selectOptionUnderActions(String option) {
     actionsButton.click();
-    find(String.format("//*[text()='%s']", option)).click();
+    find(String.format("//*[text()='%s']", option)).withTimeoutOf(Duration.ofSeconds(90)).click();
   }
 
   public void expandFilter(String filterName) {
@@ -296,6 +310,10 @@ public class MarHomePage extends PageObject {
 
   public void setDateTo(String to) {
     typeInto(dateToInput, to);
+  }
+
+  public void setInForceDateTo(String to) {
+    typeInto(dateInForceInput, to);
   }
 
   public void selectValueFromDropdown(String option, String sectionName) {

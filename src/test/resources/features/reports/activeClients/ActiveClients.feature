@@ -16,6 +16,7 @@ Feature: Active Clients
   Scenario: Quick Actions to Excel Exports Properly
     When the user clicks on the Quick Actions "XLS" button
     And the user navigates to the generated report
+    And the user selects "Detail View" tab
     Then the excel report has the same number of rows as the web report
 
   @TC-289
@@ -45,6 +46,7 @@ Feature: Active Clients
   @ActiveClients
   Scenario Outline: Business Unit columns appear together in the proper order
     When the user navigates to the generated report
+    And the user selects "Detail View" tab
     And the user selects "<Options>" under the hide show icon
     Then the user verifies the "<Policies>" are displayed in the detail view tab
 
@@ -60,6 +62,7 @@ Feature: Active Clients
   @ActiveClients
   Scenario Outline: Branch and Group are not available when not enabled in source database
     When the user navigates to the generated report
+    And the user selects "Detail View" tab
     And the user selects "<Options>" under the hide show icon
     Then the user verifies the "<Selected Policies>" are displayed in the detail view tab
 
@@ -73,6 +76,7 @@ Feature: Active Clients
   @ActiveClients
   Scenario: Active Clients Filters option functions properly
     When the user navigates to the generated report
+    And the user selects "Detail View" tab
     And the user clicks on the Filter symbol
     And the user clicks on the Add Filters button
     And the user selects "Active Customer" under Filters

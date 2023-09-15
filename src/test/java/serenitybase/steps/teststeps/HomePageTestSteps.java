@@ -80,6 +80,11 @@ public class HomePageTestSteps {
   }
 
   @Step
+  public void setInForceDateTo(String inForceDate) {
+    marHomePage.setInForceDateTo(inForceDate);
+  }
+
+  @Step
   public void selectAccountNumbersSubLedgersFromDropdown(String option, String section) {
     marHomePage.selectValueFromDropdown(option, section);
   }
