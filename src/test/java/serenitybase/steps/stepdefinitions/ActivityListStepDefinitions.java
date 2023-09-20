@@ -122,6 +122,5 @@ public class ActivityListStepDefinitions {
     String days;
     days = activityListTestSteps.getNumberOfDays();
     assertThat(numberOfDays).isEqualTo(days);
-
   }
 }
