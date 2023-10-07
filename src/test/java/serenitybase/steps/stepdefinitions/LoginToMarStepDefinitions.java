@@ -2,9 +2,11 @@ package serenitybase.steps.stepdefinitions;
 
 import io.cucumber.java.ParameterType;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import java.util.List;
+import java.util.Map;
 import net.thucydides.core.annotations.Steps;
-import serenitybase.helpers.Configuration;
-import serenitybase.helpers.Utilities;
 import serenitybase.steps.teststeps.LoginToMarTestSteps;
 
 public class LoginToMarStepDefinitions {
@@ -15,30 +17,43 @@ public class LoginToMarStepDefinitions {
     return user;
   }
 
-  @Given("the user logs into MAR as \"{user}\"")
-  public void the_user_logs_into_Mar(String userRole) {
-    switch (userRole) {
-      case "SuperAdmin":
-        loginToMarTestSteps.logIn(
-            Configuration.MAR_SUPERADMIN, Configuration.MAR_SUPERADMIN_PASSWORD);
-        loginToMarTestSteps.waitForAgencyPage();
-        loginToMarTestSteps.selectAgency();
-        break;
-      case "AgencyAdmin":
-        loginToMarTestSteps.logIn(
-            Configuration.MAR_AGENCYADMIN, Configuration.MAR_AGENCYADMIN_PASSWORD);
-        loginToMarTestSteps.waitForAgencyPage();
-        loginToMarTestSteps.selectAgency();
-        break;
-      case "RegularUser":
-        loginToMarTestSteps.logIn(
-            Configuration.MAR_REGULARUSER, Configuration.MAR_REGULARUSER_PASSWORD);
-        loginToMarTestSteps.waitForAgencyPage();
-        loginToMarTestSteps.selectAgency();
-        break;
-      default:
-        throw new IllegalArgumentException(String.format("%s role not supported", userRole));
-    }
-    Utilities.waitForHomePageLoadingSpinners();
+  @Given("the user opens the NBA warrior home page")
+  public void the_user_opens_the_nba_warrior_homepage() {
+    loginToMarTestSteps.openHomePage();
+  }
+
+  @When("the user enters below details to sign up pop up if exists")
+  public void the_user_enters_below_details_to_sign_up_pop_up_if_exists(
+      Map<String, String> userInfo) {
+    loginToMarTestSteps.enterDetailsToSignUpPopUp(userInfo);
+  }
+
+  @When("the user accepts the cookies if exists")
+  public void the_user_accepts_the_cookies_if_exists() {
+    loginToMarTestSteps.clickOnAcceptCookiesIfExist();
+  }
+
+  @When("^the user verifies below NBA teams location$")
+  public void the_user_verifies_below_NBA_teams_location(List<String> nBATeamLocation) {
+    loginToMarTestSteps.verifyNBATeamLocation(nBATeamLocation);
+  }
+
+  @When("^the user navigates back to homepage$")
+  public void the_user_navigates_back_to_homepage() {
+    loginToMarTestSteps.clickOnHomePageIcon();
+  }
+
+  @Then("the user verifies that below tabs are displayed in the NBA homepage")
+  public void the_user_verifies_that_below_tabs_are_displayed_in_the_n_b_a_homepage(
+      List<String> nbaHomePageTabs) {
+    loginToMarTestSteps.verifyNBAHomePageTabs(nbaHomePageTabs);
+  }
+
+  @Then(
+      "the user verifies that below tabs are displayed in the top navigation bar of NBA warrior homepage")
+  public void
+      the_user_verifies_that_below_tabs_are_displayed_in_the_top_navigation_bar_of_n_b_a_warrior_homepage(
+          List<String> nbaHomePageTopNavigationTabs) {
+    loginToMarTestSteps.verifyTopNavigationBarNBAHomePageTabsTitle(nbaHomePageTopNavigationTabs);
   }
 }

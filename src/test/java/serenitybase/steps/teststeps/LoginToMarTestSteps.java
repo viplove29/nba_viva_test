@@ -1,7 +1,10 @@
 package serenitybase.steps.teststeps;
 
-import serenitybase.helpers.Configuration;
-import serenitybase.helpers.Utilities;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
+import java.util.Map;
+import net.thucydides.core.annotations.Step;
 import serenitybase.pages.mar.AgencySelectionPage;
 import serenitybase.pages.vsso.LoginPage;
 
@@ -9,34 +12,45 @@ public class LoginToMarTestSteps {
   private LoginPage loginPage;
   private AgencySelectionPage agencySelectionPage;
 
-  public void logIn(String email, String password) {
+  @Step
+  public void enterDetailsToSignUpPopUp(Map<String, String> userInfo) {
+    loginPage.enterDetailsToSignUpPopUp(
+        userInfo.get("First Name"),
+        userInfo.get("Last Name"),
+        userInfo.get("Email"),
+        userInfo.get("ZipCode"));
+  }
+
+  public void clickOnAcceptCookiesIfExist() {
+    loginPage.clickOnAcceptCookiesIfExist();
+  }
+
+  @Step
+  public void openHomePage() {
     loginPage.open();
-    loginPage.logIn(email, password);
   }
 
-  public void selectAgency() {
-    agencySelectionPage.selectAgency(Configuration.getAgency());
+  @Step
+  public void verifyNBATeamLocation(List<String> nBATeamLocation) {
+    System.out.println(loginPage.getAllTeamList());
+    assertThat(loginPage.getAllTeamList()).containsAll(nBATeamLocation);
   }
 
-  public void waitForAgencyPage() {
-    int counter = 0;
-    do {
-      String onURL = agencySelectionPage.getCurrentURL();
-      // Workaround for when VSSO login sends user to wrong page
-      if (onURL.contains("/Error")) {
-        System.out.println("Got Error Page - Selecting Back Button");
-        agencySelectionPage.backup();
-        Utilities.simpleSleep(2000);
-        if (agencySelectionPage.onResubmitPage()) {
-          agencySelectionPage.backup();
-          Utilities.simpleSleep(2000);
-        }
-      } else if (onURL.contains("/SelectAgency")) {
-        return;
-      }
-      Utilities.simpleSleep(2000);
-      counter++;
-    } while (counter < 100);
-    throw new RuntimeException("Login Error - did not go to Select Agency page in 200 seconds");
+  @Step
+  public void clickOnHomePageIcon() {
+    loginPage.clickOnHomePageIcon();
+  }
+
+  @Step
+  public void verifyNBAHomePageTabs(List<String> nbaHomePageTabs) {
+    System.out.println(loginPage.getAllNBAHomePageTabs());
+    assertThat(loginPage.getAllNBAHomePageTabs()).containsAll(nbaHomePageTabs);
+  }
+
+  @Step
+  public void verifyTopNavigationBarNBAHomePageTabsTitle(
+      List<String> nbaHomePageTopNavigationTabs) {
+    System.out.println(loginPage.getTopNavigationBarTabsName());
+    assertThat(loginPage.getTopNavigationBarTabsName()).containsAll(nbaHomePageTopNavigationTabs);
   }
 }
