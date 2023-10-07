@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import java.util.Map;
 import net.thucydides.core.annotations.Step;
+import serenitybase.helpers.Utilities;
 import serenitybase.pages.mar.AgencySelectionPage;
 import serenitybase.pages.vsso.LoginPage;
 
@@ -52,5 +53,18 @@ public class LoginToMarTestSteps {
       List<String> nbaHomePageTopNavigationTabs) {
     System.out.println(loginPage.getTopNavigationBarTabsName());
     assertThat(loginPage.getTopNavigationBarTabsName()).containsAll(nbaHomePageTopNavigationTabs);
+  }
+
+  @Step
+  public void verifyPageUrlText(String urlText) {
+    System.out.println(loginPage.getCurrentURL());
+    Utilities.simpleSleep(2000);
+    assertThat(loginPage.getCurrentURL()).contains(urlText);
+  }
+
+  public void clickOnDesiredTabInNBAHomepage(String nbaHomePage) {
+    loginPage.clickOnDesiredTabInNBAHomepage(nbaHomePage);
+    {
+    }
   }
 }

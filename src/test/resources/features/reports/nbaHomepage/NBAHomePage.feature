@@ -12,7 +12,7 @@ Feature: NBA
   @TC-900
   @sync-38702114
   @NBA
-  Scenario: "New Business" report Filters option functions properly
+  Scenario: Verify NBA warrior page functions properly
     Given the user opens the NBA warrior home page
     And the user enters below details to sign up pop up if exists
       | First Name | Viplove           |
@@ -44,13 +44,23 @@ Feature: NBA
       | CHASE CENTER        |
       | MY WARRIORS ACCOUNT |
     Then the user verifies that below tabs are displayed in the top navigation bar of NBA warrior homepage
-      | TICKETS             |
-      | SCHEDULE            |
-      | TEAM                |
-      | SHOP                |
-      | CHASE CENTER        |
-      | MY WARRIORS ACCOUNT |
+      | G League        |
+      | WNBA            |
+      | BAL             |
+      | NBA 2K          |
+      | NBA Store       |
+      | NBA League Pass |
+      | NBA ID          |
     And the user navigates back to homepage
+    And the user clicks on 'Schedule' tab of NBA warrior homepage
+    Then the user verifies that 'Schedule' page is loaded
+    And the user navigates back to homepage
+    And the user clicks on 'Tickets' tab of NBA warrior homepage
+    Then the user verifies that 'Tickets' page is loaded
+    And the user navigates back to homepage
+
+
+
 #    Then the user sets date range from "01/01/2010" to today
 #    And the user generates the report with a random name
 #    When the user navigates to the generated report

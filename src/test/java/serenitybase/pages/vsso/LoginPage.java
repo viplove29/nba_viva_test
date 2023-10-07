@@ -7,6 +7,7 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import serenitybase.helpers.Utilities;
 
@@ -52,6 +53,7 @@ public class LoginPage extends PageObject {
       Utilities.simpleSleep(500);
       if (!recaptchaAnchorCheckbox.isPresent()) closeSignUpIcon.click();
       Utilities.simpleSleep(500);
+      //      signUpButton.click();
     }
   }
 
@@ -64,7 +66,7 @@ public class LoginPage extends PageObject {
     action.moveToElement(teamsHeader).build().perform();
     Utilities.simpleSleep(1000);
     return getDriver().findElements(By.xpath("//ul[@id='teams']//li/a")).stream()
-        .map(x -> x.getText())
+        .map(WebElement::getText)
         .collect(Collectors.toList());
   }
 
@@ -73,17 +75,26 @@ public class LoginPage extends PageObject {
         .findElements(
             By.xpath("//nav[@aria-label='header-primary-menu']//ul[@role='menubar']/li/a"))
         .stream()
-        .map(x -> x.getText())
+        .map(WebElement::getText)
         .collect(Collectors.toList());
   }
 
   public List<String> getTopNavigationBarTabsName() {
     return getDriver().findElements(By.xpath("//ul[@class='flex utility-font']/li/a")).stream()
-        .map(x -> x.getText())
+        .map(WebElement::getText)
         .collect(Collectors.toList());
   }
 
   public void clickOnHomePageIcon() {
     homePageIcon.click();
+  }
+
+  public void clickOnDesiredTabInNBAHomepage(String nbaHomePage) {
+
+    getDriver().findElement(By.xpath("(//span[contains(text()," + nbaHomePage + ")])[1]")).click();
+  }
+
+  public String getCurrentURL() {
+    return getDriver().getCurrentUrl();
   }
 }

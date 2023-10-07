@@ -1,6 +1,7 @@
 package serenitybase.steps.stepdefinitions;
 
 import io.cucumber.java.ParameterType;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -55,5 +56,17 @@ public class LoginToMarStepDefinitions {
       the_user_verifies_that_below_tabs_are_displayed_in_the_top_navigation_bar_of_n_b_a_warrior_homepage(
           List<String> nbaHomePageTopNavigationTabs) {
     loginToMarTestSteps.verifyTopNavigationBarNBAHomePageTabsTitle(nbaHomePageTopNavigationTabs);
+  }
+
+  @And(
+      "^the user clicks on '(Tickets|Schedule|Team|Shop|Chase Center|My Warriors Account)' tab of NBA warrior homepage$")
+  public void the_user_clicks_on_desired_tab_of_n_b_a_warrior_homepage(String tabName) {
+    loginToMarTestSteps.clickOnDesiredTabInNBAHomepage(tabName);
+  }
+
+  @Then(
+      "^the user verifies that '(Tickets|Schedule|Team|Shop|Chase Center|My Warriors Account)' page is loaded$")
+  public void the_user_verifies_that_schedule_page_is_loaded(String pageTitle) {
+    loginToMarTestSteps.verifyPageUrlText(pageTitle.toLowerCase());
   }
 }
