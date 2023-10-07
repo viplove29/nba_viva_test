@@ -1,4 +1,4 @@
-# MAR Automation
+# NBA Automation
 
 UI tests for MAR (My Agency Reports) on AMS360
 <!-- TOC -->
