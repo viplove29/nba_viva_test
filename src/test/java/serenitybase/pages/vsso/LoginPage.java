@@ -116,7 +116,7 @@ public class LoginPage extends PageObject {
       String url = e.getAttribute("href");
       urlList.add(url);
     }
-    urlList.parallelStream().forEach(e -> verifyLink(e));
+    urlList.parallelStream().forEach(LoginPage::verifyLink);
   }
 
   public static void verifyLink(String url) {
