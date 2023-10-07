@@ -6,12 +6,8 @@ import java.util.List;
 import java.util.Map;
 import net.thucydides.core.annotations.Step;
 import serenitybase.helpers.Utilities;
-import serenitybase.pages.mar.AgencySelectionPage;
-import serenitybase.pages.vsso.LoginPage;
 
 public class LoginToMarTestSteps {
-  private LoginPage loginPage;
-  private AgencySelectionPage agencySelectionPage;
 
   @Step
   public void enterDetailsToSignUpPopUp(Map<String, String> userInfo) {

@@ -52,8 +52,7 @@ public class LoginPage extends PageObject {
       zipcodeTextBox.sendKeys(zipcode);
       Utilities.simpleSleep(500);
       if (!recaptchaAnchorCheckbox.isPresent()) closeSignUpIcon.click();
-      Utilities.simpleSleep(500);
-      //      signUpButton.click();
+      else signUpButton.click();
     }
   }
 
