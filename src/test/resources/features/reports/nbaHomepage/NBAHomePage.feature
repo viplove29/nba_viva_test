@@ -4,10 +4,8 @@ Feature: NBA
   I should be able to get match details & book ticket
   So that customer can watch the show
 
-#  Background:
-
-#    And the user selects "New Business" Report Template
-
+  Background:
+    Given the user opens the NBA warrior home page
 
   @TC-900
   @sync-38702114
@@ -51,14 +49,35 @@ Feature: NBA
       | NBA Store       |
       | NBA League Pass |
       | NBA ID          |
-    And the user navigates back to homepage
+
+  @TC-900
+  @sync-38702114
+  @NBA
+  Scenario: Verify user is successfully navigated to corresponding page on clicking required tabs
+    And the user enters below details to sign up pop up if exists
+      | First Name | Viplove           |
+      | Last Name  | Bisen             |
+      | Email      | viplove@gmail.com |
+      | ZipCode    | 12345             |
+    And the user accepts the cookies if exists
     And the user clicks on 'Schedule' tab of NBA warrior homepage
     Then the user verifies that 'Schedule' page is loaded
-    And the user navigates back to homepage
     And the user clicks on 'Tickets' tab of NBA warrior homepage
     Then the user verifies that 'Tickets' page is loaded
-    And the user navigates back to homepage
+    And the user clicks on 'Team' tab of NBA warrior homepage
+    Then the user verifies that 'Roster' page is loaded
 
+#  @TC-900
+#  @sync-38702114
+#  @NBA
+#  Scenario: Verify the number of broken link in the NBA warrior homepage
+#    And the user enters below details to sign up pop up if exists
+#      | First Name | Viplove           |
+#      | Last Name  | Bisen             |
+#      | Email      | viplove@gmail.com |
+#      | ZipCode    | 12345             |
+#    And the user accepts the cookies if exists
+#    Then the user verifies the number of broken link in the NBA warrior homepage
 
 
 #    Then the user sets date range from "01/01/2010" to today

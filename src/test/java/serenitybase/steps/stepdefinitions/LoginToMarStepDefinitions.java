@@ -65,8 +65,13 @@ public class LoginToMarStepDefinitions {
   }
 
   @Then(
-      "^the user verifies that '(Tickets|Schedule|Team|Shop|Chase Center|My Warriors Account)' page is loaded$")
+      "^the user verifies that '(Tickets|Schedule|Roster|Shop|Chase Center|My Warriors Account)' page is loaded$")
   public void the_user_verifies_that_schedule_page_is_loaded(String pageTitle) {
     loginToMarTestSteps.verifyPageUrlText(pageTitle.toLowerCase());
+  }
+
+  @Then("the user verifies the number of broken link in the NBA warrior homepage")
+  public void the_user_verifies_the_number_of_broken_link_in_the_n_b_a_warrior_homepage() {
+    loginToMarTestSteps.getNumberOfBrokenLink();
   }
 }

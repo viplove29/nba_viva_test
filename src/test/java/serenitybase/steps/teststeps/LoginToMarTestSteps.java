@@ -56,13 +56,21 @@ public class LoginToMarTestSteps {
   @Step
   public void verifyPageUrlText(String urlText) {
     System.out.println(loginPage.getCurrentURL());
-    Utilities.simpleSleep(2000);
+    Utilities.simpleSleep(5000);
     assertThat(loginPage.getCurrentURL()).contains(urlText);
   }
 
+  @Step
   public void clickOnDesiredTabInNBAHomepage(String nbaHomePage) {
+    System.out.println("clicking on link");
+    Utilities.simpleSleep(2000);
     loginPage.clickOnDesiredTabInNBAHomepage(nbaHomePage);
-    {
-    }
+  }
+
+  @Step
+  public void getNumberOfBrokenLink() {
+    System.out.println("trying to get broken links now");
+    Utilities.simpleSleep(1000);
+    loginPage.getNumberOfBrokenLink();
   }
 }

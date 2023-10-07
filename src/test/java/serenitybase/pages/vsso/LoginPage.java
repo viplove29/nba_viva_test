@@ -1,5 +1,8 @@
 package serenitybase.pages.vsso;
 
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import net.serenitybdd.core.annotations.findby.FindBy;
@@ -89,11 +92,47 @@ public class LoginPage extends PageObject {
   }
 
   public void clickOnDesiredTabInNBAHomepage(String nbaHomePage) {
-
-    getDriver().findElement(By.xpath("(//span[contains(text()," + nbaHomePage + ")])[1]")).click();
+    WebElement tab =
+        getDriver()
+            .findElement(
+                By.xpath(
+                    "  //nav[@aria-label='Golden State Warriors navigation']//span[contains(text(),'"
+                        + nbaHomePage
+                        + "')]"));
+    Actions action = new Actions(getDriver());
+    action.moveToElement(tab).click().build().perform();
   }
 
   public String getCurrentURL() {
     return getDriver().getCurrentUrl();
+  }
+
+  public void getNumberOfBrokenLink() {
+    List<WebElement> links = getDriver().findElements(By.tagName("a"));
+    System.out.println("No of links are" + links.size());
+    List<String> urlList = new ArrayList<>();
+    // Iterating each link and checking the response status
+    for (WebElement e : links) {
+      String url = e.getAttribute("href");
+      urlList.add(url);
+    }
+    urlList.parallelStream().forEach(e -> verifyLink(e));
+  }
+
+  public static void verifyLink(String url) {
+    try {
+      URL link = new URL(url);
+      HttpURLConnection httpURLConnection = (HttpURLConnection) link.openConnection();
+      httpURLConnection.setConnectTimeout(3000); // Set connection timeout to 3 seconds
+      httpURLConnection.connect();
+      if (httpURLConnection.getResponseCode() == 200) {
+        System.out.println(url + " - " + httpURLConnection.getResponseMessage());
+      } else {
+        System.out.println(
+            url + " - " + httpURLConnection.getResponseMessage() + " - " + "is a broken link");
+      }
+    } catch (Exception e) {
+      System.out.println(url + " - " + "is a broken link");
+    }
   }
 }
