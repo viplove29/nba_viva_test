@@ -1,6 +1,6 @@
 # NBA Automation
 
-UI tests for MAR (My Agency Reports) on AMS360
+UI tests for NBA
 <!-- TOC -->
 - [Installation](#installation)
 - [SerenityBDD](#serenitybdd-framework)
@@ -119,7 +119,7 @@ Results from CI Pipelines for Regression and Rerun are recorded in Report Portal
 Email test reports from Report Portal are sent to SDETs after each regression run. SDETs need to analyze and fix failures for test cases.
     
 
-## MAR Test Case versioning
+## NBA Test Case versioning
 
 All new MAR tests that contain features that aren't currently deployed to all environments need to have @Version tags 
 added so the tests won't run in the MDC environment before those changes are available in MDC.
