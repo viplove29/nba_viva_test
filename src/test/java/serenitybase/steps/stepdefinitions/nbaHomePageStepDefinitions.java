@@ -95,4 +95,10 @@ public class nbaHomePageStepDefinitions {
           int newItemsCount) {
     nbaTestSteps.verifyNewlyLoadedItemsCount(newItemsCount);
   }
+
+  @Then("the user verifies below details are entered in the sign up pop up if exists")
+  public void the_user_verifies_below_details_are_entered_in_the_sign_up_pop_up_if_exists(
+      Map<String, String> userInfo) {
+    nbaTestSteps.verifyEnteredDetailsOfSignUpPopUp(userInfo);
+  }
 }

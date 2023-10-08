@@ -22,6 +22,14 @@ public class NbaTestSteps {
   }
 
   @Step
+  public void verifyEnteredDetailsOfSignUpPopUp(Map<String, String> userInfo) {
+    assertThat(nbaHomePage.getFirstNameText()).isEqualTo(userInfo.get("First Name"));
+    assertThat(nbaHomePage.getLastNameText()).isEqualTo(userInfo.get("Last Name"));
+    assertThat(nbaHomePage.getEmailText()).isEqualTo(userInfo.get("Email"));
+    assertThat(nbaHomePage.getZipCodeText()).isEqualTo(userInfo.get("ZipCode"));
+  }
+
+  @Step
   public void closeSignUpPopUpIfExists() {
     nbaHomePage.closeSignUpPopUpIfExists();
   }
@@ -81,7 +89,7 @@ public class NbaTestSteps {
 
   @Step
   public void getNumberOfBrokenLink() {
-    System.out.println("trying to get broken links now");
+    System.out.println("Trying to get broken links now");
     Utilities.simpleSleep(1000);
     nbaHomePage.getNumberOfBrokenLink();
   }
@@ -89,7 +97,7 @@ public class NbaTestSteps {
   @Step
   public void saveCurrentItemsCountInNBAHomePage() {
     int currentArticleCount = nbaHomePage.getCurrentLoadedArticlesCount();
-    System.out.println("Saves count : " + nbaHomePage.getCurrentLoadedArticlesCount());
+    System.out.println("Saved count : " + nbaHomePage.getCurrentLoadedArticlesCount());
     Serenity.setSessionVariable("currentArticleCount").to(currentArticleCount);
   }
 

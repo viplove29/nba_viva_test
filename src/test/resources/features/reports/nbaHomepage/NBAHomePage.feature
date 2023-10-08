@@ -17,6 +17,12 @@ Feature: NBA
       | Last Name  | Bisen             |
       | Email      | viplove@gmail.com |
       | ZipCode    | 12345             |
+    Then the user verifies below details are entered in the sign up pop up if exists
+      | First Name | Viplove           |
+      | Last Name  | Bisen             |
+      | Email      | viplove@gmail.com |
+      | ZipCode    | 12345             |
+    And the user closes the sign up pop up if exists
     And the user accepts the cookies if exists
 
   @TC-901

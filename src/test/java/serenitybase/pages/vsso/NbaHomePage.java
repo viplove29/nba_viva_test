@@ -56,9 +56,23 @@ public class NbaHomePage extends PageObject {
       lastNameTextBox.sendKeys(lastName);
       emailTextBox.sendKeys(email);
       zipcodeTextBox.sendKeys(zipcode);
-      if (!recaptchaAnchorCheckbox.isPresent()) closeSignUpIcon.click();
-      else signUpButton.click();
     }
+  }
+
+  public String getFirstNameText() {
+    return firstNameTextBox.getText();
+  }
+
+  public String getLastNameText() {
+    return lastNameTextBox.getText();
+  }
+
+  public String getEmailText() {
+    return emailTextBox.getText();
+  }
+
+  public String getZipCodeText() {
+    return zipcodeTextBox.getText();
   }
 
   public void closeSignUpPopUpIfExists() {
