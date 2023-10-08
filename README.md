@@ -9,9 +9,8 @@ UI tests for NBA
 - [Regression Rerun CI Pipelines](#regression-rerun-ci-pipelines)
 - [Scenario Tag CI Pipelines](#scenario-tag-ci-pipelines)
 - [Report Portal Integration](#report-portal-integration) 
-- [MAR test case versioning](#mar-test-case-versioning) 
+- [NBA test case versioning](#nba-test-case-versioning) 
 - [Spotless CI](#spotless-ci) 
-- [AMS360 SDET Knowledge Base](#ams360-sdet-knowledge-base)
 - [Recording Test Runs](#recording-test-runs)
 <!-- /TOC -->
 
