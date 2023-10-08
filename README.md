@@ -138,19 +138,3 @@ To ensure the spotless stage passes (which is required for Merge Requests), plea
     
 or run the Gradle spotlessJavaApply task that's under the `other` folder in Gradle Task in IntelliJ.
 
-## AMS360 SDET Knowledge Base
-
-Any other questions regarding the code review process, team related processes, or general troubleshooting
-can be found on the [AMS360 Automation Wiki](http://wiki.vertafore.com/display/TEM/Automation)
-
-Java Project Setup can be found [here](http://wiki.vertafore.com/display/TEM/Java+Project+Setup+for+AMS360)
-
-If you are having issues with Appium or WinAppDriver, refer to [this page](http://wiki.vertafore.com/display/TEM/WinApp+Driver+Setup)
-The MAR automation requires Appium and the WinAppDriver, but does not use it in any tests currently.
-
-## Recording Test Runs
-
-When tests are run in the CI Pipelines environment, the test run will be recorded and uploaded to Amazon S3.
-Links to the recordings are in the logs in Report Portal, and in the logs for the CI pipeline running the test case.
-
-[Screen Recorder Server](https://gitlab.com/vertafore/agency/sdet/screen-recorder-server) is used to capture the test runs.
