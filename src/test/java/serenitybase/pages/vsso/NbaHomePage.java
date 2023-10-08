@@ -153,17 +153,18 @@ public class NbaHomePage extends PageObject {
             url
                 + " - Response : "
                 + httpURLConnection.getResponseMessage()
-                + " - It's is a broken link :-(((");
-      } else {
-        System.out.println(
-            url
-                + " - Response : "
-                + httpURLConnection.getResponseMessage()
-                + " - "
-                + " - It's is not a broken link :-) :-) :-)");
+                + " - It's a broken link :-(((");
       }
+      //      else {
+      //        System.out.println(
+      //            url
+      //                + " - Response : "
+      //                + httpURLConnection.getResponseMessage()
+      //                + " - "
+      //                + " - It's not a broken link :-) :-) :-)");
+      //      }
     } catch (Exception e) {
-      System.out.println(url + " - " + " - It's is a broken link :-(((");
+      //      System.out.println(url + " - " + " - It's a broken link :-(((");
     }
   }
 }

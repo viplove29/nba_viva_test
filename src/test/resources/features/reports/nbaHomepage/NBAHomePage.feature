@@ -23,7 +23,7 @@ Feature: NBA
   @sync-38702114
   @NBA
   @Version-23R3
-  Scenario: Verify NBA warrior page has all the required team added under Teams drop down
+  Scenario: Verify NBA warrior page has all the required team location added under Teams drop down
     And the user closes the sign up pop up if exists
     And the user accepts the cookies if exists
     Then the user verifies below NBA teams location
@@ -71,15 +71,16 @@ Feature: NBA
   @sync-38702114
   @NBA
   @Version-23R3
-  Scenario: Verify user is successfully navigated to corresponding page on clicking required tabs
+  Scenario Outline: Verify on clicking tabs user is successfully navigated to corresponding page
     And the user closes the sign up pop up if exists
     And the user accepts the cookies if exists
-    And the user clicks on 'Schedule' tab of NBA warrior homepage
-    Then the user verifies that 'Schedule' page is loaded
-    And the user clicks on 'Tickets' tab of NBA warrior homepage
-    Then the user verifies that 'Tickets' page is loaded
-    And the user clicks on 'Team' tab of NBA warrior homepage
-    Then the user verifies that 'Roster' page is loaded
+    And the user clicks on '<tab name>' tab of NBA warrior homepage
+    Then the user verifies that '<page name>' page is loaded
+    Examples:
+      | tab name | page name |
+      | Schedule | Schedule  |
+      | Tickets  | Tickets   |
+      | Team     | Roster    |
 
   @TC-904
   @sync-38702114
@@ -101,5 +102,3 @@ Feature: NBA
     And the user closes the sign up pop up if exists
     And the user accepts the cookies if exists
     Then the user verifies the number of broken link in the NBA warrior homepage
-
-
