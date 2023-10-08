@@ -14,8 +14,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import serenitybase.helpers.Utilities;
 
-@DefaultUrl("page:mar.url")
-public class LoginPage extends PageObject {
+@DefaultUrl("page:nba.url")
+public class NbaHomePage extends PageObject {
   @FindBy(id = "contact_fields[firstname]")
   WebElementFacade firstNameTextBox;
 
@@ -131,7 +131,7 @@ public class LoginPage extends PageObject {
       String url = e.getAttribute("href");
       urlList.add(url);
     }
-    urlList.parallelStream().forEach(LoginPage::verifyLink);
+    urlList.parallelStream().forEach(NbaHomePage::verifyLink);
   }
 
   public int getCurrentLoadedArticlesCount() {

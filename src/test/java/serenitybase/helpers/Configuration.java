@@ -31,8 +31,8 @@ public class Configuration {
     return getProperty("vsso.url");
   }
 
-  public static String getMarUrl() {
-    return getProperty("mar.url");
+  public static String getNbaUrl() {
+    return getProperty("nba.url");
   }
 
   public static String getAmsUrl() {
