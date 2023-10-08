@@ -101,4 +101,27 @@ public class nbaHomePageStepDefinitions {
       Map<String, String> userInfo) {
     nbaTestSteps.verifyEnteredDetailsOfSignUpPopUp(userInfo);
   }
+
+  @Then("user verifies that a total of {int} scheduled matches is scheduled to play")
+  public void user_verifies_that_a_total_of_scheduled_matches_is_scheduled_to_play(
+      int numberOfMatches) {
+    nbaTestSteps.verifyNumberOfScheduleMatchesToBePlayed(numberOfMatches);
+  }
+
+  @Then("user verifies that matches are scheduled at below date and time")
+  public void user_verifies_that_matches_are_scheduled_at_below_date_and_time(
+      List<String> nbaMatchScheduleDateAndTime) {
+    nbaTestSteps.verifyNBAMatchesDateAndTime(nbaMatchScheduleDateAndTime);
+  }
+
+  @Then("user verifies that a total of {int} players list is displayed")
+  public void user_verifies_that_a_total_of_players_list_is_displayed(int noOfPlayers) {
+    nbaTestSteps.verifyNumberOfPlayers(noOfPlayers);
+  }
+
+  @Then("user verifies that the roster page contains below player names")
+  public void user_verifies_that_the_roster_page_contains_below_player_names(
+      List<String> nbaPlayers) {
+    nbaTestSteps.verifyNBAPlayersList(nbaPlayers);
+  }
 }

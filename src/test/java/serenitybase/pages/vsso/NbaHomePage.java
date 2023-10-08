@@ -10,6 +10,7 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import serenitybase.helpers.Utilities;
@@ -59,20 +60,66 @@ public class NbaHomePage extends PageObject {
     }
   }
 
+  public String getValueFromWebElementWithJSExecutor(WebElement webElement) {
+    // This function should be used to get the value of a WebElement when the value does not appear
+    // in the DOM
+    return (String)
+        ((JavascriptExecutor) getDriver()).executeScript("return arguments[0].value;", webElement);
+  }
+
   public String getFirstNameText() {
-    return firstNameTextBox.getText();
+    return getValueFromWebElementWithJSExecutor(firstNameTextBox);
   }
 
   public String getLastNameText() {
-    return lastNameTextBox.getText();
+    return getValueFromWebElementWithJSExecutor(lastNameTextBox);
   }
 
   public String getEmailText() {
-    return emailTextBox.getText();
+    return getValueFromWebElementWithJSExecutor(emailTextBox);
   }
 
   public String getZipCodeText() {
-    return zipcodeTextBox.getText();
+    return getValueFromWebElementWithJSExecutor(zipcodeTextBox);
+  }
+
+  public int getScheduledMatchCount() {
+    System.out.println(getAllScheduledMatchAndTeamNameDateAndTime());
+    return getDriver()
+        .findElements(By.xpath("//div[@class=' mt-2 min-w-[110px] md:min-w-[120px] sm:min-w-32']"))
+        .size();
+  }
+
+  public int getPlayersCount() {
+    return getDriver()
+        .findElements(By.xpath("//span[@data-testid='player-last-name']//parent::div"))
+        .size();
+  }
+
+  public List<String> getAllScheduledMatchDateAndTime() {
+    return getDriver()
+        .findElements(By.xpath("//div[@class=' mt-2 min-w-[110px] md:min-w-[120px] sm:min-w-32']"))
+        .stream()
+        .map(x -> x.getText().replace("\n", " "))
+        .collect(Collectors.toList());
+  }
+
+  public List<String> getAllNBAPlayersList() {
+    return getDriver()
+        .findElements(By.xpath("//span[@data-testid='player-last-name']//parent::div"))
+        .stream()
+        .map(x -> x.getText().replace("\n", " "))
+        .collect(Collectors.toList());
+  }
+
+  public List<String> getAllScheduledMatchAndTeamNameDateAndTime() {
+    return getDriver()
+        .findElements(
+            By.xpath(
+                "//div[@class='md:rounded shadow bg-white my-2 text-black flex relative h-[192px] w-full']"))
+        .stream()
+        .map(x -> x.getText().replace("\n", " "))
+        .collect(Collectors.toList());
   }
 
   public void closeSignUpPopUpIfExists() {

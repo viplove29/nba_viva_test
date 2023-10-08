@@ -104,6 +104,46 @@ Feature: NBA
   @sync-38702114
   @NBA
   @Version-23R3
+  Scenario: Verify the schedule page has the lists of games that are played against other teams
+    And the user closes the sign up pop up if exists
+    And the user accepts the cookies if exists
+    And the user clicks on 'Schedule' tab of NBA warrior homepage
+    Then the user verifies that 'Schedule' page is loaded
+    Then user verifies that a total of 85 scheduled matches is scheduled to play
+    Then user verifies that matches are scheduled at below date and time
+      | FRI OCT 13 7:00 pm PT |
+      | SUN OCT 15 6:30 pm PT |
+      | FRI OCT 27 7:00 pm PT |
+      | SUN OCT 29 4:00 pm PT |
+      | MON OCT 30 5:00 pm PT |
+      | SUN NOV 5 3:00 pm PT  |
+      | MON NOV 6 4:00 pm PT  |
+      | WED NOV 8 7:00 pm PT  |
+
+  @TC-906
+  @sync-38702114
+  @NBA
+  @Version-23R3
+  Scenario: Verify the  the lists of players when user navigates to roster page on clicking Team tab
+    And the user closes the sign up pop up if exists
+    And the user accepts the cookies if exists
+    And the user clicks on 'Team' tab of NBA warrior homepage
+    Then the user verifies that 'Roster' page is loaded
+    Then user verifies that a total of 21 players list is displayed
+    Then user verifies that the roster page contains below player names
+      | Javan Johnson      |
+      | Jonathan Kuminga   |
+      | Gary Payton II     |
+      | Cory Joseph        |
+      | Brandin Podziemski |
+      | Chris Paul         |
+      | Moses Moody        |
+      | Kevon Looney       |
+
+  @TC-907
+  @sync-38702114
+  @NBA
+  @Version-23R3
   Scenario: Verify the number of broken link in the NBA warrior homepage
     And the user closes the sign up pop up if exists
     And the user accepts the cookies if exists

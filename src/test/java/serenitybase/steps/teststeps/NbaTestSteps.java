@@ -30,6 +30,16 @@ public class NbaTestSteps {
   }
 
   @Step
+  public void verifyNumberOfScheduleMatchesToBePlayed(int number) {
+    assertThat(nbaHomePage.getScheduledMatchCount()).isEqualTo(number);
+  }
+
+  @Step
+  public void verifyNumberOfPlayers(int number) {
+    assertThat(nbaHomePage.getPlayersCount()).isEqualTo(number);
+  }
+
+  @Step
   public void closeSignUpPopUpIfExists() {
     nbaHomePage.closeSignUpPopUpIfExists();
   }
@@ -64,6 +74,19 @@ public class NbaTestSteps {
   public void verifyNBAHomePageTabs(List<String> nbaHomePageTabs) {
     System.out.println(nbaHomePage.getAllNBAHomePageTabs());
     assertThat(nbaHomePage.getAllNBAHomePageTabs()).containsAll(nbaHomePageTabs);
+  }
+
+  @Step
+  public void verifyNBAMatchesDateAndTime(List<String> nbaMatchScheduleDateAndTime) {
+    System.out.println(nbaHomePage.getAllScheduledMatchDateAndTime());
+    assertThat(nbaHomePage.getAllScheduledMatchDateAndTime())
+        .containsAll(nbaMatchScheduleDateAndTime);
+  }
+
+  @Step
+  public void verifyNBAPlayersList(List<String> nbaPlayers) {
+    System.out.println(nbaHomePage.getAllNBAPlayersList());
+    assertThat(nbaHomePage.getAllNBAPlayersList()).containsAll(nbaPlayers);
   }
 
   @Step
