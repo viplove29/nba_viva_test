@@ -74,4 +74,31 @@ public class LoginToMarStepDefinitions {
   public void the_user_verifies_the_number_of_broken_link_in_the_n_b_a_warrior_homepage() {
     loginToMarTestSteps.getNumberOfBrokenLink();
   }
+
+  @And("the user closes the sign up pop up if exists")
+  public void the_user_closes_the_sign_up_pop_up_if_exists() {
+    loginToMarTestSteps.closeSignUpPopUpIfExists();
+  }
+
+  @Then(
+      "the user verifies that NBA Home page should have total {int} teams city added in the Teams dropdown")
+  public void
+      the_user_verifies_that_n_b_a_home_page_should_have_total_teams_city_added_in_the_teams_dropdown(
+          int nbaTeamCityCount) {
+    loginToMarTestSteps.verifyNBATeamLocationCount(nbaTeamCityCount);
+  }
+
+  @And("the user saves current items count and clicks on Load More button")
+  public void the_user_saves_current_items_count_and_clicks_on_load_more_button() {
+    loginToMarTestSteps.saveCurrentItemsCountInNBAHomePage();
+    loginToMarTestSteps.clickOnLoadMoreButton();
+  }
+
+  @Then(
+      "the user verifies that {int} more new items are loaded in the bottom of NBA warrior homepage")
+  public void
+      the_user_verifies_that_more_new_items_are_loaded_in_the_bottom_of_n_b_a_warrior_homepage(
+          int newItemsCount) {
+    loginToMarTestSteps.verifyNewlyLoadedItemsCount(newItemsCount);
+  }
 }

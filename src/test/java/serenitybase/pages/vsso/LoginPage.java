@@ -46,6 +46,9 @@ public class LoginPage extends PageObject {
   @FindBy(xpath = "//img[@alt='Golden State Warriors']")
   WebElementFacade homePageIcon;
 
+  @FindBy(xpath = "//button[@type='button']//span[contains(text(),'Load more')]")
+  WebElementFacade loadMoreButton;
+
   public void enterDetailsToSignUpPopUp(
       String firstName, String lastName, String email, String zipcode) {
     if (closeSignUpIcon.isPresent()) {
@@ -53,9 +56,14 @@ public class LoginPage extends PageObject {
       lastNameTextBox.sendKeys(lastName);
       emailTextBox.sendKeys(email);
       zipcodeTextBox.sendKeys(zipcode);
-      Utilities.simpleSleep(500);
       if (!recaptchaAnchorCheckbox.isPresent()) closeSignUpIcon.click();
       else signUpButton.click();
+    }
+  }
+
+  public void closeSignUpPopUpIfExists() {
+    if (closeSignUpIcon.isPresent()) {
+      closeSignUpIcon.click();
     }
   }
 
@@ -70,6 +78,13 @@ public class LoginPage extends PageObject {
     return getDriver().findElements(By.xpath("//ul[@id='teams']//li/a")).stream()
         .map(WebElement::getText)
         .collect(Collectors.toList());
+  }
+
+  public int getAllTeamListCount() {
+    Actions action = new Actions(getDriver());
+    action.moveToElement(teamsHeader).build().perform();
+    Utilities.simpleSleep(1000);
+    return getDriver().findElements(By.xpath("//ul[@id='teams']//li/a")).size();
   }
 
   public List<String> getAllNBAHomePageTabs() {
@@ -109,7 +124,7 @@ public class LoginPage extends PageObject {
 
   public void getNumberOfBrokenLink() {
     List<WebElement> links = getDriver().findElements(By.tagName("a"));
-    System.out.println("No of links are" + links.size());
+    System.out.println("Total Number of links are ----------->" + links.size());
     List<String> urlList = new ArrayList<>();
     // Iterating each link and checking the response status
     for (WebElement e : links) {
@@ -119,20 +134,36 @@ public class LoginPage extends PageObject {
     urlList.parallelStream().forEach(LoginPage::verifyLink);
   }
 
+  public int getCurrentLoadedArticlesCount() {
+    return getDriver().findElements(By.xpath("//div[contains(@class, 'Articles_col-4')]")).size();
+  }
+
+  public void clickOnLoadMoreButton() {
+    loadMoreButton.click();
+  }
+
   public static void verifyLink(String url) {
     try {
       URL link = new URL(url);
       HttpURLConnection httpURLConnection = (HttpURLConnection) link.openConnection();
       httpURLConnection.setConnectTimeout(3000); // Set connection timeout to 3 seconds
       httpURLConnection.connect();
-      if (httpURLConnection.getResponseCode() == 200) {
-        System.out.println(url + " - " + httpURLConnection.getResponseMessage());
+      if (httpURLConnection.getResponseCode() >= 400) {
+        System.out.println(
+            url
+                + " - Response : "
+                + httpURLConnection.getResponseMessage()
+                + " - It's is a broken link :-(((");
       } else {
         System.out.println(
-            url + " - " + httpURLConnection.getResponseMessage() + " - " + "is a broken link");
+            url
+                + " - Response : "
+                + httpURLConnection.getResponseMessage()
+                + " - "
+                + " - It's is not a broken link :-) :-) :-)");
       }
     } catch (Exception e) {
-      System.out.println(url + " - " + "is a broken link");
+      System.out.println(url + " - " + " - It's is a broken link :-(((");
     }
   }
 }
