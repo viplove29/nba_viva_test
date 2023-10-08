@@ -36,13 +36,13 @@ been tested.*
  
 ## Run Serenity Project with Gradlew
 
-Terminal command to run tests in the QA build - uses Midday agency
+Terminal command to run tests
        
     ./gradlew clean test -Denvironment=QA
 
-Terminal command to run tests in the mdc build  
+Intellij Configurations command to run tests
   
-    ./gradlew clean test -Denvironment=MDC
+    :test --tests "serenitybase.runners.TestSmoke" -Denvironment=QA
 
 
 To run a single or subset of tests by tag, pass `-Dcucumber.filter.tags={{YOUR TAG}}"` as a system property.
