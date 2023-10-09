@@ -120,12 +120,12 @@ Email test reports from Report Portal are sent to SDETs after each regression ru
 
 ## NBA Test Case versioning
 
-All new MAR tests that contain features that aren't currently deployed to all environments need to have @Version tags 
+All new NBA tests that contain features that aren't currently deployed to all environments need to have @Version tags 
 added so the tests won't run in the MDC environment before those changes are available in MDC.
 
 A tag of `@version-22R2` will only be run in MDC when the version of `22R2` is in the serenity.conf file for the **MDC** environment.
 
-Versions are based on the tree structure for MAR test cases in qTest.
+Versions are based on the tree structure for NBA test cases in qTest.
 
 ## Spotless CI
 
